@@ -6,17 +6,18 @@
 // General style
 $font-family-sans-serif:  $body-font;
 $headings-font-family:    $headers-font;
-$body-bg:                 $light-gray;
+$body-bg:                 $body;
 $font-size-base: 1rem;
 
 // Colors
-$body-color: $white;
-$primary:    $#AC2721;
-$success:    $#C4C4C4;
-$info:       $#2F2F2F;
-$danger:     $#E5CBCA;
-$warning:    $#E5E2DA;
-
+$primary: #AC2721;
+$primary-hover: #761D1B;
+$success: #C4C4C4;
+$content: #2F2F2F;
+$warning: #E5E2DA;
+$selection: #94906F;
+$alert: #E5CBCA;
+$body: #white;
 // Buttons & inputs' radius
 $border-radius:    2px;
 $border-radius-lg: 2px;
