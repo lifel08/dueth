@@ -4,20 +4,20 @@
 // 3. You can override them below!
 
 // General style
-$font-family-sans-serif:  $body-font;
-$headings-font-family:    $headers-font;
-$body-bg:                 $body;
+$font-family-sans-serif:  $dueth-font;
+$headings-font-family:    $dueth-font;
+$body-bg:                 #white;
 $font-size-base: 1rem;
 
 // Colors
 $primary: #AC2721;
 $primary-hover: #761D1B;
-$success: #C4C4C4;
+$secondary: #C4C4C4;
 $content: #2F2F2F;
 $warning: #E5E2DA;
 $selection: #94906F;
 $alert: #E5CBCA;
-$body: #white;
+
 // Buttons & inputs' radius
 $border-radius:    2px;
 $border-radius-lg: 2px;
