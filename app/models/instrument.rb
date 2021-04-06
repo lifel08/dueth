@@ -4,5 +4,5 @@ class Instrument < ApplicationRecord
   has_one :cancellation_policy
   has_many :disponibilities
   validates :title, :sbubtitle, :location, :latitude, :longitude, :cancellation_policy; :price; presence: true
-  # has_one_attached :photo
+  has_one_attached :photo
 end
