@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_05_090724) do
+ActiveRecord::Schema.define(version: 2021_04_06_150539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,77 @@ ActiveRecord::Schema.define(version: 2021_04_05_090724) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "instrument_id"
+    t.bigint "user_id"
+    t.boolean "status"
+    t.datetime "from"
+    t.datetime "to"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["instrument_id"], name: "index_bookings_on_instrument_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "cancellation_policies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "hours"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "disponibilities", force: :cascade do |t|
+    t.date "date"
+    t.bigint "instrument_id"
+    t.datetime "from"
+    t.datetime "to"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["instrument_id"], name: "index_disponibilities_on_instrument_id"
+  end
+
+  create_table "features", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "instrument_features", force: :cascade do |t|
+    t.bigint "feature_id"
+    t.bigint "instrument_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feature_id"], name: "index_instrument_features_on_feature_id"
+    t.index ["instrument_id"], name: "index_instrument_features_on_instrument_id"
+  end
+
+  create_table "instruments", force: :cascade do |t|
+    t.string "title"
+    t.string "subtitle"
+    t.string "description"
+    t.string "location"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.bigint "cancellation_policy_id"
+    t.integer "price"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cancellation_policy_id"], name: "index_instruments_on_cancellation_policy_id"
+    t.index ["user_id"], name: "index_instruments_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "booking_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -51,10 +122,16 @@ ActiveRecord::Schema.define(version: 2021_04_05_090724) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "instrument_features", "instruments"
+  add_foreign_key "instruments", "users"
+  add_foreign_key "reviews", "bookings"
 end
