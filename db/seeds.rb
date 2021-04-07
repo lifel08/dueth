@@ -94,5 +94,13 @@ puts 'Instrument seeds done! 💪'
 
 # Generate Booking Instances
 
+# booking1 = Booking.new(
+#             instrument: 2,
+#             user: 3,
+#             status: 'accepted',
+#             from: '13:26/2/7/2022',
+#             to: '14:26/2/7/2022',
+#   )
+# puts 'Booking seeds done!'
 puts 'Seed comlpeted! 🌱'
 
