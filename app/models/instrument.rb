@@ -1,8 +1,10 @@
 class Instrument < ApplicationRecord
-  belongs_to :user_id
+  belongs_to :user
   has_many :bookings
-  has_one :cancellation_policy
   has_many :disponibilities
+  has_many :reviews, through: :bookings
+  has_many :features, through: :instrument_features
+  has_one :cancellation_policy
   validates :title, :sbubtitle, :location, :latitude, :longitude, :cancellation_policy; :price; presence: true
   has_one_attached :photo
 end
