@@ -1,3 +1,3 @@
 class InstrumentFeature < ApplicationRecord
-  belongs_to :id_instruments
+  belongs_to :instrument
 end
