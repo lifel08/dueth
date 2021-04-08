@@ -9,8 +9,8 @@
 require "open-uri"
 puts 'Start seeding .... 😬'
 
-User.destroy_all
 Instrument.destroy_all
+User.destroy_all
 Booking.destroy_all
 
 #User Piano Owner
@@ -57,7 +57,6 @@ lucy.save!
 puts 'Users seed done! 💪'
 
 # Generate Cancellation Policy
-# array of all cancellation policies
 
 cancellation_policies = {
     '2 hours before practise' => 2,
@@ -67,34 +66,18 @@ cancellation_policies = {
     '16 hours before practise' => 16,
     '1 day before practise' => 24,
     '2 days before practise' => 48,
-    '3 days before practise', => 62,
+    '3 days before practise' => 62,
     '5 days before practise' => 120
 }
 
 cancellation_policies.each do |policy, hour|
   CancellationPolicy.create!(
-     ${policy} - ${hour}
+     name: policy,
+     hours: hour
     )
   end
 
-cancellation_policies.save!
-
-#policy = [2 hours, 3 hours, etc.] loop it and create all of it.
-
-# old:
-# cancellation_policy1 = CancellationPolicy.new(
-#                         instrument: acoustic_piano,
-#                         name: '2 hours before practise',
-#                         hours: 2,
-#     )
-# cancellation_policy1.save!
-
-# cancellation_policy2 = CancellationPolicy.new(
-#                         instrument: digital_piano,
-#                         name: '2 days before practise',
-#                         hours: 48,
-#     )
-# cancellation_policy2.save!
+  puts 'CancellationPolicy seed done! 💪'
 
 # Generate Instrument Instances
 acoustic_piano = Instrument.new(
@@ -106,8 +89,7 @@ acoustic_piano = Instrument.new(
                  longitude: 2.355338,
                  price: 20,
                  user: chloe,
-                 cancellation_policy: cancellation_policies.key(2),
-                 # add cancellation policy
+                 cancellation_policy: cancellation_policies[0],
   )
 acoustic_piano.photo.attach(
             io: URI.open('https://i.pinimg.com/originals/01/bc/4d/01bc4d9bb870b82465bbb1e7d839bbc3.jpg'),
@@ -133,19 +115,14 @@ digital_piano.save!
 
 puts 'Instrument seeds done! 💪'
 
-
-
-# puts 'CancellationPolicy seeds done! '
-
 # Generate Booking Instances
-
-# booking1 = Booking.new(
-#             instrument: 2,
-#             user: 3,
-#             status: 'accepted',
-#             from: '13:26/2/7/2022',
-#             to: '14:26/2/7/2022',
-#   )
-# puts 'Booking seeds done!'
+booking1 = Booking.new(
+            instrument: digital_piano,
+            user: lucy,
+            status: 'accepted',
+            from: '13:26/2/7/2022',
+            to: '14:26/2/7/2022',
+  )
+puts 'Booking seeds done! 💪'
 puts 'Seed comlpeted! 🌱'
 

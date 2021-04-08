@@ -30,6 +30,6 @@ class InstrumentsController < ApplicationController
   end
 
   def instrument_params
-    params.require(:instrument).permit(:title, :subtitle, :location, :latitude, :longitude, :cancellation_policy, :price, :photo, :reviews)
+    params.require(:instrument).permit(:title, :subtitle, :location, :latitude, :longitude, :price, :photo, :reviews)
   end
 end
