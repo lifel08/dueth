@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_07_161609) do
+ActiveRecord::Schema.define(version: 2021_04_08_091257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,9 +57,9 @@ ActiveRecord::Schema.define(version: 2021_04_07_161609) do
 
   create_table "cancellation_policies", force: :cascade do |t|
     t.string "name"
-    t.datetime "hours"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "hours"
   end
 
   create_table "disponibilities", force: :cascade do |t|
