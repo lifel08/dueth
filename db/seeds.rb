@@ -124,5 +124,5 @@ booking1 = Booking.new(
             to: '14:26/2/7/2022',
   )
 puts 'Booking seeds done! 💪'
-puts 'Seed comlpeted! 🌱'
+puts 'Seed completed! 🌱'
 

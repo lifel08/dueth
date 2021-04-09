@@ -2,37 +2,15 @@ Rails.application.routes.draw do
   root to: 'pages#home'
     devise_for :users
 
-  resources
+  resources :users, only: [:show, :edit, :update, :destroy]
 
-  get 'instruments/index'
-  get 'instruments/show'
-  get 'instruments/new'
-  get 'instruments/create'
-  get 'instruments/update'
-  get 'instruments/destro'
-  get 'reviews/create'
-  get 'reviews/edit'
-  get 'reviews/destroy'
-  get 'bookings/create'
-  get 'bookings/destroy'
-  get 'bookings/accept'
-  get 'bookings/decline'
+  resources :instruments, only: [:show, :new, :edit, :update, :destroy]
 
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-end
-
-# write here weere to go
-  root to: 'pages#home'
-   devise_for :users
-
-  resources :trips, only: [:new, :create, :edit, :update, :destroy, :show]
-
-  resources :trips do
-    resources :bookings, only: :create
+# user practiser who books an instrument
+  resources :instruments do
+    resources :bookings, only: [:new, :create, :update, :destroy]
   end
 
-  # reviews are part of booking not of trips
   resources :bookings, only: :destroy do
     member do
       patch :accept
@@ -43,7 +21,3 @@ end
   resources :reviews, only: :destroy
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
-
-
-
-
