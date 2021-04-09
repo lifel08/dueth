@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update, :destroy]
 
+  resources :users do
+    resources :reviews, only: [:create, :edit, :destroy]
+  end
+
   resources :instruments, only: [:show, :new, :edit, :update, :destroy]
 
 # user practiser who books an instrument
@@ -19,5 +23,4 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :edit, :destroy]
   end
   resources :reviews, only: :destroy
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
