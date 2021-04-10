@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_08_091257) do
+ActiveRecord::Schema.define(version: 2021_04_10_192635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,11 +46,11 @@ ActiveRecord::Schema.define(version: 2021_04_08_091257) do
   create_table "bookings", force: :cascade do |t|
     t.bigint "instrument_id"
     t.bigint "user_id"
-    t.boolean "status"
     t.datetime "from"
     t.datetime "to"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status"
     t.index ["instrument_id"], name: "index_bookings_on_instrument_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
@@ -109,7 +109,9 @@ ActiveRecord::Schema.define(version: 2021_04_08_091257) do
     t.bigint "booking_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "instrument_id", null: false
     t.index ["booking_id"], name: "index_reviews_on_booking_id"
+    t.index ["instrument_id"], name: "index_reviews_on_instrument_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -133,4 +135,5 @@ ActiveRecord::Schema.define(version: 2021_04_08_091257) do
   add_foreign_key "instrument_features", "instruments"
   add_foreign_key "instruments", "users"
   add_foreign_key "reviews", "bookings"
+  add_foreign_key "reviews", "instruments"
 end
