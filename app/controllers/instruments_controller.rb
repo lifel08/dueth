@@ -7,7 +7,7 @@ class InstrumentsController < ApplicationController
   end
 
   def new
-    @instrument = Insrtument.new
+    @instrument = Instrument.new
   end
 
   def create
@@ -32,4 +32,9 @@ class InstrumentsController < ApplicationController
   def instrument_params
     params.require(:instrument).permit(:title, :subtitle, :location, :latitude, :longitude, :price, :photo, :reviews)
   end
+
+  def find_instrument
+    @instrument = Instrument.find(params[:id])
+  end
 end
+

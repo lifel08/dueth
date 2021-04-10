@@ -1,9 +1,10 @@
 class Review < ApplicationRecord
   belongs_to :booking
-  belongs_to :user, through: :booking
+  belongs_to :user
   belongs_to :instrument, through: :booking
+  validates :user_id, uniqueness: true
   validates :content, :booking, presence: true
-  validates :rating, inclusion: { in: 0..5 }, numericality: { only_integer: true }
+  validates :rating, inclusion: { in: 1..5 }, numericality: { only_integer: true }
 end
 
 
