@@ -9,4 +9,4 @@
 
 <h1>Explore music instruments nearby</h1>
 
-  <%= render 'components/instrument_card_big' %>
+  <%= render partial: 'components/instrument_card_big', locals: {instrument: @instrument} %>
