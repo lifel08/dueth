@@ -57,7 +57,6 @@ lucy.save!
 puts 'Users seed done! 💪'
 
 # Generate Cancellation Policy
-
 cancellation_policies = {
     '2 hours before practise' => 2,
     '6 hours before practise' => 6,
@@ -77,7 +76,7 @@ cancellation_policies.each do |policy, hour|
     )
   end
 
-  puts 'CancellationPolicy seed done! 💪'
+puts 'CancellationPolicy seed done! 💪'
 
 # Generate Instrument Instances
 acoustic_piano = Instrument.new(
@@ -89,7 +88,7 @@ acoustic_piano = Instrument.new(
                  longitude: 2.355338,
                  price: 20,
                  user: chloe,
-                 cancellation_policy: cancellation_policies[0],
+                 cancellation_policy: cancellation_policies[0]
   )
 acoustic_piano.photo.attach(
             io: URI.open('https://i.pinimg.com/originals/01/bc/4d/01bc4d9bb870b82465bbb1e7d839bbc3.jpg'),
@@ -106,6 +105,7 @@ digital_piano = Instrument.new(
                  longitude: 2.3566307396897184,
                  price: 15,
                  user: nam,
+                 cancellation_policy: cancellation_policies[5]
   )
 digital_piano.photo.attach(
             io: URI.open('http://www.vend-appartement-paris.fr/wp-content/uploads/2018/08/hautpoul-s%C3%A9jour-2.jpg'),
@@ -115,13 +115,30 @@ digital_piano.save!
 
 puts 'Instrument seeds done! 💪'
 
+# Disponibilites
+# monday_morning = Disponibility.new(
+#   from: '09:26/6/7/2022',
+#   to: '10:26/6/7/2022',
+#   instrument: digital_piano
+#   )
+# monday_morning.save!
+
+# tuesday_afternoon = Disponibility.new(
+#   from: '16:26/7/7/2022',
+#   to: '17:26/7/7/2022',
+#   instrument: acoustic_piano
+#   )
+# tuesday_afternoon.save!
+
+# puts 'Disponibility seed done! 💪'
+
 # Generate Booking Instances
 booking1 = Booking.new(
             instrument: digital_piano,
             user: lucy,
             status: 'accepted',
-            from: '13:26/2/7/2022',
-            to: '14:26/2/7/2022',
+            from: '09:26/6/7/2022',
+            to: '10:26/6/7/2022'
   )
 puts 'Booking seeds done! 💪'
 puts 'Seed completed! 🌱'

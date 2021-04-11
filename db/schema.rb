@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 2021_04_10_192635) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "instrument_id", null: false
+    t.bigint "instrument"
     t.index ["booking_id"], name: "index_reviews_on_booking_id"
     t.index ["instrument_id"], name: "index_reviews_on_instrument_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
