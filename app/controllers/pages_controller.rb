@@ -3,7 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @instruments = Instrument.all
-    raise
   end
 
   def show

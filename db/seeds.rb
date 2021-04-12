@@ -9,16 +9,10 @@
 require "open-uri"
 puts 'Start seeding .... 😬'
 
-User.destroy_all
-CancellationPolicy.destroy_all
-Instrument.destroy_all
-Feature.destroy_all
-InstrumentFeature.destroy_all
-Review.destroy_all
-Booking.destroy_all
+# Destroy at the beginning will not delete
 
 
-#User Piano Owner
+#User Provider (Piano Owner)
 chloe = User.new(
       first_name: 'Chloé',
       last_name: 'Durand',
@@ -45,7 +39,7 @@ nam.photo.attach(
             content_type: 'nam/jpg')
 nam.save!
 
-#User Practise Seeker
+#User Receiver (Practise Seeker)
 lucy = User.new(
       first_name: 'Lucy',
       last_name: 'Smith',
@@ -132,8 +126,6 @@ end
 
 puts 'Feature & Instrument seeds done! 💪'
 
-
-
 # Disponibilites
 # monday_morning = Disponibility.new(
 #   from: '09:26/6/7/2022',
@@ -154,7 +146,8 @@ puts 'Feature & Instrument seeds done! 💪'
 # Generate Booking Instances
 booking_new = Booking.new(
             instrument: acoustic_piano,
-            user: lucy,
+            receiver: lucy,
+            provider: acoustic_piano.user,
             status: 'accepted',
             from: '09:26/6/7/2021',
             to: '10:26/6/7/2021'
@@ -162,11 +155,16 @@ booking_new = Booking.new(
 
 booking_old = Booking.new(
             instrument: acoustic_piano,
-            user: nam,
+            receiver: nam,
+            provider: acoustic_piano.user,
             status: 'accepted',
             from: '09:26/6/7/2020',
             to: '10:26/6/7/2020'
   )
+
+booking_new.save!
+booking_old.save!
+
 puts 'Booking seeds done! 💪'
 
 # Reviews

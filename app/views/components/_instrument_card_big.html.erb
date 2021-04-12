@@ -1,6 +1,24 @@
+<section>
 
-<button class="instrument-card">
+  <div class="container pt-3">
+    <div class="row">
+    <% @instruments.each do |instrument| %>
+        <div class="col">
+        <%= link_to instrument_path(instrument) do %>
+            <div>
+              <!-- image cl_image_tag trip.captain.photo.key -->
+            </div>
+            <div>
+              <h2><%= instrument.title %></h2>
+              <p> <%= instrument.location %> </p>
+              <p> <%= instrument.price %> €</p>
+              <p> <%= pluralize(instrument.reviews.count, 'review') %></p>
+            </div>
+          </div>
+        <% end %>
+        </div>
+    <% end %>
+    </div>
+</section>
 
-
- <%= instrument.title %>
-</button>
+<!-- pluralize is giving review when 0 and reviewS when more than 0. -->
