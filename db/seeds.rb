@@ -9,11 +9,8 @@
 require "open-uri"
 puts 'Start seeding .... 😬'
 
-User.destroy_all
-CancellationPolicy.destroy_all
 Instrument.destroy_all
-Feature.destroy_all
-InstrumentFeature.destroy_all
+User.destroy_all
 Booking.destroy_all
 
 #User Piano Owner
@@ -118,34 +115,7 @@ digital_piano.save!
 
 puts 'Instrument seeds done! 💪'
 
-# Features & Instrument Features
 
-features = ["brand_name", "type_acoustic_piano", "instant_book", "tuned"]
-features.each do |feature|
-  create_feature = Feature.create!(name: feature)
-  create_instrument_feature = InstrumentFeature.create(
-    instrument: acustic_piano,
-    feature: create_feature
-end
-create_feature.save!
-create_instrument_feature.save!
-
-puts 'Features & Intsrument Features seeds done! 💪'
-
-# Reviews
-
-review_chloe = Review.new(
-                rating: 5,
-                content: 'amazing practise',
-                rating_date: '6/7/2020',
-                instrument: digital_piano,
-                user: nam,
-                booking: booking_old
-  )
-
-review_chloe.save!
-
-puts 'review seeds done! 💪'
 
 # Disponibilites
 # monday_morning = Disponibility.new(
@@ -165,20 +135,12 @@ puts 'review seeds done! 💪'
 # puts 'Disponibility seed done! 💪'
 
 # Generate Booking Instances
-booking_new = Booking.new(
+booking1 = Booking.new(
             instrument: digital_piano,
             user: lucy,
             status: 'accepted',
-            from: '09:26/6/7/2021',
-            to: '10:26/6/7/2021'
-  )
-
-booking_old = Booking.new(
-            instrument: digital_piano,
-            user: nam,
-            status: 'accepted',
-            from: '09:26/6/7/2020',
-            to: '10:26/6/7/2020'
+            from: '09:26/6/7/2022',
+            to: '10:26/6/7/2022'
   )
 puts 'Booking seeds done! 💪'
 puts 'Seed completed! 🌱'
