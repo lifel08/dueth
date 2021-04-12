@@ -1,4 +1,5 @@
 class Instrument < ApplicationRecord
+  geocoded_by :location
   belongs_to :user
   has_many :bookings
   has_many :reviews, through: :bookings

@@ -3,7 +3,7 @@
   <div class="container pt-3">
     <div class="row">
     <% @instruments.each do |instrument| %>
-        <div class="col">
+        <div class="col sm">
         <%= link_to instrument_path(instrument) do %>
             <div>
               <!-- image cl_image_tag trip.captain.photo.key -->
@@ -21,4 +21,3 @@
     </div>
 </section>
 
-<!-- pluralize is giving review when 0 and reviewS when more than 0. -->
