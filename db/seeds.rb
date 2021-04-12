@@ -9,9 +9,14 @@
 require "open-uri"
 puts 'Start seeding .... 😬'
 
-Instrument.destroy_all
 User.destroy_all
+CancellationPolicy.destroy_all
+Instrument.destroy_all
+Feature.destroy_all
+InstrumentFeature.destroy_all
+Review.destroy_all
 Booking.destroy_all
+
 
 #User Piano Owner
 chloe = User.new(
@@ -120,28 +125,14 @@ features = ["Yamaha", "Digital Piano", "Tuned", "Instant Booking"]
 features.each do |feature|
   create_feature = Feature.create!(name: feature)
   create_instrument_feature = InstrumentFeature.create(
-    instrument: acustic_piano,
+    instrument: acoustic_piano,
     feature: create_feature
+    )
 end
-
-create_feature.save!
-create_instrument_feature.save!
 
 puts 'Feature & Instrument seeds done! 💪'
 
-# Reviews
 
-review1 = Review.new(
-          booking: booking_old,
-          rating: 5,
-          content: 'amazing instrument',
-          rating_date: '6/7/2020',
-          instrument: acoustic_piano,
-          user: nam
-          )
-review1.save!
-
-puts 'Review seeds done! 💪'
 
 # Disponibilites
 # monday_morning = Disponibility.new(
@@ -177,5 +168,19 @@ booking_old = Booking.new(
             to: '10:26/6/7/2020'
   )
 puts 'Booking seeds done! 💪'
+
+# Reviews
+
+review1 = Review.new(
+          booking: booking_old,
+          rating: 5,
+          content: 'amazing instrument',
+          created_at: Time.now,
+          instrument: acoustic_piano,
+          user: nam
+          )
+review1.save!
+
+puts 'Review seeds done! 💪'
 puts 'Seed completed! 🌱'
 
