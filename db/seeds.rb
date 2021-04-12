@@ -115,6 +115,8 @@ digital_piano.save!
 
 puts 'Instrument seeds done! 💪'
 
+
+
 # Disponibilites
 # monday_morning = Disponibility.new(
 #   from: '09:26/6/7/2022',
