@@ -3,10 +3,11 @@ class PagesController < ApplicationController
 
   def home
     @instruments = Instrument.all
+    raise
   end
 
   def show
-   @instrument = Instrument.find(params[:id])
-   render plain: @instrument.title
+    @instrument_id = params[:id]
+    @instrument = Instrument.find(@instrument_id)
   end
 end
