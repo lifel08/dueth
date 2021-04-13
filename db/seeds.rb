@@ -79,10 +79,10 @@ puts 'CancellationPolicy seed done! 💪'
 
 # Generate Instrument Instances
 acoustic_piano = Instrument.new(
-                 title: 'Acousting Piano Paris 10e - Beautiful & Stylish',
+                 title: 'Acoustic Piano',
                  subtitle: 'Chloé is offering her beautiful tuned Yamaha Acoustic Piano for practise ' ,
                  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                 location: '18 Rue de Saint-Quentin, Paris, France',
+                 location: 'Paris',
                  latitude: 48.878125,
                  longitude: 2.355338,
                  price: 20,
@@ -96,12 +96,12 @@ acoustic_piano.photo.attach(
 acoustic_piano.save!
 
 digital_piano = Instrument.new(
-                 title: 'Digital Piano Paris 10e - Calme',
+                 title: 'Digital Piano',
                  subtitle: 'Enjoy a good piano practise in a very quiet area',
                  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                 location: '80 Boulevard de Magenta, Paris, France',
-                 latitude: 48.87617675877308,
-                 longitude: 2.3566307396897184,
+                 location: 'Milan',
+                 latitude: 45.478539,
+                 longitude: 9.215147,
                  price: 15,
                  user: nam,
                  cancellation_policy: cancellation_policies[5]

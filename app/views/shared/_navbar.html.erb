@@ -1,17 +1,30 @@
-<div class="fixed-top">
-  <div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-dark p-4">
-      <h5 class="text-white h4"> Menu</h5>
-      <p><span class="text-muted">Log in</span><br>
-        <span class="text-muted">Sign up</span><br>
-        <span class="text-muted">Account</span>
-      </p>
+<!-- navigation -->
+<div class="header">
+
+<!-- menu -->
+  <div class="navigation">
+    <div class="fixed-top">
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-white p-4">
+          <h5 class="text-content h4"> Menu</h5>
+          <p><span class="text-muted">Log in</span><br>
+            <span class="text-muted">Sign up</span><br>
+            <span class="text-muted">Account</span>
+          </p>
+        </div>
+      </div>
+      <nav class="navbar navbar-light bg-content">
+        <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon bg-white"></span>
+        </button>
+      </nav>
     </div>
-  </div>
-  <nav class="navbar navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </nav>
 </div>
 
+<!-- logo & profile -->
+  <div class="navigation-elements">
+      <%= link_to image_tag('logo.png',  height: '40', width: '60'), {action: 'home', controller: 'pages'},:class => "logo" %>
+
+    <%= image_tag 'svg/profile.svg', :class => "profile", height: '40', width: '60' %>
+  </div>
+</div>
