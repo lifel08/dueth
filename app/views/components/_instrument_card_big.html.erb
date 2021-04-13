@@ -2,7 +2,6 @@
   <%= link_to instrument_path(instrument) do %>
     <div class="col sm">
       <div>
-        <!-- image cl_image_tag trip.captain.photo.key -->
         <%= cl_image_tag instrument.photo.key, height: 200, width: 300, crop: :fill, loading:"lazy" %>
       </div>
       <div>

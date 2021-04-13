@@ -11,20 +11,20 @@
 
 <!-- search -->
 <div class="search">
-  <%= form_tag instruments_path, method: :get do %>
-    <%= text_field_tag :query,
-      params[:query],
+  <%= form_tag search_instruments_path(title: params[:title].to_s,location: params[:location].to_s), method: :get do %>
+    <%= text_field_tag :title,
+      params[:title],
       class: "search-bar",
       placeholder: "What instrument? Piano, drums, ..."
       %>
-  <% end %>
-  <%= form_tag instruments_path, method: :get do %>
-    <%= text_field_tag :query,
-      params[:query],
+    <%= text_field_tag :location,
+      params[:location],
       class: "search-bar",
       placeholder: "Where? Paris, Milan, ..."
       %>
+        <button type="submit">submit</button>
   <% end %>
+
 </div>
 
 <!-- banner -->
