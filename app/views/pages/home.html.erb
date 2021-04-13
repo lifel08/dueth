@@ -7,6 +7,38 @@
 
 <!-- Body -->
 
+
+
+<!-- search -->
+<div class="search">
+  <%= form_tag instruments_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "search-bar",
+      placeholder: "What instrument? Piano, drums, ..."
+      %>
+  <% end %>
+  <%= form_tag instruments_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "search-bar",
+      placeholder: "Where? Paris, Milan, ..."
+      %>
+  <% end %>
+</div>
+
+<!-- banner -->
+<div class="banner">
+<%= image_tag 'header.jpg', height: '300', width: '100%' %>
+</div>
+
+<!-- instruments -->
 <h1>Explore music instruments nearby</h1>
 
-<%= render "./components/instrument_card_big" %>
+<section>
+  <div class="container pt-3">
+    <div class="row">
+      <%= render "./components/instrument_card_small" %>
+    </div>
+  </div>
+</section>

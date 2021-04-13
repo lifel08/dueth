@@ -10,4 +10,16 @@
 
 // Your CSS partials
 @import "components/index";
+@import "components/instrument_card";
 @import "pages/index";
+
+// general style
+
+a {
+  color: $content;
+}
+a:hover {
+  text-decoration: none;
+  color: $content;
+}
+
