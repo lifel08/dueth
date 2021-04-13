@@ -8,8 +8,11 @@
       <div>
         <span class="span-headline"><%= instrument.title %></span>
         <p> <%= instrument.location %> </p>
-        <p> <%= instrument.price %> €</p>
-        <p> <%= pluralize(instrument.reviews.count, 'review') %></p>
+
+        <div class="overview">
+          <p> <%= instrument.price %> €</p>
+          <p><%= image_tag 'svg/rating.svg', :class => "rating", height: '15', width: '15' %> <%= pluralize(instrument.reviews.count, 'review') %></p>
+        </div>
       </div>
     </div>
   <% end %>

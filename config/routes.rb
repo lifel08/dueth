@@ -2,15 +2,12 @@ Rails.application.routes.draw do
   root to: 'pages#home'
     devise_for :users
 
-  resources :instruments, only: [:show, :new, :edit, :update, :destroy]
-  # user practiser who books an instrument
   resources :instruments do
+    get ':title/:location/' => :search, on: :collection, as: :search
     resources :bookings, only: [:new, :create, :update, :destroy]
   end
 
-  resources :users, only: [:show, :edit, :update, :destroy]
-
-  resources :users do
+  resources :users, only: [:show, :edit, :update, :destroy] do
     resources :reviews, only: [:create, :edit, :destroy]
   end
 

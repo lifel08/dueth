@@ -1,8 +1,13 @@
 class InstrumentsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index, :show ]
+  skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
 
   def index
-    @instruments = Instrument.all
+    @instruments = Instrument.search_title_and_location(params[:title].to_s+','+params[:location].to_s)
+  end
+
+  def search
+    @instruments = Instrument.search_title_and_location(params[:title].to_s+','+params[:location].to_s)
+    render :index
   end
 
   def show
