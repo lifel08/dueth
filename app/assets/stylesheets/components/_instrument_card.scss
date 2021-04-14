@@ -1,7 +1,35 @@
-.instrument-card {
-  width:90vw;
-  height:8rem;
+.image-container {
+  position: relative;
+  height: 250px;
+  width: 250px;
+
+
 }
+
+.instrument-image {
+
+}
+
+.fas {
+  position: absolute;
+}
+
+.far {
+  position: absolute;
+}
+
+.location {
+    position: absolute;
+}
+// .header-image {
+//   position: absolute;
+//   display: flex;
+//   justify-content: space-between;
+//   color: white;
+//   font-size: 19px;
+
+// }
+
 
 .span-headline {
   font-size: 18px;
@@ -11,4 +39,15 @@
 .overview {
   display: flex;
   justify-content: space-between;
+  bottom: 50%;
+  transform: translatey(50%);
+}
+
+.rating {
+  height: 15px;
+  width: 15px;
+}
+
+.price {
+  color: #AC2721;
 }
