@@ -1,5 +1,6 @@
 class InstrumentsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
+  before_action :redirect_to_search, only: [:index]
 
   def index
     @instruments = Instrument.search_title_and_location(params[:title].to_s+','+params[:location].to_s)
@@ -7,7 +8,12 @@ class InstrumentsController < ApplicationController
 
   def search
     @instruments = Instrument.search_title_and_location(params[:title].to_s+','+params[:location].to_s)
-    render :index
+    if @instruments.present?
+      render :index
+    else
+      flash[:notice] = "Not found"
+      redirect_to root_path
+    end
   end
 
   def show
@@ -36,6 +42,14 @@ class InstrumentsController < ApplicationController
   def destroy
     @instrument.destroy
     redirect_to instrument_path
+  end
+
+  private
+
+  def redirect_to_search
+    if params[:title] || params[:location]
+      return redirect_to search_instruments_path(title: params[:title].downcase, location: params[:location].downcase), status: 301
+    end
   end
 
   def instrument_params

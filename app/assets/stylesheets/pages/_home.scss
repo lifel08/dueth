@@ -29,3 +29,12 @@ h1 {
   border: #C4C4C4;
 
 }
+
+a {
+  color: $content;
+}
+a:hover {
+  text-decoration: none;
+  color: $content;
+}
+
