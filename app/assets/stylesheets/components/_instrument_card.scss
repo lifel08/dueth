@@ -7,19 +7,23 @@
 }
 
 .instrument-image {
+  filter: brightness(50%);
 
 }
 
 .fas {
   position: absolute;
+  color: white !important;
 }
 
 .far {
   position: absolute;
+  color: white !important;
 }
 
 .location {
     position: absolute;
+    color: white !important;
 }
 // .header-image {
 //   position: absolute;

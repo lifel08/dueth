@@ -2,10 +2,9 @@
   <%= link_to instrument_path(instrument) do %>
     <div class="col sm">
       <div class="image-container">
-        <div class="instrument-image">
-          <%= cl_image_tag instrument.photo.key, height: 250, width: 250, crop: :fill, loading:"lazy" %>
+          <%= cl_image_tag instrument.photo.key, class:'instrument-image', height: 250, width: 250, crop: :fill, loading:"lazy" %>
           <i class="fas fa-map-marker-alt"></i> <p class="location"><%= instrument.location %></p><i class="far fa-heart"></i>
-        </div>
+      </div>
 
         <div class="header-image">
         </div>
