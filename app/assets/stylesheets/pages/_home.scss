@@ -8,12 +8,15 @@ h1 {
 .banner {
   background-position: cover;
   margin-top:20px;
-
+  position: relative;
 }
 
 .search {
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  z-index: 1;
+  margin-left: -330px;
 }
 
 .search-bar {
