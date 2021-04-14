@@ -1,38 +1,38 @@
 .image-container {
   position: relative;
-  height: 250px;
-  width: 250px;
-
 
 }
 
-.instrument-image {
+.instrument-card-image {
   filter: brightness(50%);
-
 }
 
 .fas {
-  position: absolute;
-  color: white !important;
+position: absolute;
+top: 15px;
+left: 15px;
+
 }
 
 .far {
   position: absolute;
-  color: white !important;
+  top:15px;
+  right: 15px;
+  color: #ff0400;
+  box-shadow: white;
 }
 
 .location {
-    position: absolute;
-    color: white !important;
-}
-// .header-image {
-//   position: absolute;
-//   display: flex;
-//   justify-content: space-between;
-//   color: white;
-//   font-size: 19px;
+  position: absolute;
+  left: 35px;
+  top: 10px;
 
-// }
+}
+.header-image {
+  color: white;
+  font-size: 19px;
+  right: 0; top: 1em;
+}
 
 
 .span-headline {
