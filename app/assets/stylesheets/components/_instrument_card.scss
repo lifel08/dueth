@@ -55,3 +55,13 @@ left: 15px;
 .price {
   color: #AC2721;
 }
+
+a {
+  color: $content;
+}
+a:hover {
+  text-decoration: none;
+  color: $content;
+}
+
+
