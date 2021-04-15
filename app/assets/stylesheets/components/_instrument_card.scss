@@ -1,6 +1,9 @@
 .image-container {
   position: relative;
+}
 
+.col {
+  margin-bottom:50px;
 }
 
 .instrument-card-image {
@@ -63,5 +66,3 @@ a:hover {
   text-decoration: none;
   color: $content;
 }
-
-

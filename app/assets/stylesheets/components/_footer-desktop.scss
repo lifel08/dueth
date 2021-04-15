@@ -8,18 +8,24 @@ footer {
 }
 
 .footer-links {
+  height: 30px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   list-style: none;
   font-size: 12px;
 }
 
-a {
-  color: $warning !important;
+.instagram-icon {
+  margin-right: 15px;
 }
-a:hover {
+
+footer a {
+ color: $warning;
+}
+
+footer a:hover {
   text-decoration: none;
   color: $warning;
 }

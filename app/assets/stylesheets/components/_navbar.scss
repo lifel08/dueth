@@ -10,7 +10,6 @@
 
 .navigation {
   width: 30%;
-
 }
 
 .logo {
@@ -18,18 +17,16 @@
   top: 0px;
   right:50%;
   margin-right: -55px;
-
 }
 
 .profile {
     position: absolute;
-    right: 0;
-    top:10px;
-
+    right: 15px;
+    top:15px;
 }
 
 a {
-  color: $content !important;
+  color: $content;
 }
 
 a:hover {
