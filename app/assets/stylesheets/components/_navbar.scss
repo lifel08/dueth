@@ -27,3 +27,12 @@
     top:10px;
 
 }
+
+a {
+  color: $content !important;
+}
+
+a:hover {
+  text-decoration: none;
+  color: $content;
+}

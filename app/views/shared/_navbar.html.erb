@@ -7,7 +7,7 @@
       <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-white p-4">
           <h5 class="text-content h4"> Menu</h5>
-          <p><span class="text-muted">Log in</span><br>
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
             <span class="text-muted">Sign up</span><br>
             <span class="text-muted">Account</span>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
