@@ -1,5 +1,4 @@
 footer {
-  position: fixed;
   bottom:0;
   background-color: #2F2F2F;
   width: 100vw;
@@ -9,10 +8,18 @@ footer {
 }
 
 .footer-links {
-  position: fixed;
   bottom:0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   list-style: none;
+}
+
+
+a {
+  color: $warning;
+}
+a:hover {
+  text-decoration: none;
+  color: $warning;
 }

@@ -27,6 +27,7 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :instruments
   has_many :reviews, through: :bookings
+  validates :first_name, :last_name, :birthday, :password, :photo, presence: true
   has_one_attached :photo
 
   def registered_since

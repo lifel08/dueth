@@ -1,0 +1,22 @@
+<% content_for :head do %>
+<title>Profile of Dueth| Dueth.com</title>
+<meta name="robots" content="noindex, follow" />
+<% end %>
+
+<div class="">
+  <div class="">
+    <% if user_signed_in? %>
+      <div class="profile-hero">
+        <div class="fullname">
+          <h1>Hi</h1>
+          <h2><%= current_user.first_name %> <%= current_user.last_name %></h2>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if !user_signed_in? %>
+  <!-- just a margin if the user is not logged in -->
+  <div class="margin-for-menu"></div>
+  <% end %>
+</div>

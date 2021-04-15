@@ -10,6 +10,8 @@
           <p><span class="text-muted">Log in</span><br>
             <span class="text-muted">Sign up</span><br>
             <span class="text-muted">Account</span>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+
           </p>
         </div>
       </div>
@@ -23,8 +25,22 @@
 
 <!-- logo & profile -->
   <div class="navigation-elements">
-      <%= link_to image_tag('logo.png', height: '65', width: '75'), {action: 'home', controller: 'pages'},:class => "logo" %>
-
-    <%= image_tag 'svg/profile.svg', :class => "profile", height: '40', width: '40' %>
+      <div>
+        <%= link_to image_tag('logo.png', height: '65', width: '75'), {action: 'home', controller: 'pages'},:class => "logo" %>
+      </div>
+      <div>
+        <% if !user_signed_in? %>
+          <%= render 'components/avatar-icon'  %>
+        <% else %>
+            <%= render 'components/avatar' %>
+            <%= link_to profile_path %>
+        <% end %>
+      </div>
   </div>
 </div>
+
+
+
+
+
+
