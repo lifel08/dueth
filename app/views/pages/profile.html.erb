@@ -10,10 +10,9 @@
         <div class="fullname">
           <h1>Hi</h1>
           <h2><%= current_user.first_name %> <%= current_user.last_name %></h2>
-          <button type="submit" class="button-primary">Add new Instrument</button>
-          <button type="submit" class="button-primary">Edit Instrument</button>
-          <button type="submit" class="button-primary">Pause</button>
-          <button type="submit" class="button-primary">Delete Instrument</button>
+            <div>
+            <%= link_to "Add a new Instrument", new_instrument_path, class:"button-primary" %>
+            </div>
         </div>
       </div>
     <% end %>
@@ -24,3 +23,7 @@
   <div class="margin-for-menu"></div>
   <% end %>
 </div>
+<br>
+          <button type="submit" class="button-primary">Edit Instrument</button>
+          <button type="submit" class="button-primary">Pause</button>
+          <button type="submit" class="button-primary">Delete Instrument</button>

@@ -114,17 +114,37 @@ digital_piano.save!
 
 puts 'Instrument seeds done! 💪'
 
-# Features & Instrument Features
-features = ["Yamaha", "Digital Piano", "Tuned", "Instant Booking"]
-features.each do |feature|
+# Features
+
+# special_instrument = Feature.new(
+#                     name: 'Special Instrument'
+#   )
+# special_instrument.photo.attach(io: File.open('./assets/images/svg/grand-piano.svg'), filename: 'grand-piano.svg')
+# special.instrument.save!
+
+    # special_instrument: 'grand-piano.svg',
+    # very_quiet_area: 'quiet-area.svg',
+    # tuned: 'note.svg',
+    # instant_booking: 'instant-book.svg',
+    # close_to_public_transport: 'location-white.svg',
+    # exceptional_view: 'exceptional-view.svg',
+    # separate_practise_room: 'separate-practise-room.svg',
+    # practise_after_9pm: 'rating-grey.svg',
+
+
+puts 'Features seed done! 💪'
+
+# Instrument-Features
+
+features = ["special instrument", "very quiet area", "tuned"]
+  features.each do |feature|
   create_feature = Feature.create!(name: feature)
   create_instrument_feature = InstrumentFeature.create(
     instrument: acoustic_piano,
     feature: create_feature
     )
-end
-
-puts 'Feature & Instrument seeds done! 💪'
+  end
+puts 'Instrument-Features seeds done! 💪'
 
 # Disponibilites
 # monday_morning = Disponibility.new(
