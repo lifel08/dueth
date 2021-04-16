@@ -30,6 +30,7 @@ class Instrument < ApplicationRecord
   belongs_to :user
   has_many :bookings
   has_many :reviews, through: :bookings
+  has_many :instrument_features
   has_many :features, through: :instrument_features
   has_one :cancellation_policy
   validates :title, :subtitle, :location, :latitude, :longitude, :price, presence: true
@@ -37,4 +38,6 @@ class Instrument < ApplicationRecord
 
   pg_search_scope :search_title_and_location,
    against: [ :title, :location ]
+
+  accepts_nested_attributes_for :instrument_features, allow_destroy: true
 end

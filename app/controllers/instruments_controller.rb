@@ -23,15 +23,18 @@ class InstrumentsController < ApplicationController
 
   def new
     @instrument = Instrument.new
+    @instrument.instrument_features.build
   end
 
   def create
     @instrument = Instrument.new(instrument_params)
-      if @instrument.save
-        redirect_to instrument_path(@instrument) # to do: verify path
-      else
-        render :new
-      end
+    byebug
+    if @instrument.save
+      redirect_to profile_path , status: :created
+    else
+      @instrument.instrument_features.build
+      render :new
+    end
   end
 
   def update
@@ -53,7 +56,8 @@ class InstrumentsController < ApplicationController
   end
 
   def instrument_params
-    params.require(:instrument).permit(:title, :subtitle, :location, :latitude, :longitude, :price, :photo, :reviews)
+    params.require(:instrument).permit(:title, :subtitle, :description, :location, :latitude, :longitude,
+     :price, :photo, :reviews, instrument_features_attributes:[:feature_id, :id] )
   end
 
   def find_instrument
