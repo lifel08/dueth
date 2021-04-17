@@ -26,7 +26,7 @@
         <br/>
         <%= raw feature.icon %>
         <br/>
-        <%= f.check_box :"feature_ids[]", {}, @instrument.feature_ids.include?(feature.id) %>
+        <%= check_box_tag :"instrument[feature_ids][]", feature.id, is_feature_checked?(feature.id) %>
         <% end %>
         <br/>
         <%= f.button :submit %>
