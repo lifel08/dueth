@@ -139,14 +139,11 @@ puts 'Features seed done! 💪'
 
 features = ["special instrument", "very quiet area", "tuned"]
   features.each do |feature|
-  create_feature = Feature.create!(name: feature)
+  create_feature = Feature.create!(name: feature, icon: '<i class="fas fa-music"></i>')
   create_instrument_feature = InstrumentFeature.create(
     instrument: acoustic_piano,
     feature: create_feature
     )
-  p "Image for this feature #{feature_icons[feature]}"
-  create_feature.photo.attach(io: File.open("#{Rails.root}app/assets/images/svg/#{feature_icons[feature]}"), filename: feature_icons[feature])
-  create_feature.save!
   end
 puts 'Instrument-Features seeds done! 💪'
 
