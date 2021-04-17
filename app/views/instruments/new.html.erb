@@ -23,8 +23,12 @@
         <%= f.input :description, as: :text, placeholder: "Example: Anna is offering her good to practise and easy to reach digital piano. Come by and enjoy your piano practise as usual!"%>
         <% Feature.find_each do |feature| %>
         <%= feature.name %>
-        <%= cl_image_tag feature.photo.key %>
+        <br/>
+        <%= raw feature.icon %>
+        <br/>
+        <%= f.check_box :"feature_ids[]", {}, @instrument.feature_ids.include?(feature.id) %>
         <% end %>
+        <br/>
         <%= f.button :submit %>
       <% end %>
     </div>
