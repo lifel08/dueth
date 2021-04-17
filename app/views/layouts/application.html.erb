@@ -15,17 +15,17 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
-  <body>
 
+  <body>
     <!-- Navigation & Menu -->
     <%= render 'shared/navbar' unless @disable_nav  %>
 
     <!-- Alerts -->
     <%= render 'shared/flashes' %>
       <%= yield %>
-   </body>
-   <!-- Footer -->
-<!--   <footer>
-    <%#= render 'shared/footer-desktop' unless @disable_footer  %>
-  </footer> -->
-</html>
+  </body>
+
+  <!-- Footer -->
+  <%#= render 'shared/footer-desktop'  %>
+</html >
+

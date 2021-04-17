@@ -28,7 +28,7 @@ class InstrumentsController < ApplicationController
 
   def create
     @instrument = Instrument.new(instrument_params)
-    byebug
+    raise
     if @instrument.save
       redirect_to profile_path , status: :created
     else
