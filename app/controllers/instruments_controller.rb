@@ -28,7 +28,7 @@ class InstrumentsController < ApplicationController
 
   def create
     @instrument = Instrument.new(instrument_params)
-    raise
+
     if @instrument.save
       redirect_to profile_path , status: :created
     else
@@ -57,7 +57,7 @@ class InstrumentsController < ApplicationController
 
   def instrument_params
     params.require(:instrument).permit(:title, :subtitle, :description, :location, :latitude, :longitude,
-     :price, :photo, :reviews, instrument_features_attributes:[:feature_id, :id] )
+     :price, :photo, :reviews, feature_ids: [])
   end
 
   def find_instrument

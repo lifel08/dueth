@@ -1,22 +1,30 @@
 <% content_for :head do %>
-<title>Add a new Instrument | Dueth.com</title>
-<meta name="robots" content="noindex, nofollow" />
+  <title>Add a new Instrument | Dueth.com</title>
+  <meta name="robots" content="noindex, nofollow"/>
 <% end %>
 
 <div class="container padding-form">
   <div class="row d-flex justify-content-center">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+
+      <% if @instrument.errors.messages.present? %>
+        <ul> Please fix the following errors:
+          <% @instrument.errors.full_messages.each do |message| %>
+            <li>
+              <%= message %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
       <h1>Add a new instrument</h1>
       <%= simple_form_for @instrument do |f| %>
         <%= f.input :title, label: "What Instrument do you want to offer for practise?", placeholder: "Digital Piano" %>
         <%= f.input :subtitle, label: "Title - Make it sticky! In a few words: What's very handy with your instrument?" , placeholder: "Example: Very central easy to practise Digital Piano", input_html: { maxlength: 70} %>
         <%= f.input :description, as: :text, placeholder: "Example: Anna is offering her good to practise and easy to reach digital piano. Come by and enjoy your piano practise as usual!"%>
-        <%= f.simple_fields_for :instrument_features do |feature| %>
-        <%= feature.input :feature_id, as: :check_boxes, collection: Feature.all.map {|fet| [fet.name, fet.id]} , input_html: { style: 'margin-bottom: 100px;' } %>
-        <% end %>
+        <%= f.input :feature_ids, as: :check_boxes, collection: Feature.all.map {|fet| [fet.name, fet.id]} , input_html: { style: 'margin-bottom: 100px;' } %>
         <%= f.button :submit %>
       <% end %>
-    </div >
+    </div>
 
   </div>
 </div>
