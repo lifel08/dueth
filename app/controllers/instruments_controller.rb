@@ -23,18 +23,10 @@ class InstrumentsController < ApplicationController
 
   def new
     @instrument = Instrument.new
-    @instrument.instrument_features.build
   end
 
   def create
     @instrument = Instrument.new(instrument_params)
-
-    if @instrument.save
-      redirect_to profile_path , status: :created
-    else
-      @instrument.instrument_features.build
-      render :new
-    end
   end
 
   def update

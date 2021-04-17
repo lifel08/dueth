@@ -21,7 +21,10 @@
         <%= f.input :title, label: "What Instrument do you want to offer for practise?", placeholder: "Digital Piano" %>
         <%= f.input :subtitle, label: "Title - Make it sticky! In a few words: What's very handy with your instrument?" , placeholder: "Example: Very central easy to practise Digital Piano", input_html: { maxlength: 70} %>
         <%= f.input :description, as: :text, placeholder: "Example: Anna is offering her good to practise and easy to reach digital piano. Come by and enjoy your piano practise as usual!"%>
-        <%= f.input :feature_ids, as: :check_boxes, collection: Feature.all.map {|fet| [fet.name, fet.id]} , input_html: { style: 'margin-bottom: 100px;' } %>
+        <% Feature.find_each do |feature| %>
+        <%= feature.name %>
+        <%= cl_image_tag feature.photo.key %>
+        <% end %>
         <%= f.button :submit %>
       <% end %>
     </div>
