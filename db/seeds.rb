@@ -122,15 +122,16 @@ puts 'Instrument seeds done! 💪'
 # special_instrument.photo.attach(io: File.open('./assets/images/svg/grand-piano.svg'), filename: 'grand-piano.svg')
 # special.instrument.save!
 
-    # special_instrument: 'grand-piano.svg',
-    # very_quiet_area: 'quiet-area.svg',
-    # tuned: 'note.svg',
-    # instant_booking: 'instant-book.svg',
-    # close_to_public_transport: 'location-white.svg',
-    # exceptional_view: 'exceptional-view.svg',
-    # separate_practise_room: 'separate-practise-room.svg',
-    # practise_after_9pm: 'rating-grey.svg',
-
+feature_icons = {
+  "special instrument" => 'grand-piano.svg',
+  "very quiet area" => 'quiet-area.svg',
+  "tuned" => 'note.svg',
+  instant_booking: 'instant-book.svg',
+  close_to_public_transport: 'location-white.svg',
+  exceptional_view: 'exceptional-view.svg',
+  separate_practise_room: 'separate-practise-room.svg',
+  practise_after_9pm: 'rating-grey.svg'
+  }
 
 puts 'Features seed done! 💪'
 
@@ -143,6 +144,9 @@ features = ["special instrument", "very quiet area", "tuned"]
     instrument: acoustic_piano,
     feature: create_feature
     )
+  p "Image for this feature #{feature_icons[feature]}"
+  create_feature.photo.attach(io: File.open("#{Rails.root}app/assets/images/svg/#{feature_icons[feature]}"), filename: feature_icons[feature])
+  create_feature.save!
   end
 puts 'Instrument-Features seeds done! 💪'
 
