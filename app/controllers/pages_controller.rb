@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home, :profile]
 
   def home
-    @instruments = Instrument.all
+    @instruments = Instrument.active
     @disable_avatar = true
   end
 
@@ -13,6 +13,7 @@ class PagesController < ApplicationController
 
   def profile
     @disable_avatar = true
+    @instruments = current_user.instruments
     render :profile
   end
 end

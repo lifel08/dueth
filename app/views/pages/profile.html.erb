@@ -3,27 +3,67 @@
 <meta name="robots" content="noindex, follow" />
 <% end %>
 
-<div class="">
+<!-- just a margin if the user is not logged in -->
+<% if !user_signed_in? %>
+  <div class="margin-for-menu"></div>
+<% end %>
+
+<!-- Profile section -->
+
+<div class="container">
   <div class="">
     <% if user_signed_in? %>
       <div class="profile-hero">
         <div class="fullname">
-          <h1>Hi</h1>
-          <h2><%= current_user.first_name %> <%= current_user.last_name %></h2>
-            <div>
-            <%= link_to "Add a new Instrument", new_instrument_path, class:"button-primary" %>
-            </div>
+          <h1>Hi <%= current_user.first_name %> <%= current_user.last_name %></h1>
+            <button type="submit" class="button-primary">
+            <%= link_to "Add a new Instrument", new_instrument_path %>
+            </button>
+            <!-- toDo buttons -->
+          <button type="submit" class="button-primary">Edit Instrument</button>
+
+
+
+
         </div>
       </div>
     <% end %>
   </div>
 
-  <% if !user_signed_in? %>
-  <!-- just a margin if the user is not logged in -->
-  <div class="margin-for-menu"></div>
-  <% end %>
+<!-- Owned instruments -->
+  <section>
+    <% @instruments.each do |instrument| %>
+    <div class="container pt-3">
+      <div class="row">
+        <%= render "./components/instrument_card_big", instrument: instrument %>
+      </div>
+      <button type="submit" class="button-primary">
+        <%= link_to 'Delete Instrument', instrument_path(instrument), method: :delete %>
+      </button>
+      <button type="submit" class="button-primary">
+        <% if instrument.pause %>
+          <%= link_to 'Un-Pause', activate_instrument_path(instrument), method: :put %>
+        <% else %>
+          <%= link_to 'Pause', pause_instrument_path(instrument), method: :put %>
+        <% end %>
+      </button>
+    </div>
+    <% end %>
+  </section>
 </div>
-<br>
-          <button type="submit" class="button-primary">Edit Instrument</button>
-          <button type="submit" class="button-primary">Pause</button>
-          <button type="submit" class="button-primary">Delete Instrument</button>
+
+<div class="container">
+<!--  delete after testing -->
+<h2>Just for testing: New Instrument Information</h2>
+
+<% @instruments.each do |instrument| %>
+  <%= instrument.title %>
+  <%= instrument.subtitle %>
+  <%= instrument.description %>
+  <%= instrument.location %>
+  <%= instrument.longitude %>
+  <%= instrument.latitude %>
+  <%= instrument.features.map(&:name) %>
+  <%= instrument.price %>
+<% end %>
+</div>

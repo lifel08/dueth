@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_17_102522) do
+ActiveRecord::Schema.define(version: 2021_04_24_075827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 2021_04_17_102522) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "pause", default: false
     t.index ["cancellation_policy_id"], name: "index_instruments_on_cancellation_policy_id"
     t.index ["user_id"], name: "index_instruments_on_user_id"
   end

@@ -7,6 +7,7 @@
 #  latitude               :decimal(, )
 #  location               :string
 #  longitude              :decimal(, )
+#  pause                  :boolean          default(FALSE)
 #  price                  :integer
 #  subtitle               :string
 #  title                  :string
@@ -30,14 +31,25 @@ class Instrument < ApplicationRecord
   belongs_to :user
   has_many :bookings
   has_many :reviews, through: :bookings
-  has_many :instrument_features
+  has_many :instrument_features, dependent: :destroy
   has_many :features, through: :instrument_features
   has_one :cancellation_policy
-  validates :title, :subtitle, :location, :latitude, :longitude, :price, presence: true
+  validates :title, :subtitle, :location, :price, presence: true
   has_one_attached :photo
 
   pg_search_scope :search_title_and_location,
    against: [ :title, :location ]
 
-  accepts_nested_attributes_for :instrument_features, allow_destroy: true
+  geocoded_by :location
+
+  scope :paused, -> { where(pause: true) }
+  scope :active, -> { where(pause: false) }
+
+  def activate!
+    update(pause: false)
+  end
+
+  def pause!
+    update(pause: true)
+  end
 end

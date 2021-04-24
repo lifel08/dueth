@@ -1,9 +1,14 @@
 <h1> <%= params[:title] %> rental <%= params[:location] %></h1>
 
 <section>
-  <div class="container pt-3">
-    <div class="row">
-      <%= render "./components/instrument_card_big" %>
+  <div class="content">
+    <div class="cards">
+      <div class="card">
+        <% @instruments.each do |instrument| %>
+          <%= render "./components/instrument_card_big", instrument: instrument %>
+        <% end %>
+      </div>
     </div>
+    <img id="map" src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/2.3381,48.8693,10.45,0,0/600x1000?access_token=pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja2xjZjZ4cjEwNmxmMm5uMW9zMGdkOHg1In0.JYXdBIgQmfiOqt3mItVk5g'>
   </div>
 </section>

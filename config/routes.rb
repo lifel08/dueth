@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     devise_for :users
 
     resources :instruments do
+      member do
+        put :pause
+        put :activate
+      end
       get ':title/:location/' => :search, on: :collection, as: :search
       resources :bookings, only: [:new, :create, :update, :destroy]
     end
