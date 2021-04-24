@@ -1,7 +1,7 @@
 class InstrumentsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
   before_action :redirect_to_search, only: [:index]
-  before_action :find_instrument, only: [:show, :edit, :udpate, :destroy, :pause, :activate]
+  before_action :find_instrument, only: [:show, :edit, :update, :destroy, :pause, :activate]
 
   def index
     @instruments = Instrument.active.search_title_and_location(params[:title].to_s+','+params[:location].to_s)
@@ -19,18 +19,19 @@ class InstrumentsController < ApplicationController
 
   def pause
     @instrument.pause!
-    redirect_to profile_path
+    redirect_to profile_path, notice: 'Instrument succesfully paused!'
   end
 
   def activate
     @instrument.activate!
-    redirect_to profile_path
+    redirect_to profile_path, notice: 'Instrument succesfully activated!'
   end
 
   def show
   end
 
   def edit
+
   end
 
   def new
@@ -48,8 +49,11 @@ class InstrumentsController < ApplicationController
   end
 
   def update
-    @instrument.update(instsrument_params)
-    redirect_to root_path(@instrument.id) # to do: verify path
+    if @instrument.update(instrument_params)
+      redirect_to profile_path
+    else
+      render :edit
+    end
   end
 
   def destroy

@@ -8,9 +8,9 @@ Rails.application.routes.draw do
         put :pause
         put :activate
       end
-      get ':title/:location/' => :search, on: :collection, as: :search
       resources :bookings, only: [:new, :create, :update, :destroy]
     end
+    get '/instruments/:title/:location/', to: 'instruments#search', as: :search_instruments
 
     resources :users do
       resources :reviews, only: [:create, :edit, :destroy]
