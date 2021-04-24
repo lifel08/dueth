@@ -9,5 +9,4 @@ class ApplicationController < ActionController::Base
       redirect_to "#{request.protocol}dueth.com#{request.path}", status: 301
     end
   end
-
 end

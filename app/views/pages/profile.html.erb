@@ -19,12 +19,6 @@
             <button type="submit" class="button-primary">
             <%= link_to "Add a new Instrument", new_instrument_path %>
             </button>
-            <!-- toDo buttons -->
-          <button type="submit" class="button-primary">Edit Instrument</button>
-
-
-
-
         </div>
       </div>
     <% end %>
@@ -42,11 +36,12 @@
       </button>
       <button type="submit" class="button-primary">
         <% if instrument.pause %>
-          <%= link_to 'Un-Pause', activate_instrument_path(instrument), method: :put %>
+          <%= link_to 'Un-Pause Instrument', activate_instrument_path(instrument), method: :put %>
         <% else %>
-          <%= link_to 'Pause', pause_instrument_path(instrument), method: :put %>
+          <%= link_to 'Pause Instrument', pause_instrument_path(instrument), method: :put %>
         <% end %>
       </button>
+        <%= link_to 'Edit Instrument', edit_instrument_path(instrument) %>
     </div>
     <% end %>
   </section>
