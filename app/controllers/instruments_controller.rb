@@ -8,6 +8,8 @@ class InstrumentsController < ApplicationController
   end
 
   def search
+    @center = Geocoder.search(params[:location]).first.data["center"]
+    
     @instruments = Instrument.active.search_title_and_location(params[:title].to_s+','+params[:location].to_s)
     if @instruments.present?
       render :index

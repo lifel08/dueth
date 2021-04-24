@@ -13,8 +13,9 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-  </head>
 
+    <%= yield :head if content_for?(:head) %>
+  </head>
 
   <body>
     <!-- Navigation & Menu -->
@@ -23,6 +24,8 @@
     <!-- Alerts -->
     <%= render 'shared/flashes' %>
       <%= yield %>
+
+  <%= yield :footer_script if content_for?(:footer_script) %>
   </body>
 
   <!-- Footer -->

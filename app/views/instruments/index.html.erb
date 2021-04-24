@@ -1,86 +1,59 @@
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  }
+<%= content_for :head do %>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet'/>
+<% end %>
 
-  #map {
-  position: relative;
-  top: 0;
-  bottom: 0;
-  width: 25%;
-  }
-</style>
-<div id='map'></div>
+<%= content_for :footer_script do %>
+  <script type="text/javascript">
+      mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
 
-<script>
-(function() {
+      console.log(mapboxgl);
 
-  mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja2xjZjZ4cjEwNmxmMm5uMW9zMGdkOHg1In0.JYXdBIgQmfiOqt3mItVk5g';
+      var center = <%= j @center%>;
 
-  var map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/mapbox/light-v10',
-  center: [-96, 37.8],
-  zoom: 3
-  });
+      console.log(center);
 
-// code from the next step will go here!
-var geojson = {
-  type: 'FeatureCollection',
-  features: [{
-  type: 'Feature',
-  geometry: {
-  type: 'Point',
-  coordinates: [-77.032, 38.913]
-  },
-  properties: {
-  title: 'Mapbox',
-  description: 'Washington, D.C.'
-  }
-  },
-  {
-  type: 'Feature',
-  geometry: {
-  type: 'Point',
-  coordinates: [-122.414, 37.776]
-  },
-  properties: {
-  title: 'Mapbox',
-  description: 'San Francisco, California'
-  }
-  }]
-};
+      var map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/light-v10',
+          center: center,
+          zoom: 12
+      });
 
-geojson.features.forEach(function(marker) {
-
-// create a HTML element for each feature
-var el = document.createElement('div');
-el.className = 'marker';
-
-// make a marker for each feature and add to the map
-new mapboxgl.Marker(el)
-.setLngLat(marker.geometry.coordinates)
-.addTo(map);
-});
-});
-</script>
-
+      var marker = new mapboxgl.Marker({
+          color: "#FFFFFF",
+          draggable: true
+      }).setLngLat(center)
+          .addTo(map);
+      // add markers to map
+  </script>
+<% end  %>
 
 <h1> <%= params[:title] %> rental <%= params[:location] %></h1>
-
 <section>
-  <div class="content">
-    <div class="cards">
-      <div class="card">
-        <% @instruments.each do |instrument| %>
-          <%= render "./components/instrument_card_big", instrument: instrument %>
-        <% end %>
+  <div class="row">
+    <div class="container-fluid">
+      <div class="col-lg-6">
+        <div class="cards">
+          <div class="card">
+            <% @instruments.each do |instrument| %>
+              <%= render "./components/instrument_card_big", instrument: instrument %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" style="border: 1px #ddd dotted">
+        <div id='map'>
+
+        </div>
       </div>
     </div>
-    <img id="map" src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/2.3381,48.8693,10.45,0,0/600x1000?access_token=pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja2xjZjZ4cjEwNmxmMm5uMW9zMGdkOHg1In0.JYXdBIgQmfiOqt3mItVk5g'>
+  </div>
+</section>
+<section>
+  <div class="content">
+
+    <!--    <img id="map" src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/2.3381,48.8693,10.45,0,0/600x1000?access_token=pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja2xjZjZ4cjEwNmxmMm5uMW9zMGdkOHg1In0.JYXdBIgQmfiOqt3mItVk5g'>-->
   </div>
 </section>
