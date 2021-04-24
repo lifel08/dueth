@@ -42,6 +42,8 @@ class Instrument < ApplicationRecord
 
   geocoded_by :location
 
+  after_validation :geocode
+
   scope :paused, -> { where(pause: true) }
   scope :active, -> { where(pause: false) }
 
