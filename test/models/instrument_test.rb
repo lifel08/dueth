@@ -7,6 +7,7 @@
 #  latitude               :decimal(, )
 #  location               :string
 #  longitude              :decimal(, )
+#  pause                  :boolean          default(FALSE)
 #  price                  :integer
 #  subtitle               :string
 #  title                  :string

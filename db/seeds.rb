@@ -116,36 +116,37 @@ puts 'Instrument seeds done! 💪'
 
 # Features
 
-# special_instrument = Feature.new(
-#                     name: 'Special Instrument'
-#   )
-# special_instrument.photo.attach(io: File.open('./assets/images/svg/grand-piano.svg'), filename: 'grand-piano.svg')
-# special.instrument.save!
-
-feature_icons = {
-  "special instrument" => 'grand-piano.svg',
-  "very quiet area" => 'quiet-area.svg',
-  "tuned" => 'note.svg',
-  instant_booking: 'instant-book.svg',
-  close_to_public_transport: 'location-white.svg',
-  exceptional_view: 'exceptional-view.svg',
-  separate_practise_room: 'separate-practise-room.svg',
-  practise_after_9pm: 'rating-grey.svg'
+features = {
+  "special instrument" => '<i class="fas fa-award"></i>',
+  "very quiet area" => '<i class="fab fa-pagelines"></i>',
+  "tuned" => '<i class="fas fa-music"></i>',
+  "instant_booking" => '<i class="fas fa-stopwatch-20"></i>',
+  "close_to_public_transport" => '<i class="fas fa-bus"></i>',
+  "exceptional_view" => '<i class="fas fa-binoculars"></i>',
+  "separate_practise_room" => '<i class="fas fa-door-closed"></i>',
+  "practise_after_9pm" => '<i class="fas fa-cloud-moon"></i>'
   }
 
 puts 'Features seed done! 💪'
 
-# Instrument-Features
-
-features = ["special instrument", "very quiet area", "tuned"]
-  features.each do |feature|
-  create_feature = Feature.create!(name: feature, icon: '<i class="fas fa-music"></i>')
-  create_instrument_feature = InstrumentFeature.create(
-    instrument: acoustic_piano,
-    feature: create_feature
+features.each do |feature, icon|
+  Feature.create!(
+     name: feature,
+     icon: icon
     )
   end
-puts 'Instrument-Features seeds done! 💪'
+
+puts 'Features seeds done! 💪'
+
+# Instrument-Features
+# features = ["special instrument", "very quiet area"]
+#   features.each do |feature|
+#   create_feature = Feature.create!(name: feature)
+#   create_instrument_feature = InstrumentFeature.create(
+#     instrument: acoustic_piano,
+#     feature: create_feature
+#     )
+#   end
 
 # Disponibilites
 # monday_morning = Disponibility.new(

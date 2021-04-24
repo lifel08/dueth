@@ -1,0 +1,12 @@
+#map {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+/* Importing components */
+@import url("components/card.scss");
+
+.content {
+display: flex;
+}
