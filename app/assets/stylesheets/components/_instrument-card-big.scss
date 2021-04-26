@@ -1,0 +1,57 @@
+// changed
+.image-container-big {
+  position: relative;
+  width: 800px;
+}
+
+// changed
+.fas {
+  position: absolute;
+  top: 17px;
+  left: 15px;
+}
+
+// changed
+.location {
+  position: absolute;
+  left: 35px;
+  top: 10px;
+  margin-left:10px;
+}
+
+// changed
+.header-image-big {
+  color: white;
+  font-size: 26px;
+  right: 0;
+  top: 1em;
+}
+
+// changed
+.overview-big {
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+  bottom: 50%;
+  transform: translatey(50%);
+  font-size: 26px;
+}
+
+// changed
+.fa-star {
+  position: absolute;
+  left: 260px;
+  top: 5px;
+  height: 15px;
+  width: 15px;
+}
+
+// changed
+.button-primary {
+  color: white;
+  background-color: #AC2721;
+  border-color:  #AC2721;
+  padding: 0 50px;
+  height: 40px;
+  text-align: center;
+}

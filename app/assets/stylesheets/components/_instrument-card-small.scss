@@ -1,5 +1,6 @@
-.image-container {
+.image-container-small {
   position: relative;
+  width: 250px;
 }
 
 .col {
@@ -7,14 +8,13 @@
 }
 
 .instrument-card-image {
-  filter: brightness(50%);
+  filter: brightness(70%);
 }
 
 .fas {
-position: absolute;
-top: 15px;
-left: 15px;
-
+  position: absolute;
+  top: 15px;
+  left: 15px;
 }
 
 .far {
@@ -29,23 +29,22 @@ left: 15px;
   position: absolute;
   left: 35px;
   top: 10px;
-
 }
-.header-image {
+.header-image-small {
   color: white;
   font-size: 19px;
   right: 0; top: 1em;
 }
-
 
 .span-headline {
   font-size: 18px;
   font-weight: bold;
 }
 
-.overview {
+.overview-small {
   display: flex;
   justify-content: space-between;
+  width: 250px;
   bottom: 50%;
   transform: translatey(50%);
 }

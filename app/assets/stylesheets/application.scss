@@ -10,7 +10,8 @@
 
 // Your CSS partials
 @import "components/index";
-@import "components/instrument_card";
+@import "components/instrument-card-small";
+@import "components/instrument-card-big";
 @import "components/footer-desktop";
 @import "components/card";
 
@@ -22,6 +23,10 @@
 
 
 // general style
-body {
-  margin-bottom: 100px;
+section {
+  padding-bottom: 115px;
+}
+
+html, body {
+  height: 100%;
 }

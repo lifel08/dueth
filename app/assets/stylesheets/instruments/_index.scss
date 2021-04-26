@@ -1,6 +1,8 @@
 #map {
-  width: 100%;
-  height: 800px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    width:50%;
 }
 .marker {
   background-image: url('https://docs.mapbox.com/help/demos/custom-markers-gl-js/mapbox-icon.png');
@@ -16,4 +18,11 @@
 .mapboxgl-popup-content {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
+}
+
+.content {
+  display: flex;
+}
+.mapboxgl-canvas {
+  margin-left:20px;
 }
