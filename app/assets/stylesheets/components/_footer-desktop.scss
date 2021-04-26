@@ -4,19 +4,17 @@ footer {
   left: 0;
   background-color: #2F2F2F;
   width: 100vw;
-  display: flex;
-flex-direction: row;
+    height: 40px;
 }
 
 .footer-links {
-
-  width: 1000vw;
-  height: 30px;
-
-  justify-content: space-between;
+  width: 100vw;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
   align-items: center;
   list-style: none;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .instagram-icon {
