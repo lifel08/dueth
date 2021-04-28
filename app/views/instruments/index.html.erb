@@ -33,10 +33,12 @@
 <section>
   <h1> <%= params[:title] %> rental <%= params[:location] %></h1>
     <div class="content">
-          <% @instruments.each do |instrument| %>
-            <%= render "./components/instrument_card_big", instrument: instrument %>
-          <% end %>
-        <div id='map'>
-        </div>
+      <div class="cards">
+        <% @instruments.each do |instrument| %>
+          <%= render "./components/instrument_card_big", instrument: instrument %>
+        <% end %>
       </div>
+      <div id='map' >
+      </div>
+    </div>
 </section>
