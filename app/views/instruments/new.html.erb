@@ -23,7 +23,8 @@
         <%= f.input :description, as: :text, placeholder: "Example: Anna is offering her good to practise and easy to reach digital piano. Come by and enjoy your piano practise as usual!"%>
         <%= f.input :location, label: "Add the city" %>
         <%= f.input :price, label: "Add a price" %>
-        <%= f.input :photo, as: :file, input_html: { multiple: true } %>
+        <%= f.input :photo, as: :file, input_html: { multiple: true }, label: "Add Photos (min 5)" %>
+      <div class="row">
        <% Feature.find_each do |feature, icon| %>
         <li class ="feature-list col col-lg-6">
           <div class="features">
@@ -32,6 +33,7 @@
           </div>
         </li>
         <% end %>
+        </div>
         <br/>
         <%= f.submit class: 'btn btn-primary mt-3' %>
       <% end %>
