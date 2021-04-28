@@ -3,9 +3,9 @@
   <meta name="robots" content="noindex, nofollow"/>
 <% end %>
 
-<div class="container padding-form">
+<div class="container padding-form new-instrument">
   <div class="row d-flex justify-content-center">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+    <div class="ncol-xs-12 col-sm-10 col-sm-offset-1">
 
       <% if @instrument.errors.messages.present? %>
         <ul> Please fix the following errors:
@@ -19,16 +19,21 @@
       <h1>Add a new instrument</h1>
       <%= simple_form_for @instrument do |f| %>
         <%= f.input :title, label: "What Instrument do you want to offer for practise?", placeholder: "Digital Piano" %>
-        <%= f.input :subtitle, label: "Title - Make it sticky! In a few words: What's very handy with your instrument?" , placeholder: "Example: Very central easy to practise Digital Piano", input_html: { maxlength: 70} %>
+        <%= f.input :subtitle, label: "Title - In a few words: What's special about your instrument?" , placeholder: "Example: Very central Digital Piano", input_html: { maxlength: 70} %>
         <%= f.input :description, as: :text, placeholder: "Example: Anna is offering her good to practise and easy to reach digital piano. Come by and enjoy your piano practise as usual!"%>
         <%= f.input :location, label: "Add the city" %>
         <%= f.input :price, label: "Add a price" %>
+        <%= f.input :photo, as: :file, input_html: { multiple: true } %>
        <% Feature.find_each do |feature, icon| %>
-        <%= check_box_tag :"instrument[feature_ids][]", feature.id, is_feature_checked?(feature.id) %>
-        <%= raw feature.icon %> <%= feature.name %>
+        <li class ="feature-list col col-lg-6">
+          <div class="features">
+            <%= raw feature.icon %><%= check_box_tag :"instrument[feature_ids][]", feature.id, is_feature_checked?(feature.id) %>
+            <%= feature.name %>
+          </div>
+        </li>
         <% end %>
         <br/>
-        <%= f.button :submit %>
+        <%= f.submit class: 'btn btn-primary mt-3' %>
       <% end %>
     </div>
 

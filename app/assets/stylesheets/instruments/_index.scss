@@ -28,5 +28,23 @@
 }
 
 .cards {
-    grid-template-columns: 1fr;
+  grid-template-columns: 1fr;
 }
+
+// style for new-isntrument form ----------
+
+.new-instrument {
+  margin-bottom: 150px;
+}
+
+.feature-list {
+  list-style:none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.features {
+ font-size: 30px;
+ width: 350px;
+ }
