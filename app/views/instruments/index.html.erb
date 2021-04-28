@@ -30,30 +30,15 @@
   </script>
 <% end  %>
 
-<h1> <%= params[:title] %> rental <%= params[:location] %></h1>
 <section>
-  <div class="row">
-    <div class="container-fluid">
-      <div class="col-lg-6">
-        <div class="cards">
-          <div class="card">
-            <% @instruments.each do |instrument| %>
-              <%= render "./components/instrument_card_big", instrument: instrument %>
-            <% end %>
-          </div>
-        </div>
+  <h1> <%= params[:title] %> rental <%= params[:location] %></h1>
+    <div class="content">
+      <div class="cards">
+        <% @instruments.each do |instrument| %>
+          <%= render "./components/instrument_card_big", instrument: instrument %>
+        <% end %>
       </div>
-      <div class="col-lg-6" style="border: 1px #ddd dotted">
-        <div id='map'>
-
-        </div>
+      <div id='map' >
       </div>
     </div>
-  </div>
-</section>
-<section>
-  <div class="content">
-
-    <!--    <img id="map" src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/2.3381,48.8693,10.45,0,0/600x1000?access_token=pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja2xjZjZ4cjEwNmxmMm5uMW9zMGdkOHg1In0.JYXdBIgQmfiOqt3mItVk5g'>-->
-  </div>
 </section>
