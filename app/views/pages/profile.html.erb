@@ -1,5 +1,5 @@
 <% content_for :head do %>
-<title>Profile of Dueth| Dueth.com</title>
+<title>User Profile of Dueth| Dueth.com</title>
 <meta name="robots" content="noindex, follow" />
 <% end %>
 
@@ -10,27 +10,57 @@
 
 <!-- Profile section -->
 
-<div class="container">
-  <div class="">
-    <% if user_signed_in? %>
-      <div class="profile-hero">
-        <div class="fullname">
-          <h1>Hi <%= current_user.first_name %> <%= current_user.last_name %></h1>
-            <button type="submit" class="button-primary">
-            <%= link_to "Add a new Instrument", new_instrument_path %>
-            </button>
-        </div>
-      </div>
-    <% end %>
+<% if user_signed_in? %>
+<div class="profile-section">
+  <div class="profile-picture">
+    <%= cl_image_tag current_user.photo.key, height: 190, width: 190, radius: 8, crop: :fill, gravity: :face %>
   </div>
+  <div class="profile-header">
+    <div class="profile-greeting">
+      <h1> <%= current_user.first_name %></h1>
+    </div>
+    <div class="membership">
+      <p> Member since <%= current_user.created_at.month %> <%= current_user.created_at.year %> </p>
+    </div>
+      <ul class="profile-attributes">
+        <li><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(current_user.reviews.count, 'review') %></li>
+        <li><%= image_tag 'svg/verify.svg', class: "rating" %> identity verified</li>
+        <li><%= image_tag 'svg/language.svg', class: "rating" %></li>
+      </ul>
+  </div>
+</div>
+<div class="profile-description">
+  <p>
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</br>
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.”
+  </p>
+</div>
+<% end %>
+
+<hr>
+
+<!-- Profile section -->
+<div class="review-section">
+  <h2> Reviews</h2>
+</div>
+
+<hr>
 
 <!-- Owned instruments -->
+<div class="instrument-section">
+  <h2> <%= current_user.first_name %>'s instruments </h2>
+</div>
   <section>
     <% @instruments.each do |instrument| %>
     <div class="container pt-3">
       <div class="row">
         <%= render "./components/instrument_card_big", instrument: instrument %>
       </div>
+      <button type="submit" class="button-primary">
+        <%= link_to "Add a new Instrument", new_instrument_path %>
+      </button>
       <button type="submit" class="button-primary">
         <%= link_to 'Delete Instrument', instrument_path(instrument), method: :delete %>
       </button>

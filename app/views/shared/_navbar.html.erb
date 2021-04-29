@@ -26,7 +26,7 @@
 <!-- logo & profile -->
   <div class="navigation-elements">
       <div>
-        <%= link_to image_tag('logo.png', height: '65', width: '75'), {action: 'home', controller: 'pages'},:class => "logo" %>
+        <%= link_to image_tag('logo.png', height: '65', width: '75', radius: '8'), {action: 'home', controller: 'pages'},:class => "logo" %>
       </div>
       <div>
         <% if !user_signed_in? %>
