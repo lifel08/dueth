@@ -1,7 +1,7 @@
 <% if current_user %>
   <div class="header-picture">
     <%= link_to profile_path do %>
-      <%= cl_image_tag current_user.photo.key, class: 'profile', height: 40, width: 40, crop: :fill, gravity: :face %>
+      <%= cl_image_tag current_user.photo.key, class: 'profile', height: 40, width: 40, radius: 8, crop: :fill, gravity: :face %>
     <% end %>
   </div>
 <% end %>

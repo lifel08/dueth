@@ -138,16 +138,6 @@ features.each do |feature, icon|
 
 puts 'Features seeds done! 💪'
 
-# Instrument-Features
-# features = ["special instrument", "very quiet area"]
-#   features.each do |feature|
-#   create_feature = Feature.create!(name: feature)
-#   create_instrument_feature = InstrumentFeature.create(
-#     instrument: acoustic_piano,
-#     feature: create_feature
-#     )
-#   end
-
 # Disponibilites
 # monday_morning = Disponibility.new(
 #   from: '09:26/6/7/2022',

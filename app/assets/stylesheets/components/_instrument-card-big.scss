@@ -1,17 +1,14 @@
-// changed
 .image-container-big {
   position: relative;
   width: 800px;
 }
 
-// changed
 .fas {
   position: absolute;
   top: 17px;
   left: 15px;
 }
 
-// changed
 .location {
   position: absolute;
   left: 35px;
@@ -19,7 +16,6 @@
   margin-left:10px;
 }
 
-// changed
 .header-image-big {
   color: white;
   font-size: 26px;
@@ -27,7 +23,6 @@
   top: 1em;
 }
 
-// changed
 .overview-big {
   display: flex;
   justify-content: space-between;
@@ -37,7 +32,6 @@
   font-size: 26px;
 }
 
-// changed
 .fa-star {
   position: absolute;
   left: 260px;
@@ -46,12 +40,12 @@
   width: 15px;
 }
 
-// changed
-.button-primary {
+.button-book {
   color: white;
   background-color: #AC2721;
   border-color:  #AC2721;
-  padding: 0 50px;
   height: 40px;
-  text-align: center;
+  padding: 0px 30px;
 }
+
+

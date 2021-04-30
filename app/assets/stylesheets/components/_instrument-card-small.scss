@@ -52,6 +52,7 @@
 .rating {
   height: 15px;
   width: 15px;
+  margin:5px;
 }
 
 .price {
@@ -66,10 +67,4 @@ a:hover {
   color: $content;
 }
 
-.button-primary {
-  color: white;
-  background-color: #AC2721;
-  border-color:  #AC2721;
-  padding: 5px 15px;
-  height: 40px;
-}
+
