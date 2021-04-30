@@ -1,0 +1,35 @@
+.button-primary {
+  color: white;
+  background-color: #AC2721;
+  border-color:  #AC2721;
+  height: 40px;
+}
+
+
+.button-secondary {
+  color: #2F2F2F;
+  background-color: white;
+  border-color:  #94906F;
+  border-width: medium;
+  padding: 5px 15px;
+  height: 40px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.button-alert {
+  color: #AC2721;
+  background-color: white;
+  border-color:  #E5CBCA;
+  border-width: medium;
+  padding: 5px 15px;
+  height: 40px;
+}
+
+.button-info {
+  color: #2F2F2F;
+  background-color: white;
+  border-color:  #C4C4C4;
+  border-width: medium;
+  padding: 5px 15px;
+  height: 40px;
+}

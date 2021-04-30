@@ -51,4 +51,38 @@ hr {
 
 .instrument-section {
   margin: 10px 50px ;
+  margin-top:30px;
+}
+
+.instrument {
+
+}
+
+.instruments {
+  display:flex;
+  border-radius: 5px;
+  height: 400px;
+  margin-top: 30px;
+
+}
+
+.edit-instrument {
+  display: flex;
+  height: 300px;
+  width: 200px;
+  flex-direction:column;
+  justify-content: space-between;
+}
+
+.add-new-instrument {
+  display: flex;
+  justify-content: right;
+  width:100vw;
+  height: 60px;
+  padding: 10px;
+}
+
+.booking-section {
+  margin: 10px 50px ;
+  margin-top:30px;
 }
