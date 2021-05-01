@@ -17,13 +17,13 @@
         </ul>
       <% end %>
       <h1>Add a new instrument</h1>
-      <%= simple_form_for @instrument do |f| %>
+      <%= simple_form_for @instrument, multipart: true do |f| %>
         <%= f.input :title, label: "What Instrument do you want to offer for practise?", placeholder: "Digital Piano" %>
         <%= f.input :subtitle, label: "Title - In a few words: What's special about your instrument?" , placeholder: "Example: Very central Digital Piano", input_html: { maxlength: 70} %>
         <%= f.input :description, as: :text, placeholder: "Example: Anna is offering her good to practise and easy to reach digital piano. Come by and enjoy your piano practise as usual!"%>
         <%= f.input :location, label: "Add the city" %>
         <%= f.input :price, label: "Add a price" %>
-        <%= f.input :photo, as: :file, input_html: { multiple: true }, label: "Add Photos (min 5)" %>
+        <%= f.input :photo, as: :file, label: "Add Photos (min 5)" %>
       <div class="row">
        <% Feature.find_each do |feature, icon| %>
         <li class ="feature-list col col-lg-6">
