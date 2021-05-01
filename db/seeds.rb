@@ -19,6 +19,7 @@ chloe = User.new(
       email: 'chloe@gmail.com',
       birthday: '12/11/1989',
       password: 'password',
+      language: 'English, French',
     )
 chloe.photo.attach(
             io: URI.open('https://cdn.psychologytoday.com/sites/default/files/field_blog_entry_images/2021-01/levi-williams-to5wnmst6qq-unsplash.jpg'),
@@ -32,6 +33,7 @@ nam = User.new(
       email: 'nam@gmail.com',
       birthday: '12/11/1972',
       password: 'password',
+      language: 'English, Chinese',
     )
 nam.photo.attach(
             io: URI.open('https://cdn.xl.thumbs.canstockphoto.com/asian-playing-piano-a-shot-of-an-asian-man-playing-piano-stock-image_csp1567046.jpg'),
@@ -46,6 +48,7 @@ lucy = User.new(
       email: 'lucy@gmail.com',
       birthday: '12/11/1995',
       password: 'password',
+      language: 'Bangla',
     )
 lucy.photo.attach(
             io: URI.open('https://static.roland.com/promos/starting_piano/faq_affordable_piano.jpg'),
