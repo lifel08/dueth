@@ -10,6 +10,9 @@
     <div class="content">
       <div class="cards">
         <h2><%= @instrument.subtitle %></h2>
+          <%= link_to public_profile_path(@instrument.user) do %>
+        <%= @instrument.user.first_name %>
+        <% end %>
         <h3><%= @instrument.description %></h3>
           <%= cl_image_tag @instrument.photo.key, height: 300, width: 800, crop: :fill, loading:"lazy", :class=>"instrument-card-image"%>
       </div>

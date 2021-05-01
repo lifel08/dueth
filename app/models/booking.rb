@@ -36,4 +36,19 @@ class Booking < ApplicationRecord
         "declined"
       end
   end
+
+  def booking_from
+    format_booking_time(from)
+  end
+
+  def booking_to
+    format_booking_time(to)
+  end
+
+private
+
+  def format_booking_time(date_time)
+    date_time.strftime("%A, #{date_time.day.ordinalize} of %B %Y, from %H:%M")
+  end
 end
+

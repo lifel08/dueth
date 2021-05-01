@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
     root to: 'pages#home'
     get 'profile', to: 'pages#profile'
+    get 'public_profile/:id', to: 'pages#public_profile', as: :public_profile
     devise_for :users
 
     resources :instruments do
