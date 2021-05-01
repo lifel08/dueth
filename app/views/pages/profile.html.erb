@@ -1,6 +1,6 @@
 <% content_for :head do %>
 <title>User Profile of Dueth| Dueth.com</title>
-<meta name="robots" content="noindex, follow" />
+<meta name="robots" content="noindex, nofollow" />
 <% end %>
 
 <!-- just a margin if the user is not logged in -->
@@ -71,7 +71,8 @@
           <%= link_to 'Delete Instrument', instrument_path(instrument), method: :delete, data: { confirm: 'This will delete your instrument. Are you sure?', disable_with: 'Deleting...' } , class: "button-alert" %>
         </button>
       </div>
-            <!-- Review section -->
+
+      <!-- Review section -->
       <div class="review-section">
         <h2> Reviews</h2>
         <% instrument.reviews.each do |review|  %>
@@ -84,6 +85,8 @@
         </ul>
         <% end %>
       </div>
+
+      <hr>
 
 <!--  Booking section-->
 <div class="booking-section">
