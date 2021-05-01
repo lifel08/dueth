@@ -9,7 +9,7 @@ class InstrumentsController < ApplicationController
 
   def search
     @center = Geocoder.search(params[:location]).first.data["center"]
-    
+
     @instruments = Instrument.active.search_title_and_location(params[:title].to_s+','+params[:location].to_s)
     if @instruments.present?
       render :index
@@ -66,9 +66,11 @@ class InstrumentsController < ApplicationController
   private
 
   def redirect_to_search
-    if params[:title] || params[:location]
+    if (params[:title] || params[:location]).present?
       return redirect_to search_instruments_path(title: params[:title].downcase,
        location: params[:location].downcase), status: 301
+    elsif (params[:title] || params[:location]).blank?
+      return redirect_to root_path, status: 301
     end
   end
 
