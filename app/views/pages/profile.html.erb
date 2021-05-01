@@ -20,12 +20,12 @@
       <h1> <%= current_user.first_name %></h1>
     </div>
     <div class="membership">
-      <p> Member since <%= current_user.created_at.month %> <%= current_user.created_at.year %> </p>
+      <p> Member since <%= current_user.created_at.strftime('%B, %Y') %> </p>
     </div>
       <ul class="profile-attributes">
         <li><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(current_user.reviews.count, 'review') %></li>
         <li><%= image_tag 'svg/verify.svg', class: "rating" %> identity verified</li>
-        <li><%= image_tag 'svg/language.svg', class: "rating" %></li>
+        <li><%= image_tag 'svg/language.svg', class: "rating" %> <%= current_user.language %></li>
       </ul>
   </div>
 </div>
@@ -73,7 +73,7 @@
           <% end %>
         </button>
         <button type="submit" class="button-alert">
-          <%= link_to 'Delete Instrument', instrument_path(instrument), method: :delete, class: "button-alert" %>
+          <%= link_to 'Delete Instrument', instrument_path(instrument), method: :delete, data: { confirm: 'This will delete your instrument. Are you sure?', disable_with: 'Deleting...' } , class: "button-alert" %>
         </button>
       </div>
     </div>
