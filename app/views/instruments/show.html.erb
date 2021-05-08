@@ -1,115 +1,73 @@
 <!-- Head Section -->
 <% content_for :head do %>
   <title> Find your music instrument to practise close by | Dueth.com </title>
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow"/>
   <meta name="description" content="Looking for an easy way to get access to an instrument to practise? Search with Dueth.com for instruments close by and practise wherever you are. Find your next practise instrument now!"/>
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet'/>
+
+  <style type="text/css">
+    #marker {
+      background-image: url('https://docs.mapbox.com/mapbox-gl-js/assets/washington-monument.jpg');
+      background-size: cover;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .mapboxgl-popup {
+      max-width: 200px;
+    }
+  </style>
 <% end %>
 
 <section>
   <h1><%= @instrument.title %></h1>
-    <div class="content">
-      <div class="cards">
-        <h2><%= @instrument.subtitle %></h2>
-          <%= link_to public_profile_path(@instrument.user) do %>
+  <div class="content">
+    <div class="cards">
+      <h2><%= @instrument.subtitle %></h2>
+      <%= link_to public_profile_path(@instrument.user) do %>
         <%= @instrument.user.first_name %>
-        <% end %>
-        <h3><%= @instrument.description %></h3>
-          <%= cl_image_tag @instrument.photo.key, height: 300, width: 800, crop: :fill, loading:"lazy", :class=>"instrument-card-image"%>
-      </div>
+      <% end %>
+      <h3><%= @instrument.description %></h3>
+      <%= cl_image_tag @instrument.photo.key, height: 300, width: 800, crop: :fill, loading: "lazy", :class => "instrument-card-image" %>
     </div>
-    <h2>Location</h2>
-     <%= @instrument.display_address %>
+  </div>
+  <h2>Location</h2>
+  <%= @instrument.display_address %>
 
-      <%= content_for :footer_script do %>
-          <script type="text/javascript">
-              mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
+  <%= content_for :footer_script do %>
+    <script type="text/javascript">
+        mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
 
-              console.log(mapboxgl);
+        var center = <%= j @instrument.center %>;
 
-              var center = <%= j @instrument.center %>;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: center,
+            zoom: 12
+        });
 
-              console.log(center);
+        map.on('load', function () {
+            // create the popup
+            var popup = new mapboxgl.Popup({ offset: 45 }).setText(
+                '<%= j @instrument.title %>'
+            );
 
-              var map = new mapboxgl.Map({
-                  container: 'map',
-                  style: 'mapbox://styles/mapbox/streets-v11',
-                  center: center,
-                  zoom: 12
-              });
+            var marker = new mapboxgl.Marker({
+                color: "#FFFFFF",
+                draggable: true
+            }).setLngLat(center)
+                .setPopup(popup)
+                .addTo(map);
+        })
 
-              var marker = new mapboxgl.Marker({
-                  color: "#FFFFFF",
-                  draggable: true
-              }).setLngLat(center)
-                  .addTo(map);
 
-              // add pop-up to map
-      map.on('load', function () {
-      map.addSource('places', {
-      // This GeoJSON contains features that include an "icon"
-      // property. The value of the "icon" property corresponds
-      // to an image in the Mapbox Streets style's sprite.
-                              'type': 'geojson',
-                              'data': {
-                                'type': 'FeatureCollection',
-                                'features': [
-                                  {
-                                    'type': 'Feature',
-                                    'properties': {
-                                      'description': 'Hello World!',
-                                       },
-                                    'geometry': {
-                                      'type': 'Point',
-                                      'coordinates': [center]
-                                      }
-                                  },
-                                ]
-                              }
-                            }
-                          });
-      // Add a layer showing the places.
-      map.addLayer({
-      'id': 'places',
-      'type': 'symbol',
-      'source': 'places',
-      'layout': {
-      'icon-image': '{icon}',
-      'icon-allow-overlap': true
-      }
-      });
 
-      // When a click event occurs on a feature in the places layer, open a popup at the
-      // location of the feature, with description HTML from its properties.
-      map.on('click', 'places', function (e) {
-      var coordinates = e.features[0].geometry.coordinates.slice();
-      var description = e.features[0].properties.description;
-
-      // Ensure that if the map is zoomed out such that multiple
-      // copies of the feature are visible, the popup appears
-      // over the copy being pointed to.
-      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-      }
-
-      new mapboxgl.Popup()
-      .setLngLat(center)
-      .setHTML(description)
-      .addTo(map);
-      });
-
-      // Change the cursor to a pointer when the mouse is over the places layer.
-      map.on('mouseenter', 'places', function () {
-      map.getCanvas().style.cursor = 'pointer';
-      });
-
-      // Change it back to a pointer when it leaves.
-      map.on('mouseleave', 'places', function () {
-      map.getCanvas().style.cursor = '';
-      });
-          </script>
-      <% end  %>
-     <div id='map' >
-     </div>
+    </script>
+  <% end %>
+  <div id='map'>
+  </div>
 </section>
