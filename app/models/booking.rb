@@ -48,7 +48,7 @@ class Booking < ApplicationRecord
 private
 
   def format_booking_time(date_time)
-    date_time.strftime("%A, #{date_time.day.ordinalize} of %B %Y, from %H:%M")
+    date_time.strftime("%A, #{ date_time.day.ordinalize } of %B %Y, %H:%M")
   end
 end
 

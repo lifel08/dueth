@@ -29,9 +29,28 @@
       </ul>
   </div>
 </div>
-<div class="profile-description">
-<!-- add with ruby -->
-</div>
+  <div class="profile-description">
+    <!-- add with ruby -->
+  </div>
 <% end %>
 
 <hr>
+
+  <!-- Review section -->
+  <div class="review-section">
+    <h2> Reviews</h2>
+      <div class="reviews">
+        <% @instrument.reviews.each do |review|  %>
+          <%= cl_image_tag review.user.photo.key, height: 60, width: 60, radius: 8, crop: :fill, gravity: :face %>
+          <ul class="review-attributes">
+            <li> <strong><%= review.user.first_name %></strong></li>
+            <li><%= review.created_at.strftime('%B, %Y') %></li>
+          </ul>
+      </div>
+    <p class="review-content"><%= review.content %></p>
+      <% end %>
+  </div>
+<!-- Review section -->
+
+
+

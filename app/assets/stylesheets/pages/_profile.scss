@@ -13,7 +13,7 @@
 
 .profile-picutre {
   display:flex;
-    border-radius: 5px;
+  border-radius: 5px;
 }
 
 .profile-greeting h1 {
@@ -42,7 +42,7 @@ hr {
   background-color:#fff;
   height:1px;
   width:80%;
-  margin: 10px 50px;
+  margin: 20px 50px;
 }
 
 .review-section {
@@ -50,12 +50,11 @@ hr {
 }
 
 .instrument-section {
-  margin: 10px 50px ;
+  margin: 10px ;
   margin-top:30px;
-}
-
-.instrument {
-
+  h2 {
+    margin-left: 50px;
+  }
 }
 
 .instruments {
@@ -63,13 +62,14 @@ hr {
   border-radius: 5px;
   height: 400px;
   margin-top: 30px;
+  margin-left: 50px;
 
 }
 
 .edit-instrument {
   display: flex;
   height: 300px;
-  width: 1600px;
+  width: 200px;
   flex-direction:column;
   justify-content: space-between;
 }
@@ -79,10 +79,32 @@ hr {
   justify-content: right;
   width:100vw;
   height: 60px;
+  margin-left: 50px;
   padding: 10px;
 }
 
 .booking-section {
   margin: 10px 50px ;
   margin-top:30px;
+  background-color: #E5CBCA;
+  padding: 10px;
+}
+
+.review-section {
+
+}
+
+.reviews {
+   display: flex;
+   margin-left: 15px;
+   margin-top: 15px;
+}
+
+.review-attributes {
+   list-style: none;
+}
+
+.review-content {
+  margin-top: 5px;
+  margin-left: 15px;
 }
