@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_01_083608) do
+ActiveRecord::Schema.define(version: 2021_05_08_091342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,7 +104,21 @@ ActiveRecord::Schema.define(version: 2021_05_01_083608) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "pause", default: false
+    t.string "house_number"
+    t.string "flat_number"
+    t.string "street_name"
+    t.string "district"
+    t.string "postal_code"
+    t.string "city"
+    t.string "country"
     t.index ["cancellation_policy_id"], name: "index_instruments_on_cancellation_policy_id"
+    t.index ["city"], name: "index_instruments_on_city"
+    t.index ["country"], name: "index_instruments_on_country"
+    t.index ["district"], name: "index_instruments_on_district"
+    t.index ["flat_number"], name: "index_instruments_on_flat_number"
+    t.index ["house_number"], name: "index_instruments_on_house_number"
+    t.index ["postal_code"], name: "index_instruments_on_postal_code"
+    t.index ["street_name"], name: "index_instruments_on_street_name"
     t.index ["user_id"], name: "index_instruments_on_user_id"
   end
 

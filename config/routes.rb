@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       end
       resources :bookings, only: [:new, :create, :update, :destroy]
     end
-    get '/instruments/:title/:location/', to: 'instruments#search', as: :search_instruments
+    get '/instruments/:title/:city/', to: 'instruments#search', as: :search_instruments
 
     resources :users do
       resources :reviews, only: [:create, :edit, :destroy]

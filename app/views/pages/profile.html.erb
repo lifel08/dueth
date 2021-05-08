@@ -41,12 +41,9 @@
 
 <hr>
 
-
-
 <!-- Instrument section -->
 <div class="instrument-section">
   <h2> <%= current_user.first_name %>'s instruments </h2>
-  <div class="instrument">
     <div class="add-new-instrument">
       <button class="button-secondary">
         <%= link_to "Add a new Instrument", new_instrument_path %>
@@ -71,45 +68,51 @@
           <%= link_to 'Delete Instrument', instrument_path(instrument), method: :delete, data: { confirm: 'This will delete your instrument. Are you sure?', disable_with: 'Deleting...' } , class: "button-alert" %>
         </button>
       </div>
+    </div>
+</div>
 
-      <!-- Review section -->
+  <!-- Review section -->
+  <% if instrument.reviews.size.positive? %>
+    <div class="review-section">
+      <h2> Reviews</h2>
+        <div class="reviews">
+          <% instrument.reviews.each do |review|  %>
+            <%= cl_image_tag review.user.photo.key, height: 60, width: 60, radius: 8, crop: :fill, gravity: :face %>
+            <ul class="review-attributes">
+              <li> <strong><%= review.user.first_name %></strong></li>
+              <li><%= review.created_at.strftime('%B, %Y') %></li>
+            </ul>
+        </div>
+      <p class="review-content"><%= review.content %></p>
+         <% end %>
+    </div>
+    <% else %>
       <div class="review-section">
         <h2> Reviews</h2>
-        <% instrument.reviews.each do |review|  %>
-          <%= cl_image_tag review.user.photo.key, height: 40, width: 40, radius: 8, crop: :fill, gravity: :face %>
-          <ul>
-            <li><%= review.rating %></li>
-            <li> <%= review.user.first_name %></li>
-            <li><%= review.content %></li>
-            <li><%= review.created_at.strftime('%B, %Y') %></li>
-        </ul>
-        <% end %>
+        <p>No reviews yet.</p>
       </div>
-
-      <hr>
-
-<!--  Booking section-->
-<div class="booking-section">
-  <h2>Overview bookings - only visible to instrument owner</h2>
-  <% instrument.bookings.each do |booking| %>
-    <%= booking.receiver.first_name  %>
-    <%= booking.booking_from %>
-    <%= booking.booking_to %>
-  </br>
-  </br>
-    <%= booking.to.to_s(:long_ordinal) %>
   <% end %>
-</div>
 
-
-<hr>
+  <!--  Booking section-->
+  <% if instrument.bookings.size.positive? %>
+    <div class="booking-section">
+      <h2> Overview bookings - <strong style="color:#AC2721">only visible to instrument owner</strong></h2>
+        <% instrument.bookings.each do |booking| %>
+          <%= booking.receiver.first_name  %>
+          <p>from:<%= booking.booking_from %></p>
+          <p>to:<%= booking.booking_to %></p>
+        <% end %>
     </div>
+    <% else %>
+      <div class="booking-section">
+        <h2> Overview bookings - <strong style="color:#AC2721">only visible to instrument owner</strong></h2>
+          <p>No bookings yet.</p>
+      </div>
   <% end %>
-  </div>
-</div>
-
+<% end %>
 
 <hr>
+
 <!--  Booking section-->
 <div class="booking-section">
   <h2>Your instrument practise - only visible to you</h2>

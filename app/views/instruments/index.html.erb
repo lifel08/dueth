@@ -21,11 +21,15 @@
           zoom: 12
       });
 
-      var marker = new mapboxgl.Marker({
-          color: "#FFFFFF",
-          draggable: true
-      }).setLngLat(center)
+    <%  @instruments.each do |instrument| %>
+       var markerNow = <%= j instrument.center %>;
+       var marker = new mapboxgl.Marker({
+           color: "#FFFFFF",
+           draggable: true
+      }).setLngLat(markerNow)
           .addTo(map);
+    <% end %>
+
       // add markers to map
   </script>
 <% end  %>
