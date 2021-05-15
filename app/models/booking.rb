@@ -37,18 +37,32 @@ class Booking < ApplicationRecord
       end
   end
 
-  def booking_from
-    format_booking_time(from)
+  def booking_day
+    from.strftime("%A, #{ from.day.ordinalize } of %B %Y")
   end
 
-  def booking_to
-    format_booking_time(to)
+  def booking_hour_from
+    from.strftime(" from %H:%M")
   end
 
-private
-
-  def format_booking_time(date_time)
-    date_time.strftime("%A, #{ date_time.day.ordinalize } of %B %Y, %H:%M")
+  def booking_hour_to
+    to.strftime(" to %H:%M")
   end
+
+# One string booking-date
+
+#   def booking_from
+#     format_booking_time(from)
+#   end
+
+#   def booking_to
+#     format_booking_time(to)
+#   end
+
+# private
+
+#   def format_booking_time(date_time)
+#     date_time.strftime("%A, #{ date_time.day.ordinalize } of %B %Y, %H:%M")
+#   end
 end
 
