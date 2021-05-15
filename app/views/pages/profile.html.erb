@@ -94,19 +94,61 @@
   <% end %>
 
   <!--  Booking section-->
-  <% if instrument.bookings.size.positive? %>
-    <div class="booking-section">
-      <h2> Overview bookings - <strong style="color:#AC2721">only visible to instrument owner</strong></h2>
-        <% instrument.bookings.each do |booking| %>
-          <%= booking.receiver.first_name  %>
-          <p>from:<%= booking.booking_from %></p>
-          <p>to:<%= booking.booking_to %></p>
-        <% end %>
-    </div>
+ <div class="booking-section-header">
+    <h2> Overview bookings - <strong style="color:#AC2721">only visible to instrument owner</strong></h2>
+ </div>
+    <!-- There are bookings -->
+    <% if instrument.bookings.size.positive? %>
+
+    <!-- Tab-Links -->
+      <div class="tabs">
+        <div class="tabs-item active">
+          <button class="tablinks" onclick="openTab(event, 'upcoming')">Upcoming</button>
+        </div>
+        <div class="tabs-item">
+          <button class="tablinks" onclick="openTab(event, 'past')">Past</button>
+        </div>
+      </div>
+
+      <!-- Tab-Content -->
+      <% instrument.bookings.each do |booking| %>
+        <% if booking.booking_day >= Time.now %>
+          <div class="booking-section"  id="upcoming" class="tabcontent">
+            <div class=booking-profile>
+              <%= cl_image_tag booking.receiver.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+              <div class=booking-info>
+                <h4><%= booking.receiver.first_name  %></h4>
+                <p><%= booking.booking_day %></p>
+                <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
+              </div>
+             </div>
+          </div>
+        <% else %>
+        <div class="booking-section"  id="past" class="tabcontent">
+          <div class=booking-profile>
+            <%= cl_image_tag booking.receiver.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+            <div class=booking-info>
+              <h4><%= booking.receiver.first_name  %></h4>
+              <p><%= booking.booking_day %></p>
+              <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
+            </div>
+           </div>
+        </div>
+      <% end %>
+      <% end %>
+
+    <!-- There are NO bookings -->
     <% else %>
+       <div class="tabs">
+        <div class="tabs-item active">
+          <h3>Upcoming</h3>
+        </div>
+        <div class="tabs-item">
+          <h3>Past</h3>
+        </div>
+      </div>
       <div class="booking-section">
-        <h2> Overview bookings - <strong style="color:#AC2721">only visible to instrument owner</strong></h2>
-          <p>No bookings yet.</p>
+            <p>No bookings yet.</p>
       </div>
   <% end %>
 <% end %>

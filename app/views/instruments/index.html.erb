@@ -8,26 +8,30 @@
   <script type="text/javascript">
       mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
 
-      console.log(mapboxgl);
-
-      var center = <%= j @center%>;
-
-      console.log(center);
+    <%  @instruments.each do |instrument| %>
 
       var map = new mapboxgl.Map({
           container: 'map',
-          style: 'mapbox://styles/mapbox/light-v10',
+          style: 'mapbox://styles/mapbox/streets-v11',
           center: center,
           zoom: 12
       });
 
-    <%  @instruments.each do |instrument| %>
-       var markerNow = <%= j instrument.center %>;
-       var marker = new mapboxgl.Marker({
-           color: "#FFFFFF",
-           draggable: true
-      }).setLngLat(markerNow)
-          .addTo(map);
+      var center = <%= j instrument.center %>;
+
+      map.on('load', function () {
+            // create the popup
+            var popup = new mapboxgl.Popup({ offset: 45 }).setText(
+                '<%= j instrument.title %>'
+            );
+
+            var marker = new mapboxgl.Marker({
+                color: "#FFFFFF",
+                draggable: true
+            }).setLngLat(center)
+                .setPopup(popup)
+                .addTo(map);
+        })
     <% end %>
 
       // add markers to map
