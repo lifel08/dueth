@@ -18,6 +18,7 @@
   <div class="profile-header">
     <div class="profile-greeting">
       <h1> <%= current_user.first_name %></h1>
+      <%= link_to "Edit", edit_user_path(current_user) %>
     </div>
     <div class="membership">
       <p> Member since <%= current_user.created_at.strftime('%B, %Y') %> </p>
