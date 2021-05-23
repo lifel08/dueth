@@ -74,7 +74,7 @@
   <!-- Review section -->
   <% if instrument.reviews.size.positive? %>
     <div class="review-section">
-      <h2> Reviews</h2>
+      <h2> Reviews for <%= instrument.title %></h2>
         <div class="reviews">
           <% instrument.reviews.each do |review|  %>
             <%= cl_image_tag review.user.photo.key, height: 60, width: 60, radius: 8, crop: :fill, gravity: :face %>
@@ -88,27 +88,32 @@
     </div>
     <% else %>
       <div class="review-section">
-        <h2> Reviews</h2>
+        <h2> Reviews for <%= instrument.title %> </h2>
         <p>No reviews yet.</p>
       </div>
   <% end %>
 
   <!--  Booking section-->
  <div class="booking-section-header">
-    <h2> Overview bookings - <strong style="color:#AC2721">only visible to instrument owner</strong></h2>
+    <h2> Overview bookings <%= instrument.title %> - <strong style="color:#AC2721">only visible to instrument owner</strong></h2>
  </div>
     <!-- There are bookings -->
     <% if instrument.bookings.size.positive? %>
 
-    <!-- Tab-Links -->
-      <div class="tabs">
-        <div class="tabs-item active">
-          <button class="tablinks" onclick="openTab(event, 'upcoming')">Upcoming</button>
-        </div>
-        <div class="tabs-item">
-          <button class="tablinks" onclick="openTab(event, 'past')">Past</button>
-        </div>
-      </div>
+    <!-- Tab-Links Bootstrap-->
+<ul class="nav nav-tabs tabs" id="myTab" role="tablist">
+  <li class="nav-item tabs-item-active" role="presentation">
+    <a class="nav-link active" id="upcoming-tab" data-toggle="tab" href="#upcoming" role="tab" aria-controls="upcoming" aria-selected="true">Upcoming</a>
+  </li>
+  <li class="nav-item tabs-item" role="presentation">
+    <a class="nav-link" id="past-tab" data-toggle="tab" href="#past" role="tab" aria-controls="past" aria-selected="false">Past</a>
+  </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">...</div>
+  <div class="tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-tab">...</div>
+</div>
 
       <!-- Tab-Content -->
       <% instrument.bookings.each do |booking| %>
@@ -151,9 +156,10 @@
             <p>No bookings yet.</p>
       </div>
   <% end %>
+  <hr>
 <% end %>
 
-<hr>
+
 
 <!--  Booking section-->
 <div class="booking-section">
