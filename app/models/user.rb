@@ -29,7 +29,7 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :instruments
   has_many :reviews, through: :bookings
-  validates :first_name, :last_name, :birthday, :password, :language,
+  validates :first_name, :last_name, :birthday, :language,
   :photo, presence: true
   has_one_attached :photo
 
