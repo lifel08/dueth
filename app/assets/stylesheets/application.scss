@@ -17,6 +17,7 @@
 @import "components/buttons";
 
 @import "instruments/index";
+@import "instruments/show";
 
 @import "pages/index";
 @import "pages/home";
@@ -29,9 +30,9 @@ section {
 }
 
 html, body {
-   margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }

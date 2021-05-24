@@ -133,9 +133,11 @@
         <% else %>
         <div class="booking-section"  id="past" class="tabcontent">
           <div class=booking-profile>
-            <%= cl_image_tag booking.receiver.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+            <%= link_to public_profile_path(booking.receiver) do %>
+              <%= cl_image_tag booking.receiver.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+            <% end %>
             <div class=booking-info>
-              <h4><%= booking.receiver.first_name  %></h4>
+              <h4><%= booking.receiver.first_name %></h4>
               <p><%= booking.booking_day %></p>
               <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
             </div>
@@ -155,13 +157,11 @@
         </div>
       </div>
       <div class="booking-section">
-            <p>No bookings yet.</p>
+        <p>No bookings yet.</p>
       </div>
   <% end %>
   <hr>
 <% end %>
-
-
 
 <!--  Booking section-->
 <div class="booking-section">
