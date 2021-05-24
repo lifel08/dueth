@@ -19,6 +19,10 @@ class UsersController < ApplicationController
 
   private
 
+  def member_since
+    created_at.strftime('%B, %Y')
+  end
+
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :language, :birthday, :description, :photo)
   end

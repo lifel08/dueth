@@ -21,6 +21,9 @@ class PagesController < ApplicationController
     if is_logged_in?
       return redirect_to url_for(action: :profile)
     end
+
+    @user = user
+
   end
 
   private
