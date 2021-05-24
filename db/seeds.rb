@@ -20,6 +20,7 @@ chloe = User.new(
       birthday: '12/11/1989',
       password: 'password',
       language: 'English, French',
+      description: 'I just started playing the piano recently. And I amm travelling a lot and I am happy to practise whereever I go.'
     )
 chloe.photo.attach(
             io: URI.open('https://cdn.psychologytoday.com/sites/default/files/field_blog_entry_images/2021-01/levi-williams-to5wnmst6qq-unsplash.jpg'),

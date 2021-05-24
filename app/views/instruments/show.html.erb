@@ -22,8 +22,13 @@
   </style>
 <% end %>
 
+<!-- instrument info -->
 <section>
   <h1><%= @instrument.title %></h1>
+    <p class= "instrument-short-info">
+      <i class="fas fa-star"></i> <%= pluralize(@instrument.reviews.count, 'review') %> · <%= @instrument.postal_code %> , <%= @instrument.city %> , <%= @instrument.country %>
+    </p>
+
   <div class="content">
     <div class="cards">
       <h2><%= @instrument.subtitle %></h2>
@@ -36,6 +41,8 @@
   </div>
   <h2>Location</h2>
   <%= @instrument.display_address %>
+
+  <!-- Map -->
 
   <%= content_for :footer_script do %>
     <script type="text/javascript">
@@ -50,24 +57,25 @@
             zoom: 12
         });
 
+        // create a HTML element for each feature
+        var el = document.createElement('div');
+        el.className = 'marker';
+
         map.on('load', function () {
             // create the popup
             var popup = new mapboxgl.Popup({ offset: 45 }).setText(
                 '<%= j @instrument.title %>'
             );
 
-            var marker = new mapboxgl.Marker({
-                color: "#FFFFFF",
-                draggable: true
-            }).setLngLat(center)
+            var marker = new mapboxgl.Marker(el)
+                .setLngLat(center)
                 .setPopup(popup)
                 .addTo(map);
         })
-
-
-
     </script>
   <% end %>
+
   <div id='map'>
   </div>
+
 </section>

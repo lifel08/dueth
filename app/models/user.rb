@@ -34,8 +34,8 @@ class User < ApplicationRecord
   :photo, presence: true
   has_one_attached :photo
 
-  def registered_since
-    # timestamp
+  def member_since
+    created_at.strftime('%B, %Y')
   end
 
   def full_name

@@ -45,6 +45,8 @@
   margin: 10px 50px ;
 }
 
+//  seperator
+
 hr {
   border:none;
   border-top:1px dotted #2F2F2F;
@@ -55,9 +57,7 @@ hr {
   margin: 20px 50px;
 }
 
-.review-section {
-  margin: 10px 50px ;
-}
+// instrument section
 
 .instrument-section {
   margin: 10px ;
@@ -166,8 +166,8 @@ hr {
 // review-section CSS
 
 .review-section {
-margin-left: 50px;
-padding: 20px;
+  margin-left: 50px;
+  padding: 20px;
 }
 
 .reviews {
@@ -183,4 +183,10 @@ padding: 20px;
 .review-content {
   margin-top: 5px;
   margin-left: 15px;
+}
+
+// public profile style
+
+.public-footer {
+  height: 100%;
 }
