@@ -8,31 +8,33 @@
   <script type="text/javascript">
       mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
 
-    <%  @instruments.each do |instrument| %>
+      var instruments = <%= j @instruments %>
+      console.log(instruments)
 
       var map = new mapboxgl.Map({
           container: 'map',
           style: 'mapbox://styles/mapbox/streets-v11',
-          center: center,
+          // center: center,
           zoom: 12
       });
 
-      var center = <%= j instrument.center %>;
+      instruments.forEach(function(instrument) {
 
-      map.on('load', function () {
+        map.on('load', function () {
             // create the popup
             var popup = new mapboxgl.Popup({ offset: 45 }).setText(
-                '<%= j instrument.title %>'
+              instrument.title
             );
 
             var marker = new mapboxgl.Marker({
                 color: "#FFFFFF",
                 draggable: true
-            }).setLngLat(center)
+            }).setLngLat([instrument.latitude, instrument.longitude])
                 .setPopup(popup)
                 .addTo(map);
         })
-    <% end %>
+
+      })
 
       // add markers to map
   </script>
