@@ -57,6 +57,10 @@ class Instrument < ApplicationRecord
 
   geocoded_by :address
 
+  def as_json(options = nil)
+    super.merge(center: center)
+  end
+
   def address
     #  ||= memoization means, if = nil than assign not
     @address ||= [street_name, district, postal_code, city, country]
