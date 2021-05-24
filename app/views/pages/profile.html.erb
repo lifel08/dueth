@@ -103,6 +103,28 @@
  <div class="booking-section-header">
     <h2> Overview bookings <%= instrument.title %> - <strong style="color:#AC2721">only visible to instrument owner</strong></h2>
  </div>
+
+<nav>
+   <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+    </li>
+  </ul>
+</nav>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">A.</div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">B.</div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">C.</div>
+</div>
+
+<br>
+
     <!-- There are bookings -->
     <% if instrument.bookings.size.positive? %>
       <div class="tabs">
@@ -119,7 +141,7 @@
         <% if booking.booking_day >= Time.now %>
           <div class="booking-section"  id="upcoming" class="tabcontent">
             <div class=booking-profile>
-              <%= link_to profile_path do %>
+              <%= link_to public_profile_path(booking.receiver) do %>
                 <%= cl_image_tag booking.receiver.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
               <% end %>
               <div class=booking-info>
