@@ -119,7 +119,9 @@
         <% if booking.booking_day >= Time.now %>
           <div class="booking-section"  id="upcoming" class="tabcontent">
             <div class=booking-profile>
-              <%= cl_image_tag booking.receiver.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+              <%= link_to profile_path do %>
+                <%= cl_image_tag booking.receiver.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+              <% end %>
               <div class=booking-info>
                 <h4><%= booking.receiver.first_name  %></h4>
                 <p><%= booking.booking_day %></p>
