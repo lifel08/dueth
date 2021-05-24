@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Edit User Profile</h1>
+  <h1>Edit Your Profile</h1>
 
   <% if @user.errors.messages.present? %>
     <ul> Please fix the following errors:
@@ -16,7 +16,9 @@
     <%= f.input :email, label: "E-Mail" %>
     <%= f.input :birthday, label: "Birthday", as: :string, input_html: { class: "flatpickr" } %>
     <%= f.input :language, label: "Language" %>
-    <%= f.button :submit %>
+    <%= f.input :description, as: :text %>
+    <%= f.input :photo, as: :file, label: "Change your photo" %>
+    <%= f.button :submit, label: "Update your Profile", class: "button-primary button-form" %>
   <% end %>
 </div>
 
