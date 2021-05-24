@@ -8,47 +8,58 @@
   <script type="text/javascript">
       mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
 
-      var instruments = <%= j @instruments %>
-      console.log(instruments)
+      // Get instruments from ruby array to javascript array
+      var instruments = <%= raw @instruments.to_json %>;
 
+      // Build the map!
       var map = new mapboxgl.Map({
           container: 'map',
           style: 'mapbox://styles/mapbox/streets-v11',
-          // center: center,
+          center: instruments[0].center,
           zoom: 12
       });
 
-      instruments.forEach(function(instrument) {
+      // Build marker for each instrument
+      instruments.forEach(function (instrument) {
+          // create the popup
+          var markerOptions = {
+              color: "#FFFFFF",
+              draggable: false
+          }
 
-        map.on('load', function () {
-            // create the popup
-            var popup = new mapboxgl.Popup({ offset: 45 }).setText(
-              instrument.title
-            );
+          var el = document.createElement('div');
+          el.className = 'marker';
 
-            var marker = new mapboxgl.Marker({
-                color: "#FFFFFF",
-                draggable: true
-            }).setLngLat([instrument.latitude, instrument.longitude])
-                .setPopup(popup)
-                .addTo(map);
-        })
+          // create marker instance for the map
+          var marker = new mapboxgl.Marker(el, markerOptions)
 
+          // Set longitude & latitude to the marker
+          marker.setLngLat(instrument.center);
+
+          // create a pop up for the marker
+          var popup = new mapboxgl.Popup({offset: 45}).setText(instrument.title);
+
+          // will assign the popup to the marker
+          marker.setPopup(popup);
+
+          // Set the marker to the map
+          marker.addTo(map);
       })
+
 
       // add markers to map
   </script>
-<% end  %>
+<% end %>
 
 <section>
   <h1> <%= params[:title] %> rental <%= params[:location] %></h1>
-    <div class="content">
-      <div class="cards">
-        <% @instruments.each do |instrument| %>
-          <%= render "./components/instrument_card_big", instrument: instrument %>
-        <% end %>
-      </div>
-      <div id='map' >
-      </div>
+  <div class="content">
+    <div class="cards">
+      <% @instruments.each do |instrument| %>
+        <%= render "./components/instrument_card_big", instrument: instrument %>
+      <% end %>
     </div>
+    <div id='map'>
+    </div>
+  </div>
 </section>
