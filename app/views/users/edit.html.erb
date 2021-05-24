@@ -1,12 +1,24 @@
 <div class="container">
-  <h1>Edit User Profile</h1>
+  <h1>Edit Your Profile</h1>
+
+  <% if @user.errors.messages.present? %>
+    <ul> Please fix the following errors:
+      <% @user.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
   <%= simple_form_for @user do |f| %>
     <%= f.input :first_name, label: "First Name" %>
     <%= f.input :last_name, label: "Last Name", input_html: { maxlength: 70 } %>
     <%= f.input :email, label: "E-Mail" %>
     <%= f.input :birthday, label: "Birthday", as: :string, input_html: { class: "flatpickr" } %>
     <%= f.input :language, label: "Language" %>
-    <%= f.button :submit %>
+    <%= f.input :description, as: :text %>
+    <%= f.input :photo, as: :file, label: "Change your photo" %>
+    <%= f.button :submit, label: "Update your Profile", class: "button-primary button-form" %>
   <% end %>
 </div>
 

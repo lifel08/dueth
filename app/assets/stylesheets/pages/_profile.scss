@@ -10,7 +10,6 @@
   display: flex;
   flex-direction: column;
   margin: 0;
-
 }
 
 .profile-picutre {
@@ -31,6 +30,15 @@
   display: flex;
   flex-direction:row;
   justify-content: space-around;
+}
+
+.description-empty {
+  font-size: 20px;
+  color: #2F2F2F;
+  font-style: italic;
+  width: 40%;
+  margin-top: 20px;
+  padding: 10px;
 }
 
 .profile-description {
