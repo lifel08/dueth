@@ -1,3 +1,35 @@
 .instrument-short-info {
   display: flex;
+  width: 800px;
+}
+
+.fas {
+  position: relative;
+  left: 0;
+  padding-right: 30px;
+  top: 1px;
+}
+
+.instrument-short-info-reviews {
+  padding-left: 25px;
+}
+
+.instrument-short-info-location {
+  text-decoration: underline;
+}
+
+.instrument-short-info-subtitle {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.instrument-short-info-owner {
+  padding: 20px;
+
+}
+
+.instrument-short-info-description {
+  padding: 15px;
 }
