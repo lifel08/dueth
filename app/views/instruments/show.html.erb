@@ -22,26 +22,47 @@
   </style>
 <% end %>
 
-<!-- instrument info -->
-<section>
+<!-- instrument info: subtitle, owner, description-->
+<div class="container">
+
   <h1><%= @instrument.title %></h1>
-    <div class= "instrument-short-info">
-      <p><i class="fas fa-star"></i> <%= pluralize(@instrument.reviews.count, 'review') %></p> · <%= @instrument.postal_code %>, <%= @instrument.city %>, <%= @instrument.country %></p>
-    </div>
 
-  <div class="content">
-    <div class="cards">
-      <h2><%= @instrument.subtitle %></h2>
-      <%= link_to public_profile_path(@instrument.user) do %>
-        <%= @instrument.user.first_name %>
-      <% end %>
-      <h3><%= @instrument.description %></h3>
+    <div class="instrument-short-info">
+      <p class="instrument-short-info-reviews"><i class="fas fa-star"></i> <%= pluralize(@instrument.reviews.count, 'review') %> · </p>
+      <p class="instrument-short-info-location"> <%= @instrument.postal_code %>, <%= @instrument.city %>, <%= @instrument.country %> </p>
+    </div>
       <%= cl_image_tag @instrument.photo.key, height: 300, width: 800, crop: :fill, loading: "lazy", :class => "instrument-card-image" %>
-    </div>
-  </div>
-  <h2>Location</h2>
-  <%= @instrument.display_address %>
 
+      <div class="instrument-short-info-subtitle">
+        <h2><%= @instrument.user.first_name %> is offering: <%= @instrument.subtitle %></h2>
+        <%= link_to public_profile_path(@instrument.user) do %>
+          <%= cl_image_tag @instrument.user.photo.key, height: 90, width: 90, radius: 8, crop: :fill, gravity: :face %>
+        <% end %>
+      </div>
+      <hr>
+       <!-- display features -->
+       <% @instrument.features.each do |feature, icon| %>
+        <li class ="feature-list col col-lg-6">
+          <div class="features">
+            <%= raw feature.icon %>
+            <%= feature.name %>
+          </div>
+        </li>
+        <% end %>
+
+      <hr>
+        <p><%= @instrument.description %></p>
+      <hr>
+       <!-- display reviews-->
+       <% @instrument.reviews.each do |review| %>
+        <%= review.content %>
+       <% end %>
+
+      <hr>
+
+
+  <h2>Location</h2>
+    <p class="instrument-short-info-location"><%= @instrument.display_address %></p>
   <!-- Map -->
 
   <%= content_for :footer_script do %>
@@ -78,4 +99,27 @@
   <div id='map'>
   </div>
 
-</section>
+       <!-- display owner info-->
+    <div class="instrument-short-info-owner">
+      <h2>Offer from <%= @instrument.user.first_name %></h2>
+
+      <div class="profile-section">
+        <div class="profile-picture">
+          <%= cl_image_tag @instrument.user.photo.key, height: 90, width: 90, radius: 8, crop: :fill, gravity: :face %>
+        </div>
+        <div class="profile-header">
+          <div class="membership">
+            <p> Member since <%= @instrument.user.member_since %> </p>
+          </div>
+          <ul class="profile-attributes">
+            <li><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(@instrument.user.reviews.count, 'review') %></li>
+            <li><%= image_tag 'svg/verify.svg', class: "rating" %> identity verified</li>
+            <li><%= image_tag 'svg/language.svg', class: "rating" %> <%= @instrument.user.language %></li>
+          </ul>
+        </div>
+      </div>
+      <p class="instrument-short-info-description"> <%= @instrument.user.description %></p>
+    </div>
+
+
+</div>

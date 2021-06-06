@@ -1,10 +1,10 @@
 @import "show";
 
 #map {
-    height: 100vh;
+    height: 50vh;
     position: sticky;
     top: 0;
-    width:50%;
+    width:100%;
 }
 .marker {
   background-image: url('https://docs.mapbox.com/help/demos/custom-markers-gl-js/mapbox-icon.png');
