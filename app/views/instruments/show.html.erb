@@ -25,9 +25,9 @@
 <!-- instrument info -->
 <section>
   <h1><%= @instrument.title %></h1>
-    <p class= "instrument-short-info">
-      <i class="fas fa-star"></i> <%= pluralize(@instrument.reviews.count, 'review') %> · <%= @instrument.postal_code %> , <%= @instrument.city %> , <%= @instrument.country %>
-    </p>
+    <div class= "instrument-short-info">
+      <p><i class="fas fa-star"></i> <%= pluralize(@instrument.reviews.count, 'review') %></p> · <%= @instrument.postal_code %>, <%= @instrument.city %>, <%= @instrument.country %></p>
+    </div>
 
   <div class="content">
     <div class="cards">

@@ -1,0 +1,49 @@
+.container-login {
+  width: 100vw;
+  height: 100vh;
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content:center;
+  text-align: center;
+}
+.container-login h1 {
+  margin-bottom: 20px;
+}
+.app {
+  color: #06436F;
+  width: 300px;
+  height: 500px;
+}
+.container-button {
+  display: flex;
+  margin-top:30px;
+  justify-content: space-between;
+}
+.column {
+flex-direction:column;
+}
+.width-90 {
+  justify-content: space-between;
+}
+.password-sign-in {
+  margin: 0 auto;
+  text-align: center;
+}
+.form-control {
+  border-radius: 20px;
+}
+.login-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 70;
+  height: 150
+}
+.container-button-sign-in {
+  display: flex;
+  width:50vw;
+  justify-content:center;
+}

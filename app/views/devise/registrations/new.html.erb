@@ -1,25 +1,152 @@
-<h2>Sign up</h2>
-<%= @disable_nav = true %>
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+<% content_for :head do %>
+  <title>Join Us | Dueth.com</title>
+  <meta name="robots" content="index, follow" />
+  <meta name="description" content="Join Duetch.com and find your music instrument for practise"/>
+  <meta property="og:title" content="Join Us | Dueth.com"/>
+  <meta property="og:description" content="Join Duetch.com and find your music instrument for practise"/>
+  <meta property="og:site_name" content="Dueth.com">
+  <meta property="og:type" content="website" />
+<% end %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-  </div>
+<div class="container-login">
+  <h1>Sign up</h1>
+
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <div class="app">
+
+        <div class="sp_page">
+          <div class="login-icons">
+            <%= render 'icons/profile_icon', width: 70, height: 150%>
+          </div>
+          <%= f.input :first_name,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "first_name"} %>
+          <%= f.input :last_name,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "last_name"} %>
+          <div class="container-button">
+            <%= render "devise/shared/links"%>
+            <button type="button" class="button-primary" onclick="sp.next()">Next</button>
+          </div>
+        </div>
+
+        <div class="sp_page">
+          <div class="login-icons">
+            <%= render 'icons/email_icon', width: 70, height: 150%>
+          </div>
+          <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" }%>
+          <div class="container-button">
+            <button type="button" class="button-secondary" onclick="sp.prev()">Back</button>
+            <button type="button" class="button-primary" onclick="sp.next()">Next</button>
+          </div>
+        </div>
+
+        <div class="class sp_page">
+          <div class="login-icons">
+            <%= render 'icons/birthday_icon', width: 70, height: 150%>
+          </div>
+          <%= f.input :birthday,
+                    required: true,
+                    as: :string,
+                    autofocus: true,
+                    input_html: {class: "datepicker"} %>
+          <div class="container-button">
+            <button type="button" class="button-secondary" onclick="sp.prev()">Back</button>
+            <button type="button" class="button-primary" onclick="sp.next()">Next</button>
+          </div>
+        </div>
+
+        <div class="sp_page">
+          <div class="login-icons">
+            <%= render 'icons/password_icon', width: 70, height: 150%>
+          </div>
+          <%= f.input :password,
+                    required: true,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+                    required: true,
+                    input_html: { autocomplete: "new-password" } %>
+          <div class="container-button">
+            <button type="button" class="button-secondary" onclick="sp.prev()">Back</button>
+            <button type="button" class="button-primary" onclick="sp.next()">Next</button>
+          </div>
+        </div>
+
+        <div class="sp_page">
+          <div class="login-icons">
+            <%= render 'icons/photo_upload_icon'%>
+          </div>
+          <%= f.input :photo,
+                    :label => 'Upload your photo!',
+                    label_html: { class:'button-secondary margin-left-5' },
+                    as: :file,
+                    input_html: { multiple: false } %>
+          <div class="container-button">
+            <button type="button" class="button-secondary" onclick="sp.prev()">Back</button>
+            <button type="submit" class="button-primary">Send</button>
+          </div>
+        </div>
+
+        <div class="sp_page">
+          <div class="login-icons">
+            <%= render 'icons/language_icon', width: 70, height: 150%>
+          </div>
+          <%= f.input :language,
+                    required: true,
+                    collection: ['Spanish', 'English', 'Hindi', 'Bengali',
+                      'Portuguese', 'Russian', 'Japanese', 'Western Punjabi',
+                      'Marathi', 'Telugu', 'Chinese', 'Turkish', 'Korean',
+                      'French', 'German', 'Vietnamese', 'Tamil',
+                      'Urdu', 'Javanese', 'Italian', 'Arabic',
+                      'Gujarati', 'Iranian Persian', 'Bhojpuri',
+                      'Hausa', 'Kannada', 'Indonesian', 'Polish', 'Yoruba',
+                      'Malayalam', 'Odia', 'Maithili',
+                      'Burmese', 'Eastern Punjabi', 'Sunda',
+                      'Ukrainian', 'Igbo', 'Northern Uzbek', 'Sindhi',
+                      'Romanian', 'Tagalog', 'Dutch', 'Amharic',
+                      'Northern Pashto', 'Magahi', 'Thai',
+                      'Saraiki', 'Khmer', 'Chhattisgarhi', 'Somali',
+                      'Malaysian', 'Cebuano', 'Nepali',
+                      'Assamese', 'Sinhalese', 'Northern Kurdish',
+                      'Nigerian Fulfulde', 'Bavarian',
+                      'South Azerbaijani', 'Greek', 'Chittagonian', 'Kazakh',
+                      'Deccan', 'Hungarian', 'Kinyarwanda', 'Zulu',
+                      'Southern Pashto', 'Rundi', 'Czech',
+                      'Taʽizzi-Adeni Arabic', 'Uyghur', 'Sylheti'],
+                    autofocus: true,
+                    input_html: { autocomplete: "language" }%>
+          <div class="container-button">
+            <button type="button" class="button-secondary" onclick="sp.prev()">Back</button>
+            <button type="submit" class="button-primary">Send</button>
+          </div>
+        </div>
+
+        <div class="sp_page">
+          <div class="login-icons">
+            <%= render 'icons/success_icon'%>
+          </div>
+            <h1>You are now registered!</h1>
+            <button type="button" class="button-primary" onclick="window.location.href='/';">Go to Homepage</button>
+        </div>
+
+      </div>
+    </div>
 
   <div class="form-actions">
     <%= f.button :submit, "Sign up" %>
   </div>
+
 <% end %>
+</div>
 
 <%= render "devise/shared/links" %>
+

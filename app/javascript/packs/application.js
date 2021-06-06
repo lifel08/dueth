@@ -20,17 +20,18 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
-
-import flatpickr from "flatpickr"
+import { initFlatpickr } from "../plugins/flatpickr";
+import { SLIDEPAGE } from '../plugins/slidepage';
+import { initSlidePage } from '../components/slide';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-const initFlatPickr = () => {
- flatpickr(".flatpickr");
-};
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
- initFlatPickr()
+ initFlatPickr();
+ initSlidePage();
+
 });
