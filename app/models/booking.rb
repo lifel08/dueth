@@ -27,6 +27,10 @@ class Booking < ApplicationRecord
   belongs_to :provider, class_name: 'User', foreign_key: :provider_id
   has_many :reviews, dependent: :destroy
 
+
+  scope :upcoming, -> { where('DATE(bookings.from) > DATE(?)', Time.zone.now) }
+  scope :past, -> { where('DATE(bookings.to) < DATE(?)', Time.zone.now) }
+
   def booking_status
     if self.status.nil?
         "pending"

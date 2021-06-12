@@ -9,7 +9,6 @@
 <% end %>
 
 <!-- Profile section -->
-<% if user_signed_in? %>
   <div class="profile-section">
     <div class="profile-picture">
       <%= cl_image_tag @user.photo.key, height: 190, width: 190, radius: 8, crop: :fill, gravity: :face %>
@@ -31,29 +30,30 @@
   <div class="profile-description">
     <p><%= @user.description %></p>
   </div>
-<% end %>
 
 <hr>
 
-  <!-- Review section -->
+<!-- Profile section -->
 
-  <div class="review-section">
-    <h2> Reviews</h2>
-    <% if @user.reviews.size.positive? %>
-      <div class="reviews">
-          <% @user.reviews.each do |review|  %>
-          <%= cl_image_tag review.user.photo.key, height: 60, width: 60, radius: 8, crop: :fill, gravity: :face %>
-          <ul class="review-attributes">
-            <li> <strong><%= review.user.first_name %></strong></li>
-            <li><%= review.created_at.strftime('%B, %Y') %></li>
-          </ul>
-      </div>
-        <p class="review-content"><%= review.content %></p>
-        <% end %>
-      <% else %>
-      <p class="review-content">No reviews yet.</p>
+
+<!-- Review section -->
+<div class="review-section">
+  <h2> Reviews</h2>
+  <% if @user.reviews.size.positive? %>
+    <div class="reviews">
+        <% @user.reviews.each do |review|  %>
+        <%= cl_image_tag review.user.photo.key, height: 60, width: 60, radius: 8, crop: :fill, gravity: :face %>
+        <ul class="review-attributes">
+          <li> <strong><%= review.user.first_name %></strong></li>
+          <li><%= review.created_at.strftime('%B, %Y') %></li>
+        </ul>
+    </div>
+      <p class="review-content"><%= review.content %></p>
       <% end %>
-  </div>
+    <% else %>
+    <p class="review-content">No reviews yet.</p>
+    <% end %>
+</div>
 
 <div class="public-footer">
 
