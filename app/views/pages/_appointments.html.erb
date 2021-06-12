@@ -6,16 +6,16 @@
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="upcoming-tab" data-toggle="tab" href="#upcoming" role="tab" aria-controls="home" aria-selected="true">Upcoming</a>
+    <a class="nav-link active" id="upcoming-tab-<%= instrument.id %>" data-toggle="tab" href="#upcoming-<%= instrument.id %>" role="tab" aria-controls="upcoming-<%= instrument.id %>" aria-selected="true">Upcoming</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" id="past-tab" data-toggle="tab" href="#past" role="tab" aria-controls="profile" aria-selected="false">Past</a>
+    <a class="nav-link" id="past-tab-<%= instrument.id %>" data-toggle="tab" href="#past-<%= instrument.id %>" role="tab" aria-controls="past-<%= instrument.id %>" aria-selected="false">Past</a>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
+  <div class="tab-pane fade show active" id="upcoming-<%= instrument.id %>" role="tabpanel" aria-labelledby="upcoming-tab-<%= instrument.id %>">
     <% if instrument.bookings.upcoming.count.zero? %>
-      <h5>No past events yet for the instrument <%= instrument.title %>! </h5>
+      <h5>No future events yet for the instrument <%= instrument.title %>! </h5>
     <% end %>
     <% instrument.bookings.upcoming.each do |booking| %>
       <div class=booking-profile>
@@ -30,7 +30,7 @@
       </div>
     <% end %>
   </div>
-  <div class="tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-tab">
+  <div class="tab-pane fade" id="past-<%= instrument.id %>" role="tabpanel" aria-labelledby="past-tab-<%= instrument.id %>">
     <% if instrument.bookings.past.count.zero? %>
       <h5>No past events yet for the instrument <%= instrument.title %>! </h5>
     <% end %>
