@@ -22,6 +22,7 @@
         <%= f.input :subtitle, label: "Title - Make it sticky! In a few words: What's very handy with your instrument?" , placeholder: "Example: Very central easy to practise Digital Piano", input_html: { maxlength: 70} %>
         <%= f.input :description, as: :text, placeholder: "Example: Anna is offering her good to practise and easy to reach digital piano. Come by and enjoy your piano practise as usual!"%>
         <%= f.input :location, label: "Add the city" %>
+        <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
         <%= f.input :price, label: "Add a price" %>
        <% Feature.find_each do |feature, icon| %>
         <%= check_box_tag :"instrument[feature_ids][]", feature.id, is_feature_checked?(feature.id) %>

@@ -1,0 +1,49 @@
+// booking-section on user-profile
+
+.booking-section {
+  width:80%;
+  margin: 0 50px ;
+  background-color: #b5b193;
+  padding: 10px 40px;
+}
+
+.booking-section-header {
+  background-color: #white;
+  margin-left: 50px;
+  padding: 20px;
+}
+
+.booking-tabs {
+  margin-left: 50px;
+}
+
+.nav-link.active {
+  background-color: #878467;
+  color: white;
+}
+
+.first-nav {
+  border: 1px solid #878467;
+}
+
+.second-nav {
+  border: 1px solid #878467;
+}
+
+.tab-content {
+  width: 50%;
+  background-color: #878467;
+  margin-left: 50px;
+  padding: 15px;
+}
+
+
+.booking-profile {
+ display: flex;
+ padding: 15px;
+
+}
+
+.booking-info {
+  margin-left: 20px;
+}

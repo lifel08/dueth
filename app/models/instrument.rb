@@ -47,7 +47,7 @@ class Instrument < ApplicationRecord
   has_many :reviews, through: :bookings
   has_many :instrument_features, dependent: :destroy
   has_many :features, through: :instrument_features
-  has_one :cancellation_policy
+  belongs_to :cancellation_policy
   validates :title, :subtitle, :street_name, :house_number, :postal_code, :city, :country,
     :price, presence: true
   has_one_attached :photo

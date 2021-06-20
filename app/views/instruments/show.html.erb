@@ -5,7 +5,6 @@
   <meta name="description" content="Looking for an easy way to get access to an instrument to practise? Search with Dueth.com for instruments close by and practise wherever you are. Find your next practise instrument now!"/>
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet'/>
-
   <style type="text/css">
     #marker {
       background-image: url('https://docs.mapbox.com/mapbox-gl-js/assets/washington-monument.jpg');
@@ -15,121 +14,116 @@
       border-radius: 50%;
       cursor: pointer;
     }
-
+    
     .mapboxgl-popup {
       max-width: 200px;
     }
   </style>
 <% end %>
-
-<div class="container"> <!-- instrument info: subtitle, owner -->
-
+<div class="container">
+  <!-- instrument info: Title, photo, owner -->
   <h1><%= @instrument.title %></h1>
-
-    <div class="instrument-short-info">
-      <p class="instrument-short-info-reviews"><i class="fas fa-star"></i> <%= pluralize(@instrument.reviews.count, 'review') %> · </p>
-      <p class="instrument-short-info-location"> <%= @instrument.postal_code %>, <%= @instrument.city %>, <%= @instrument.country %> </p>
-    </div>
-      <%= cl_image_tag @instrument.photo.key, height: 300, width: 800, crop: :fill, loading: "lazy", :class => "instrument-card-image" %>
-
-      <div class="instrument-short-info-subtitle">
-        <h2><%= @instrument.user.first_name %> is offering: <%= @instrument.subtitle %></h2>
-        <%= link_to public_profile_path(@instrument.user) do %>
-          <%= cl_image_tag @instrument.user.photo.key, height: 90, width: 90, radius: 8, crop: :fill, gravity: :face %>
-        <% end %>
-      </div>
-
-      <hr> <!-- display features -->
-
-      <div class="instrument-short-info-subtitle">
-       <% @instrument.features.each do |feature, icon| %>
+  <div class="instrument-short-info">
+    <p class="instrument-short-info-reviews"><i class="fas fa-star"></i> <%= pluralize(@instrument.reviews.count, 'review') %> · </p>
+    <p class="instrument-short-info-location"> <%= @instrument.postal_code %>, <%= @instrument.city %>, <%= @instrument.country %> </p>
+  </div>
+  <%= cl_image_tag @instrument.photo.key, height: 300, width: 800, crop: :fill, loading: "lazy", :class => "instrument-card-image" %>
+  <div class="instrument-short-info-subtitle">
+    <h2><%= @instrument.user.first_name %> is offering: <%= @instrument.subtitle %></h2>
+    <%= link_to public_profile_path(@instrument.user) do %>
+      <%= cl_image_tag @instrument.user.photo.key, height: 90, width: 90, radius: 8, crop: :fill, gravity: :face %>
+    <% end %>
+  </div>
+  <!-- instrument features -->
+  <hr class="hr-instrument-show">
+  <h3>Instrument Features</h3>
+  <div class="instrument-short-info-subtitle">
+    <% if @instrument.features.size.positive? %>
+      <% @instrument.features.each do |feature, icon| %>
         <li class ="feature-list col col-lg-6">
           <div class="features">
             <%= raw feature.icon %>
             <%= feature.name %>
           </div>
         </li>
-        <% end %>
-      </div>
-
-      <hr> <!-- description -->
-
-        <div class="instrument-short-info">
-          <p><%= @instrument.description %></p>
-        </div>
-
-      <hr> <!-- display reviews-->
-
-      <div class="instrument-short-info">
-        <% if @instrument.reviews.size.positive? %>
-          <% @instrument.reviews.each do |review| %>
-          <%= review.content %>
-          <% end %>
-        <% else %>
-          <p> No reviews yet. </p>
-        <% end %>
-      </div>
-
-      <hr> <!-- location-->
-
-      <h2>Location</h2>
-        <p class="instrument-short-info-location"><%= @instrument.display_address %></p>
-
-      <!-- Map -->
-      <%= content_for :footer_script do %>
-        <script type="text/javascript">
-            mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
-
-            var center = <%= j @instrument.center %>;
-
-            var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v11',
-                center: center,
-                zoom: 12
-            });
-
-            // create a HTML element for each feature
-            var el = document.createElement('div');
-            el.className = 'marker';
-
-            map.on('load', function () {
-                // create the popup
-                var popup = new mapboxgl.Popup({ offset: 45 }).setText(
-                    '<%= j @instrument.title %>'
-                );
-
-                var marker = new mapboxgl.Marker(el)
-                    .setLngLat(center)
-                    .setPopup(popup)
-                    .addTo(map);
-            })
-        </script>
       <% end %>
-
-      <div id='map'>
+    <% else %>
+      <p> ☕ This is just an ordinary instrument and has no special features. Still can be fun!</p>
+    <% end %>
+  </div>
+  <!-- description -->
+  <hr class="hr-instrument-show">
+  <h3>Learn more about Nam's instrument</h3>
+  <div class="instrument-short-info">
+    <p><%= @instrument.description %></p>
+  </div>
+  <!-- display reviews-->
+  <hr class="hr-instrument-show">
+  <h3>Reviews for this piano</h3>
+  <div class="instrument-short-info">
+    <% if @instrument.reviews.size.positive? %>
+      <% @instrument.reviews.each do |review| %>
+        <%= review.content %>
+      <% end %>
+    <% else %>
+      <p> No reviews yet. </p>
+    <% end %>
+  </div>
+  <!-- location-->
+  <hr class="hr-instrument-show">
+  <h3>That's where you can find the piano</h3>
+  <p class="instrument-short-info-location"><%= @instrument.display_address %></p>
+  <!-- Map -->
+  <%= content_for :footer_script do %>
+    <script type="text/javascript">
+      mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
+      
+      var center = <%= j @instrument.center %>;
+      
+      var map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: center,
+          zoom: 12
+      });
+      
+      // create a HTML element for each feature
+      var el = document.createElement('div');
+      el.className = 'marker';
+      
+      map.on('load', function () {
+          // create the popup
+          var popup = new mapboxgl.Popup({ offset: 45 }).setText(
+              '<%= j @instrument.title %>'
+          );
+      
+          var marker = new mapboxgl.Marker(el)
+              .setLngLat(center)
+              .setPopup(popup)
+              .addTo(map);
+      })
+    </script>
+  <% end %>
+  <div id='map'>
+  </div>
+  <!-- display owner info-->
+  <div class="instrument-short-info-owner">
+    <h2>And this is <%= @instrument.user.first_name %></h2>
+    <div class="profile-section">
+      <div class="profile-picture">
+        <%= cl_image_tag @instrument.user.photo.key, height: 90, width: 90, radius: 8, crop: :fill, gravity: :face %>
       </div>
-
-      <!-- display owner info-->
-      <div class="instrument-short-info-owner">
-        <h2>Offer from <%= @instrument.user.first_name %></h2>
-
-        <div class="profile-section">
-          <div class="profile-picture">
-            <%= cl_image_tag @instrument.user.photo.key, height: 90, width: 90, radius: 8, crop: :fill, gravity: :face %>
-          </div>
-          <div class="profile-header">
-            <div class="membership">
-              <p> Member since <%= @instrument.user.member_since %> </p>
-            </div>
-            <ul class="profile-attributes">
-              <li><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(@instrument.user.reviews.count, 'review') %></li>
-              <li><%= image_tag 'svg/verify.svg', class: "rating" %> identity verified</li>
-              <li><%= image_tag 'svg/language.svg', class: "rating" %> <%= @instrument.user.language %></li>
-            </ul>
-          </div>
+      <div class="profile-header">
+        <div class="membership">
+          <p> Member since <%= @instrument.user.member_since %> </p>
         </div>
-        <p class="instrument-short-info-description"> <%= @instrument.user.description %></p>
+        <ul class="profile-attributes">
+          <li><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(@instrument.user.reviews.count, 'review') %></li>
+          <li><%= image_tag 'svg/verify.svg', class: "rating" %> identity verified</li>
+          <li><%= image_tag 'svg/language.svg', class: "rating" %> <%= @instrument.user.language %></li>
+        </ul>
       </div>
-
+    </div>
+    <p class="instrument-short-info-description"> <%= @instrument.user.description %></p>
+  </div>
 </div>

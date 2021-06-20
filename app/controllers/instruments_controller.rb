@@ -76,7 +76,7 @@ class InstrumentsController < ApplicationController
 
   def instrument_params
     params.require(:instrument).permit(:title, :subtitle, :description,
-      :street_name, :house_number, :postal_code, :city, :country,
+      :street_name, :house_number, :postal_code, :city, :country, :cancellation_policy_id,
      :price, :reviews, :photo, feature_ids: [])
   end
 

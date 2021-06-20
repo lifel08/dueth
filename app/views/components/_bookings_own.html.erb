@@ -1,29 +1,28 @@
 <div class="booking-section-header">
-  <h2> Overview bookings <%= instrument.title %> -
-    <strong style="color:#AC2721">only visible to instrument owner</strong></h2>
+  <h2>  Your own bookings </h2>
 </div>
-
-
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
+<!-- Tab-Menu -->
+<ul class="nav nav-tabs booking-tabs" id="myTab" role="tablist">
+  <li class="nav-item first-nav" role="presentation">
     <a class="nav-link active" id="upcoming-tab-<%= instrument.id %>" data-toggle="tab" href="#upcoming-<%= instrument.id %>" role="tab" aria-controls="upcoming-<%= instrument.id %>" aria-selected="true">Upcoming</a>
   </li>
-  <li class="nav-item" role="presentation">
+  <li class="nav-item second-nav" role="presentation">
     <a class="nav-link" id="past-tab-<%= instrument.id %>" data-toggle="tab" href="#past-<%= instrument.id %>" role="tab" aria-controls="past-<%= instrument.id %>" aria-selected="false">Past</a>
   </li>
 </ul>
+<!-- Tab-Content -->
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="upcoming-<%= instrument.id %>" role="tabpanel" aria-labelledby="upcoming-tab-<%= instrument.id %>">
-    <% if instrument.bookings.upcoming.count.zero? %>
-      <h5>No future events yet for the instrument <%= instrument.title %>! </h5>
+    <% if current_user.bookings.upcoming.count.zero? %>
+      <h5>You haven't booked anything! </h5>
     <% end %>
-    <% instrument.bookings.upcoming.each do |booking| %>
+    <% current_user.bookings.upcoming.each do |booking| %>
       <div class=booking-profile>
-        <%= link_to public_profile_path(booking.receiver) do %>
-          <%= cl_image_tag booking.receiver.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+        <%= link_to public_profile_path(booking.provider) do %>
+          <%= cl_image_tag booking.provider.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
         <% end %>
         <div class=booking-info>
-          <h4><%= booking.receiver.first_name %></h4>
+          <h4><%= booking.provider.first_name %></h4>
           <p><%= booking.booking_day %></p>
           <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
         </div>
@@ -31,16 +30,16 @@
     <% end %>
   </div>
   <div class="tab-pane fade" id="past-<%= instrument.id %>" role="tabpanel" aria-labelledby="past-tab-<%= instrument.id %>">
-    <% if instrument.bookings.past.count.zero? %>
-      <h5>No past events yet for the instrument <%= instrument.title %>! </h5>
+    <% if current_user.bookings.past.count.zero? %>
+      <h5> You haven't booked anything yet </h5>
     <% end %>
-    <% instrument.bookings.past.each do |booking| %>
+    <% current_user.bookings.past.each do |booking| %>
       <div class=booking-profile>
-        <%= link_to public_profile_path(booking.receiver) do %>
-          <%= cl_image_tag booking.receiver.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+        <%= link_to public_profile_path(booking.provider) do %>
+          <%= cl_image_tag booking.provider.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
         <% end %>
         <div class=booking-info>
-          <h4><%= booking.receiver.first_name %></h4>
+          <h4><%= booking.provider.first_name %></h4>
           <p><%= booking.booking_day %></p>
           <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
         </div>

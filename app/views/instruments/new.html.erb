@@ -26,6 +26,7 @@
         <%= f.input :postal_code, label: "Add your postal-code" %>
         <%= f.input :city, label: "Add your city" %>
         <%= f.input :country, as: :text, label: "Add your country" %>
+        <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
         <%= f.input :price, label: "Add a price" %>
         <%= f.input :photo, as: :file, label: "Add Photo" %>
       <div class="row">

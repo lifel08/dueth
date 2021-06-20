@@ -33,12 +33,12 @@ class Booking < ApplicationRecord
 
   def booking_status
     if self.status.nil?
-        "pending"
-      elsif self.status?
-        "accepted"
-      else
-        "declined"
-      end
+      "pending"
+    elsif self.status?
+      "accepted"
+    else
+      "declined"
+    end
   end
 
   def booking_day
@@ -52,21 +52,4 @@ class Booking < ApplicationRecord
   def booking_hour_to
     to.strftime(" to %H:%M")
   end
-
-# One string booking-date
-
-#   def booking_from
-#     format_booking_time(from)
-#   end
-
-#   def booking_to
-#     format_booking_time(to)
-#   end
-
-# private
-
-#   def format_booking_time(date_time)
-#     date_time.strftime("%A, #{ date_time.day.ordinalize } of %B %Y, %H:%M")
-#   end
 end
-

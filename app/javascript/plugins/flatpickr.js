@@ -1,7 +1,8 @@
+// app/javascript/plugins/flatpickr.js
 import flatpickr from "flatpickr";
 
 const initFlatpickr = () => {
-  flatpickr(".flatpickr", {});
+  flatpickr(".datepicker", {});
 }
 
 export { initFlatpickr };
