@@ -7,6 +7,7 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "flatpickr/dist/flatpickr";
 
 // Your CSS partials
 @import "components/index";
@@ -15,6 +16,7 @@
 @import "components/footer-desktop";
 @import "components/card";
 @import "components/buttons";
+@import "components/booking";
 
 @import "instruments/index";
 @import "instruments/show";
@@ -36,3 +38,4 @@ html, body {
   height: 100%;
   box-sizing: border-box;
 }
+

@@ -1,64 +1,57 @@
 <% content_for :head do %>
-<title>User Profile of Dueth| Dueth.com</title>
-<meta name="robots" content="noindex, nofollow" />
+  <title>User Profile of Dueth| Dueth.com</title>
+  <meta name="robots" content="noindex, nofollow" />
 <% end %>
-
 <!-- just a margin if the user is not logged in -->
 <% if !user_signed_in? %>
   <div class="margin-for-menu"></div>
 <% end %>
-
 <!-- Profile section -->
-
 <% if user_signed_in? %>
-<div class="profile-section">
-  <div class="profile-picture">
-    <%= cl_image_tag current_user.photo.key, height: 190, width: 190, radius: 8, crop: :fill, gravity: :face %>
-  </div>
-  <div class="profile-header">
-    <div class="profile-greeting">
-      <h1> <%= current_user.first_name %></h1>
+  <div class="profile-section">
+    <div class="profile-picture">
+      <%= cl_image_tag current_user.photo.key, height: 190, width: 190, radius: 8, crop: :fill, gravity: :face %>
     </div>
-    <div class="membership">
-      <p> Member since <%= current_user.created_at.strftime('%B, %Y') %> </p>
-    </div>
+    <div class="profile-header">
+      <div class="profile-greeting">
+        <h1> <%= current_user.first_name %></h1>
+      </div>
+      <div class="membership">
+        <p> Member since <%= current_user.created_at.strftime('%B, %Y') %> </p>
+      </div>
       <ul class="profile-attributes">
         <li><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(current_user.reviews.count, 'review') %></li>
         <li><%= image_tag 'svg/verify.svg', class: "rating" %> identity verified</li>
         <li><%= image_tag 'svg/language.svg', class: "rating" %> <%= current_user.language %></li>
       </ul>
+    </div>
   </div>
-</div>
-<div class="profile-description">
-  <% if current_user.description.blank? %>
-    <p class="description-empty">"Give people an impression: add your personal description."</p>
+  <div class="profile-description">
+    <% if current_user.description.blank? %>
+      <p class="description-empty">"Give people an impression: add your personal description."</p>
       <button class="button-primary">
         <%= link_to "Edit your Profile", edit_user_path(current_user), class: "button-primary" %>
       </button>
-  <% else %>
-    <p><%= current_user.description %></p>
+    <% else %>
+      <p><%= current_user.description %></p>
       <button class="button-primary">
         <%= link_to "Edit your Profile", edit_user_path(current_user), class: "button-primary" %>
       </button>
-  <% end %>
-
-</div>
+    <% end %>
+  </div>
 <% end %>
-
 <hr>
-
 <!-- Instrument section -->
 <div class="instrument-section">
   <h2> <%= current_user.first_name %>'s instruments </h2>
-    <div class="add-new-instrument">
-      <button class="button-secondary">
-        <%= link_to "Add a new Instrument", new_instrument_path %>
-      </button>
-    </div>
-
+  <div class="add-new-instrument">
+    <button class="button-secondary">
+      <%= link_to "Add a new Instrument", new_instrument_path %>
+    </button>
+  </div>
   <% @instruments.each do |instrument| %>
     <div class="instruments">
-        <%= render "./components/instrument_card_big", instrument: instrument %>
+      <%= render "./components/instrument_card_big", instrument: instrument %>
       <div class="edit-instrument">
         <button class="button-info">
           <%= link_to 'Edit Instrument', edit_instrument_path(instrument), class: "button-info" %>
@@ -75,36 +68,35 @@
         </button>
       </div>
     </div>
-</div>
-
+  </div>
   <!-- Review section -->
   <% if instrument.reviews.size.positive? %>
     <div class="review-section">
       <h2> Reviews for <%= instrument.title %></h2>
-        <div class="reviews">
-          <% instrument.reviews.each do |review|  %>
+      <div class="reviews">
+        <% instrument.reviews.each do |review|  %>
+          <%= link_to public_profile_path(review.user) do %>
             <%= cl_image_tag review.user.photo.key, height: 60, width: 60, radius: 8, crop: :fill, gravity: :face %>
-            <ul class="review-attributes">
-              <li> <strong><%= review.user.first_name %></strong></li>
-              <li><%= review.created_at.strftime('%B, %Y') %></li>
-            </ul>
+          <% end %>
+          <ul class="review-attributes">
+            <li> <strong><%= review.user.first_name %></strong></li>
+            <li><%= review.created_at.strftime('%B, %Y') %></li>
+          </ul>
         </div>
-      <p class="review-content"><%= review.content %></p>
-         <% end %>
+        <p class="review-content"><%= review.content %></p>
+      <% end %>
     </div>
-    <% else %>
-      <div class="review-section">
-        <h2> Reviews for <%= instrument.title %> </h2>
-        <p>No reviews yet.</p>
-      </div>
+  <% else %>
+    <div class="review-section">
+      <h2> Reviews for <%= instrument.title %> </h2>
+      <p>No reviews yet.</p>
+    </div>
   <% end %>
-
   <!--  Booking section-->
-    <%= render 'appointments', instrument: instrument %>
+  <%= render 'components/bookings', instrument: instrument %>
   <hr>
 <% end %>
-
 <!--  Booking section-->
-<div class="booking-section">
-  <h2>Your own instrument practise - only visible to you</h2>
-</div>
+<% current_user.bookings.each do |booking| %>
+  <%= render 'components/bookings_own', booking: booking %>
+<% end %>

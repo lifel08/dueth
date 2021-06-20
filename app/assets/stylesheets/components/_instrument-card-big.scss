@@ -21,10 +21,12 @@
   font-size: 26px;
   right: 0;
   top: 1em;
+  height:0;
 }
 
 .overview-big {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 800px;
   bottom: 50%;

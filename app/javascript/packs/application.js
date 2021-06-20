@@ -31,7 +31,7 @@ import { initSlidePage } from '../components/slide';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
- initFlatPickr();
+ initFlatpickr();
  initSlidePage();
 
 });
