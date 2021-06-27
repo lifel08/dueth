@@ -1,3 +1,4 @@
+<!--  own-bookings -->
 <div class="booking-section-header">
   <h2>  Your own bookings </h2>
 </div>
@@ -13,7 +14,7 @@
 <!-- Tab-Content -->
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="upcoming-<%= instrument.id %>" role="tabpanel" aria-labelledby="upcoming-tab-<%= instrument.id %>">
-    <% if current_user.bookings.upcoming.count.zero? %>
+    <% if own_bookings.upcoming.count.zero? %>
       <h5>You haven't booked anything! </h5>
     <% end %>
     <% current_user.bookings.upcoming.each do |booking| %>

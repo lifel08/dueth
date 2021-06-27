@@ -97,6 +97,4 @@
   <hr>
 <% end %>
 <!--  Booking section-->
-<% current_user.bookings.each do |booking| %>
-  <%= render 'components/bookings_own', booking: booking %>
-<% end %>
+<%= render 'components/bookings_own' %>

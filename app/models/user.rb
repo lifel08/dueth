@@ -26,12 +26,18 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confir
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+    :recoverable, :rememberable, :validatable
   has_many :bookings
+  # when someone books my instruments
+  has_many :received_bookings, class_name:"Booking", foreign_key: :receiver_id,
+    inverse_of: :receiver
+  # when I book someone's instruments
+  has_many :own_booking, class_name:"Booking", foreign_key: :provider_id,
+    inverse_of: :provider
   has_many :instruments
   has_many :reviews, through: :bookings
   validates :first_name, :last_name, :birthday, :language,
-  :photo, presence: true
+    :photo, presence: true
   has_one_attached :photo
 
   def member_since
