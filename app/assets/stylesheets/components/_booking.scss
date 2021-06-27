@@ -15,6 +15,7 @@
 
 .booking-tabs {
   margin-left: 50px;
+  border-style: none;
 }
 
 .nav-link.active {
@@ -46,4 +47,12 @@
 
 .booking-info {
   margin-left: 20px;
+}
+
+// booking-nav (instrument-show-page)
+
+.booking-nav {
+  position: absolute;
+  top: 30px;
+  right: 80px;
 }
