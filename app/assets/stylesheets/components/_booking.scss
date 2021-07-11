@@ -1,4 +1,4 @@
-// booking-section on user-profile
+// booking-section on user-profile: received bookings
 
 .booking-section {
   width:80%;
@@ -38,7 +38,6 @@
   padding: 15px;
 }
 
-
 .booking-profile {
  display: flex;
  padding: 15px;
@@ -47,6 +46,11 @@
 
 .booking-info {
   margin-left: 20px;
+}
+// booking-section on user-profile: own bookings
+
+.own-booking-section {
+  margin-bottom: 60px;
 }
 
 // booking-nav (instrument-show-page)

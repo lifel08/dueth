@@ -5,42 +5,42 @@
 <!-- Tab-Menu -->
 <ul class="nav nav-tabs booking-tabs" id="myTab" role="tablist">
   <li class="nav-item first-nav" role="presentation">
-    <a class="nav-link active" id="upcoming-tab-<%= current_user.id %>" data-toggle="tab" href="#upcoming-<%= current_user.id %>" role="tab" aria-controls="upcoming-<%= current_user.id %>" aria-selected="true">Upcoming</a>
+    <a class="nav-link active" id="upcoming-tab-ob-<%= current_user.id %>" data-toggle="tab" href="#upcoming-ob-<%= current_user.id %>" role="tab" aria-controls="upcoming-ob-<%= current_user.id %>" aria-selected="true">Upcoming</a>
   </li>
   <li class="nav-item second-nav" role="presentation">
-    <a class="nav-link" id="past-tab-<%= current_user.id %>" data-toggle="tab" href="#past-<%= current_user.id %>" role="tab" aria-controls="past-<%= current_user.id %>" aria-selected="false">Past</a>
+    <a class="nav-link" id="past-tab-ob-<%= current_user.id %>" data-toggle="tab" href="#past-ob-<%= current_user.id %>" role="tab" aria-controls="past-ob-<%= current_user.id %>" aria-selected="false">Past</a>
   </li>
 </ul>
 <!-- Tab-Content -->
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="upcoming-<%= current_user.id %>" role="tabpanel" aria-labelledby="upcoming-tab-<%= current_user.id %>">
-    <% if own_bookings.upcoming.count.zero? %>
-      <h5>You haven't booked anything! </h5>
+  <div class="tab-pane fade show active" id="upcoming-ob-<%= current_user.id %>" role="tabpanel" aria-labelledby="upcoming-tab-ob-<%= current_user.id %>">
+    <% if current_user.own_bookings.upcoming.count.zero? %>
+      <h5>There is no booking upcoming! </h5>
     <% end %>
     <% current_user.own_bookings.upcoming.each do |booking| %>
       <div class=booking-profile>
-        <%= link_to public_profile_path(booking.provider) do %>
-          <%= cl_image_tag booking.provider.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+        <%= link_to public_profile_path(booking.receiver) do %>
+          <%= cl_image_tag booking.instrument.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
         <% end %>
         <div class=booking-info>
-          <h4><%= booking.provider.first_name %></h4>
+          <h4>Your Bookings from <%= booking.receiver.first_name %> </h4>
           <p><%= booking.booking_day %></p>
           <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
         </div>
       </div>
     <% end %>
   </div>
-  <div class="tab-pane fade" id="past-<%= current_user.id %>" role="tabpanel" aria-labelledby="past-tab-<%= current_user.id %>">
-    <% if current_user.received_bookings.past.count.zero? %>
-      <h5> You haven't booked anything yet </h5>
+  <div class="tab-pane fade" id="past-ob-<%= current_user.id %>" role="tabpanel" aria-labelledby="past-tab-ob-<%= current_user.id %>">
+    <% if current_user.own_bookings.past.count.zero? %>
+      <h5> There was no booking in the past! </h5>
     <% end %>
-    <% current_user.received_bookings.past.each do |booking| %>
+    <% current_user.own_bookings.past.each do |booking| %>
       <div class=booking-profile>
-        <%= link_to public_profile_path(booking.provider) do %>
-          <%= cl_image_tag booking.provider.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+        <%= link_to public_profile_path(booking.receiver) do %>
+          <%= cl_image_tag booking.instrument.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
         <% end %>
         <div class=booking-info>
-          <h4><%= booking.provider.first_name %></h4>
+          <h4>Your Bookings from <%= booking.receiver.first_name%> </h4>
           <p><%= booking.booking_day %></p>
           <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
         </div>

@@ -48,12 +48,12 @@ class Instrument < ApplicationRecord
   has_many :instrument_features, dependent: :destroy
   has_many :features, through: :instrument_features
   belongs_to :cancellation_policy
-  validates :title, :subtitle, :street_name, :house_number, :postal_code, :city, :country,
-    :price, presence: true
+  validates :title, :subtitle, :street_name, :house_number, :postal_code, :city,
+    :country, :price, presence: true
   has_one_attached :photo
 
   pg_search_scope :search_title_and_location,
-   against: [ :title, :city ]
+    against: [ :title, :city ]
 
   geocoded_by :address
 
@@ -74,7 +74,7 @@ class Instrument < ApplicationRecord
     .join(", ")
   end
 
-# marker-position
+  # marker-position
   def center
     @center ||= [longitude, latitude]
   end
@@ -91,10 +91,10 @@ class Instrument < ApplicationRecord
     update(pause: true)
   end
 
-    # def reviews
-    #   # map reviews of on instrument to its instrument_owner
-    #   @instrument.reviews.map do |review|
-    #     review
-    #   end
-    # end
-  end
+  # def reviews
+  #   # map reviews of on instrument to its instrument_owner
+  #   @instrument.reviews.map do |review|
+  #     review
+  #   end
+  # end
+end

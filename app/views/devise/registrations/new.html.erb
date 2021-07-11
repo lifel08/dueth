@@ -1,34 +1,28 @@
 <% content_for :head do %>
   <title>Join Us | Dueth.com</title>
   <meta name="robots" content="index, follow" />
-  <meta name="description" content="Join Duetch.com and find your music instrument for practise"/>
+  <meta name="description" content="Join Dueth.com and find your music instrument for your next musical practise!"/>
   <meta property="og:title" content="Join Us | Dueth.com"/>
   <meta property="og:description" content="Join Duetch.com and find your music instrument for practise"/>
   <meta property="og:site_name" content="Dueth.com">
   <meta property="og:type" content="website" />
 <% end %>
-
 <div class="container-login">
   <h1>Sign up</h1>
   <p> OR <%= render "devise/shared/links" %> </p>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-      <% if resource.errors.messages.present? %>
-        <ul> Please fix the following errors:
-          <% resource.errors.full_messages.each do |message| %>
-            <li>
-              <%= message %>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <% if resource.errors.messages.present? %>
+      <ul> Please fix the following errors:
+        <% resource.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
     <%= f.error_notification %>
-
-
     <div class="form-inputs">
       <div class="app">
-
         <div class="sp_page">
           <div class="login-icons">
             <%= render 'icons/profile_icon', width: 70, height: 150%>
@@ -46,7 +40,6 @@
             <button type="button" class="button-primary" onclick="sp.next()">Next</button>
           </div>
         </div>
-
         <div class="sp_page">
           <div class="login-icons">
             <%= render 'icons/email_icon', width: 70, height: 150%>
@@ -60,7 +53,6 @@
             <button type="button" class="button-primary" onclick="sp.next()">Next</button>
           </div>
         </div>
-
         <div class="class sp_page">
           <div class="login-icons">
             <%= render 'icons/birthday_icon', width: 70, height: 150%>
@@ -75,7 +67,6 @@
             <button type="button" class="button-primary" onclick="sp.next()">Next</button>
           </div>
         </div>
-
         <div class="sp_page">
           <div class="login-icons">
             <%= render 'icons/password_icon', width: 70, height: 150%>
@@ -92,7 +83,6 @@
             <button type="button" class="button-primary" onclick="sp.next()">Next</button>
           </div>
         </div>
-
         <div class="sp_page">
           <div class="login-icons">
             <%= render 'icons/language_icon', width: 70, height: 150%>
@@ -126,7 +116,6 @@
             <button type="button" class="button-primary" onclick="sp.next()">Next</button>
           </div>
         </div>
-
         <div class="sp_page">
           <div class="login-icons">
             <%= render 'icons/photo_upload_icon'%>
@@ -141,18 +130,14 @@
             <button type="submit" class="button-primary">Send</button>
           </div>
         </div>
-
         <div class="sp_page">
           <div class="login-icons">
             <%= render 'icons/success_icon'%>
           </div>
-            <h1>You are now registered!</h1>
-            <button type="button" class="button-primary" onclick="window.location.href='/';">Go to Homepage</button>
+          <h1>You are now registered!</h1>
+          <button type="button" class="button-primary" onclick="window.location.href='/';">Go to Homepage</button>
         </div>
-
       </div>
     </div>
-
-<% end %>
+  <% end %>
 </div>
-
