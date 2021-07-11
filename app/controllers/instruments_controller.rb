@@ -68,7 +68,7 @@ class InstrumentsController < ApplicationController
   def redirect_to_search
     if (params[:title] || params[:city]).present?
       return redirect_to search_instruments_path(title: params[:title].downcase,
-       city: params[:city].downcase), status: 301
+                                                 city: params[:city].downcase), status: 301
     elsif (params[:title] || params[:city]).blank?
       return redirect_to root_path, status: 301
     end
@@ -76,12 +76,11 @@ class InstrumentsController < ApplicationController
 
   def instrument_params
     params.require(:instrument).permit(:title, :subtitle, :description,
-      :street_name, :house_number, :postal_code, :city, :country, :cancellation_policy_id,
-     :price, :reviews, :photo, feature_ids: [])
+                                       :street_name, :house_number, :postal_code, :city, :country, :cancellation_policy_id,
+                                       :price, :reviews, :photo, :location, feature_ids: [])
   end
 
   def find_instrument
     @instrument = Instrument.find(params[:id])
   end
 end
-
