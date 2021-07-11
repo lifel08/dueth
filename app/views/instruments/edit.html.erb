@@ -2,11 +2,9 @@
   <title>Edit a Instrument | Dueth.com</title>
   <meta name="robots" content="noindex, nofollow"/>
 <% end %>
-
 <div class="container padding-form">
   <div class="row d-flex justify-content-center">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-
       <% if @instrument.errors.messages.present? %>
         <ul> Please fix the following errors:
           <% @instrument.errors.full_messages.each do |message| %>
@@ -24,14 +22,18 @@
         <%= f.input :location, label: "Add the city" %>
         <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
         <%= f.input :price, label: "Add a price" %>
-       <% Feature.find_each do |feature, icon| %>
-        <%= check_box_tag :"instrument[feature_ids][]", feature.id, is_feature_checked?(feature.id) %>
-        <%= raw feature.icon %> <%= feature.name %>
+        <% Feature.find_each do |feature, icon| %>
+          <li class="features_list">
+            <%= check_box_tag :"instrument[feature_ids][]", feature.id, @instrument.feature_ids.include?(feature.id) %>
+            <%= feature.name %>
+            <%= raw feature.icon %>
+          </li>
         <% end %>
         <br/>
-        <%= f.button :submit %>
+        <div class="send-formular">
+          <%= f.button :submit, class: 'btn-primary'%>
+        </div>
       <% end %>
     </div>
-
   </div>
 </div>
