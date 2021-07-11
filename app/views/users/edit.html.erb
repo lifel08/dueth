@@ -1,6 +1,5 @@
 <div class="container">
   <h1>Edit Your Profile</h1>
-
   <% if @user.errors.messages.present? %>
     <ul> Please fix the following errors:
       <% @user.errors.full_messages.each do |message| %>
@@ -21,7 +20,6 @@
     <%= f.button :submit, label: "Update your Profile", class: "button-primary button-form" %>
   <% end %>
 </div>
-
 <%= content_for :footer_script do %>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <% end %>
