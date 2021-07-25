@@ -25,6 +25,8 @@ gem 'redis', '~> 4.0'
 gem 'geocoder'
 # Use search
 gem 'pg_search', '~> 2.3.0'
+# cocoon managing nested attributes / associations in the form
+gem "cocoon"
 
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

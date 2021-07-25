@@ -14,6 +14,6 @@
 #  index_disponibilities_on_instrument_id  (instrument_id)
 #
 class Disponibility < ApplicationRecord
-  has_one :instrument
+  belongs_to :instrument
   validates :from, :to, presence: true
 end
