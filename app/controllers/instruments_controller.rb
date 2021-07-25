@@ -33,7 +33,7 @@ class InstrumentsController < ApplicationController
   end
 
   def edit
-
+    # @instrument.disponibilities.build
   end
 
   def new
@@ -77,7 +77,8 @@ class InstrumentsController < ApplicationController
   def instrument_params
     params.require(:instrument).permit(:title, :subtitle, :description,
                                        :street_name, :house_number, :postal_code, :city, :country, :cancellation_policy_id,
-                                       :price, :reviews, :photo, :location, feature_ids: [])
+                                       :price, :reviews, :photo, :location, feature_ids: [],
+                                       disponibilities_attributes: [:id, :from, :to, :_destroy])
   end
 
   def find_instrument

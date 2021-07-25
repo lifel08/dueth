@@ -21,6 +21,16 @@
         <%= f.input :description, as: :text, placeholder: "Example: Anna is offering her good to practise and easy to reach digital piano. Come by and enjoy your piano practise as usual!"%>
         <%= f.input :location, label: "Add the city" %>
         <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
+        <h2>Select a new Diponibility</h2>
+        <h2>Manage Disponibility</h2>
+        <div class="edit_disponibilities">
+          <%= f.simple_fields_for :disponibilities, @instrument.disponibilities do |e| %>
+            <%= render partial: 'disponibility_fields', locals: {f: e }  %>
+            <div class="links">
+              <button class="button-alert"> <%= link_to_add_association 'add disponibility', f, :disponibilities%></button>
+            </div>
+          <% end %>
+        </div>
         <%= f.input :price, label: "Add a price" %>
         <% Feature.find_each do |feature, icon| %>
           <li class="features_list">

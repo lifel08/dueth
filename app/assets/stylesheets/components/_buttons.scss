@@ -1,9 +1,11 @@
 .button-primary {
   color: white;
+  text-align: center;
   background-color: #AC2721;
   border-color:  #AC2721;
   height: 40px;
   padding: 5px 15px;
+  margin-bottom: 10px;
 }
 
 
@@ -36,6 +38,7 @@
 }
 
 .button-form {
-  margin-top: 20px;
-  margin-bottom: 50px;
+  margin: 15px;
+  width: 40%;
+  height: 30px;
 }

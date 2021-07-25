@@ -44,6 +44,7 @@ class Instrument < ApplicationRecord
 
   belongs_to :user
   has_many :bookings
+  has_many :disponibilities
   has_many :reviews, through: :bookings
   has_many :instrument_features, dependent: :destroy
   has_many :features, through: :instrument_features
@@ -51,6 +52,7 @@ class Instrument < ApplicationRecord
   validates :title, :subtitle, :street_name, :house_number, :postal_code, :city,
     :country, :price, presence: true
   has_one_attached :photo
+  accepts_nested_attributes_for :disponibilities, allow_destroy: true
 
   pg_search_scope :search_title_and_location,
     against: [ :title, :city ]

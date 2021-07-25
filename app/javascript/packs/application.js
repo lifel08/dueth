@@ -35,3 +35,5 @@ document.addEventListener('turbolinks:load', () => {
  initSlidePage();
 
 });
+
+require("@nathanvda/cocoon")
