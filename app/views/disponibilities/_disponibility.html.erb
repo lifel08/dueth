@@ -1,2 +1,4 @@
-<p>From: <%= disponibility.start_from %></p>
-<p>To:<%= disponibility.start_from %> </p>
+<% @instrument.disponibilities.each do |disponibility|%>
+  <p>From: <%= disponibility.start_from  %></p>
+  <p>To:<%= disponibility.until_to %> </p>
+<% end %>
