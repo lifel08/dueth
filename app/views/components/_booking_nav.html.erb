@@ -7,6 +7,6 @@
   <p> <strong><%= @instrument.cancellation_policy.name  %></strong></p>
   <hr>
   <!-- disponibility -->
-  <p> <%= @instrument.disponibilities %> </p>
+  <p> <%= render @instrument.disponibilities %> </p>
   <p><button type="submit" class="button-book">Book now</button></p>
 </div>

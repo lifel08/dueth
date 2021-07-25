@@ -16,4 +16,12 @@
 class Disponibility < ApplicationRecord
   belongs_to :instrument
   validates :from, :to, presence: true
+
+  def start_from
+    from.strftime("%A, %H:%M")
+  end
+
+  def until_to
+    to.strftime("%A, %H:%M")
+  end
 end
