@@ -4,18 +4,16 @@
       <div class="image-container-small">
         <%= cl_image_tag instrument.photo.key, height: 250, width: 250, crop: :fill, loading:"lazy", :class=>"instrument-card-image"%>
         <div class="header-image-small">
-          <i class="fas fa-map-marker-alt"></i> <p class="location"><%= instrument.city %></p><i class="far fa-heart"></i>
+          <i class="fas fa-map-marker-alt"></i> 
+          <p class="location"><%= instrument.city %></p>
+          <i class="far fa-heart"></i>
         </div>
       </div>
-
       <div class="overview-small">
-        <p class="price"> <%= instrument.price %> € /h</p>
-        <p><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(instrument.reviews.count, 'review') %></p>
+        <div class="price"> <%= instrument.price %> € /h</div>
+        <div><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(instrument.reviews.count, 'review') %></div>
+        <div class="span-headline"><%= instrument.title %></div>
       </div>
-        <p class="span-headline"><%= instrument.title %></p>
-      </div>
-
+    </div>
   <% end %>
 <% end %>
-
-

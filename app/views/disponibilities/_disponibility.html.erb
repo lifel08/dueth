@@ -1,4 +1,7 @@
 <% @instrument.disponibilities.each do |disponibility|%>
-  <p>From: <%= disponibility.start_from  %></p>
-  <p>To:<%= disponibility.until_to %> </p>
+  <div class="book-now">
+    <p>From: <%= disponibility.start_from  %></p>
+    <p>To:<%= disponibility.until_to %> </p>
+    <p class="booking-button"><button type="submit" class="button-book">Book now</button></p>
+  </div>
 <% end %>
