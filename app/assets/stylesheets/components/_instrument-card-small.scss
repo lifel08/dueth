@@ -43,10 +43,10 @@
 
 .overview-small {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   width: 250px;
-  bottom: 50%;
-  transform: translatey(50%);
+  position:relative;
+  top:-20px;
 }
 
 .rating {
