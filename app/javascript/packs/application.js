@@ -33,7 +33,11 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
  initFlatpickr();
  initSlidePage();
-
+ 
+ $('#collapseExample').on('cocoon:after-insert', function(e, added_task) {
+       initFlatpickr();
+ })
+ 
 });
 
 require("@nathanvda/cocoon")
