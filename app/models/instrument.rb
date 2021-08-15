@@ -93,6 +93,23 @@ class Instrument < ApplicationRecord
     update(pause: true)
   end
 
+  def needs_approval
+    # Check all the bookings are confirmed retun FALSE otherwise return N of bookings that needs approval
+    to_approval = 0
+    bookings.each do |booking|
+      to_approval += booking.status ? 0 : 1
+    end
+    to_approval.zero? ? false : to_approval
+  end
+
+  def been_booked_by?(user)
+    condition = false
+    user.bookings.each do |booking|
+      condition = true if booking.user == user && booking.instrument.id == id
+    end
+    condition
+  end
+
   # def reviews
   #   # map reviews of on instrument to its instrument_owner
   #   @instrument.reviews.map do |review|

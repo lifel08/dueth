@@ -15,6 +15,7 @@
 #
 class Disponibility < ApplicationRecord
   belongs_to :instrument
+  belongs_to :booking
   validates :from, :to, presence: true
 
   def start_from
