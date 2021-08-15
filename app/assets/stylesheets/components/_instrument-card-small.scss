@@ -44,6 +44,7 @@
 .overview-small {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   width: 250px;
   position:relative;
   top:-20px;

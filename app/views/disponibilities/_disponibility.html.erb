@@ -1,7 +1,30 @@
-<% @instrument.disponibilities.each do |disponibility|%>
+  <% if @instrument.user == current_user %>
+  <h4>Hi <%= current_user.first_name %>!</h4>
+  <% if @instrument.bookings.count > 0%>
+    <%= link_to "There are #{@instrument.bookings.count} requests to approve", profile_path, { class:"button-alert" } %>
+  <% else %>
+    <p>No pending requests</p>
+  <% end %>
   <div class="book-now">
-    <p>From: <%= disponibility.start_from  %></p>
-    <p>To:<%= disponibility.until_to %> </p>
-    <p class="booking-button"><button type="submit" class="button-book">Book now</button></p>
+    <!-- booking steps -->
+  <% else %>
+    <% if @booking_status  %>
+      <h4>Booking confirmed!</h4>
+      <%= link_to 'Cancel booking', booking_path, { method: :delete } , class:"button-primary" %>
+    <% elsif %>
+      <h4 style="color:#3293a4;">Pending...</h4>
+      <p>Owner <%= @instrument.user.first_name %> needs to confirm your booking! </p>
+      <%= link_to 'Cancel booking', booking_path, { method: :delete, class:"button-alert" }  %>
+    <% else %>
+      <!-- booking steps end -->
+      <% @instrument.disponibilities.each do |disponibility|%>
+        <%= simple_form_for @instrument, url: (book_instrument_path(@instrument)), method: :post do |f| %>
+          <%= f.input :disponibility_id, as: :hidden, :input_html => { value: disponibility.id }%>
+          <%= f.button :submit, "Book", class: "button-primary" %>
+        <% end %>
+        <p>From: <%= disponibility.start_from  %></p>
+        <p>To:<%= disponibility.until_to %> </p>
+      <% end %>
+    <% end %>
   </div>
 <% end %>

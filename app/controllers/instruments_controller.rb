@@ -1,7 +1,7 @@
 class InstrumentsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
   before_action :redirect_to_search, only: [:index]
-  before_action :find_instrument, only: [:show, :edit, :update, :destroy, :pause, :activate]
+  before_action :find_instrument, only: [:show, :edit, :update, :destroy, :pause, :activate, :book]
 
   def index
     @instruments = Instrument.active.search_title_and_location(params[:title].to_s+','+params[:city].to_s)
@@ -27,6 +27,25 @@ class InstrumentsController < ApplicationController
   def activate
     @instrument.activate!
     redirect_to profile_path, notice: 'Instrument succesfully activated!'
+  end
+
+  def book
+    @booking = Booking.new
+    @booking.instrument = Instrument.find(params[:id])
+    @booking.user = current_user
+    @booking.status = false
+    if @booking.save
+      redirect_to instrument_path(@booking.instrument), notice: "Pending approval of Owner #{@booking.instrument.user.first_name}"
+    end
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.instrument = find_instrument
+    @booking.user = current_user
+    if @booking.destroy
+      redirect_to instrument_path(@booking.instrument), notice: "Your booking for #{@instrument.title} is CANCELLED"
+    end
   end
 
   def show

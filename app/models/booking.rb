@@ -26,6 +26,7 @@ class Booking < ApplicationRecord
   belongs_to :receiver, class_name: 'User', foreign_key: :receiver_id
   belongs_to :provider, class_name: 'User', foreign_key: :provider_id
   has_many :reviews, dependent: :destroy
+  has_many :disponibilities, dependent: :destroy
 
   scope :upcoming, -> { where('DATE(bookings.from) > DATE(?)', Time.zone.now) }
   scope :past, -> { where('DATE(bookings.to) < DATE(?)', Time.zone.now) }
