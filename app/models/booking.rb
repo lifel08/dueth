@@ -41,6 +41,9 @@ class Booking < ApplicationRecord
     end
   end
 
+  def booking_timeframe
+    from.strftime("%A, #{ from.day.ordinalize } of %B #{ booking_hour_from} #{ booking_hour_to}")
+  end
   def booking_day
     from.strftime("%A, #{ from.day.ordinalize } of %B %Y")
   end

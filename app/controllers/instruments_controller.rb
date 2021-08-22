@@ -39,15 +39,6 @@ class InstrumentsController < ApplicationController
     end
   end
 
-  def destroy
-    @booking = Booking.find(params[:id])
-    @booking.instrument = find_instrument
-    @booking.user = current_user
-    if @booking.destroy
-      redirect_to instrument_path(@booking.instrument), notice: "Your booking for #{@instrument.title} is CANCELLED"
-    end
-  end
-
   def show
   end
 
