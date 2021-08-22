@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    @booking = Booking.find(params[:id])
+    @instrument.user.received_bookings.find(params[:id])
     @booking.destroy
     redirect_to instrument_path(@booking.instrument), notice: "Your booking for #{@instrument.title} is CANCELLED"
   end

@@ -1,4 +1,4 @@
-  <% if @instrument.user == current_user %>
+<% if @instrument.user == current_user %>
   <h4>Hi <%= current_user.first_name %>!</h4>
   <% if @instrument.bookings.count > 0%>
     <%= link_to "There are #{@instrument.bookings.count} requests to approve", profile_path, { class:"button-alert" } %>
@@ -8,14 +8,21 @@
   <div class="book-now">
     <!-- booking steps -->
   <% else %>
-    <% if @booking_status  %>
-      <h4>Booking confirmed!</h4>
-      <%= link_to 'Cancel booking', booking_path, { method: :delete } , class:"button-primary" %>
-    <% elsif %>
-      <h4 style="color:#3293a4;">Pending...</h4>
-      <p>Owner <%= @instrument.user.first_name %> needs to confirm your booking! </p>
-      <%= link_to 'Cancel booking', booking_path, { method: :delete, class:"button-alert" }  %>
-    <% else %>
+    <h4>Your Bookings</h4>
+    <br>
+    <div class="own-bookings"> <% @instrument.user.received_bookings.each do |booking| %>
+        <%= booking.booking_timeframe %>
+      <% end %>
+      <% if @booking_status  %>
+        <h4>Booking confirmed!</h4>
+        <%= link_to 'Cancel booking', booking_path, { method: :delete } , class:"button-primary" %>
+      <% else %>
+        <h5 style="color:#3293a4;">Pending...</h5>
+        <p>Owner <%= @instrument.user.first_name %> needs to confirm your booking! </p>
+        <%= link_to 'Cancel booking', booking_path, { method: :delete, class:"button-alert" }  %>
+      </div>
+      <br>
+      <h4>More Disponibilities</h4>
       <!-- booking steps end -->
       <% @instrument.disponibilities.each do |disponibility|%>
         <%= simple_form_for @instrument, url: (book_instrument_path(@instrument)), method: :post do |f| %>
