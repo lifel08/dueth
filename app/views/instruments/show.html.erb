@@ -28,7 +28,7 @@
     <p class="instrument-short-info-location"> <%= @instrument.postal_code %>, <%= @instrument.city %>, <%= @instrument.country %> </p>
   </div>
   <%= cl_image_tag @instrument.photo.key, height: 300, width: 800, crop: :fill, loading: "lazy", :class => "instrument-card-image" %>
-  <!-- booking-nav, missing! -->
+  <!-- booking-nav -->
   <div class="instrument-short-info-subtitle">
     <h2><%= @instrument.user.first_name %> is offering: <%= @instrument.subtitle %></h2>
     <%= link_to public_profile_path(@instrument.user) do %>
@@ -38,7 +38,7 @@
   <!-- instrument features -->
   <hr class="hr-instrument-show">
   <h3>Instrument Features</h3>
-  <div class="instrument-short-info-subtitle">
+  <div class="instrument-short-info-features">
     <% if @instrument.features.size.positive? %>
       <% @instrument.features.each do |feature, icon| %>
         <li class ="feature-list col col-lg-6">

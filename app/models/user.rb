@@ -30,10 +30,10 @@ class User < ApplicationRecord
   has_many :bookings
   # when someone books my instruments
   has_many :received_bookings, class_name:"Booking", foreign_key: :receiver_id,
-    inverse_of: :receiver
+    inverse_of: :provider
   # when I book someone's instruments
   has_many :own_bookings, class_name:"Booking", foreign_key: :provider_id,
-    inverse_of: :provider
+    inverse_of: :receiver
   has_many :instruments
   has_many :reviews, through: :bookings
   validates :first_name, :last_name, :birthday, :language,

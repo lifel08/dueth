@@ -29,15 +29,6 @@ class InstrumentsController < ApplicationController
     redirect_to profile_path, notice: 'Instrument succesfully activated!'
   end
 
-  def book
-    @booking = Booking.new
-    @booking.instrument = Instrument.find(params[:id])
-    @booking.user = current_user
-    @booking.status = false
-    if @booking.save
-      redirect_to instrument_path(@booking.instrument), notice: "Pending approval of Owner #{@booking.instrument.user.first_name}"
-    end
-  end
 
   def show
   end
@@ -61,11 +52,8 @@ class InstrumentsController < ApplicationController
   end
 
   def update
-    if @instrument.update(instrument_params)
-      redirect_to profile_path
-    else
-      render :edit
-    end
+    @instrument.update(instrument_params)
+    render :edit
   end
 
   def destroy
