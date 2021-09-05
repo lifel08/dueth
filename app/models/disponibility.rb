@@ -14,8 +14,8 @@
 #  index_disponibilities_on_instrument_id  (instrument_id)
 #
 class Disponibility < ApplicationRecord
-  belongs_to :instrument
-  belongs_to :booking
+  belongs_to :instrument, inverse_of: :disponibilities
+  has_many :bookings, through: :instrument, dependent: :destroy
   validates :from, :to, presence: true
 
   def start_from

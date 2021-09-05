@@ -26,14 +26,14 @@
           New disponibility
         </a>
         <div class="collapse" id="collapseExample">
-          <div>
-            <%= f.simple_fields_for :disponibilities do |e| %>
-              <%= render partial: 'disponibility_fields', locals: {f: e }  %>
-            <% end %>
-            <div class="links">
-              <button class="btn button-alert"><%= link_to_add_association 'Add disponibility', f, :disponibilities %></button>
-            </div>
+          <div class="links">
+            <button class="btn button-alert"><%= link_to_add_association 'Add disponibility', f, :disponibilities %></button>
           </div>
+        </div>
+        <div>
+          <%= f.simple_fields_for :disponibilities do |e| %>
+            <%= render partial: 'disponibility_fields', locals: {f: e }  %>
+          <% end %>
         </div>
         <%= f.input :price, label: "Add a price" %>
         <% Feature.find_each do |feature, icon| %>
