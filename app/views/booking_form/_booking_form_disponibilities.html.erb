@@ -1,0 +1,12 @@
+<% if @instrument.disponibilities.exclude?(@booking) %>
+  <p>There are no available bookings</p>
+<% else %>
+  <% @instrument.disponibilities.each do |disponibility|%>
+    <%= simple_form_for @instrument, url: (instrument_bookings_path(@instrument)), method: :post do |f| %>
+      <%= f.input :disponibility_id, as: :hidden, :input_html => { value: disponibility.id }%>
+      <%= f.button :submit, "Book", class: "button-primary" %>
+    <% end %>
+    <p>From: <%= disponibility.start_from  %></p>
+    <p>To:<%= disponibility.until_to %> </p>
+  <% end %>
+<% end %>
