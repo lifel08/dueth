@@ -17,10 +17,10 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
-    if current_user == @booking.instrument.provider
+    if current_user == @booking.provider
       redirect_to instrument_path, notice: "You declined #{@booking.receiver} request"
     else
-      redirect_to instrument_bookings_path(@instrument), notice: "Your booking for #{@instrument.title} is CANCELLED"
+      redirect_to instrument_bookings_path(@booking.instrument), notice: "Your booking for #{@booking.instrument.title} is CANCELLED"
     end
   end
 

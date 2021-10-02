@@ -1,7 +1,8 @@
-<% if @instrument.disponibilities.exclude?(@booking) %>
+<% if all_booked?(@instrument.disponibilities,@bookings) %>
   <p>There are no available bookings</p>
 <% else %>
   <% @instrument.disponibilities.each do |disponibility|%>
+    <% next if @bookings.pluck(:disponibility_id).include?(disponibility.id)%>
     <%= simple_form_for @instrument, url: (instrument_bookings_path(@instrument)), method: :post do |f| %>
       <%= f.input :disponibility_id, as: :hidden, :input_html => { value: disponibility.id }%>
       <%= f.button :submit, "Book", class: "button-primary" %>

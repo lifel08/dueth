@@ -8,13 +8,13 @@
     </p>
     <% if booking.status == 1 %>
       <h4>Booking confirmed!</h4>
-      <%= link_to 'Cancel booking', instrument_bookings_path(@instrument), { method: :delete } , class:"button-primary" %>
+      <%= link_to 'Cancel booking', instrument_bookings_path(@instrument,booking), { method: :delete } , class:"button-primary" %>
     <% elsif booking.status.zero? %>
       <h5 style="color:#3293a4;">Status: pending...</h5>
       <ul>
         <p>Owner <%= @instrument.user.first_name %> needs to confirm your booking! </p>
       </ul>
-      <%= link_to 'Cancel booking', instrument_booking_path(@instrument), { method: :delete, class:"button-alert" }  %>
+      <%= link_to 'Cancel booking', instrument_booking_path(@instrument,booking), { method: :delete, class:"button-alert" }  %>
     <% end %>
   <% end %>
 </div>
