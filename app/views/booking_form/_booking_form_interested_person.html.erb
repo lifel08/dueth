@@ -6,9 +6,9 @@
         <li> <%= booking.booking_timeframe %></li>
       </ul>
     </p>
-    <% if booking.status == 1 %>
+    <% if booking.accepted? %>
       <h4>Booking confirmed!</h4>
-      <%= link_to 'Cancel booking', instrument_bookings_path(@instrument,booking), { method: :delete } , class:"button-primary" %>
+      <%= link_to 'Cancel booking', instrument_booking_path(@instrument,booking), method: :delete , class:"button-primary" %>
     <% elsif booking.status.zero? %>
       <h5 style="color:#3293a4;">Status: pending...</h5>
       <ul>

@@ -23,9 +23,12 @@
           <%= cl_image_tag booking.instrument.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
         <% end %>
         <div class=booking-info>
-          <h4>Your Bookings from <%= booking.receiver.first_name %> </h4>
+          <h4>Your <%= "Booking".pluralize(current_user.own_bookings.count) %> for <%= booking.instrument.title %> in <%= booking.instrument.location %></h4>
           <p><%= booking.booking_day %></p>
-          <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
+          <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %> at <%= booking.provider.first_name %>'s place.</p>
+        </div>
+        <div>
+          <%= link_to 'Cancel booking', decline_booking_path(booking), { method: :patch, class:"button-alert" }  %>
         </div>
       </div>
     <% end %>
@@ -40,9 +43,9 @@
           <%= cl_image_tag booking.instrument.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
         <% end %>
         <div class=booking-info>
-          <h4>Your Bookings from <%= booking.receiver.first_name%> </h4>
+          <h4>Your <%= pluralize(current_user.own_bookings.count,'Booking') %> from <%= booking.receiver.first_name%> </h4>
           <p><%= booking.booking_day %></p>
-          <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
+          <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %>  %> </p>
         </div>
       </div>
     <% end %>

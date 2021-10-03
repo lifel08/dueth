@@ -26,6 +26,9 @@
             <p><%= booking.booking_day %></p>
             <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
           </div>
+          <div>
+            <%= link_to 'Decline Booking', decline_booking_path(booking), { method: :patch, class:"button-alert"} %>
+          </div>
         </div>
       <% end %>
     </div>
