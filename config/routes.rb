@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     member do
       patch :accept
       patch :decline
+      patch :cancel
     end
     resources :reviews, only: [:create, :edit, :destroy]
   end

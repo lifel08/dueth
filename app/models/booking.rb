@@ -33,9 +33,10 @@ class Booking < ApplicationRecord
   belongs_to :provider, class_name: 'User', foreign_key: :provider_id
   belongs_to :disponibility
   has_many :reviews, dependent: :destroy
-  scope :upcoming, -> { where('DATE(bookings.from) > DATE(?)', Time.zone.now) }
-  scope :past, -> { where('DATE(bookings.to) < DATE(?)', Time.zone.now) }
+  scope :upcoming, -> { joins(:disponibility).where('DATE(disponibilities.from) > DATE(?)', Time.zone.now) }
+  scope :past, -> { joins(:disponibility).where('DATE(disponibilities.to) < DATE(?)', Time.zone.now) }
   scope :requested_by, -> (user_id){ where('bookings.receiver_id = ?', user_id )}
+  scope :pending, -> { where(status: 0) }
 
   def booking_status
     if self.status.zero?
@@ -47,6 +48,10 @@ class Booking < ApplicationRecord
     else
       "cancelled"
     end
+  end
+
+  def accepted?
+    status == 1
   end
 
   def booking_timeframe

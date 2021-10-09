@@ -1,12 +1,14 @@
 <h4>Hi <%= current_user.first_name %>!</h4>
 <!-- note to myself: here booking status = 0 , something like that -->
-<% if @instrument.bookings.count > 0%>
-  <%= "There are #{@instrument.bookings.count} requests to approve"  %>
+<% if @instrument.bookings.pending.count > 0 %>
+  There <%= "is".pluralize(@instrument.bookings.count) %> <%= @instrument.bookings.count %> <%= "request".pluralize(@instrument.bookings.count) %> to approve!
   <% @instrument.bookings.each do |booking| %>
+    For: <%= booking.user.first_name %>
     <%= booking.booking_timeframe %>
-    <%= booking.user.first_name %>
-    <%= link_to 'Accept Booking', booking_path, { method: :update, class:"button-alert"} %>
-    <%= link_to 'Decline Booking', booking_path, { method: :delte, class:"button-alert"} %>
+    <% if !booking.accepted?  %>
+      <%= link_to 'Accept Booking', accept_booking_path(booking), { method: :patch, class:"button-alert"} %>
+      <%= link_to 'Decline Booking', decline_booking_path(booking), { method: :patch, class:"button-alert"} %>
+    <% end %>
   <% end %>
 <% else %>
   <p>No pending requests</p>

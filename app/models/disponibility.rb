@@ -18,11 +18,14 @@ class Disponibility < ApplicationRecord
   has_many :bookings, through: :instrument, dependent: :destroy
   validates :from, :to, presence: true
 
+
   def start_from
-    from.strftime("%A, %H:%M")
+    from.strftime("%B, %A, %H:%M")
   end
 
   def until_to
-    to.strftime("%A, %H:%M")
+    to.strftime("%B, %A, %H:%M")
   end
+
+
 end

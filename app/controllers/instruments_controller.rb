@@ -31,6 +31,7 @@ class InstrumentsController < ApplicationController
 
 
   def show
+    @bookings = @instrument.bookings
   end
 
   def edit
