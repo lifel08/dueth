@@ -1,4 +1,4 @@
-<% if all_booked?(@instrument.disponibilities,@bookings) %>
+<% if all_booked?(@instrument.disponibilities,@bookings) && @instrument.disponibilities.from < Time.zone.now %>
   <p>There are no available bookings</p>
 <% else %>
   <% @instrument.disponibilities.each do |disponibility|%>

@@ -36,6 +36,7 @@ class Booking < ApplicationRecord
   scope :upcoming, -> { joins(:disponibility).where('DATE(disponibilities.from) > DATE(?)', Time.zone.now) }
   scope :past, -> { joins(:disponibility).where('DATE(disponibilities.to) < DATE(?)', Time.zone.now) }
   scope :requested_by, -> (user_id){ where('bookings.receiver_id = ?', user_id )}
+  scope :pending, -> { where(status: 0) }
 
   def booking_status
     if self.status.zero?

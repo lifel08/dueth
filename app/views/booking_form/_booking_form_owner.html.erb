@@ -1,6 +1,6 @@
 <h4>Hi <%= current_user.first_name %>!</h4>
 <!-- note to myself: here booking status = 0 , something like that -->
-<% if @instrument.bookings.count > 0%>
+<% if @instrument.bookings.pending.count > 0 %>
   There <%= "is".pluralize(@instrument.bookings.count) %> <%= @instrument.bookings.count %> <%= "request".pluralize(@instrument.bookings.count) %> to approve!
   <% @instrument.bookings.each do |booking| %>
     For: <%= booking.user.first_name %>

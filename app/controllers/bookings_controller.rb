@@ -24,10 +24,16 @@ class BookingsController < ApplicationController
     end
   end
 
+  def cancel
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to profile_path, notice: "You declined #{@booking.receiver} \'s request"
+  end
+
   def accept
     @booking = Booking.find(params[:id])
     @booking.update(status: 1)
-    redirect_to instrument_path(@booking.instrument), notice: "#{@booking.user.first_name}' s booking confirmed!"
+    redirect_to instrument_path(@booking.instrument), notice: "#{@booking.user.first_name} \'s booking confirmed!"
   end
 
   def decline
