@@ -8,28 +8,22 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-
     <%= yield :head if content_for?(:head) %>
   </head>
-
   <body>
     <!-- Navigation & Menu -->
     <%= render 'shared/navbar' unless @disable_nav %>
-
     <!-- Alerts -->
     <%= render 'shared/flashes' %>
-      <%= yield %>
-
-  <%= yield :footer_script if content_for?(:footer_script) %>
+    <%= yield %>
+    <%= yield :footer_script if content_for?(:footer_script) %>
   </body>
 </html >
 <!-- Footer -->
 <footer>
   <%= render 'shared/footer-desktop'  %>
+  <%= render 'shared/footer-mobile'  %>
 </footer>
-

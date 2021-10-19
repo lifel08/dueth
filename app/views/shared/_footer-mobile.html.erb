@@ -1,0 +1,9 @@
+<ul class="footer-links-mobile" >
+  <li class="icon-mobile"><i class="fas fa-search"></i><a href="#search">Search </i> </a></li>
+<% if user_signed_in?%>
+  <li class="icon-mobile"><i class="fas fa-user"></i><%= link_to "Profile", profile_path %>  </li>
+<% else %>
+  <li class="icon-mobile"><i class="fas fa-user"></i><%= link_to "Log in", new_user_session_path %>  </li>
+<% end %>
+<li class="icon-mobile"><i class="fas fa-home"></i><%= link_to "Home", root_path %></li>
+</ul>
