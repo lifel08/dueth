@@ -1,0 +1,28 @@
+.footer-links-mobile {
+  display:none;
+
+    @media screen and (max-width: 1033px) {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      list-style: none;
+      font-size: 19px;
+      background-color: #9e9e9e;
+      width: 100vw;
+      height: 65px;
+
+      a {
+        color: #761D1B;
+      }
+      a:hover{
+        text-decoration: none;
+        color: #AC2721;
+      }
+
+      .icon-mobile {
+        color: #761D1B;
+      }
+    }
+}
+
+
