@@ -1,6 +1,18 @@
+.container {
+    @media screen and (max-width: 1527px) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
 .instrument-short-info {
   display: flex;
   width: 800px;
+  @media screen and (max-width: 1527px) {
+    width:100%;
+  }
 }
 
 .fas {
@@ -12,10 +24,16 @@
 
 .instrument-short-info-reviews {
   padding-left: 25px;
+  @media screen and (max-width: 1527px) {
+    width:15%;
+  }
 }
 
 .instrument-short-info-location {
   text-decoration: underline;
+  @media screen and (max-width: 1527px) {
+    width:100%;
+  }
 }
 
 .instrument-short-info-subtitle {
@@ -23,11 +41,14 @@
   justify-content: space-between;
   padding-top: 30px;
   width: 72%;
+  @media screen and (max-width: 1527px) {
+    width:100%;
+  }
 }
 
 .instrument-short-info-owner {
+  margin-top:50px;
   padding: 20px;
-
 }
 
 .instrument-short-info-description {
@@ -37,12 +58,37 @@
 .hr-instrument-show {
   width: 72%;
   margin: 20px 0;
+     @media screen and (max-width: 1527px) {
+    width: 100%;
+   }
 }
 
 .instrument-short-info-features {
   display: flex;
   justify-content: space-between;
-    flex-wrap: wrap;
+  flex-wrap: wrap;
   padding-top: 30px;
   width: 72%;
+   list-style: none;
+   @media screen and (max-width: 1527px) {
+    width: 100%;
+   }
+
+}
+.desktop-feature-list {
+  list-style: none;
+   @media screen and (max-width: 1527px) {
+    display:none;
+  }
+}
+.mobile-feature-list {
+   @media screen and (max-width: 1874px) {
+display:none;
+   }
+
+ @media screen and (max-width: 1527px) {
+ width: 100%;
+  list-style: none;
+  }
+
 }

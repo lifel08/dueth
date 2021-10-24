@@ -41,7 +41,13 @@
   <div class="instrument-short-info-features">
     <% if @instrument.features.size.positive? %>
       <% @instrument.features.each do |feature, icon| %>
-        <li class ="feature-list col col-lg-6">
+        <li class ="desktop-feature-list col col-lg-6">
+          <div class="features">
+            <%= raw feature.icon %>
+            <%= feature.name %>
+          </div>
+        </li>
+        <li class ="mobile-feature-list col col-lg-4">
           <div class="features">
             <%= raw feature.icon %>
             <%= feature.name %>

@@ -37,7 +37,17 @@ document.addEventListener('turbolinks:load', () => {
  $('#collapseExample').on('cocoon:after-insert', function(e, added_task) {
        initFlatpickr();
  })
- 
+
+$('#navbarToggleExternalContent').on('hide.bs.collapse', function () {
+    $('nav.navbar').addClass('navbar-light').removeClass('navbar-dark').removeClass('bg-dark')
+    $('.navbar-toggler').removeClass('bg-dark').addClass('bg-white')
+})
+
+$('#navbarToggleExternalContent').on('show.bs.collapse', function () {
+    $('nav.navbar').removeClass('navbar-light').addClass('navbar-dark').addClass('bg-dark')
+    $('.navbar-toggler').addClass('bg-dark').removeClass('bg-white')
+})
 });
+
 
 require("@nathanvda/cocoon")
