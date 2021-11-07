@@ -5,7 +5,7 @@
     height: 50vh;
     position: sticky;
     top: 0;
-    width:100%;
+    width:72%;
 }
 .marker {
   background-image: url('https://docs.mapbox.com/help/demos/custom-markers-gl-js/mapbox-icon.png');
@@ -27,7 +27,7 @@
   display: flex;
 }
 .mapboxgl-canvas {
-  margin-left:20px;
+  pointer-events: none;
 }
 
 .cards {

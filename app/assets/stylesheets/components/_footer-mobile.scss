@@ -1,7 +1,6 @@
 .footer-links-mobile {
   display:none;
-
-    @media screen and (max-width: 1033px) {
+    @media screen and (max-width: 1527px) {
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -9,9 +8,9 @@
       font-size: 19px;
       background-color: #9e9e9e;
       width: 100vw;
-      height: 65px;
-      margin-left: 5px;
-      padding: 0;
+      position:fixed;
+      padding:10px 5px;
+      bottom:0;
       a {
         color: #761D1B;
       }
