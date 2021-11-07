@@ -9,6 +9,10 @@
 
 .instrument-card-image {
   filter: brightness(70%);
+  @media screen and (max-width: 1527px) {
+width:100%;
+height: auto;
+  }
 }
 
 .fas {

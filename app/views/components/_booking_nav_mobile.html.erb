@@ -1,0 +1,14 @@
+<div class="disponibility-mobile">
+  <!-- price-cancellation -->
+  <div class="price-cancellation">
+    <h3>Price & Cancellation</h3>
+    <p>Practise from <br>
+      <strong><%= @instrument.price %></strong> €/h</p>
+    Cancellation
+    <p> <strong><%= @instrument.cancellation_policy.name  %></strong></p>
+  </div>
+  <!-- disponibility -->
+  <div class="open-disponibilities">
+    <%= render './booking_form/booking_form'  %>
+  </div>
+</div>

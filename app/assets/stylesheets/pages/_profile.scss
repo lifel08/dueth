@@ -2,14 +2,16 @@
 
 .profile-section {
   display: flex;
-  margin: 10px 50px ;
   margin-top:30px;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .profile-header {
   display: flex;
   flex-direction: column;
   margin: 0;
+  align-content: stretch;
 }
 
 .profile-picutre {
@@ -30,6 +32,11 @@
   display: flex;
   flex-direction:row;
   justify-content: space-around;
+    @media screen and (max-width: 1527px) {
+      list-style: none;
+      display: flex;
+      flex-direction:column;
+   }
 }
 
 .description-empty {

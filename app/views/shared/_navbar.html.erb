@@ -4,8 +4,8 @@
   <div class="navigation">
     <div class="fixed-top">
       <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-white p-4">
-          <h5 class="text-content"> Menu</h5>
+        <div class="bg-dark p-4">
+          <h5 class="text-content text-white">Menu</h5>
           <ul>
             <% if !user_signed_in?%>
               <li class="text-muted"><%= link_to "Login", new_user_session_path, class: "text-muted" %></li>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <nav class="navbar navbar-light bg-content">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" >
+        <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" >
           <span class="navbar-toggler-icon"></span>
         </button>
       </nav>
