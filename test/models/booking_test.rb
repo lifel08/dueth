@@ -8,7 +8,7 @@
 #  to               :datetime
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  disponibility_id :bigint           not null
+#  disponibility_id :bigint
 #  instrument_id    :bigint
 #  provider_id      :bigint
 #  receiver_id      :bigint

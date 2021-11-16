@@ -8,7 +8,7 @@
 #  to               :datetime
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  disponibility_id :bigint           not null
+#  disponibility_id :bigint
 #  instrument_id    :bigint
 #  provider_id      :bigint
 #  receiver_id      :bigint
@@ -31,7 +31,7 @@ class Booking < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :receiver, class_name: 'User', foreign_key: :receiver_id
   belongs_to :provider, class_name: 'User', foreign_key: :provider_id
-  belongs_to :disponibility
+  belongs_to :disponibility, optional: true
   has_many :reviews, dependent: :destroy
   scope :upcoming, -> { joins(:disponibility).where('DATE(disponibilities.from) > DATE(?)', Time.zone.now) }
   scope :past, -> { joins(:disponibility).where('DATE(disponibilities.to) < DATE(?)', Time.zone.now) }
