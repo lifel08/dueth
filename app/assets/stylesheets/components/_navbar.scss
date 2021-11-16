@@ -1,15 +1,10 @@
 // desktop size of the menu
 .fixed-top {
   width: 20%;
-}
-
-// mobile size of the menu
-@media screen and (max-width: 1033px) {
-  .fixed-top {
-    width: 65%;
+   @media screen and (max-width: 1033px) {
+      width: 40%;
   }
 }
-
 .nav-link {
   color:#9e9e9e;
 }
@@ -40,8 +35,11 @@
   position: absolute;
   top: 0px;
   right:50%;
-  margin-right: -55px;
+  @media screen and (max-width: 1033px) {
+    margin-right: -50px;
+  }
 }
+
 
 .profile {
   position: absolute;

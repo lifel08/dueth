@@ -1,10 +1,16 @@
 // profile-section CSS
 
 .profile-section {
-  display: flex;
   margin-top:30px;
+  margin-left:50px;
+  display:flex;
   flex-direction: row;
-  flex-wrap: wrap;
+    @media screen and (max-width: 1527px) {
+      display:flex;
+      flex-direction:row;
+      width:100vw;
+      margin: 10px;
+   }
 }
 
 .profile-header {
@@ -12,10 +18,13 @@
   flex-direction: column;
   margin: 0;
   align-content: stretch;
+    @media screen and (max-width: 1527px) {
+       display: flex;
+         align-content: stretch;
+    }
 }
 
 .profile-picutre {
-  display:flex;
   border-radius: 5px;
 }
 
@@ -50,6 +59,11 @@
 
 .profile-description {
   margin: 10px 50px ;
+  width:50%;
+    @media screen and (max-width: 1527px) {
+     margin: 10px 50px ;
+     width:80%;
+  }
 }
 
 //  seperator
@@ -66,12 +80,34 @@ hr {
 
 // instrument section
 
+.profile-instrument-mobile {
+  display:none;
+  @media screen and (max-width: 1527px) {
+    display:flex;
+  }
+}
+
+.profile-instrument-desktop {
+  display:flex;
+    @media screen and (max-width: 1527px) {
+      display:none;
+  }
+}
+
 .instrument-section {
-  margin: 10px ;
+  width:70%;
+  margin: 5px ;
   margin-top:30px;
   h2 {
-    margin-left: 50px;
+    margin-left: 30px;
   }
+   @media screen and (max-width: 1527px) {
+    margin: 5px ;
+    margin-top:30px;
+      h2 {
+        margin-left: 30px;
+      }
+   }
 }
 
 .instrument-section-public {
@@ -88,18 +124,31 @@ hr {
 .instruments {
   display:flex;
   border-radius: 5px;
-  height: 400px;
-  margin-top: 30px;
-  margin-left: 50px;
-
+  height: 350px;
+  margin: 30px 50px 70px;
+  @media screen and (max-width: 1527px) {
+    display:flex;
+    border-radius: 5px;
+    height: 250px;
+    margin-top: 30px;
+    margin-left: 50px;
+  }
 }
 
 .edit-instrument {
   display: flex;
-  height: 300px;
-  width: 200px;
-  flex-direction:column;
-  justify-content: space-between;
+  width: 60%;
+  flex-direction:row;
+  justify-content: space-around;
+  @media screen and (max-width: 1527px) {
+    display: flex;
+    width: 250px;
+    margin-left: 70px;
+    margin-bottom: 10px;
+    flex-direction: column;
+    justify-content: space-around ;
+
+  }
 }
 
 .add-new-instrument {
