@@ -72,6 +72,12 @@
 }
 
 // booking-now (instrument show page, booking-nav, disponibilities show page)
+
+.book-now {
+ display: flex;
+
+}
+
 .booking-button {
   white-space: nowrap;
  font-size: 15px;
@@ -81,32 +87,10 @@
   margin-left: 15px;
 }
 
-// booking-nav-mobile
-
+//  mobile disponibility area
 .disponibility-mobile {
   display:none;
-  @media screen and (max-width: 1527px) {
-    width:72%;
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top:20px;
-  }
-
-  .open-disponibilities {
-    padding: 5px;
-    text-align:center;
-    background-color: #E5E2DA;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  }
-
-  .price-cancellation {
-    text-align:center;
-    padding:5px;
-    display: flex;
-    flex-direction: column;
-    padding-top:110px;
-    margin-right:20px;
-  }
-
+    @media screen and (max-width: 1527px) {
+      display:flex;
+    }
 }
