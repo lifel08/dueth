@@ -95,7 +95,7 @@ hr {
 }
 
 .instrument-section {
-  width:70%;
+  width:80%;
   margin: 5px ;
   margin-top:30px;
   h2 {
@@ -137,8 +137,8 @@ hr {
 
 .edit-instrument {
   display: flex;
-  width: 60%;
-  flex-direction:row;
+  width: 70%;
+  flex-direction:column;
   justify-content: space-around;
   @media screen and (max-width: 1527px) {
     display: flex;

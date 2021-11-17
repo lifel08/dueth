@@ -10,21 +10,27 @@
 @import "flatpickr/dist/flatpickr";
 
 // Your CSS partials
-@import "components/index";
-@import "components/instrument-card-small";
-@import "components/instrument-card-big";
-@import "components/footer-desktop";
-@import "components/card";
-@import "components/buttons";
+@import "components/alert";
+@import "components/avatar";
 @import "components/booking";
+@import "components/buttons";
+@import "components/card";
+@import "components/disponibilities";
+@import "components/footer-desktop";
+@import "components/footer-mobile";
+@import "components/index";
+@import "components/instrument-card-big";
+@import "components/instrument-card-small";
+@import "components/navbar";
 
+@import "instruments/edit";
 @import "instruments/index";
 @import "instruments/show";
-@import "instruments/edit";
 
-@import "pages/index";
 @import "pages/home";
+@import "pages/index";
 @import "pages/profile";
+@import "pages/signup";
 
 
 // general style
