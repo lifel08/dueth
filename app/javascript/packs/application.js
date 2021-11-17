@@ -23,6 +23,7 @@ import "bootstrap";
 import { initFlatpickr } from "../plugins/flatpickr";
 import { SLIDEPAGE } from '../plugins/slidepage';
 import { initSlidePage } from '../components/slide';
+import "../components/popup";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -51,3 +52,16 @@ $('#navbarToggleExternalContent').on('show.bs.collapse', function () {
 
 
 require("@nathanvda/cocoon")
+
+// Disponibility popup
+$(window).load(function () {
+    $(".trigger_popup_fricc").click(function(){
+       $('.hover_bkgr_fricc').show();
+    });
+    $('.hover_bkgr_fricc').click(function(){
+        $('.hover_bkgr_fricc').hide();
+    });
+    $('.popupCloseButton').click(function(){
+        $('.hover_bkgr_fricc').hide();
+    });
+});
