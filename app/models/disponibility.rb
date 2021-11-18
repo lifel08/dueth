@@ -20,11 +20,11 @@ class Disponibility < ApplicationRecord
   before_destroy :remove_booking_reference
 
   def start_from
-    from.strftime("%B, %A, %H:%M")
+    from.strftime("%B, %d. %A, %H:%M")
   end
 
   def until_to
-    to.strftime("%B, %A, %H:%M")
+    to.strftime("%H:%M")
   end
 
   def remove_booking_reference
