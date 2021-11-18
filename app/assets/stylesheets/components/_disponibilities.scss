@@ -1,14 +1,15 @@
 /* Popup box BEGIN */
 .hover_bkgr_fricc{
     background:rgba(0,0,0,.4);
-    cursor:pointer;
     display:none;
-    height:100%;
+    cursor:pointer;
     position:fixed;
-    text-align:center;
-    top:0;
     width:100%;
-    z-index:10000;
+    height:100%;
+    left:0;
+    top:0;
+    z-index:10;
+    text-align:center;
 }
 .hover_bkgr_fricc .helper{
     display:inline-block;
