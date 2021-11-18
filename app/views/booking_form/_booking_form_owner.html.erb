@@ -2,15 +2,18 @@
 <% if @instrument.bookings.pending.count > 0 %>
   There <%= "is".pluralize(@instrument.bookings.count) %> <%= @instrument.bookings.count %> <%= "request".pluralize(@instrument.bookings.count) %> to approve!
   <% @instrument.bookings.each do |booking| %>
-    For: <%= booking.user.first_name %>
-    <%= booking.booking_timeframe %>
-    <% if !booking.accepted?  %>
-      <%= link_to 'Accept Booking', accept_booking_path(booking), { method: :patch, class:"button-alert"} %>
-      <%= link_to 'Decline Booking', decline_booking_path(booking), { method: :patch, class:"button-alert"} %>
-    <% end %>
+    <ul>
+      <li> For: <%= booking.user.first_name %></li>
+      <%= booking.booking_timeframe %>
+      <br>
+      <% if !booking.accepted?  %>
+        <%= link_to 'Accept Booking', accept_booking_path(booking), { method: :patch, class:"button-alert"} %>
+        <%= link_to 'Decline Booking', decline_booking_path(booking), { method: :patch, class:"button-alert"} %>
+      <% end %>
+    </ul>
   <% end %>
 <% else %>
   <p>No pending requests</p>
+  <p>Check your disponibilities for this instrument:</p>
+  <%= render "booking_form/booking_form_disponibilities" %>
 <% end %>
-<p>Check your disponibilities for this instrument:</p>
-<%= render "booking_form/booking_form_disponibilities" %>

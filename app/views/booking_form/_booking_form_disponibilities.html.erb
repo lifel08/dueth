@@ -10,12 +10,11 @@
       <% else %>
         <h4 id="disponibility">All Disponibilities</h4>
         <% @instrument.disponibilities.each do |disponibility|%>
-          <% next if disponibility.from > Time.zone.now %>
+          <% next if disponibility.from < Time.zone.now %>
           <% next if @bookings.pluck(:disponibility_id).include?(disponibility.id)%>
           <%= simple_form_for @instrument, url: (instrument_bookings_path(@instrument)), method: :post do |f| %>
             <%= f.input :disponibility_id, as: :hidden, :input_html => { value: disponibility.id }%>
-            <p>From:<%= disponibility.start_from  %></p>
-            <p>To:<%= disponibility.until_to %> </p>
+            <p>From: <%= disponibility.start_from  %> to:<%= disponibility.until_to %> </p>
             <% if user_signed_in? %>
               <%= f.button :submit, "Book", class: "button-primary" %>
             <% else %>
