@@ -23,7 +23,6 @@ import "bootstrap";
 import { initFlatpickr } from "../plugins/flatpickr";
 import { SLIDEPAGE } from '../plugins/slidepage';
 import { initSlidePage } from '../components/slide';
-import "../components/popup";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -48,13 +47,8 @@ $('#navbarToggleExternalContent').on('show.bs.collapse', function () {
     $('nav.navbar').removeClass('navbar-light').addClass('navbar-dark').addClass('bg-dark')
     $('.navbar-toggler').addClass('bg-dark').removeClass('bg-white')
 })
-});
-
-
-require("@nathanvda/cocoon")
-
 // Disponibility popup
-$(window).load(function () {
+
     $(".trigger_popup_fricc").click(function(){
        $('.hover_bkgr_fricc').show();
     });
@@ -64,4 +58,12 @@ $(window).load(function () {
     $('.popupCloseButton').click(function(){
         $('.hover_bkgr_fricc').hide();
     });
+
 });
+
+
+require("@nathanvda/cocoon")
+
+
+
+

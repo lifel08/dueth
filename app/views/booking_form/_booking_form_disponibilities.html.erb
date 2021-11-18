@@ -16,7 +16,11 @@
             <%= f.input :disponibility_id, as: :hidden, :input_html => { value: disponibility.id }%>
             <p>From:<%= disponibility.start_from  %></p>
             <p>To:<%= disponibility.until_to %> </p>
-            <%= f.button :submit, "Book", class: "button-primary" %>
+            <% if user_signed_in? %>
+              <%= f.button :submit, "Book", class: "button-primary" %>
+            <% else %>
+              <p class="text-muted"><%= link_to "Please login to book this instrument", new_user_session_path, class: "button-secondary" %></p>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
