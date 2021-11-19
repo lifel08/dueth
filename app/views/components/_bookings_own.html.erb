@@ -15,8 +15,10 @@
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="upcoming-ob-<%= current_user.id %>" role="tabpanel" aria-labelledby="upcoming-tab-ob-<%= current_user.id %>">
     <% if current_user.own_bookings.upcoming.count.zero? %>
-      <h5>There is no booking upcoming! </h5>
+      <h5>There is no upcoming booking! </h5>
     <% end %>
+    <!-- test -->
+    <!-- test end -->
     <% current_user.own_bookings.upcoming.each do |booking| %>
       <div class=booking-profile>
         <%= link_to public_profile_path(booking.receiver) do %>
