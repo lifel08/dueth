@@ -25,20 +25,17 @@
         <li><%= image_tag 'svg/verify.svg', class: "rating" %> identity verified</li>
         <li><%= image_tag 'svg/language.svg', class: "rating" %> <%= current_user.language %></li>
       </ul>
+      <div class="profile-description">
+        <% if current_user.description.blank? %>
+          <p class="description-empty">"Give people an impression: add your personal description."</p>
+        <% else %>
+          <p><%= current_user.description %></p>
+        <% end %>
+      </div>
     </div>
-  </div>
-  <div class="profile-description">
-    <% if current_user.description.blank? %>
-      <p class="description-empty">"Give people an impression: add your personal description."</p>
-      <button class="button-primary">
-        <%= link_to "Edit your Profile", edit_user_path(current_user), class: "button-primary" %>
-      </button>
-    <% else %>
-      <p><%= current_user.description %></p>
-      <button class="button-primary">
-        <%= link_to "Edit your Profile", edit_user_path(current_user), class: "button-primary" %>
-      </button>
-    <% end %>
+    <button class="button-primary">
+      <%= link_to "Edit your Profile", edit_user_path(current_user), class: "button-primary" %>
+    </button>
   </div>
 <% end %>
 <hr>
@@ -75,13 +72,11 @@
           </div>
           <p class="review-content"><%= review.content %></p>
         <% end %>
-      </div>
-    <% else %>
-      <div class="review-section">
+      <% else %>
         <h2> Reviews for your <%= instrument.title %> </h2>
         <p>No reviews yet.</p>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
     <!--  Booking section: other bookings-->
     <%= render 'components/bookings', instrument: instrument %>
     <hr>

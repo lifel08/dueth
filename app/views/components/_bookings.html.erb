@@ -1,52 +1,52 @@
 <div class="booking-section-header">
-  <h2> Overview of bookings for your <%= instrument.title %>
-  </div>
-  <!-- Tab-Menu -->
-  <ul class="nav nav-tabs booking-tabs" id="myTab" role="tablist">
-    <li class="nav-item first-nav" role="presentation">
-      <a class="nav-link active" id="upcoming-tab-<%= instrument.id %>" data-toggle="tab" href="#upcoming-<%= instrument.id %>" role="tab" aria-controls="upcoming-<%= instrument.id %>" aria-selected="true">Upcoming</a>
-    </li>
-    <li class="nav-item second-nav" role="presentation">
-      <a class="nav-link" id="past-tab-<%= instrument.id %>" data-toggle="tab" href="#past-<%= instrument.id %>" role="tab" aria-controls="past-<%= instrument.id %>" aria-selected="false">Past</a>
-    </li>
-  </ul>
-  <!-- Tab-Content -->
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="upcoming-<%= instrument.id %>" role="tabpanel" aria-labelledby="upcoming-tab-<%= instrument.id %>">
-      <% if instrument.bookings.upcoming.count.zero? %>
-        <h5>No future events yet for the instrument <%= instrument.title %>! </h5>
-      <% end %>
-      <% instrument.bookings.upcoming.each do |booking| %>
-        <div class=booking-profile>
-          <%= link_to public_profile_path(booking.receiver) do %>
-            <%= cl_image_tag booking.receiver.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
-          <% end %>
-          <div class=booking-info>
-            <h4><%= booking.receiver.first_name %></h4>
-            <p><%= booking.booking_day %></p>
-            <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
-          </div>
-          <div>
-            <%= link_to 'Decline Booking', cancel_booking_path(booking), { method: :patch, class:"button-alert"} %>
-          </div>
+  <h3> Overview of bookings for your <%= instrument.title %> </h3>
+</div>
+<!-- Tab-Menu -->
+<ul class="nav nav-tabs booking-tabs" id="myTab" role="tablist">
+  <li class="nav-item first-nav" role="presentation">
+    <a class="nav-link active" id="upcoming-tab-<%= instrument.id %>" data-toggle="tab" href="#upcoming-<%= instrument.id %>" role="tab" aria-controls="upcoming-<%= instrument.id %>" aria-selected="true">Upcoming</a>
+  </li>
+  <li class="nav-item second-nav" role="presentation">
+    <a class="nav-link" id="past-tab-<%= instrument.id %>" data-toggle="tab" href="#past-<%= instrument.id %>" role="tab" aria-controls="past-<%= instrument.id %>" aria-selected="false">Past</a>
+  </li>
+</ul>
+<!-- Tab-Content -->
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="upcoming-<%= instrument.id %>" role="tabpanel" aria-labelledby="upcoming-tab-<%= instrument.id %>">
+    <% if instrument.bookings.upcoming.count.zero? %>
+      <h5>No future events yet for the instrument <%= instrument.title %>! </h5>
+    <% end %>
+    <% instrument.bookings.upcoming.each do |booking| %>
+      <div class=booking-profile>
+        <%= link_to public_profile_path(booking.receiver) do %>
+          <%= cl_image_tag booking.receiver.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+        <% end %>
+        <div class=booking-info>
+          <h4><%= booking.receiver.first_name %></h4>
+          <p><%= booking.booking_day %></p>
+          <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
         </div>
-      <% end %>
-    </div>
-    <div class="tab-pane fade" id="past-<%= instrument.id %>" role="tabpanel" aria-labelledby="past-tab-<%= instrument.id %>">
-      <% if instrument.bookings.past.count.zero? %>
-        <h5>No past events yet for the instrument <%= instrument.title %>! </h5>
-      <% end %>
-      <% instrument.bookings.past.each do |booking| %>
-        <div class=booking-profile>
-          <%= link_to public_profile_path(booking.receiver) do %>
-            <%= cl_image_tag booking.receiver.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
-          <% end %>
-          <div class=booking-info>
-            <h4><%= booking.receiver.first_name %></h4>
-            <p><%= booking.booking_day %></p>
-            <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
-          </div>
+        <div>
+          <%= link_to 'Decline Booking', cancel_booking_path(booking), { method: :patch, class:"button-alert"} %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
+  <div class="tab-pane fade" id="past-<%= instrument.id %>" role="tabpanel" aria-labelledby="past-tab-<%= instrument.id %>">
+    <% if instrument.bookings.past.count.zero? %>
+      <h5>No past events yet for the instrument <%= instrument.title %>! </h5>
+    <% end %>
+    <% instrument.bookings.past.each do |booking| %>
+      <div class=booking-profile>
+        <%= link_to public_profile_path(booking.receiver) do %>
+          <%= cl_image_tag booking.receiver.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+        <% end %>
+        <div class=booking-info>
+          <h4><%= booking.receiver.first_name %></h4>
+          <p><%= booking.booking_day %></p>
+          <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
