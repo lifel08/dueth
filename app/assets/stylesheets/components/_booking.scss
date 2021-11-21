@@ -11,6 +11,15 @@
   background-color: #white;
   margin-left: 50px;
   padding: 20px;
+  @media screen and (max-width: 1527px) {
+    width:100%;
+  }
+}
+
+.booking-section-header h2 {
+  @media screen and (max-width: 1527px) {
+    font-size: 29px !important;
+}
 }
 
 .booking-tabs {
@@ -36,17 +45,31 @@
   background-color: #878467;
   margin-left: 50px;
   padding: 15px;
+  @media screen and (max-width: 1527px) {
+    width: 100%;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+  }
 }
 
 .booking-profile {
  display: flex;
  padding: 15px;
-
+  @media screen and (max-width: 1527px) {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    width: 100%;
+  }
 }
 // booking-section on user-profile: other bookings
 .booking-info {
   margin-left: 20px;
-  width:60%
+  width:60%;
+  @media screen and (max-width: 1527px) {
+         margin-top: 15px;
+       }
 }
 
 // booking-section on user-profile: own bookings
