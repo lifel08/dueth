@@ -5,26 +5,29 @@
   margin: 0 50px ;
   background-color: #b5b193;
   padding: 10px 40px;
-}
-
-.booking-section-header {
-  background-color: #white;
-  margin-left: 50px;
-  padding: 20px;
-  @media screen and (max-width: 1527px) {
+    @media screen and (max-width: 1527px) {
     width:100%;
   }
 }
 
-.booking-section-header h2 {
+.booking-section-header {
+  background-color: #white;
+  margin-top:10px;
+  padding: 20px;
   @media screen and (max-width: 1527px) {
-    font-size: 29px !important;
-}
+    width:100%;
+    padding: 0;
+    margin-bottom:20px;
+    margin-top:0px;
+  }
 }
 
 .booking-tabs {
   margin-left: 50px;
   border-style: none;
+    @media screen and (max-width: 1527px) {
+      margin-left:5px;
+    }
 }
 
 .nav-link.active {
@@ -50,23 +53,23 @@
     display:flex;
     flex-direction:column;
     justify-content: center;
+    margin-left:0;
+    margin-bottom: 20px;
   }
 }
 
 .booking-profile {
  display: flex;
+ justify-content:space-around;
  padding: 15px;
   @media screen and (max-width: 1527px) {
     display: flex;
     flex-direction:column;
-    justify-content: center;
     width: 100%;
   }
 }
 // booking-section on user-profile: other bookings
 .booking-info {
-  margin-left: 20px;
-  width:60%;
   @media screen and (max-width: 1527px) {
          margin-top: 15px;
        }
@@ -94,6 +97,19 @@
   }
 }
 
+.price-cancellation {
+  display: none;
+   @media screen and (max-width: 1527px) {
+    display:inline-block;
+   }
+}
+
+.price-from {
+
+  @media screen and (max-width: 1527px) {
+    margin-right: 30px;
+  }
+}
 // booking-now (instrument show page, booking-nav, disponibilities show page)
 
 .book-now {
@@ -115,5 +131,18 @@
   display:none;
     @media screen and (max-width: 1527px) {
       display:flex;
+      width:100%;
+      padding:15px;
+      justify-content: space-around;
     }
+}
+
+.open-disponibilities {
+  @media screen and (max-width: 1527px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right:10px;
+    width:50vw;
+  }
 }

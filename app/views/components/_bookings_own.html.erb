@@ -32,7 +32,7 @@
             <% if booking.accepted? %>
               <p class="booking-confirmed">Booking confirmed!</p>
             <% elsif booking.status.zero? %>
-              <p class="booking-pending">Booking is pending.</p>
+              <p class="booking-pending">Booking is pending</p>
             <% end %>
             <%= link_to 'Decline Booking', decline_booking_path(booking), { method: :patch, class:"button-alert"} %>
           </div>

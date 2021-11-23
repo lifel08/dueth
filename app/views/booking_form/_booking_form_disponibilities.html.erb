@@ -1,4 +1,4 @@
-<a class="trigger_popup_fricc button-primary">Show all Disponibilities</a>
+<a id="disponibility" class="trigger_popup_fricc disponibility-book-button">Show all Disponibilities</a>
 <div class="hover_bkgr_fricc">
   <span class="helper">
   </span>
@@ -9,7 +9,7 @@
         <p>There are no available Disponibilities</p>
       <% else %>
         <h4 id="disponibility">All Disponibilities</h4>
-        <% @instrument.disponibilities.each do |disponibility|%>
+        <% @instrument.disponibilities.order(from: :asc).each do |disponibility|%>
           <% next if disponibility.from < Time.zone.now %>
           <% next if @bookings.pluck(:disponibility_id).include?(disponibility.id)%>
           <%= simple_form_for @instrument, url: (instrument_bookings_path(@instrument)), method: :post do |f| %>

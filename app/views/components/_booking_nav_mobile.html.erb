@@ -1,11 +1,11 @@
-<div class="disponibility-mobile">
-  <!-- price-cancellation -->
-  <div class="price-cancellation">
-    <h3>Price & Cancellation</h3>
-    <p>Practise from <br>
-      <strong><%= @instrument.price %></strong> €/h</p>
-    Cancellation
-    <p> <strong><%= @instrument.cancellation_policy.name  %></strong></p>
+<!-- price-cancellation -->
+<div class="price-cancellation">
+  <h3>Price & Cancellation</h3>
+  <div class="disponibility-mobile">
+    <div class="price-from">Practise from <br>
+      <strong><%= @instrument.price %></strong> €/h</div>
+    <div> Cancellation <br>
+      <strong><%= @instrument.cancellation_policy.name  %></strong></div>
   </div>
   <!-- disponibility -->
   <div class="open-disponibilities">

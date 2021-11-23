@@ -125,14 +125,14 @@ puts 'Instrument seeds done! 💪'
 # Features
 
 features = {
-  "special instrument" => '<i class="fas fa-award fa-lg"></i>',
-  "very quiet area" => '<i class="fas fa-dove fa-lg"></i>',
-  "tuned" => '<i class="fas fa-music fa-lg"></i>',
-  "instant booking" => '<i class="fas fa-stopwatch-20 fa-lg"></i>',
-  "close to public transport" => '<i class="fas fa-bus fa-lg"></i>',
-  "exceptional view" => '<i class="fas fa-binoculars fa-lg"></i>',
-  "separate practise_room" => '<i class="fas fa-door-closed fa-lg"></i>',
-  "practise after 9pm" => '<i class="fas fa-cloud-moon fa-lg"></i>'
+  "Special Instrument" => '<i class="fas fa-award fa-lg"></i>',
+  "Very Quiet Area" => '<i class="fas fa-dove fa-lg"></i>',
+  "Tuned" => '<i class="fas fa-music fa-lg"></i>',
+  "Instant Booking" => '<i class="fas fa-stopwatch-20 fa-lg"></i>',
+  "Close to Public Transport" => '<i class="fas fa-bus fa-lg"></i>',
+  "Exceptional View" => '<i class="fas fa-binoculars fa-lg"></i>',
+  "Separate Practise Room" => '<i class="fas fa-door-closed fa-lg"></i>',
+  "Practise after 9pm" => '<i class="fas fa-cloud-moon fa-lg"></i>'
 }
 
 puts 'Features seed done! 💪'
