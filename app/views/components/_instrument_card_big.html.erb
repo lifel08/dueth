@@ -4,7 +4,7 @@
       <%= cl_image_tag instrument.photo.key, height: 300, width: 800, crop: :fill, loading:"lazy", :class=>"instrument-card-image"%>
       <div class="header-image-big">
         <i class="fas fa-map-marker-alt"></i>
-        <p class="location"><%= instrument.title %></p>
+        <p class="location"><%= instrument.title %> <%= instrument.city %></p>
         <i class="far fa-heart"></i>
       </div>
     </div>
@@ -13,9 +13,7 @@
       <div class=features>
         <% instrument.features.limit(2).each do |feature| %>
           <ul>
-            <li>
-              <%= feature.name %>
-            </li>
+            <li><%= feature.name %></li>
           </ul>
         <% end %>
       </div>
@@ -24,6 +22,5 @@
         <p><button type="submit" class="button-book">Book</button></p>
       <% end %>
     </div>
-    <p class="span-headline-big"><%= instrument.city %></p>
   </div>
 <% end %>

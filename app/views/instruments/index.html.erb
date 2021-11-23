@@ -3,59 +3,64 @@
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet'/>
 <% end %>
-
 <%= content_for :footer_script do %>
   <script type="text/javascript">
-      mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
-
-      // Get instruments from ruby array to javascript array
-      var instruments = <%= raw @instruments.to_json %>;
-
-      // Build the map!
-      var map = new mapboxgl.Map({
-          container: 'map',
-          style: 'mapbox://styles/mapbox/streets-v11',
-          center: instruments[0].center,
-          zoom: 12
-      });
-
-      // Build marker for each instrument
-      instruments.forEach(function (instrument) {
-          // create the popup
-          var markerOptions = {
-              color: "#FFFFFF",
-              draggable: false
-          }
-
-          var el = document.createElement('div');
-          el.className = 'marker';
-
-          // create marker instance for the map
-          var marker = new mapboxgl.Marker(el, markerOptions)
-
-          // Set longitude & latitude to the marker
-          marker.setLngLat(instrument.center);
-
-          // create a pop up for the marker
-          var popup = new mapboxgl.Popup({offset: 45}).setText(instrument.title);
-
-          // will assign the popup to the marker
-          marker.setPopup(popup);
-
-          // Set the marker to the map
-          marker.addTo(map);
-      })
-
+    mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
+    
+    // Get instruments from ruby array to javascript array
+    var instruments = <%= raw @instruments.to_json %>;
+    
+    // Build the map!
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: instruments[0].center,
+        zoom: 12
+    });
+    
+    // Build marker for each instrument
+    instruments.forEach(function (instrument) {
+        // create the popup
+        var markerOptions = {
+            color: "#FFFFFF",
+            draggable: false
+        }
+    
+        var el = document.createElement('div');
+        el.className = 'marker';
+    
+        // create marker instance for the map
+        var marker = new mapboxgl.Marker(el, markerOptions)
+    
+        // Set longitude & latitude to the marker
+        marker.setLngLat(instrument.center);
+    
+        // create a pop up for the marker
+        var popup = new mapboxgl.Popup({offset: 45}).setText(instrument.title);
+    
+        // will assign the popup to the marker
+        marker.setPopup(popup);
+    
+        // Set the marker to the map
+        marker.addTo(map);
+    })
   </script>
 <% end %>
-
 <section>
-  <h1> <%= params[:title] %> rental <%= params[:location] %></h1>
+  <h1> <%= params[:title].capitalize %> Rental <%= params[:city].capitalize %></h1>
   <div class="content">
-    <div class="cards">
-      <% @instruments.each do |instrument| %>
-        <%= render "./components/instrument_card_big", instrument: instrument %>
-      <% end %>
+    <div class="search-page-desktop">
+      <div class="cards">
+        <% @instruments.each do |instrument| %>
+          <%= render "./components/instrument_card_big", instrument: instrument %>
+        <% end %>
+      </div>
+    </div>
+    <div class="search-page-mobile">
+      <p class="map-mobile">
+        Find <%= pluralize(@instruments.count, 'Instrument') %> to book
+      </p>
+      <%= render "./components/instrument_card_small", instrument: @instrument %>
     </div>
     <div id='map'>
     </div>
