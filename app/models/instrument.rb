@@ -43,6 +43,7 @@ class Instrument < ApplicationRecord
   include PgSearch::Model
 
   belongs_to :user
+  has_many :reviews
   has_many :bookings, inverse_of: :instrument
   has_many :disponibilities, inverse_of: :instrument
   has_many :reviews, through: :bookings

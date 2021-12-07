@@ -31,11 +31,11 @@
         <% else %>
           <p><%= current_user.description %></p>
         <% end %>
+        <button class="button-primary">
+          <%= link_to "Edit your Profile", edit_user_path(current_user), class: "button-primary" %>
+        </button>
       </div>
     </div>
-    <button class="button-primary">
-      <%= link_to "Edit your Profile", edit_user_path(current_user), class: "button-primary" %>
-    </button>
   </div>
 <% end %>
 <hr>

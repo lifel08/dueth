@@ -31,3 +31,11 @@ class Review < ApplicationRecord
   validates :content, :booking, presence: true
   validates :rating, inclusion: { in: 1..5 }, numericality: { only_integer: true }
 end
+
+def avarege_rating
+  average = 0
+  reviews.each do |review|
+    average += review.rating
+  end
+  return average.zero? ? average : (average / reviews.size).round
+end

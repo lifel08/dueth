@@ -18,7 +18,9 @@
   margin-top:30px;
   margin-left:50px;
   display:flex;
-  flex-direction: row;
+  flex-direction:row;
+  flex-wrap: wrap;
+  width:70%;
     @media screen and (max-width: 1527px) {
       display:flex;
       justify-content: space-around;

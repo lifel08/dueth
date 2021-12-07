@@ -1,0 +1,5 @@
+<%= simple_form_for([@instrument, @instrument.reviews.build]) do |f| %>
+  <%= f.input :rating %>
+  <%= f.input :content %>
+  <%= f.button :submit, class:"button-secondary" %>
+<% end %>

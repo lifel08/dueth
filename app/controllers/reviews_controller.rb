@@ -1,30 +1,20 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:destroy, :edit]
+  before_action :find_instrument
+
+  def new
+    @review = Review.new
+  end
 
   def create
-    @booking = Booking.find(params[:booking_id])
-    @instrument = Instrument.find(params[:instrument_id])
-    @user = User.find(params[:user_id])
     @review = Review.new(review_params)
-    @review.booking = @booking
-    @review.instrument = @instrument
-    @review.user = @user
-    @review.review_instrument = 'instrument-review'
+    @review.instrument_id = @instrument.id
+    @review.user_id = current_user.id
     if @review.save
-      redirect_to user_profile_path(@booking.isntrument), anchor: "review-#{@review.id}", notice: 'Review succesfully saved!'
+      redirect_to instrument_path(@instrument), notice: 'Review succesfully saved!'
     else
       render "instruments/show"
     end
-  end
-
-  def edit
-    @review.update(review_params)
-    redirect_to user_profile_path(@instrument)
-  end
-
-  def destroy
-    @review.destroy
-    redirect_to user_profile_path(@review.instrument), notice: 'Review succesfully deleted!'
   end
 
   private
@@ -33,7 +23,7 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:rating, :content)
   end
 
-  def set_review
-    @review = Review.find(params[:id])
+  def find_instrument
+    @instrument = Instrument.find(params[:instrument_id])
   end
 end
