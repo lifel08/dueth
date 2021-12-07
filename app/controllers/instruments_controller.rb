@@ -62,6 +62,8 @@ class InstrumentsController < ApplicationController
     redirect_to profile_path
   end
 
+
+
   private
 
   def redirect_to_search

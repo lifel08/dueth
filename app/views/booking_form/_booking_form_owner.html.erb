@@ -1,5 +1,6 @@
 <h4>Hi <%= current_user.first_name %>!</h4>
 <% if @instrument.bookings.pending.count > 0 %>
+  <h5>Your Instrument Requests</h5>
   There <%= "is".pluralize(@instrument.bookings.count) %> <%= @instrument.bookings.count %> <%= "request".pluralize(@instrument.bookings.count) %> to approve!
   <% @instrument.bookings.each do |booking| %>
     <ul>
@@ -14,6 +15,14 @@
   <% end %>
 <% else %>
   <p>No pending requests</p>
-  <p>Check your disponibilities for this instrument:</p>
-  <%= render "booking_form/booking_form_disponibilities" %>
 <% end %>
+<h5>Your Instrument Disponibilities</h5>
+<%= render "booking_form/booking_form_disponibilities" %>
+<% if @instrument.reviews.count.positive? %>
+  <h5>Your Instrument Reviews</h5>
+  <p>These are your Reviews for the instrument</p>
+<% else %>
+  <h5>Your Instrument Reviews</h5>
+  <p>There are no reviews for this instrument yet.</p>
+<% end %>
+<!-- display reviews if there are any and give the possibility to comment on reviews -->
