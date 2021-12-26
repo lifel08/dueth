@@ -2,16 +2,14 @@
   <h3> Overview of bookings for your <%= instrument.title %> </h3>
 </div>
 <!-- Tab-Menu -->
-<ul class="nav nav-tabs booking-tabs" id="myTab" role="tablist">
-  <li class="nav-item first-nav" role="presentation">
-    <a class="nav-link active" id="upcoming-tab-<%= instrument.id %>" data-toggle="tab" href="#upcoming-<%= instrument.id %>" role="tab" aria-controls="upcoming-<%= instrument.id %>" aria-selected="true">Upcoming</a>
-  </li>
-  <li class="nav-item second-nav" role="presentation">
-    <a class="nav-link" id="past-tab-<%= instrument.id %>" data-toggle="tab" href="#past-<%= instrument.id %>" role="tab" aria-controls="past-<%= instrument.id %>" aria-selected="false">Past</a>
-  </li>
-</ul>
+<nav>
+  <div class="nav nav-tabs booking-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active first-nav" id="upcoming-tab-<%= instrument.id %>" data-toggle="tab" href="#upcoming-<%= instrument.id %>" role="tab" aria-controls="upcoming-<%= instrument.id %>" aria-selected="true">Upcoming</a>
+    <a class="nav-item nav-link second-nav" id="past-tab-<%= instrument.id %>" data-toggle="tab" href="#past-<%= instrument.id %>" role="tab" aria-controls="past-<%= instrument.id %>" aria-selected="false">Past</a>
+  </div>
+</nav>
 <!-- Tab-Content -->
-<div class="tab-content" id="myTabContent">
+<div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="upcoming-<%= instrument.id %>" role="tabpanel" aria-labelledby="upcoming-tab-<%= instrument.id %>">
     <% if instrument.bookings.upcoming.count.zero? %>
       <h5>No future events yet for the instrument <%= instrument.title %>! </h5>

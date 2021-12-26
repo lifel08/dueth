@@ -7,17 +7,5 @@
   <p> <strong><%= @instrument.cancellation_policy.name  %></strong></p>
   <hr>
   <!-- disponibility -->
-  <%= render './booking_form/booking_form'  %>
-  <!-- Ratings -->
-  <!-- todo: only display the possibility to rate, if user has already booked this instrument -->
-  <% if current_user == @instrument.bookings.count.positive? %>
-    <h5>Add a Review</h5>
-    <div>
-      <%= link_to "Add Review", new_instrument_review_path(@instrument), {class:"button-secondary"} %>
-    </div>
-  <% elsif @instrument.user == current_user %>
-    <!-- display nothing -->
-  <% else %>
-    <p>You never booked this instrument.</p>
-  <% end %>
+  <%= render './booking_form/booking_form_disponibilities'  %>
 </div>
