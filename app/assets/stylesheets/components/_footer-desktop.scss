@@ -1,8 +1,10 @@
 footer {
-  position: absolute;
+  position: fix;
   background-color: #000;
   height: 50px;
-  width:100%;
+  width:100vw;
+  bottom: 0;
+  margin-top:2%;
 }
 
 .footer-links {

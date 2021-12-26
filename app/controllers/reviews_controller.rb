@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.instrument_id = @instrument.id
     @review.user_id = current_user.id
-    if @review.save
+    if @review.save!
       redirect_to instrument_path(@instrument), notice: 'Review succesfully saved!'
     else
       render "instruments/show"

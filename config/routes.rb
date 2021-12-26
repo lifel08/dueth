@@ -10,15 +10,15 @@ Rails.application.routes.draw do
       put :activate
       post :book
     end
-    resources :bookings, only: [:new, :create, :update, :destroy]
     resources :reviews
+    resources :bookings
   end
   get '/instruments/:title/:city/', to: 'instruments#search', as: :search_instruments
 
   resources :users do
   end
 
-  resources :bookings, only: :destroy do
+  resources :bookings, only: [:destroy, :index] do
     member do
       patch :accept
       patch :decline

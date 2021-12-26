@@ -57,10 +57,10 @@
     margin-bottom: 20px;
   }
 }
-
+// booking-section on user-profile: other bookings
 .booking-profile {
  display: flex;
- justify-content:space-around;
+ justify-content:flex-start;
  padding: 15px;
   @media screen and (max-width: 1527px) {
     display: flex;
@@ -68,8 +68,9 @@
     width: 100%;
   }
 }
-// booking-section on user-profile: other bookings
 .booking-info {
+   flex-direction:column;
+   padding:20px;
   @media screen and (max-width: 1527px) {
          margin-top: 15px;
        }
@@ -139,10 +140,25 @@
 
 .open-disponibilities {
   @media screen and (max-width: 1527px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right:10px;
-    width:50vw;
+    width:80vw;
   }
+}
+
+table, th, td {
+   border:1px solid black;
+   margin-bottom:15px;
+}
+
+th {
+  background-color:#94906F;
+}
+
+table {
+width:80%;
+margin:30px;
+}
+
+// instrument_bookings_table
+.status {
+  padding: 15px;
 }

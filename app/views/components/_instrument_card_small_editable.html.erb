@@ -29,25 +29,11 @@
 <!--  Booking section: Bookings on these instruments-->
 <%= render 'components/bookings', instrument: instrument %>
 <!-- Review section -->
-<div class="review-section">
-  <% if instrument.reviews.size.positive? %>
-    <h2> Reviews for your <%= instrument.title %></h2>
-    <div class="reviews">
-      <% instrument.reviews.each do |review|  %>
-        <%= link_to public_profile_path(review.user) do %>
-          <%= cl_image_tag review.user.photo.key, height: 60, width: 60, radius: 8, crop: :fill, gravity: :face %>
-        <% end %>
-        <ul class="review-attributes">
-          <li> <strong><%= review.user.first_name %></strong></li>
-          <li><%= review.created_at.strftime('%B, %Y') %></li>
-        </ul>
-      </div>
-      <p class="review-content"><%= review.content %></p>
-    <% end %>
-  <% else %>
-    <h2> Reviews for your <%= instrument.title %> </h2>
-    <p>No reviews yet.</p>
-  <% end %>
+<h3>Reviews for this piano</h3>
+<div class="row">
+  <div class="col-md-4">
+    <%= render instrument.reviews %>
+  </div>
 </div>
 <!--  Booking section: Bookings on these instruments-->
 <%= render 'components/bookings_own', instrument: instrument %>

@@ -1,6 +1,0 @@
-<% if @instrument.user == current_user %>
-  <%= render "booking_form/booking_form_owner" %>
-<% else %>
-  <%= render "booking_form/booking_form_interested_person" %>
-  <%= render "booking_form/booking_form_disponibilities" %>
-<% end %>
