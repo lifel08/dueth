@@ -7,4 +7,10 @@ module ApplicationHelper
   def all_booked?(disponibilities,bookings)
     disponibilities.pluck(:id).sort == bookings.pluck(:disponibility_id).sort
   end
+
+  def show_svg(path)
+    File.open("app/assets/images/svg/#{path}", "rb") do |file|
+      raw file.read
+    end
+  end
 end

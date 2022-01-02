@@ -35,16 +35,7 @@
   <button type="submit">
     <%= link_to 'Delete Instrument', instrument_path(instrument), method: :delete, data: { confirm: 'This will delete your instrument. Are you sure?', disable_with: 'Deleting...' } %>
   </button>
-  <div class="instrument-bookings">
-    <h3>Your Instrument Bookings</h3>
-    <button>
-      <%= link_to 'Instrument Bookings', instrument_instrument_bookings_path(instrument) %></div>
-  </button>
-</div>
-<!--  Usersbookings-->
-<h2>  Your own bookings </h2>
-<div class="add-new-instrument">
-  <button class="button-secondary">
-    <%= link_to 'My Bookings', user_client_bookings_path(current_user) %>
-  </button>
+  <div class="section-instrument-bookings">
+    <%= link_to 'Manage your Instrument Bookings', instrument_instrument_bookings_path(instrument) %>
+  </div>
 </div>

@@ -38,28 +38,28 @@
     </div>
   </div>
 <% end %>
-<hr>
 <!-- Instrument section -->
+<div class="profile-menu-container">
+  <div class= "profile-menu">
+    <a href="#own-instruments">
+      <h5>Your Instruments</h5>
+    </a>
+  </div>
+  <div class= "profile-menu">
+    <h5> <%= link_to "Add a new Instrument", new_instrument_path %></h5>
+  </div>
+  <div class= "profile-menu">
+    <h5><%= link_to 'Your own Bookings', user_client_bookings_path(current_user) %></h5>
+  </div>
+</div>
 <!-- when the user has NO instruments -->
 <div class="instrument-section">
   <% if @instruments.empty? %>
     <h2> Here are your current bookings </h2>
     <%= render "bookings/user_bookings_table" %>
-    <!-- when the user wants to add instruments-->
-    <h2> Do you want to add your own instrument?</h2>
-    <div class="add-new-instrument">
-      <button class="button-secondary">
-        <%= link_to "Add a new Instrument", new_instrument_path %>
-      </button>
-    </div>
   <% else %>
     <!-- 1. when the user HAS instruments -->
-    <h2> Here are your active instruments </h2>
-    <div class="add-new-instrument">
-      <button class="button-secondary">
-        <%= link_to "Add a new Instrument", new_instrument_path %>
-      </button>
-    </div>
+    <h2 id="own-instruments"> Your Instruments </h2>
     <% @instruments.each do |instrument| %>
       <div class="profile-instrument-mobile">
         <%= render "./components/instrument_card_small_editable", instrument: instrument %>
