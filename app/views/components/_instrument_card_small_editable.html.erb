@@ -26,14 +26,12 @@
     <%= link_to 'Delete Instrument', instrument_path(instrument), method: :delete, data: { confirm: 'This will delete your instrument. Are you sure?', disable_with: 'Deleting...' } , class: "button-alert" %>
   </button>
 </div>
-<!--  Booking section: Bookings on these instruments-->
-<%= render 'components/bookings', instrument: instrument %>
-<!-- Review section -->
-<h3>Reviews for this piano</h3>
-<div class="row">
-  <div class="col-md-4">
-    <%= render instrument.reviews %>
-  </div>
+<!--  Booking section: Bookings on these instruments: refactor!-->
+<!-- <#%= render 'components/bookings', instrument: instrument %> -->
+<!--  Usersbookings-->
+<h2>  Your own bookings </h2>
+<div class="add-new-instrument">
+  <button class="button-secondary">
+    <%= link_to 'My Bookings', bookings_path %>
+  </button>
 </div>
-<!--  Booking section: Bookings on these instruments-->
-<%= render 'components/bookings_own', instrument: instrument %>

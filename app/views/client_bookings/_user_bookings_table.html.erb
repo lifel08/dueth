@@ -54,23 +54,37 @@
             <% end %>
           </div>
           <div class="booking-info">
-            <strong>Your <%= pluralize(current_user.own_bookings.count,'Booking') %> from <%= booking.provider.first_name%></strong>
+            <strong>Your Booking from <%= booking.provider.first_name%></strong>
             <p><%= booking.booking_day %><br>
               <%= booking.booking_hour_from %><%= booking.booking_hour_to %>  </p>
           </div>
         </div>
       </div>
+    </td>
+    <td>
+      <div class="container">
+        <% if booking.reviews.present? %>
+          <%= render "reviews/review", review: booking.reviews.first %>
+        <% else %>
+          <h4> New Review</h4>
+          <button>
+            <%= link_to "Give a Review on that instrument", new_booking_review_path(booking) %>
+          </button>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-</td>
-<td>
-  <div class="container">
-    <h1> New Review</h4>
-    <!-- does not work -->
-    <!--  <%#= render 'reviews/form' %> -->
   </div>
 </td>
 </tr>
 </table>
 <div class="public-footer">
 </div>
+<script>
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/images/star-ratings'
+  });
+</script>

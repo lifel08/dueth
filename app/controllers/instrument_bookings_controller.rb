@@ -1,8 +1,10 @@
-class BookingsController < ApplicationController
+class InstrumentBookingsController < ApplicationController
 
   def index
-    @bookings = current_user.bookings
+    @instrument = Instrument.find(params[:instrument_id])
+    @bookings = @instrument.bookings
   end
+
   def create
     @booking = Booking.new
     @booking.instrument = Instrument.find(params[:instrument_id])
@@ -45,4 +47,5 @@ class BookingsController < ApplicationController
     @booking.update(status: 3)
     redirect_to instrument_path(@booking.instrument)
   end
+
 end

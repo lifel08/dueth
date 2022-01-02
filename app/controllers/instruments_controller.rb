@@ -32,6 +32,11 @@ class InstrumentsController < ApplicationController
 
   def show
     @bookings = @instrument.bookings
+    if @instrument.reviews.blank?
+      @average_review = 0
+    else
+      @average_review = @instrument.reviews.average(:rating).round(2)
+    end
   end
 
   def edit

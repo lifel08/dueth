@@ -1,2 +1,12 @@
-<h1>Reviews#edit</h1>
-<p>Find me in app/views/reviews/edit.html.erb</p>
+<h1>Edit Review</h1>
+<%= simple_form_for([@instrument, @review]) do |f| %>
+  <div id="rating-form"><label>Rating</label></div>
+  <%= f.input :content %>
+  <%= f.button :submit  %>
+<% end %>
+<script>
+  $('#rating-form').raty({
+    path: 'assets/images/star-ratings',
+    scoreName: 'review[rating]'
+  });
+</script>

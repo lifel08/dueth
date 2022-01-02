@@ -1,5 +1,11 @@
-<%= simple_form_for([@instrument, @instrument.review.build]) do |f| %>
-  <%= f.input :rating %>
+<%= simple_form_for(@review, url: booking_reviews_path(params[:booking_id])) do |f| %>
+  <div id="rating-form"><label>Rating</label></div>
   <%= f.input :content %>
   <%= f.button :submit, class:"button-secondary" %>
 <% end %>
+<script>
+  $('#rating-form').raty({
+    path: 'assets/images/star-ratings',
+    scoreName: 'review[rating]'
+  });
+</script>
