@@ -106,8 +106,25 @@ hr {
   margin: 20px 50px;
 }
 
-// instrument section
+// profile-menu cards under profile description
 
+.profile-menu-container {
+display: flex;
+flex-direction: row;
+margin:2%;
+width:70%;
+}
+.profile-menu {
+    -webkit-box-pack: justify !important;
+    -webkit-box-direction: normal !important;
+    -webkit-box-orient: vertical !important;
+    width: 20% !important;
+    height: 80px !important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin-left: 5px;
+    padding: 16px !important;
+    text-decoration: none !important;
+}
 .profile-instrument-mobile {
   display:none;
   @media screen and (max-width: 1527px) {
@@ -169,7 +186,7 @@ hr {
   display: flex;
   flex-direction:column;
   flex-wrap:wrap;
-  width: 20%;
+  width: 40%;
   height:170px;
   margin-top:2%;
   @media screen and (max-width: 1527px) {
@@ -181,8 +198,8 @@ hr {
   }
 }
 
-.instrument-bookings {
- margin-left:20px;
+.section {
+ margin-left:10%;
  width:100%;
 }
 
