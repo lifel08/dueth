@@ -1,18 +1,19 @@
 <% content_for :head do %>
   <meta name="robots" content="noindex,nofollow"/>
 <% end %>
+<h1>Instrument Bookings</h1>
 <table>
   <tr>
     <th>Upcoming Bookings</th>
     <th>Booking Status</th>
   </tr>
   <td>
-    <% if instrument.bookings.upcoming.count.zero? %>
+    <% if @instrument.bookings.upcoming.count.zero? %>
       <div class="status">
-        😕 No upcoming bookings yet for your <%= instrument.title %>.
+        😕 No upcoming bookings yet for your <%= @instrument.title %>.
       </div>
     <% end %>
-    <% instrument.bookings.upcoming.each do |booking| %>
+    <% @instrument.bookings.upcoming.each do |booking| %>
       <div class=booking-profile>
         <%= link_to public_profile_path(booking.receiver) do %>
           <%= cl_image_tag booking.instrument.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
@@ -47,10 +48,10 @@
   </tr>
   <tr>
     <td>
-      <% if instrument.bookings.past.count.zero? %>
+      <% if @instrument.bookings.past.count.zero? %>
         <div class=booking-profile>You don't have any past bookings.</div>
       <% end %>
-      <% instrument.bookings.past.each do |booking| %>
+      <% @instrument.bookings.past.each do |booking| %>
         <div class="booking-profile">
           <%= link_to public_profile_path(booking.receiver) do %>
             <%= cl_image_tag booking.instrument.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
@@ -65,7 +66,7 @@
     </td>
     <td>
       <div class="status">
-        <% if instrument.reviews.count.positive? %>
+        <% if @instrument.reviews.count.positive? %>
           <p>Here are your Reviews for the instrument</p>
         <% else %>
           <p>There are no reviews for this instrument yet.</p>

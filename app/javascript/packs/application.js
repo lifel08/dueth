@@ -23,6 +23,8 @@ import "bootstrap";
 import { initFlatpickr } from "../plugins/flatpickr";
 import { SLIDEPAGE } from '../plugins/slidepage';
 import { initSlidePage } from '../components/slide';
+import { Raty } from '../plugins/jquery.raty';
+
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -33,6 +35,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
  initFlatpickr();
  initSlidePage();
+ initRaty();
  
  $('#collapseExample').on('cocoon:after-insert', function(e, added_task) {
        initFlatpickr();

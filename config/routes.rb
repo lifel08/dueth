@@ -11,11 +11,12 @@ Rails.application.routes.draw do
       post :book
     end
     resources :reviews
-    resources :bookings
+    resources :instrument_bookings
   end
   get '/instruments/:title/:city/', to: 'instruments#search', as: :search_instruments
 
   resources :users do
+    resources :client_bookings, only: [:index]
   end
 
   resources :bookings, only: [:destroy, :index] do
@@ -24,5 +25,6 @@ Rails.application.routes.draw do
       patch :decline
       patch :cancel
     end
+    resources :reviews
   end
 end

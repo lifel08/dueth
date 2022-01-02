@@ -40,12 +40,12 @@
 <% end %>
 <hr>
 <!-- Instrument section -->
-<!-- 1. when the user has NO instruments -->
+<!-- when the user has NO instruments -->
 <div class="instrument-section">
   <% if @instruments.empty? %>
     <h2> Here are your current bookings </h2>
     <%= render "bookings/user_bookings_table" %>
-    <!-- 3. when the user wants to add instruments-->
+    <!-- when the user wants to add instruments-->
     <h2> Do you want to add your own instrument?</h2>
     <div class="add-new-instrument">
       <button class="button-secondary">
