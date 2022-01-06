@@ -15,7 +15,6 @@ class InstrumentsController < ApplicationController
     if params[:feature].present?
       @instruments = @instruments.joins(:features).where(features: { name: params[:feature] })
     end
-
     if params[:price] == '0,15' || params[:price] == '15,40'
       price = params[:price].split(',').map(&:to_i)
       @instruments = @instruments.where('price BETWEEN ? AND ?', price[0], price[1])
@@ -23,16 +22,10 @@ class InstrumentsController < ApplicationController
       params[:price] == '45'
       @instruments = @instruments.where('price >= ?', params[:price].to_i)
     end
-
-    if @instruments.present?
       respond_to do |format|
         format.js
         format.html { render :index }
       end
-    else
-      flash[:notice] = "Not found"
-      redirect_to root_path
-    end
   end
 
   def pause
