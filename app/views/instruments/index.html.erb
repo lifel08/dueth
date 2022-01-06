@@ -47,7 +47,31 @@
   </script>
 <% end %>
 <section>
-  <h1> <%= params[:title].capitalize %> Rental <%= params[:city].capitalize %></h1>
+  <div>
+    <h1> <%= params[:title].capitalize %> Rental <%= params[:city].capitalize %></h1>
+    <div class="d-flex justify-content-center">
+      <div>
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown">Select
+          Feature
+          <span class="caret"></span></button>
+        <ul class="dropdown-menu px-2 py-3">
+          <% @features.each do |feature| %>
+            <li>
+              <%= link_to feature, search_instruments_path(feature: feature) if feature.present? %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="px-2">
+        <select class="btn btn-outline-primary dropdown-toggle py-2 customDataSelection">
+          <option value="0,15">Less than $15</option>
+          <option value="15,40">Between $10-$40</option>
+          <option value="45">More than $45</option>
+        </select>
+      </div>
+    </div>
+  </div>
   <div class="content">
     <div class="search-page-desktop">
       <div class="cards">
@@ -60,7 +84,10 @@
       <p class="map-mobile">
         Find <%= pluralize(@instruments.count, 'Instrument') %> to book
       </p>
-      <%= render "./components/instrument_card_small", instrument: @instrument %>
+
+      <div id="dropdown-feature" class="dropdown-feature-img">
+        <%= render "components/instrument_card_small", instrument: @instrument %>
+      </div>
     </div>
     <div id='map'>
     </div>

@@ -4,7 +4,7 @@
   <h5>Practise</h5>
   <p>From <strong><%= @instrument.price %></strong> €/h</p>
   <h5>Cancellation</h5>
-  <p> <strong><%= @instrument.cancellation_policy.name  %></strong></p>
+  <p> <strong><%= @instrument.cancellation_policy&.name  %></strong></p>
   <hr>
   <!-- disponibility -->
   <%= render './booking_form/booking_form'  %>

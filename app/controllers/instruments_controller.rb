@@ -1,18 +1,34 @@
 class InstrumentsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
+  skip_before_action :authenticate_user!, only: [ :index, :show, :search, :favourite ]
   before_action :redirect_to_search, only: [:index]
-  before_action :find_instrument, only: [:show, :edit, :update, :destroy, :pause, :activate, :book]
+  before_action :find_instrument, only: [:show, :edit, :update, :destroy, :pause, :activate, :book, :favorite]
 
   def index
-    @instruments = Instrument.active.search_title_and_location(params[:title].to_s+','+params[:city].to_s)
+    @instruments = Instrument.active.search_title_and_location(params[:title].to_s + ',' + params[:city].to_s)
   end
 
   def search
     @center = Geocoder.search(params[:city]).first.data["center"]
 
-    @instruments = Instrument.active.search_title_and_location(params[:title].to_s+','+params[:city].to_s)
+    @instruments = Instrument.active.search_title_and_location(params[:title].to_s + ',' + params[:city].to_s)
+    @features = @instruments.includes(:features).pluck(:name).uniq
+    if params[:feature].present?
+      @instruments = @instruments.joins(:features).where(features: { name: params[:feature] })
+    end
+
+    if params[:price] == '0,15' || params[:price] == '15,40'
+      price = params[:price].split(',').map(&:to_i)
+      @instruments = @instruments.where('price BETWEEN ? AND ?', price[0], price[1])
+    else
+      params[:price] == '45'
+      @instruments = @instruments.where('price >= ?', params[:price].to_i)
+    end
+
     if @instruments.present?
-      render :index
+      respond_to do |format|
+        format.js
+        format.html { render :index }
+      end
     else
       flash[:notice] = "Not found"
       redirect_to root_path
@@ -41,6 +57,9 @@ class InstrumentsController < ApplicationController
   def new
     @instrument = Instrument.new
   end
+  def favorite_list
+    @instruments = current_user.favorites
+  end
 
   def create
     @instrument = current_user.instruments.new(instrument_params)
@@ -63,6 +82,21 @@ class InstrumentsController < ApplicationController
   end
 
 
+  def favorite
+    if current_user.present?
+      type = params[:type]
+      case type
+      when "favourite"
+        current_user.favorites << @instrument
+        redirect_back fallback_location: root_path, notice: 'Liked!'
+      when "unfavourite"
+        current_user.favorites.delete(@instrument)
+        redirect_back fallback_location: root_path, notice: 'Unliked!.'
+      else
+        redirect_back fallback_location: root_path, notice: 'Nothing happened.'
+      end
+    end
+  end
 
   private
 
