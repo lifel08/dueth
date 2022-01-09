@@ -62,29 +62,18 @@
       </div>
     </td>
     <td>
-      <div class="container">
-        <% if booking.reviews.present? %>
-          <%= render "reviews/review", review: booking.reviews.first %>
-        <% else %>
-          <h4> New Review</h4>
-          <button>
-            <%= link_to "Give a Review on that instrument", new_booking_review_path(booking) %>
-          </button>
-        <% end %>
+      <% if booking.instrument.reviews.present? %>
+        <%= render "reviews/review", review: booking.instrument.reviews.first %>
+      <% else %>
+        <h4> New Review</h4>
+        <button>
+          <%= link_to "Give a Review on that instrument", new_instrument_review_path(booking.instrument) %>
+        </button>
       <% end %>
     <% end %>
-  </div>
+  <% end %>
 </td>
 </tr>
 </table>
 <div class="public-footer">
 </div>
-<script>
-  $('.review-rating').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    path: '/assets/images/star-ratings'
-  });
-</script>

@@ -1,8 +1,8 @@
-<div class="review-rating" data-score="<%= review.rating %>"></div>
-<p><%= review.content %></p>
-<% if user_signed_in? %>
-  <% if review.user_id == current_user.id %>
-    <%= link_to "Edit", edit_instrument_review_path(review.instrument, review)%>
-    <%= link_to "Delete", instrument_review_path(review.instrument, review), method: :delete, data: { confirm: "Are you sure?" }%>
+<div class="container">
+  <%= review.content %>
+  <%= render "reviews/rating_stars", review: review %>
+  <% if current_user == review.user_id %>
+    <%= link_to "Edit Review", edit_instrument_review_path(review.instrument, review), { class:"button-primary"} %>
+    <%= link_to "Delete Review", instrument_review_path(review.instrument, review), class:"button-secondary", method: :delete, data: { confirm: "Are you sure?" }%>
   <% end %>
-<% end %>
+</div>

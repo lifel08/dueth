@@ -67,7 +67,7 @@
     <td>
       <div class="status">
         <% if @instrument.reviews.count.positive? %>
-          <p>Here are your Reviews for the instrument</p>
+          <%= render "reviews/review", review: @instrument.reviews.first %>
         <% else %>
           <p>There are no reviews for this instrument yet.</p>
         <% end %>
