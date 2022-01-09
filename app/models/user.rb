@@ -39,6 +39,8 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :birthday, :language,
     :photo, presence: true
   has_one_attached :photo
+  has_many :favourite_instruments # just the 'relationships'
+  has_many :favorites, through: :favourite_instruments, source: :instrument
 
   def member_since
     created_at.strftime('%B, %Y')

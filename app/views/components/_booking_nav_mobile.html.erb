@@ -5,7 +5,7 @@
     <div class="price-from">Practise from <br>
       <strong><%= @instrument.price %></strong> €/h</div>
     <div> Cancellation <br>
-      <strong><%= @instrument.cancellation_policy.name  %></strong></div>
+      <strong><%= @instrument.cancellation_policy&.name  %></strong></div>
   </div>
   <!-- disponibility -->
   <div class="open-disponibilities">

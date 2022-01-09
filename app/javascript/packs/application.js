@@ -20,9 +20,11 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
+import "jquery";
 import { initFlatpickr } from "../plugins/flatpickr";
 import { SLIDEPAGE } from '../plugins/slidepage';
 import { initSlidePage } from '../components/slide';
+import * as url from "url";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -57,6 +59,16 @@ $('#navbarToggleExternalContent').on('show.bs.collapse', function () {
     });
     $('.popupCloseButton').click(function(){
         $('.hover_bkgr_fricc').hide();
+    });
+
+    $(".customDataSelection").change(function () {
+        var selectedValue = this.options[this.selectedIndex].value;
+        console.log(selectedValue);
+        $.ajax({
+            type: "get",
+            url: "#{<%= search_instruments_path %>}",
+            data: {price: selectedValue}
+        });
     });
 
 });

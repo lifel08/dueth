@@ -47,8 +47,8 @@
 <h1>Explore music instruments nearby</h1>
 <section>
   <div class="container">
-    <div class="row align-items-center">
-      <%= render "./components/instrument_card_small" %>
+    <div class="row align-items-center instr-cards-row">
+      <%= render "components/instrument_card_small", instruments: @instruments   %>
     </div>
   </div>
 </section>

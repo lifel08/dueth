@@ -5,11 +5,16 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :instruments do
+    put :favorite, on: :member
     member do
       put :pause
       put :activate
       post :book
     end
+    collection do
+      get :favorite_list
+    end
+    resources :bookings, only: [:new, :create, :update, :destroy]
     resources :reviews
     resources :instrument_bookings
   end

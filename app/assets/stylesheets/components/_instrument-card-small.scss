@@ -15,16 +15,24 @@ height: auto;
   }
 }
 
-.fas {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-}
+//.fas {
+//  position: absolute;
+//  top: 15px;
+//  left: 15px;
+//}
+//
+//.far {
+//  position: absolute;
+//  top:15px;
+//  right: 15px;
+//  color: #bf0202;
+//  box-shadow: white;
+//}
 
-.far {
-  position: absolute;
-  top:15px;
-  right: 15px;
+.icons-main {
+  position: absolute !important;
+  top: 15px !important;
+  right: 15px !important;
   color: #bf0202;
   box-shadow: white;
 }
@@ -77,5 +85,15 @@ a:hover {
   text-decoration: none;
   color: $content;
 }
-
-
+.dropdown-feature-img{
+  width: 250px;
+}
+.btn-outline-primary.dropdown-toggle {
+width: 10rem;
+}
+.btn-outline-primary.dropdown-toggle.dropdown-menu {
+  transform: translate3d(733px, 533px, 0px);
+}
+.dropdown-menu li:hover{
+  background-color: #dbdde1;
+}
