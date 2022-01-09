@@ -25,6 +25,5 @@ Rails.application.routes.draw do
       patch :decline
       patch :cancel
     end
-    resources :reviews
   end
 end

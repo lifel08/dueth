@@ -35,7 +35,7 @@ class InstrumentsController < ApplicationController
     if @instrument.reviews.blank?
       @average_review = 0
     else
-      @average_review = @instrument.reviews.average(:rating).round(2)
+      @average_review = @instrument.reviews.average(:rating)
     end
   end
 
