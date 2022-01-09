@@ -5,7 +5,7 @@
   <div>
     <div class="popupCloseButton">&times;</div>
     <p>
-      <% if all_booked?(@instrument.disponibilities,@bookings) %>
+      <% if !all_booked?(@instrument.disponibilities,@bookings) %>
         <p>There are no available Disponibilities</p>
       <% else %>
         <h4 id="disponibility">All Disponibilities</h4>
@@ -17,6 +17,8 @@
             <p>From: <%= disponibility.start_from  %> to:<%= disponibility.until_to %> </p>
             <% if user_signed_in? %>
               <%= f.button :submit, "Book", class: "button-primary" %>
+            <% elsif current_user == instrument.receiver %>
+              <%= link_to 'Want to edit the disponibilities?', edit_instrument_path(instrument), class: "button-info" %>
             <% else %>
               <p class="text-muted"><%= link_to "Please login to book this instrument", new_user_session_path, class: "button-secondary" %></p>
             <% end %>

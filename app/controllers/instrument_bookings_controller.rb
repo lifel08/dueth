@@ -1,4 +1,10 @@
-class BookingsController < ApplicationController
+class InstrumentBookingsController < ApplicationController
+
+  def index
+    @instrument = Instrument.find(params[:instrument_id])
+    @bookings = @instrument.bookings
+  end
+
   def create
     @booking = Booking.new
     @booking.instrument = Instrument.find(params[:instrument_id])
@@ -27,7 +33,7 @@ class BookingsController < ApplicationController
   def cancel
     @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to profile_path, notice: "You declined #{@booking.receiver} \'s request"
+    redirect_to profile_path, notice: "You declined #{@booking.user.first_name} \'s request"
   end
 
   def accept
@@ -41,4 +47,5 @@ class BookingsController < ApplicationController
     @booking.update(status: 3)
     redirect_to instrument_path(@booking.instrument)
   end
+
 end

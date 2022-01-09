@@ -35,7 +35,7 @@ class User < ApplicationRecord
   has_many :own_bookings, class_name:"Booking", foreign_key: :receiver_id,
     inverse_of: :receiver
   has_many :instruments
-  has_many :reviews, through: :bookings
+  has_many :reviews, through: :instruments
   validates :first_name, :last_name, :birthday, :language,
     :photo, presence: true
   has_one_attached :photo

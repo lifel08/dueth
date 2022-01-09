@@ -105,20 +105,6 @@
   </div>
   <!-- disponibility mobile -->
   <%= render './components/booking_nav_mobile'  %>
-  <!-- display reviews-->
-  <hr class="hr-instrument-show">
-  <h3>Reviews for this piano</h3>
-  <% if @instrument.reviews.count.positive? %>
-    <% @instrument.reviews do  %>
-      <span class="glyphicon glyphicon-star"></span>
-    <% end %>
-  <% else %>
-    <% @instrument.reviews do  %>
-      <span class="glyphicon glyphicon-star-empty"></span>
-      "No reviews yet."
-    <% end %>
-  <% end %>
-  <hr class="hr-instrument-show">
   <!-- display owner info-->
   <h2>And this is <%= @instrument.user.first_name %></h2>
   <div class="profile-section-instrument-show-page">

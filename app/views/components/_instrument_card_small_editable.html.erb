@@ -26,28 +26,12 @@
     <%= link_to 'Delete Instrument', instrument_path(instrument), method: :delete, data: { confirm: 'This will delete your instrument. Are you sure?', disable_with: 'Deleting...' } , class: "button-alert" %>
   </button>
 </div>
-<!--  Booking section: Bookings on these instruments-->
-<%= render 'components/bookings', instrument: instrument %>
-<!-- Review section -->
-<div class="review-section">
-  <% if instrument.reviews.size.positive? %>
-    <h2> Reviews for your <%= instrument.title %></h2>
-    <div class="reviews">
-      <% instrument.reviews.each do |review|  %>
-        <%= link_to public_profile_path(review.user) do %>
-          <%= cl_image_tag review.user.photo.key, height: 60, width: 60, radius: 8, crop: :fill, gravity: :face %>
-        <% end %>
-        <ul class="review-attributes">
-          <li> <strong><%= review.user.first_name %></strong></li>
-          <li><%= review.created_at.strftime('%B, %Y') %></li>
-        </ul>
-      </div>
-      <p class="review-content"><%= review.content %></p>
-    <% end %>
-  <% else %>
-    <h2> Reviews for your <%= instrument.title %> </h2>
-    <p>No reviews yet.</p>
-  <% end %>
+<!--  Booking section: Bookings on these instruments: refactor!-->
+<!-- <#%= render 'components/bookings', instrument: instrument %> -->
+<!--  Usersbookings-->
+<h2>  Your own bookings </h2>
+<div class="add-new-instrument">
+  <button class="button-secondary">
+    <%= link_to 'My Bookings', bookings_path %>
+  </button>
 </div>
-<!--  Booking section: Bookings on these instruments-->
-<%= render 'components/bookings_own', instrument: instrument %>

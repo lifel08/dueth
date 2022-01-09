@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_29_152554) do
+
+ActiveRecord::Schema.define(version: 2022_01_05_180351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,12 +138,10 @@ ActiveRecord::Schema.define(version: 2021_12_29_152554) do
     t.integer "rating"
     t.string "content"
     t.bigint "user_id"
-    t.bigint "booking_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "instrument_id", null: false
     t.bigint "instrument"
-    t.index ["booking_id"], name: "index_reviews_on_booking_id"
     t.index ["instrument_id"], name: "index_reviews_on_instrument_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -170,6 +169,5 @@ ActiveRecord::Schema.define(version: 2021_12_29_152554) do
   add_foreign_key "bookings", "disponibilities"
   add_foreign_key "instrument_features", "instruments"
   add_foreign_key "instruments", "users"
-  add_foreign_key "reviews", "bookings"
   add_foreign_key "reviews", "instruments"
 end

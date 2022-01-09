@@ -32,7 +32,6 @@ class Booking < ApplicationRecord
   belongs_to :receiver, class_name: 'User', foreign_key: :receiver_id
   belongs_to :provider, class_name: 'User', foreign_key: :provider_id
   belongs_to :disponibility, optional: true
-  has_many :reviews, dependent: :destroy
   scope :upcoming, -> { joins(:disponibility).where('DATE(disponibilities.from) > DATE(?)', Time.zone.now) }
   scope :past, -> { joins(:disponibility).where('DATE(disponibilities.to) < DATE(?)', Time.zone.now) }
   scope :requested_by, -> (user_id){ where('bookings.receiver_id = ?', user_id )}

@@ -16,13 +16,15 @@ Rails.application.routes.draw do
     end
     resources :bookings, only: [:new, :create, :update, :destroy]
     resources :reviews
+    resources :instrument_bookings
   end
   get '/instruments/:title/:city/', to: 'instruments#search', as: :search_instruments
 
   resources :users do
+    resources :client_bookings, only: [:index]
   end
 
-  resources :bookings, only: :destroy do
+  resources :bookings, only: [:destroy, :index] do
     member do
       patch :accept
       patch :decline

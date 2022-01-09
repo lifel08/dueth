@@ -32,6 +32,7 @@
 .profile-header {
   display: flex;
   flex-direction: column;
+  width:100%;
     @media screen and (max-width: 1527px) {
       display: flex;
       flex-direction: column;
@@ -85,13 +86,11 @@
 }
 
 .profile-description {
-  margin: 10px 50px ;
-  width:50%;
     @media screen and (max-width: 1527px) {
     display: flex;
+    flex-direction:column;
     justify-content: center;
-    width:80%;
-
+    width:70%;
   }
 }
 
@@ -107,8 +106,25 @@ hr {
   margin: 20px 50px;
 }
 
-// instrument section
+// profile-menu cards under profile description
 
+.profile-menu-container {
+display: flex;
+flex-direction: row;
+margin:2%;
+width:70%;
+}
+.profile-menu {
+    -webkit-box-pack: justify !important;
+    -webkit-box-direction: normal !important;
+    -webkit-box-orient: vertical !important;
+    width: 20% !important;
+    height: 80px !important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin-left: 5px;
+    padding: 16px !important;
+    text-decoration: none !important;
+}
 .profile-instrument-mobile {
   display:none;
   @media screen and (max-width: 1527px) {
@@ -122,6 +138,8 @@ hr {
 
 .profile-instrument-desktop {
   display:flex;
+  flex-direction:column;
+  margin-top:2%;
     @media screen and (max-width: 1527px) {
       display:none;
   }
@@ -166,9 +184,11 @@ hr {
 
 .edit-instrument {
   display: flex;
-  width: 20%;
   flex-direction:column;
-  justify-content: center;
+  flex-wrap:wrap;
+  width: 40%;
+  height:170px;
+  margin-top:2%;
   @media screen and (max-width: 1527px) {
     display: flex;
     flex-direction: column;
@@ -176,6 +196,11 @@ hr {
     margin-bottom: 20px;
 
   }
+}
+
+.section {
+ margin-left:10%;
+ width:100%;
 }
 
 .add-new-instrument {
@@ -200,10 +225,12 @@ hr {
 // own-booking-section
 
 .booking-confirmed {
-  color: #C1DEE3;
+  display:flex;
+  justify-content:space-around;
+  color: #3293a4;
   font-weight: bold;
   font-size:24px;
-  width:300px;
+  width:600px;
 }
 
 .booking-pending {
