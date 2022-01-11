@@ -15,33 +15,27 @@ height: auto;
   }
 }
 
-//.fas {
-//  position: absolute;
-//  top: 15px;
-//  left: 15px;
-//}
-//
-//.far {
-//  position: absolute;
-//  top:15px;
-//  right: 15px;
-//  color: #bf0202;
-//  box-shadow: white;
-//}
-
 .icons-main {
   position: absolute !important;
   top: 15px !important;
   right: 15px !important;
-  color: #bf0202;
+  color: #ff385c;
   box-shadow: white;
 }
+
 
 .location {
   position: absolute;
   left: 35px;
   top: 10px;
 }
+
+.card-headline {
+  position: absolute;
+  left: 40px;
+  top: 10px;
+}
+
 .header-image-small {
   color: white;
   font-size: 19px;

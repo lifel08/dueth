@@ -10,6 +10,7 @@
 <div class="profile-section">
   <div class="profile-picture">
     <%= cl_image_tag @user.photo.key, height: 190, width: 190, radius: 8, crop: :fill, gravity: :face %>
+    <p><button type="submit" class="contact-button">Contact Owner</button></p>
   </div>
   <div class="profile-header">
     <div class="profile-greeting">
@@ -37,25 +38,4 @@
   <% @user.instruments.each do |instrument| %>
     <%= render "./components/instrument_card_big", instrument: instrument %>
   <% end %>
-</div>
-<hr>
-<!-- Review section -->
-<div class="review-section">
-  <h2> Reviews</h2>
-  <% if @user.reviews.size.positive? %>
-    <div class="reviews">
-      <% @user.reviews.each do |review|  %>
-        <%= cl_image_tag review.user.photo.key, height: 60, width: 60, radius: 8, crop: :fill, gravity: :face %>
-        <ul class="review-attributes">
-          <li> <strong><%= review.user.first_name %></strong></li>
-          <li><%= review.created_at.strftime('%B, %Y') %></li>
-        </ul>
-      </div>
-      <p class="review-content"><%= review.content %></p>
-    <% end %>
-  <% else %>
-    <p class="review-content">No reviews yet.</p>
-  <% end %>
-</div>
-<div class="public-footer">
 </div>
