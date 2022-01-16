@@ -22,10 +22,10 @@ class InstrumentsController < ApplicationController
       params[:price] == '45'
       @instruments = @instruments.where('price >= ?', params[:price].to_i)
     end
-      respond_to do |format|
-        format.js
-        format.html { render :index }
-      end
+    respond_to do |format|
+      format.js
+      format.html { render :index }
+    end
   end
 
   def pause
@@ -95,6 +95,7 @@ class InstrumentsController < ApplicationController
       end
     end
   end
+
 
   private
 

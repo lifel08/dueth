@@ -17,8 +17,6 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-
-
   end
 
   def update
@@ -31,7 +29,6 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    # possible in reference to the booking, not the instrument
     redirect_to user_client_bookings_path(current_user)
   end
 

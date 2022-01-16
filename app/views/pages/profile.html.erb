@@ -6,67 +6,64 @@
 <% if !user_signed_in? %>
   <div class="margin-for-menu"></div>
 <% end %>
-<!-- Profile section -->
+<!-- Profile section:  picture, name, member since, reviews, languages, description -->
 <% if user_signed_in? %>
-  <div class="profile-section">
-    <div class="profile-picture">
-      <%= cl_image_tag current_user.photo.key, height: 190, width: 190, radius: 8, crop: :fill, gravity: :face %>
-    </div>
-    <div class="profile-header">
-      <div class="profile-greeting">
+  <div class="container">
+    <div class="profile-section">
+      <div class="profile-picture">
+        <%= cl_image_tag current_user.photo.key, height: 190, width: 190, radius: 8, crop: :fill, gravity: :face %>
+        <p><button class="button-primary-edit-profile"><%= link_to "Edit your Profile", edit_user_path(current_user), class: "button-primary" %></button></p>
+      </div>
+      <div class="profile-header">
         <h1> Hi <%= current_user.first_name %></h1>
-      </div>
-      <div class="membership">
-        <p> You are a member since <%= current_user.created_at.strftime('%B, %Y') %> </p>
-        <p style="font-weight: bold;">That's what others can read about you:</p>
-      </div>
-      <ul class="profile-attributes">
-        <li><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(current_user.reviews.count, 'review') %> </li>
-        <li><%= image_tag 'svg/verify.svg', class: "rating" %> identity verified</li>
-        <li><%= image_tag 'svg/language.svg', class: "rating" %> <%= current_user.language %></li>
-      </ul>
-      <div class="profile-description">
-        <% if current_user.description.blank? %>
-          <p class="description-empty">"Give people an impression: add your personal description."</p>
-        <% else %>
-          <p><%= current_user.description %></p>
-        <% end %>
-        <button class="button-primary">
-          <%= link_to "Edit your Profile", edit_user_path(current_user), class: "button-primary" %>
-        </button>
+        <p> You are a member since <%= current_user.created_at.strftime('%B, %Y') %>.
+          That's what others can read about you:</p>
+        <ul class="profile-attributes">
+          <li><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(current_user.reviews.count, 'review') %> </li>
+          <li><%= image_tag 'svg/language.svg', class: "rating" %> <%= current_user.language %></li>
+        </ul>
+        <div class="profile-description">
+          <% if current_user.description.blank? %>
+            <p class="description-empty">"Give people an impression: add your personal description."</p>
+          <% else %>
+            <p><%= current_user.description %></p>
+          <% end %>
+        </div>
       </div>
     </div>
+  <% end %>
+  <!-- Instrument section -->
+  <div class="profile-menu-container">
+    <div class= "profile-menu">
+      <a href="#own-instruments">
+        <h5>Your Instruments</h5>
+      </a>
+    </div>
+    <div class= "profile-menu">
+      <h5> <%= link_to "Add a new Instrument", new_instrument_path %></h5>
+    </div>
+    <div class= "profile-menu">
+      <h5><%= link_to 'Your own Bookings', user_client_bookings_path(current_user) %></h5>
+    </div>
   </div>
-<% end %>
-<!-- Instrument section -->
-<div class="profile-menu-container">
-  <div class= "profile-menu">
-    <a href="#own-instruments">
-      <h5>Your Instruments</h5>
-    </a>
-  </div>
-  <div class= "profile-menu">
-    <h5> <%= link_to "Add a new Instrument", new_instrument_path %></h5>
-  </div>
-  <div class= "profile-menu">
-    <h5><%= link_to 'Your own Bookings', user_client_bookings_path(current_user) %></h5>
-  </div>
-</div>
-<!-- when the user has NO instruments -->
-<div class="instrument-section">
+  <!-- 1. when the user has NO instruments -->
   <% if @instruments.empty? %>
     <h2> Here are your current bookings </h2>
-    <%= render "bookings/user_bookings_table" %>
+    <div class="instrument-section">
+      <%= render "bookings/user_bookings_table" %>
+    </div>
   <% else %>
-    <!-- 1. when the user HAS instruments -->
+    <!-- 2. when the user HAS instruments -->
     <h2 id="own-instruments"> Your Instruments </h2>
-    <% @instruments.each do |instrument| %>
-      <div class="profile-instrument-mobile">
-        <%= render "./components/instrument_card_small_editable", instrument: instrument %>
+    <div class="instrument-section">
+      <div class="container">
+        <div class="row align-items-center instr-cards-row">
+          <%= render "./components/instrument_card_small", instrument: @instrument %>
+        <% end %>
       </div>
-      <div class="profile-instrument-desktop">
-        <%= render "./components/instrument_card_big_editable", instrument: instrument %>
-      </div>
-    <% end %>
-  <% end %>
+    </div>
+  </div>
 </div>
+<!--   <div class="profile-instrument-mobile"> -->
+<!--         <%#= render "./components/instrument_card_small", instrument: instrument %> -->
+<!--  </div> -->

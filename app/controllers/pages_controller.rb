@@ -26,6 +26,8 @@ class PagesController < ApplicationController
 
   end
 
+
+
   private
 
   def is_logged_in?
@@ -34,6 +36,7 @@ class PagesController < ApplicationController
 
   def user
     # memoise : remember the user ||=
-      @user ||= User.find(params[:id])
+    @user ||= User.find(params[:id])
   end
+
 end
