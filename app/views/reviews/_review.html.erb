@@ -1,8 +1,6 @@
 <div class="container">
   <%= review.content %>
   <%= render "reviews/rating_stars", review: review %>
-  <% if current_user == review.user_id %>
-    <%= link_to "Edit Review", edit_instrument_review_path(review.instrument, review), { class:"button-primary"} %>
-    <%= link_to "Delete Review", instrument_review_path(review.instrument, review), class:"button-secondary", method: :delete, data: { confirm: "Are you sure?" }%>
-  <% end %>
+  <%= link_to "Edit Review", edit_instrument_review_path(review.instrument, review), { class:"button-primary"} %>
+  <%= link_to "Delete Review", instrument_review_path(review.instrument, review), class:"button-secondary", method: :delete, data: { confirm: "Are you sure?" }%>
 </div>
