@@ -2,7 +2,7 @@
   <%= link_to instrument_path(instrument) do %>
     <div class="col">
       <div class="image-container-small">
-        <%= cl_image_tag instrument.photo.key, height: 250, width: 250, crop: :fill, loading:"lazy", :class=>"instrument-card-image"%>
+        <%= cl_image_tag instrument.photo.first&.key, height: 250, width: 250, crop: :fill, loading:"lazy", :class=>"instrument-card-image"%>
         <div class="header-image-small">
           <% if user_signed_in? %>
             <% if check_favorite(instrument).present?  %>

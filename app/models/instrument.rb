@@ -52,7 +52,7 @@ class Instrument < ApplicationRecord
   belongs_to :cancellation_policy
   validates :title, :subtitle, :street_name, :house_number, :postal_code, :city,
     :country, :price, presence: true
-  has_one_attached :photo
+  has_many_attached :photo
   has_many :favourite_instruments # just the 'relationships'
   has_many :favorited_by, through: :favourite_instruments, source: :instrument
   accepts_nested_attributes_for :disponibilities, allow_destroy: true, reject_if: :all_blank

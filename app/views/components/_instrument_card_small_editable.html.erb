@@ -1,5 +1,7 @@
 <div class="image-container-small">
-  <%= cl_image_tag instrument.photo.key, height: 250, width: 250, crop: :fill, loading:"lazy", :class=>"instrument-card-image"%>
+  <%= link_to instrument_path(instrument) do %>
+  <%= cl_image_tag(instrument.photo.first&.key, height: 250, width: 250, crop: :fill, loading:"lazy", :class=>"instrument-card-image")%>
+    <% end %>
   <div class="header-image-small">
     <i class="fas fa-map-marker-alt"></i>
     <p class="location"><%= instrument.city %></p>

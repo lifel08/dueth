@@ -26,6 +26,7 @@ chloe.photo.attach(
   io: URI.open('https://cdn.psychologytoday.com/sites/default/files/field_blog_entry_images/2021-01/levi-williams-to5wnmst6qq-unsplash.jpg'),
   filename: 'chloe.jpg',
 content_type: 'image/jpg')
+chloe.skip_confirmation!
 chloe.save!
 
 nam = User.new(
@@ -40,6 +41,7 @@ nam.photo.attach(
   io: URI.open('https://cdn.xl.thumbs.canstockphoto.com/asian-playing-piano-a-shot-of-an-asian-man-playing-piano-stock-image_csp1567046.jpg'),
   filename: 'nam.jpg',
 content_type: 'nam/jpg')
+nam.skip_confirmation!
 nam.save!
 
 #User Receiver (Practise Seeker)
@@ -55,6 +57,7 @@ lucy.photo.attach(
   io: URI.open('https://static.roland.com/promos/starting_piano/faq_affordable_piano.jpg'),
   filename: 'lucy.jpg',
 content_type: 'image/jpg')
+lucy.skip_confirmation!
 lucy.save!
 
 puts 'Users seed done! 💪'

@@ -10,7 +10,9 @@
 <div class="profile-section">
   <div class="profile-picture">
     <%= cl_image_tag @user.photo.key, height: 190, width: 190, radius: 8, crop: :fill, gravity: :face %>
+    <a href="mailto:<%= @user.email %>">
     <p><button type="submit" class="contact-button">Contact Owner</button></p>
+    </a>
   </div>
   <div class="profile-header">
     <div class="profile-greeting">

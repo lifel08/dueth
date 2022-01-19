@@ -16,6 +16,12 @@
   <body>
     <!-- Navigation & Menu -->
     <%= render 'shared/navbar' unless @disable_nav %>
+    <% if current_page?(root_path) || current_page?(new_user_session_path) || current_page?(new_user_registration_path) %>
+    <% else %>
+    <ol class="breadcrumb">
+      <%= render_breadcrumbs :tag => :li, :separator => '<span class="pl-2 pr-2">/</span>' %>
+    </ol>
+    <% end %>
     <!-- Alerts -->
     <%= render 'shared/flashes' %>
     <%= yield %>
