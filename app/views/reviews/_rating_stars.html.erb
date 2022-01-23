@@ -1,9 +1,7 @@
 <div>
-  <% if review.rating == 3 %>
+  <% if @instrument.average_rating == 3 %>
     <p><i class="fas fa-star rating-color"></i><i class="fas fa-star rating-color"></i><i class="fas fa-star rating-color"></i></p>
-  <% elsif review.rating == 2 %>
+  <% else @instrument.average_rating == 2 %>
     <p><i class="fas fa-star rating-color"></i><i class="fas fa-star rating-color"></i></p>
-  <% else %>
-    <p><i class="fas fa-star rating-color"></i></p>
   <% end %>
 </div>
