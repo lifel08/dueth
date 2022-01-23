@@ -1,5 +1,5 @@
 <h1>Edit Review</h1>
 <%= simple_form_for([@instrument,@review]) do |f| %>
-  <%= f.input :content, collection: ['Excellent - Amazing Instrument & awesome Owner','Good - Nice to play Instrument and respectful Owner ','Bad - Below expectations Instrument and unfriendly Owner'], label: "Choose your experience" %>
+  <%= f.input :content, collection: ['Excellent - Amazing Instrument & awesome Owner','Good - Nice to play Instrument and respectful Owner','Bad - Below expectations Instrument and unfriendly Owner'], label: "Choose your experience" %>
   <%= f.button :submit, class:"button-secondary" %>
 <% end %>

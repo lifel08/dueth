@@ -107,9 +107,13 @@
   <%= render './components/booking_nav_mobile'  %>
   <hr>
   <!-- reviews -->
-  <h2><%= @instrument.title %> Reviews</h2>
-  <%= @instrument.user.first_name %>'s <%= @instrument.title %> has <%= pluralize(@instrument.user.reviews.count, 'review') %> with the average of
-  <!-- display average -->
+  <p>
+    <h2><%= @instrument.title %> Reviews</h2>
+    <%= @instrument.user.first_name %>'s <%= @instrument.title %> has <%= pluralize(@instrument.user.reviews.count, 'review') %>.
+    <% if @instrument.average_rating > 1 %>
+      Average rating is: <%= render 'reviews/rating_stars' %>
+    <% end %>
+  </p>
   <!-- display owner info-->
   <h2>And this is <%= @instrument.user.first_name %></h2>
   <div class="profile-section-instrument-show-page">

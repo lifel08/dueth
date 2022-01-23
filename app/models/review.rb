@@ -25,36 +25,19 @@ class Review < ApplicationRecord
   belongs_to :instrument
   validates :user_id, uniqueness: true
   validates :content, :instrument, presence: true
-  enum rating: { 'Excellent - Amazing Instrument & awesome Owner': 3,'Good - Nice to play Instrument and respectful Owner': 2, 'Bad - Instrument below expectations and unfriendly Owner': 1 }
+  # enum rating: ["Excellent - Amazing Instrument & awesome Owner", "Good - Nice to play Instrument and respectful Owner","Bad - Instrument below expectations and unfriendly Owner"]
   after_save :update_rating
 
-  def average_rating
-    average = 0
-    review.rating.each do |review|
-      average += review.rating
-    end
-    return average.zero? ? average : (average / reviews.size).round
-  end
-
-  # def rating
-  #   if content == 'Excellent - Amazing Instrument & awesome Owner'
-  #     rating = 3
-  #   elsif content == 'Good - Nice to play Instrument and respectful Owner '
-  #     rating = 2
-  #   else
-  #     rating = 1
-  #   end
-  # end
 
   def update_rating
     if content == 'Excellent - Amazing Instrument & awesome Owner'
       rating = 3
-    elsif content == 'Good - Nice to play Instrument and respectful Owner '
+    elsif content == 'Good - Nice to play Instrument and respectful Owner'
       rating = 2
-    else
+    else content == 'Bad - Below expectations Instrument and unfriendly Owner'
       rating = 1
     end
-    review.update(rating)
+    update_column(:rating, rating)
   end
 
 

@@ -113,10 +113,11 @@ class Instrument < ApplicationRecord
     condition
   end
 
-  # def reviews
-  #   # map reviews of on instrument to its instrument_owner
-  #   @instrument.reviews.map do |review|
-  #     review
-  #   end
-  # end
+  def average_rating
+    average = 0
+    reviews.each do |review|
+      average += review.rating
+    end
+    return average.zero? ? average : (average / reviews.size).round
+  end
 end
