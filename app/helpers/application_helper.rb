@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def all_booked?(disponibilities,bookings)
-    disponibilities.pluck(:id).sort == bookings.pluck(:disponibility_id).sort
+    disponibilities.pluck(:id).sort == bookings.pluck(:disponibility_id).reject(&:blank?).sort
   end
 
   def check_favorite(instrument)
@@ -15,5 +15,9 @@ module ApplicationHelper
     File.open("app/assets/images/svg/#{path}", "rb") do |file|
       raw file.read
     end
+  end
+
+  def image_data(instrument)
+    images =  instrument.photo
   end
 end

@@ -53,3 +53,42 @@ color: yellow;
   align-itms: center;
 }
 
+.card {
+  margin: 1rem 1rem 1rem 0rem !important;
+  height: 250px;
+  width: 250px;
+}
+.cards img {
+  width: 100%;
+  object-fit: cover;
+}
+.cards-wrapper {
+  display: flex;
+  transition: ease 0.5s;
+}
+.display-area {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.dots-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.dot {
+  border: none;
+  background: rgba(0, 0, 0, 0.2);
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  border-radius: 50%;
+  outline: none;
+}
+.dot:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+.dot.active {
+  background: rgba(0, 0, 0, 0.5);
+}

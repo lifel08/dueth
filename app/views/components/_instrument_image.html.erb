@@ -1,0 +1,79 @@
+<% if @instrument.photo.count > 4 %>
+  <div class="display-area">
+    <div class="cards-wrapper">
+      <% if @instrument.photo.attached? %>
+        <% images = image_data(@instrument) %>
+        <% images.each do |image| %>
+          <div><%= image_tag(image, class: 'card') %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="dots-wrapper">
+    <button class="dot active"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+  </div>
+<% else %>
+  <div class="mt-3"></div>
+  <div class="display-area">
+    <div class="cards-wrapper">
+      <% if @instrument.photo.attached? %>
+        <% @instrument.photo.each do |image| %>
+          <div>
+            <%= image_tag(image, class: 'card') %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">-->
+<!--    <div class="display-area">-->
+<!--      <div class="cards-wrapper">-->
+<!--        <div class=”carousel-inner”>-->
+<%# i = 0 %>
+<%# while i < @instrument.photo.count%>
+<!--              <div class="carousel-item <%#= "active " if i==0%>">-->
+<%#= image_tag( @instrument.photo[i], class: 'card d-inline')  if @instrument.photo[i].present? %>
+<%#= image_tag( @instrument.photo[i+1], class: 'card d-inline') if @instrument.photo[i+1].present? %>
+<%#= image_tag( @instrument.photo[i+2], class: 'card d-inline') if @instrument.photo[i+2].present? %>
+<%#= image_tag( @instrument.photo[i+3], class: 'card d-inline') if @instrument.photo[i+3].present? %>
+<!--              </div>-->
+<%# i += 4 %>
+<%# end %>
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">-->
+<!--      <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--      <span class="sr-only">Previous</span>-->
+<!--    </a>-->
+<!--    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">-->
+<!--      <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--      <span class="sr-only">Next</span>-->
+<!--    </a>-->
+<!--  </div>-->
+

@@ -27,7 +27,8 @@
     <p class="instrument-short-info-reviews"><i class="fas fa-star"></i> <%= pluralize(@instrument.reviews.count, 'review') %> · </p>
     <p class="instrument-short-info-location"> <%= @instrument.postal_code %>, <%= @instrument.city %>, <%= @instrument.country %> </p>
   </div>
-  <%= cl_image_tag @instrument.photo.key, height: 300, width: 800, crop: :fill, loading: "lazy", :class => "instrument-card-image" %>
+  <%= cl_image_tag(@instrument.photo.first&.key, height: 300, width: 800, crop: :fill, loading: "lazy", :class => "instrument-card-image") %>
+  <%= render 'components/instrument_image' %>
   <!-- booking-nav -->
   <div class="instrument-short-info-subtitle">
     <h2><%= @instrument.user.first_name %> is offering: <%= @instrument.subtitle %></h2>

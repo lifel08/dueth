@@ -1,6 +1,7 @@
 class InstrumentBookingsController < ApplicationController
 
   def index
+    add_breadcrumb "Instrument Booking", :instrument_bookings_path
     @instrument = Instrument.find(params[:instrument_id])
     @bookings = @instrument.bookings
   end

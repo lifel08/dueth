@@ -1,5 +1,5 @@
 class InstrumentsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index, :show, :search, :favourite ]
+  skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
   before_action :redirect_to_search, only: [:index]
   before_action :find_instrument, only: [:show, :edit, :update, :destroy, :pause, :activate, :book, :favorite]
 
@@ -8,6 +8,7 @@ class InstrumentsController < ApplicationController
   end
 
   def search
+    add_breadcrumb "Instruments", :search_instruments_path
     @center = Geocoder.search(params[:city]).first.data["center"]
 
     @instruments = Instrument.active.search_title_and_location(params[:title].to_s + ',' + params[:city].to_s)
@@ -40,6 +41,7 @@ class InstrumentsController < ApplicationController
 
 
   def show
+    add_breadcrumb "Show Instrument", :instrument_path, only: :show
     @bookings = @instrument.bookings
     if @instrument.reviews.blank?
       @average_review = 0
@@ -49,17 +51,21 @@ class InstrumentsController < ApplicationController
   end
 
   def edit
+    add_breadcrumb "Edit Instrument", :edit_instrument_path
     # @instrument.disponibilities.build
   end
 
   def new
+    add_breadcrumb "New Instrument", :new_instrument_path
     @instrument = Instrument.new
   end
   def favorite_list
+    add_breadcrumb "My Favourite", :favorite_list_instruments_path
     @instruments = current_user.favorites
   end
 
   def create
+    # binding.pry
     @instrument = current_user.instruments.new(instrument_params)
 
     if @instrument.save
@@ -111,7 +117,7 @@ class InstrumentsController < ApplicationController
   def instrument_params
     params.require(:instrument).permit(:title, :subtitle, :description,
                                        :street_name, :house_number, :postal_code, :city, :country, :cancellation_policy_id,
-                                       :price, :reviews, :photo, :location, feature_ids: [],
+                                       :price, :reviews,  :location, feature_ids: [],photo:[],
                                        disponibilities_attributes: [:id, :from, :to, :_destroy])
   end
 
