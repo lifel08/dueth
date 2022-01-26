@@ -31,10 +31,11 @@
   <%= render 'components/instrument_image' %>
   <!-- booking-nav -->
   <div class="instrument-short-info-subtitle">
-    <h2><%= @instrument.user.first_name %> is offering: <%= @instrument.subtitle %></h2>
+    <div class="instrument-short-info-subtitle-headline"><%= @instrument.user.first_name %> is offering</div>
     <%= link_to public_profile_path(@instrument.user) do %>
       <%= cl_image_tag @instrument.user.photo.key, height: 90, width: 90, radius: 8, crop: :fill, gravity: :face %>
     <% end %>
+    <h2><%= @instrument.subtitle %></h2>
   </div>
   <!-- instrument features -->
   <hr class="hr-instrument-show">
@@ -106,7 +107,6 @@
   </div>
   <!-- disponibility mobile -->
   <%= render './components/booking_nav_mobile'  %>
-  <hr>
   <!-- reviews -->
   <p>
     <h2><%= @instrument.title %> Reviews</h2>
@@ -117,25 +117,20 @@
   </p>
   <!-- display owner info-->
   <h2>And this is <%= @instrument.user.first_name %></h2>
-  <div class="profile-section-instrument-show-page">
+  <div class="profile-short-description">
     <div class="profile-picture">
       <%= cl_image_tag @instrument.user.photo.key, height: 90, width: 90, radius: 8, crop: :fill, gravity: :face %>
     </div>
-    <div class="profile-header">
+    <div class="profile-short-description-header">
       <div class="membership">
         <p> Member since <%= @instrument.user.member_since %> </p>
       </div>
       <ul class="profile-attributes">
         <li><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(@instrument.user.reviews.count, 'review') %></li>
-        <li><%= image_tag 'svg/verify.svg', class: "rating" %> identity verified</li>
         <li><%= image_tag 'svg/language.svg', class: "rating" %> <%= @instrument.user.language %></li>
       </ul>
     </div>
     <p class="instrument-short-info-description"> <%= @instrument.user.description %></p>
   </div>
-  <!-- disponibility: booking_nav -->
-  <%= render './components/booking_nav'  %>
 </div>
-<div class="choose-your-practise-time">
-  <%= render './components/choose_practise_time'  %>
-</div>
+<%= render 'shared/footer-mobile'  %>

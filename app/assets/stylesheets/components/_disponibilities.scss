@@ -55,13 +55,17 @@
     margin: 20px;
     display: inline-block;
     font-weight: bold;
+    color: white;
+    background-color: #AC2721;
+    border-color:  #AC2721;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    padding: 10px;
       @media screen and (max-width: 1527px) {
         cursor: pointer;
         font-size: 16px;
-        display: flex;
         text-align: center;
         font-weight:normal;
-        width:140px;
-        margin-left:54px;
+        width:80%;
+        padding: 5px;
       }
 }

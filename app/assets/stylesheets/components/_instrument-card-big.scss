@@ -57,6 +57,11 @@ color: yellow;
   margin: 1rem 1rem 1rem 0rem !important;
   height: 250px;
   width: 250px;
+  @media screen and (max-width: 1527px) {
+    margin: 1rem 1rem 1rem 0rem !important;
+    height: 90px;
+    width: 90px;
+  }
 }
 .cards img {
   width: 100%;

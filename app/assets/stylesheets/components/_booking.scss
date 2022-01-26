@@ -106,9 +106,32 @@
 }
 
 .price-from {
-
   @media screen and (max-width: 1527px) {
     margin-right: 30px;
+    -webkit-box-pack: justify !important;
+    -webkit-box-direction: normal !important;
+    -webkit-box-orient: vertical !important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: #94906F;
+    color: white;
+    padding:10px;
+    margin-left: 5px;
+    text-decoration: none !important;
+  }
+}
+
+.cancellation-mobile {
+    @media screen and (max-width: 1527px) {
+    margin-right: 30px;
+    -webkit-box-pack: justify !important;
+    -webkit-box-direction: normal !important;
+    -webkit-box-orient: vertical !important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding:10px;
+    margin-left: 5px;
+    text-decoration: none !important;
+    background-color: #94906F;
+    color: white;
   }
 }
 // booking-now (instrument show page, booking-nav, disponibilities show page)
@@ -138,11 +161,7 @@
     }
 }
 
-.open-disponibilities {
-  @media screen and (max-width: 1527px) {
-    width:80vw;
-  }
-}
+
 
 table, th, td {
    border:1px solid black;
