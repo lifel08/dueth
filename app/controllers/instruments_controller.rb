@@ -41,7 +41,7 @@ class InstrumentsController < ApplicationController
 
 
   def show
-    add_breadcrumb "Show Instrument", :instrument_path, only: :show
+    add_breadcrumb "#{@instrument.title} from #{@instrument.user.first_name }", :instrument_path, only: :show
     @bookings = @instrument.bookings
     if @instrument.reviews.blank?
       @average_review = 0

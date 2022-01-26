@@ -43,6 +43,11 @@
       flex-direction:column;
    }
 }
+.instrument-short-info-description {
+  @media screen and (max-width: 1527px) {
+    margin-bottom:80%;
+  }
+}
 .profile-description {
   width:50%;
     @media screen and (max-width: 1527px) {
@@ -115,16 +120,23 @@ width: 60%;
 .section-instrument-bookings:hover {
       background-color:#EBEBEB;
 }
-
-//
-//  to check if still in use
-.profile-section-instrument-show-page {
+// profile description instrument-show
+.profile-short-description-header {
+  display: flex;
+  flex-direction: column;
+  width:60%;
+    @media screen and (max-width: 1527px) {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      align-content: stretch;
+    }
+}
+.profile-short-description {
   margin-top:30px;
-  margin-left:50px;
   display:flex;
   flex-direction:row;
-  flex-wrap: wrap;
-  width:70%;
+  width:80%;
     @media screen and (max-width: 1527px) {
       display:flex;
       justify-content: space-around;
@@ -132,6 +144,9 @@ width: 60%;
       margin: 10px;
    }
 }
+//
+//  to check if still in use
+
 .membership {
   margin-left: 30px;
 }

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  add_breadcrumb "Dashboard", :root_path
+  add_breadcrumb "Home", :root_path
   before_action :redirect_if_heroku
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
