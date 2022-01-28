@@ -1,0 +1,17 @@
+<!-- mobile navigation links -->
+<div class="footer-mobile-navigation">
+  <li class="icon-mobile"><i class="fas fa-search"></i><a href="#search">Search </i> </a></li>
+  <% if user_signed_in?%>
+    <li class="icon-mobile"><i class="fas fa-user"></i><%= link_to "Profile", profile_path %>  </li>
+  <% else %>
+    <li class="icon-mobile"><i class="fas fa-user"></i><%= link_to "Log in", new_user_session_path %>  </li>
+  <% end %>
+  <li class="icon-mobile"><i class="fas fa-home"></i><%= link_to "Home", root_path %></li>
+</div>
+<!-- legal footer -->
+<div class="footer-mobile-legal py-3">
+  <li><a href="#">Site Notice</a></li>
+  <li><a href="#">Data Protection</a></li>
+  <li><a href="#">Cookie Settings</a></li>
+  <li class="instagram-icon"><a href="#"><%= render "./icons/instagram_icon" %></a></li>
+</div>

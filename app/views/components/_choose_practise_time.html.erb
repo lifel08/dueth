@@ -1,2 +1,2 @@
-<strong><%= @instrument.price%> €/h</strong>
+<strong><%= @instrument.price if @instrument.present?%> €/h</strong>
 <p><a href="#disponibility"><button type="submit" class="button-book">Choose your practise time</button></a></p>

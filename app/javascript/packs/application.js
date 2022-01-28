@@ -91,6 +91,17 @@ $('#navbarToggleExternalContent').on('show.bs.collapse', function () {
             }
         });
     });
+        var previousScroll = 0;
+
+        $(window).scroll(function(){
+            var currentScroll = $(this).scrollTop();
+            if (currentScroll > previousScroll){
+                $('.footer-main').css("bottom",0);
+            } else {
+                $('.footer-main').css("bottom",-60);
+            }
+            previousScroll = currentScroll;
+        });
 
 });
 
