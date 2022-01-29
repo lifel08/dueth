@@ -4,7 +4,8 @@
 }
 
 .col {
-  margin-bottom:50px;
+  flex-grow:0 !important;
+  margin:10px;
 }
 
 .instrument-card-image {
@@ -43,9 +44,10 @@ height: auto;
 }
 
 .span-headline {
-  margin-left:5px;
   font-size: 18px;
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
 }
 
 .overview-small {

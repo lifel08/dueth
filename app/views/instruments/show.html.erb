@@ -10,7 +10,7 @@
       background-image: url('https://docs.mapbox.com/mapbox-gl-js/assets/washington-monument.jpg');
       background-size: cover;
       width: 50px;
-      height: 50px;
+      height: 30px;
       border-radius: 50%;
       cursor: pointer;
     }
@@ -30,8 +30,10 @@
   <%= cl_image_tag(@instrument.photo.first&.key, height: 300, width: 800, crop: :fill, loading: "lazy", :class => "instrument-card-image") %>
   <%= render 'components/instrument_image' %>
   <!-- booking-nav -->
+  <div class="instrument-short-info-subtitle-headline">
+    <%= @instrument.user.first_name %> is offering
+  </div>
   <div class="instrument-short-info-subtitle">
-    <div class="instrument-short-info-subtitle-headline"><%= @instrument.user.first_name %> is offering</div>
     <%= link_to public_profile_path(@instrument.user) do %>
       <%= cl_image_tag @instrument.user.photo.key, height: 90, width: 90, radius: 8, crop: :fill, gravity: :face %>
     <% end %>

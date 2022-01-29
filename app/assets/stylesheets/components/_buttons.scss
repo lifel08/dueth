@@ -27,15 +27,39 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-.button-info {
+.edit-instrument-button {
   color: #2F2F2F;
   background-color: white;
-  border-color:  #C4C4C4;
-  border-width: medium;
-  padding: 5px 15px;
-  height: 40px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 10px;
+  text-align: center;
+  margin-top:5%;
 }
-
+.edit-instrument-button:hover {
+ background-color:#EBEBEB;
+ color: #2F2F2F;
+ box-shadow: 0 0 0px rgba(0,0,0,0.2);
+}
+.pause-instrument-button {
+  color: white;
+  background-color: #761D1B;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 10px;
+  text-align: center;
+}
+.pause-instrument-button:hover {
+ background-color:#AC2721;
+ color: white;
+ box-shadow: 0 0 0px rgba(0,0,0,0.2);
+}
+.delete-instrument-button{
+  color:#761D1B;
+  padding: 10px;
+  text-align: center;
+}
+.delete-instrument-button:hover{
+ color:#AC2721;
+}
 .button-form {
   margin: 15px;
   width: 40%;
