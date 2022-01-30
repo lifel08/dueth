@@ -1,7 +1,7 @@
 <div class="image-container-small">
   <%= link_to instrument_path(instrument) do %>
-  <%= cl_image_tag(instrument.photo.first&.key, height: 250, width: 250, crop: :fill, loading:"lazy", :class=>"instrument-card-image")%>
-    <% end %>
+    <%= cl_image_tag(instrument.photo.first&.key, height: 250, width: 250, crop: :fill, loading:"lazy", :class=>"instrument-card-image")%>
+  <% end %>
   <div class="header-image-small">
     <i class="fas fa-map-marker-alt"></i>
     <p class="location"><%= instrument.city %></p>
@@ -19,7 +19,8 @@
   </button>
   <button class=button-primary >
     <% if instrument.pause %>
-      <%= link_to 'Un-Pause Instrument', activate_instrument_path(instrument), method: :put, class: "button-primary" %>
+      <%= link_to 'U
+      n-Pause Instrument', activate_instrument_path(instrument), method: :put, class: "button-primary" %>
     <% else %>
       <%= link_to 'Pause Instrument', pause_instrument_path(instrument), method: :put, class: "button-primary" %>
     <% end %>

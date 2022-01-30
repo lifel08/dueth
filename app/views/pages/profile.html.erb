@@ -12,7 +12,7 @@
     <div class="profile-section">
       <div class="profile-picture">
         <%= cl_image_tag current_user.photo.key, height: 190, width: 190, radius: 8, crop: :fill, gravity: :face %>
-        <p><button class="button-primary-edit-profile"><%= link_to "Edit your Profile", edit_user_path(current_user), class: "button-primary" %></button></p>
+        <p class="edit-profile"><%= link_to "Edit your Profile", edit_user_path(current_user), class: 'button-edit-profile' %></p>
       </div>
       <div class="profile-header">
         <h1> Hi <%= current_user.first_name %></h1>
