@@ -12,14 +12,15 @@ class PagesController < ApplicationController
   end
 
   def profile
-    add_breadcrumb "Profile", :profile_path
+    add_breadcrumb "Your Profile", :profile_path
     @disable_avatar = true
     @instruments = current_user.instruments
     render :profile
   end
 
   def public_profile
-    add_breadcrumb "Public Profile", :public_profile_path
+    @instruments = user.instruments
+    add_breadcrumb "Instrument Owner", :public_profile_path
     if is_logged_in?
       return redirect_to url_for(action: :profile)
     end

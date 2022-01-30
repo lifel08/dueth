@@ -33,15 +33,16 @@
 
 .instrument-short-info-subtitle {
   display: flex;
-  flex-direction:column;
+  flex-direction:row;
   justify-content: space-between;
-  padding-top: 30px;
+  align-items: center;
+  padding-top: 20px;
   width: 72%;
   @media screen and (max-width: 1527px) {
     display:flex;
     flex-direction:column;
+    align-items: flex-start;
     width:100%;
-    padding: 15px;
   }
 }
 
@@ -50,14 +51,13 @@
     display:inline-block;
     padding-right:50px;
     border-bottom: 1px dotted black;
-    margin-bottom:20px;
+    margin-top: 30px;
 }
 
 .instrument-short-info-owner {
   margin-top:50px;
   padding: 20px;
 }
-
 
 
 .hr-instrument-show {
@@ -72,7 +72,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding-top: 30px;
+  padding-top: 10px;
   width: 72%;
    list-style: none;
    @media screen and (max-width: 1527px) {
@@ -89,9 +89,7 @@
   }
 }
 .mobile-feature-list {
-   @media screen and (max-width: 1874px) {
-    display:none;
-   }
+  display:none;
  @media screen and (max-width: 1527px) {
   display: flex;
   width: 100%;

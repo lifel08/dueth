@@ -1,6 +1,6 @@
 // own-profile-page
 .profile-section {
-  margin-top:5%;
+  margin-top: 50px;
   display:flex;
   flex-direction: row;
     @media screen and (max-width: 1527px) {
@@ -9,12 +9,13 @@
       align-items: center;
       width:100vw;
       margin: 10px;
+      margin-left: auto;
    }
 }
 .profile-picture {
   border-radius: 5px;
    @media screen and (max-width: 1527px) {
-    margin-top:20px;
+    margin:20px;
    }
 }
 .profile-header {
@@ -25,12 +26,15 @@
     @media screen and (max-width: 1527px) {
       display: flex;
       flex-direction: column;
-      margin: 0;
-      align-content: stretch;
+      align-items: center;
     }
 }
 .profile-header h1 {
   margin-top: -25px;
+}
+
+.profile-header p {
+  margin-left: 25px;
 }
 .profile-attributes {
   list-style: none;
@@ -38,6 +42,7 @@
   flex-direction:row;
   justify-content: flex-start;
     @media screen and (max-width: 1527px) {
+      margin-left: -50px;
       list-style: none;
       display: flex;
       flex-direction:column;
@@ -49,7 +54,7 @@
   }
 }
 .profile-description {
-  width:50%;
+  width:70%;
     @media screen and (max-width: 1527px) {
     display: flex;
     flex-direction:column;
@@ -59,11 +64,11 @@
 }
 // profile-menu cards under profile description
 .profile-menu-container {
-display: flex;
-flex-direction: row;
-margin-top: 20px;
-margin-bottom: 30px;
-width:70%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  width:70%;
 }
 .profile-menu {
     -webkit-box-pack: justify !important;
@@ -82,7 +87,7 @@ width:70%;
 // instrument-cards displaying own instruments
 .instrument-section {
   margin: 5px ;
-  margin-top:30px;
+  margin-top:5%;
 width: 60%;
    @media screen and (max-width: 1527px) {
     margin: 5px ;
@@ -95,8 +100,8 @@ width: 60%;
   display: flex;
   flex-direction:column;
   flex-wrap:wrap;
-  width: 40%;
-  height:170px;
+  width: 45%;
+  height:220px;
   @media screen and (max-width: 1527px) {
     display: flex;
     flex-direction: column;
@@ -111,15 +116,21 @@ width: 60%;
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
-    width: 90% !important;
-     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 100% !important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     margin-left: 10%;
     padding: 16px !important;
     text-decoration: none !important;
+    text-align:center;
 }
 .section-instrument-bookings:hover {
       background-color:#EBEBEB;
+
 }
+.section-instrument-bookings a {
+      color: black !important;
+}
+
 // profile description instrument-show
 .profile-short-description-header {
   display: flex;
@@ -147,9 +158,7 @@ width: 60%;
 //
 //  to check if still in use
 
-.membership {
-  margin-left: 30px;
-}
+
 .description-empty {
   font-size: 20px;
   color: #2F2F2F;
@@ -198,8 +207,13 @@ hr {
 
 .instrument-section-public {
   display: flex;
-  margin-left: 50px;
-  flex-wrap: wrap;
+  flex-direction: row;
+    @media screen and (max-width: 1527px) {
+      display:flex;
+      flex-direction:column;
+      margin-left:30px;
+      width: 85%;
+    }
 }
 
 .h2-instrument-section-public {

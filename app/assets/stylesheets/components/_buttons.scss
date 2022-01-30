@@ -1,22 +1,41 @@
 .button-primary {
   color: white;
   text-align: center;
-  background-color: #AC2721;
-  border-color:  #AC2721;
+  background-color: #761D1B;
   height: 40px;
   padding: 5px 15px;
 }
-
-.button-primary-edit-profile {
+.button-primary:hover {
+ background-color:#AC2721;
+ color: white;
+}
+.edit-profile {
+  display: flex;
+ margin-top: 30px;
+}
+.button-edit-profile {
   color: white;
   text-align: center;
-  background-color: #AC2721;
-  border-color:  #AC2721;
-  height: 40px;
-  padding: 5px 15px;
-  margin-top: 10px;
+  background-color: #761D1B;
+  border-color: #761D1B;
+  padding: 15px;
+  width: 100%;
 }
-
+.button-edit-profile:hover {
+  background-color:#AC2721;
+  border-color: #AC2721;
+  color: white;
+}
+// .button-edit-profile a {
+//   color: white;
+//   background-color: #761D1B;
+//   border-color: #761D1B;
+// }
+// .button-edit-profile a:hover {
+//   color: white;
+//   background-color: #AC2721;
+//   border-color: #AC2721;
+// }
 .button-secondary {
   color: #2F2F2F;
   background-color: white;
@@ -27,15 +46,39 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-.button-info {
+.edit-instrument-button {
   color: #2F2F2F;
   background-color: white;
-  border-color:  #C4C4C4;
-  border-width: medium;
-  padding: 5px 15px;
-  height: 40px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 10px;
+  text-align: center;
+  margin-top:5%;
 }
-
+.edit-instrument-button:hover {
+ background-color:#EBEBEB;
+ color: #2F2F2F;
+ box-shadow: 0 0 0px rgba(0,0,0,0.2);
+}
+.pause-instrument-button {
+  color: white;
+  background-color: #761D1B;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 10px;
+  text-align: center;
+}
+.pause-instrument-button:hover {
+ background-color:#AC2721;
+ color: white;
+ box-shadow: 0 0 0px rgba(0,0,0,0.2);
+}
+.delete-instrument-button{
+  color:#761D1B;
+  padding: 10px;
+  text-align: center;
+}
+.delete-instrument-button:hover{
+ color:#AC2721;
+}
 .button-form {
   margin: 15px;
   width: 40%;
