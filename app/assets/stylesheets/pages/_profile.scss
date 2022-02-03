@@ -69,6 +69,10 @@
   margin-top: 5%;
   margin-bottom: 10%;
   width:70%;
+  @media screen and (max-width: 1527px) {
+    width:100%;
+    flex-wrap: wrap;
+  }
 }
 .profile-menu {
     -webkit-box-pack: justify !important;
@@ -80,6 +84,12 @@
     margin-left: 5px;
     padding: 16px !important;
     text-decoration: none !important;
+    @media screen and (max-width: 1527px) {
+      width:100% !important;
+      text-align: center !important;
+    padding-top: 30px !important;
+    margin:2px;
+      }
 }
 .profile-menu:hover {
  background-color:#EBEBEB;
@@ -105,8 +115,7 @@ width: 60%;
   @media screen and (max-width: 1527px) {
     display: flex;
     flex-direction: column;
-    width: 250px;
-    margin-bottom: 20px;
+    width: 100%;
   }
 }
 .section-instrument-bookings {
@@ -122,6 +131,9 @@ width: 60%;
     padding: 16px !important;
     text-decoration: none !important;
     text-align:center;
+    @media screen and (max-width: 1527px) {
+      width: 55% !important;
+    }
 }
 .section-instrument-bookings:hover {
       background-color:#EBEBEB;

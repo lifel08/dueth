@@ -1,7 +1,7 @@
 <% content_for :head do %>
   <meta name="robots" content="noindex,nofollow"/>
 <% end %>
-<h1>Your Bookings</h1>
+<h1>My Bookings</h1>
 <table>
   <tr>
     <th>Upcoming Bookings</th>
@@ -50,7 +50,7 @@
         <div class="booking-profile">
           <div>
             <%= link_to instrument_path(booking.instrument) do %>
-              <%= cl_image_tag booking.instrument.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+              <%#= cl_image_tag booking.instrument.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
             <% end %>
           </div>
           <div class="booking-info">

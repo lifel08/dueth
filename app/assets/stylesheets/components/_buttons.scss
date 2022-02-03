@@ -2,11 +2,13 @@
   color: white;
   text-align: center;
   background-color: #761D1B;
+  border-color: #761D1B;
   height: 40px;
   padding: 5px 15px;
 }
 .button-primary:hover {
  background-color:#AC2721;
+ border-color: #AC2721;
  color: white;
 }
 .edit-profile {
@@ -26,16 +28,6 @@
   border-color: #AC2721;
   color: white;
 }
-// .button-edit-profile a {
-//   color: white;
-//   background-color: #761D1B;
-//   border-color: #761D1B;
-// }
-// .button-edit-profile a:hover {
-//   color: white;
-//   background-color: #AC2721;
-//   border-color: #AC2721;
-// }
 .button-secondary {
   color: #2F2F2F;
   background-color: white;
@@ -45,7 +37,6 @@
   height: 40px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
-
 .edit-instrument-button {
   color: #2F2F2F;
   background-color: white;
@@ -84,7 +75,28 @@
   width: 40%;
   height: 30px;
 }
-
+.edit-review-button{
+  color: white;
+  text-align: center;
+  background-color: #761D1B;
+  border-color: #761D1B;
+  height: 40px;
+  padding: 5px 15px;
+  width:100%;
+}
+.edit-review-button:hover {
+  background-color:#AC2721;
+  border-color: #AC2721;
+  color: white;
+}
+.delete-review-button{
+  color:#761D1B;
+  padding: 10px;
+  text-align: center;
+}
+.delete-review-button:hover{
+ color:#AC2721;
+}
 .button-alert {
   color:#C1DEE3;
   border-width: medium;
@@ -103,13 +115,28 @@
   height: 40px;
   width: 190px;
 }
-
+.button-book {
+  color: white;
+  background-color: #761D1B;
+  border-color:  #761D1B;
+  height: 40px;
+  padding: 0px 30px;
+}
+.button-book:hover {
+  background-color:#AC2721;
+  border-color:  #AC2721;
+  color: white;
+}
 // button on mobile instrument-show-page to show open disponibilities
 .disponibility-book-button {
   color: white;
-  background-color: #AC2721;
-  border-color:  #AC2721;
+  background-color: #761D1B;
+  border-color:  #761D1B;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   padding: 5px;
   width: 100%;
+}
+.disponibility-book-button:hover {
+ background-color:#AC2721;
+ color: white;
 }

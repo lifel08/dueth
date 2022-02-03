@@ -3,94 +3,92 @@
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet'/>
 <% end %>
-<%= content_for :footer_script do %>
-  <script type="text/javascript">
-    mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
-    
-    // Get instruments from ruby array to javascript array
-    var instruments = <%= raw @instruments.to_json %>;
-    
-    // Build the map!
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: instruments[0].center,
-        zoom: 12
-    });
-    
-    // Build marker for each instrument
-    instruments.forEach(function (instrument) {
-        // create the popup
-        var markerOptions = {
-            color: "#FFFFFF",
-            draggable: false
-        }
-    
-        var el = document.createElement('div');
-        el.className = 'marker';
-    
-        // create marker instance for the map
-        var marker = new mapboxgl.Marker(el, markerOptions)
-    
-        // Set longitude & latitude to the marker
-        marker.setLngLat(instrument.center);
-    
-        // create a pop up for the marker
-        var popup = new mapboxgl.Popup({offset: 45}).setText(instrument.title);
-    
-        // will assign the popup to the marker
-        marker.setPopup(popup);
-    
-        // Set the marker to the map
-        marker.addTo(map);
-    })
-  </script>
-<% end %>
-<section>
-  <div>
-    <h1> <%= params[:title].capitalize %> Rental <%= params[:city].capitalize %></h1>
-    <div class="d-flex justify-content-center">
-      <div>
-        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown">Select
-          Feature
-          <span class="caret"></span></button>
-        <ul class="dropdown-menu px-2 py-3">
-          <% @features.each do |feature| %>
-            <li>
-              <%= link_to feature, search_instruments_path(feature: feature) if feature.present? %>
-            </li>
+<div class="search-result-page">
+  <%= content_for :footer_script do %>
+    <script type="text/javascript">
+      mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
+      
+      // Get instruments from ruby array to javascript array
+      var instruments = <%= raw @instruments.to_json %>;
+      
+      // Build the map!
+      var map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: instruments[0].center,
+          zoom: 12
+      });
+      
+      // Build marker for each instrument
+      instruments.forEach(function (instrument) {
+          // create the popup
+          var markerOptions = {
+              color: "#FFFFFF",
+              draggable: false
+          }
+      
+          var el = document.createElement('div');
+          el.className = 'marker';
+      
+          // create marker instance for the map
+          var marker = new mapboxgl.Marker(el, markerOptions)
+      
+          // Set longitude & latitude to the marker
+          marker.setLngLat(instrument.center);
+      
+          // create a pop up for the marker
+          var popup = new mapboxgl.Popup({offset: 45}).setText(instrument.title);
+      
+          // will assign the popup to the marker
+          marker.setPopup(popup);
+      
+          // Set the marker to the map
+          marker.addTo(map);
+      })
+    </script>
+  <% end %>
+  <section>
+    <div>
+      <h1> <%= params[:title].capitalize %> Rental <%= params[:city].capitalize %></h1>
+      <p class="map-mobile">Find <%= pluralize(@instruments.count, 'Instrument') %> to book</p>
+      <div class="d-flex p-4">
+        <div>
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown">Select
+            Feature
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu px-2 py-3">
+            <% @features.each do |feature| %>
+              <li>
+                <%= link_to feature, search_instruments_path(feature: feature) if feature.present? %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="px-2">
+          <select class="btn btn-outline-primary dropdown-toggle py-2 customDataSelection">
+            <option value="0,15">Less than 15€</option>
+            <option value="15,40">Between 10€-40€</option>
+            <option value="45">More than 45€</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <!-- Filters -->
+    <div class="content">
+      <div class="search-page-desktop">
+        <div class="cards">
+          <% @instruments.each do |instrument| %>
+            <%= render "./components/instrument_card_big", instrument: instrument %>
           <% end %>
-        </ul>
+        </div>
       </div>
-
-      <div class="px-2">
-        <select class="btn btn-outline-primary dropdown-toggle py-2 customDataSelection">
-          <option value="0,15">Less than $15</option>
-          <option value="15,40">Between $10-$40</option>
-          <option value="45">More than $45</option>
-        </select>
+      <div class="search-page-mobile">
+        <div id="dropdown-feature" class="dropdown-feature-img">
+          <%= render "components/instrument_card_small", instrument: @instrument %>
+        </div>
       </div>
-    </div>
-  </div>
-  <!-- Filters -->
-  <div class="content">
-    <div class="search-page-desktop">
-      <div class="cards">
-        <% @instruments.each do |instrument| %>
-          <%= render "./components/instrument_card_big", instrument: instrument %>
-        <% end %>
+      <div id='map'>
       </div>
     </div>
-    <div class="search-page-mobile">
-      <p class="map-mobile">
-        Find <%= pluralize(@instruments.count, 'Instrument') %> to book
-      </p>
-
-      <div id="dropdown-feature" class="dropdown-feature-img">
-        <%= render "components/instrument_card_small", instrument: @instrument %>
-      </div>
-    </div>
-    <div id='map'>
-    </div>
-  </div>
-</section>
+  </section>
+</div>
