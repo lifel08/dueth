@@ -116,10 +116,13 @@
   padding:10px;
   margin-left: 5px;
   text-decoration: none !important;
+  width: 50%;
+   @media screen and (max-width: 1527px) {
+
+   }
 }
 
 .cancellation {
-    margin-right: 30px;
     -webkit-box-pack: justify !important;
     -webkit-box-direction: normal !important;
     -webkit-box-orient: vertical !important;
@@ -129,6 +132,10 @@
     text-decoration: none !important;
     background-color: #94906F;
     color: white;
+     width: 60%;
+     @media screen and (max-width: 1527px) {
+
+   }
 }
 // booking-now (instrument show page, booking-nav, disponibilities show page)
 
@@ -146,10 +153,9 @@
   margin-left: 15px;
 }
 
-//  mobile disponibility area
 .disponibility {
   display:flex;
-  width:30%;
+  width:70%;
   padding:15px;
   justify-content: space-between;
   @media screen and (max-width: 1527px) {

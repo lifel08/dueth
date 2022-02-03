@@ -8,7 +8,7 @@ class InstrumentsController < ApplicationController
   end
 
   def search
-    add_breadcrumb "Instruments", :search_instruments_path
+    add_breadcrumb "#{params[:title].capitalize}'s to rent in #{params[:city].capitalize}", :search_instruments_path
     @center = Geocoder.search(params[:city]).first.data["center"]
 
     @instruments = Instrument.active.search_title_and_location(params[:title].to_s + ',' + params[:city].to_s)
@@ -56,6 +56,7 @@ class InstrumentsController < ApplicationController
   end
 
   def new
+    add_breadcrumb "My Profile", :profile_path
     add_breadcrumb "New Instrument", :new_instrument_path
     @instrument = Instrument.new
   end

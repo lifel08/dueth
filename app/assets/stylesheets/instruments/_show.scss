@@ -5,31 +5,31 @@
     margin-bottom:60px;
   }
 }
+.instrument-short-info {
+  display: flex;
+  width: 800px;
+  @media screen and (max-width: 1527px) {
+    display: flex;
+    flex-direction: row;
+    width:100%;
+  }
+}
 .instrument-short-info-reviews {
   padding-left: 25px;
   @media screen and (max-width: 1527px) {
-    width:15%;
+    width:55%;
   }
     @media screen and (max-width: 360px) {
     width:60%;
   }
 }
-
-//  not jet checked
-.instrument-short-info {
-  display: flex;
-  width: 800px;
-  @media screen and (max-width: 1527px) {
-    width:100%;
-  }
-}
-
 .instrument-short-info-location {
   text-decoration: underline;
   @media screen and (max-width: 1527px) {
     width:100%;
   }
 }
+//  not jet checked
 
 .instrument-short-info-subtitle {
   display: flex;

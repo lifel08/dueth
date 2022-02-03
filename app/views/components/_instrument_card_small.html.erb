@@ -39,7 +39,7 @@
           <% end %>
           <%= link_to 'Delete', instrument_path(instrument), method: :delete, class: "delete-instrument-button", data: { confirm: 'This will delete your instrument. Are you sure?', disable_with: 'Deleting...' } %>
           <div class="section-instrument-bookings">
-            <%= link_to 'Manage your Instrument Bookings', instrument_instrument_bookings_path(instrument) %>
+            <%= link_to 'Manage Bookings', instrument_instrument_bookings_path(instrument) %>
           </div>
         </div>
       <% end %>

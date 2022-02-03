@@ -10,10 +10,10 @@
     </div>
     <div class="overview-big">
       <p class="price"> <%= instrument.price %> € /h</p>
-      <div class=features>
+      <div class=features-big-instrument-card>
         <% instrument.features.limit(2).each do |feature| %>
           <ul>
-            <li><%= feature.name %></li>
+            <li><%= raw feature.icon %><%= feature.name %></li>
           </ul>
         <% end %>
       </div>
