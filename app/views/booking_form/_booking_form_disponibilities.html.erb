@@ -1,11 +1,11 @@
-<a id="disponibility" class="trigger_popup_fricc">Show all Disponibilities</a>
+<a class="trigger_popup_fricc">Show all Disponibilities</a>
 <div class="hover_bkgr_fricc">
   <span class="helper">
   </span>
   <div>
     <div class="popupCloseButton">&times;</div>
     <p>
-      <% if !all_booked?(@instrument.disponibilities,@bookings) %>
+      <% if all_booked?(@instrument.disponibilities,@bookings) %>
         <p>There are no available Disponibilities</p>
       <% else %>
         <h4 id="disponibility">All Disponibilities</h4>

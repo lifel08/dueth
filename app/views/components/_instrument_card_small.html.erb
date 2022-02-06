@@ -26,7 +26,7 @@
       <div class="span-headline">
         <p> <%= instrument.title %></p>
         <% if instrument.user != current_user %>
-          <div><button type="submit" class="button-book">Book</button></div>
+          <div><%#= link_to 'Book', instrument_bookings(instrument), class: 'button-book' %></div>
         <% end %>
       </div>
       <% if current_page?('/profile') %>
