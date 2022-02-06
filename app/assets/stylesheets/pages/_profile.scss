@@ -162,6 +162,7 @@ width: 60%;
   width:80%;
     @media screen and (max-width: 1527px) {
       display:flex;
+      flex-direction:column;
       justify-content: space-around;
       width:100vw;
       margin: 10px;
@@ -246,9 +247,6 @@ hr {
     margin-top: 20px;
   }
 }
-
-
-
 .section {
  margin-left:10%;
  width:100%;
@@ -285,10 +283,14 @@ hr {
 }
 
 .booking-pending {
- color:#E5CBCA;
+ color:#761D1B;
  font-style: italic;
  font-size:24px;
- width:300px;
+ width:30%;
+ margin: auto;
+ display: flex;
+ flex-direction: column;
+ justify-content:space-around;
 }
 // review-section CSS
 

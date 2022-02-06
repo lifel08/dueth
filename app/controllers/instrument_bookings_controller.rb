@@ -17,7 +17,7 @@ class InstrumentBookingsController < ApplicationController
     if @booking.save
       redirect_to instrument_path(@booking.instrument), notice: "Pending approval of Instrument Owner #{@booking.instrument.user.first_name}"
     else
-      redirect_to instrument_path(@booking.instrument), status: :unprocessable_entity, notice: @booking.errors.full_messages.join(" , ")
+      redirect_to instrument_path(instrument), status: :unprocessable_entity, notice: @booking.errors.full_messages.join(" , ")
     end
   end
 

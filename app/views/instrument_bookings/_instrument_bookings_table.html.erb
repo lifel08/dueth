@@ -16,7 +16,7 @@
     <% @instrument.bookings.upcoming.each do |booking| %>
       <div class=booking-profile>
         <%= link_to public_profile_path(booking.receiver) do %>
-          <%= cl_image_tag booking.instrument.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+          <%= cl_image_tag booking.instrument.photo.first&.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
         <% end %>
         <div class=booking-info>
           <strong><%= booking.receiver.first_name %></strong>
@@ -30,12 +30,13 @@
         <div class="status">
           <div class="booking-confirmed">
             Booking confirmed!
-            <%= link_to 'Decline Booking', decline_booking_path(booking), { method: :patch, class:"button-alert"} %>
+            <%= link_to 'Decline Booking', decline_booking_path(booking), { method: :patch, class:"button-edit-profile"} %>
           </div>
         <% elsif booking.status.zero? %>
           <div class="booking-pending">
             Booking is pending
-            <%= link_to 'Decline Booking', decline_booking_path(booking), { method: :patch, class:"button-alert"} %>
+            <%= link_to 'Accept Booking', accept_booking_path(booking), { method: :patch, class:"button-secondary"} %>
+            <%= link_to 'Decline Booking', decline_booking_path(booking), { method: :patch, class:"button-edit-profile"} %>
           </div>
         <% end %>
       </div>

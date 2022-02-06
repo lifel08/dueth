@@ -16,9 +16,9 @@
       <% end %>
       <h1>Add a new instrument</h1>
       <%= simple_form_for @instrument, multipart: true do |f| %>
-        <%= f.input :title, label: "What Instrument do you want to offer for practise?", placeholder: "Digital Piano" %>
-        <%= f.input :subtitle, label: "Title - In a few words: What's special about your instrument?" , placeholder: "Example: Very central Digital Piano", input_html: { maxlength: 70} %>
-        <%= f.input :description, as: :text, placeholder: "Example: Anna is offering her good to practise and easy to reach digital piano. Come by and enjoy your piano practise as usual!"%>
+        <%= f.input :title, label: "What kind of Instrument do you want to offer?", placeholder: "Digital Piano" %>
+        <%= f.input :subtitle, label: "In a few words: What's special about your instrument?" , placeholder: "Very central Digital Piano", input_html: { maxlength: 70} %>
+        <%= f.input :description, as: :text, placeholder: "This Digital Piano is waiting to get played. Very nice instrument sound. Calm location "%>
         <%= f.input :street_name, label: "Add your street-name" %>
         <%= f.input :house_number, label: "Add your street-number" %>
         <%= f.input :postal_code, label: "Add your postal-code" %>

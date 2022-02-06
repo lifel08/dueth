@@ -13,18 +13,20 @@ h1 {
   margin-top:20px;
   position: relative;
   height: auto;
+  @media screen and (max-width: 1033px) {
+    display: none;
+  }
 }
 
 .search {
   position: absolute;
   top: 40px;
-  left: 45%;
   z-index: 1;
-  margin-left: -430px;
+  margin-left: 2%;
 }
 .search-bar {
   width: 430px;
-  height: 40px;
+  height: 60px;
   margin-top:40px;
   padding: 10px 10px 10px 20px;
   background: #FFFFFF;
@@ -34,9 +36,21 @@ h1 {
       display:none;
   }
 }
+.search-button {
+  @media screen and (max-width: 1033px) {
+    margin-left: 35%;
+  }
+}
 .search-text-mobile {
     display:none;
   }
+
+.instrument-row {
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  justify-content: space-around;
+}
 
 // Specific CSS for home-page mobile
 
@@ -47,7 +61,12 @@ h1 {
   .search-text-mobile {
     display:flex;
     flex-direction:column;
-    margin:10px;
+    margin: auto;
+//     position: absolute;
+// margin-top:-10%;
+//      z-index: 1;
+     width: 80%;
+
   }
   .search-bar-mobile {
     width:100%;
