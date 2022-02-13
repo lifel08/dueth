@@ -25,9 +25,9 @@ class InstrumentBookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.destroy
     if current_user == @booking.provider
-      redirect_to instrument_path, notice: "You declined #{@booking.receiver} request"
+      redirect_to instrument_instrument_bookings_path, notice: "You declined #{@booking.receiver} request"
     else
-      redirect_to instrument_path(@booking.instrument), notice: "Your booking for #{@booking.instrument.title} is CANCELLED"
+      redirect_to instrument_instrument_bookings_path(@booking.instrument), notice: "Your booking for #{@booking.instrument.title} is CANCELLED"
     end
   end
 
@@ -40,13 +40,13 @@ class InstrumentBookingsController < ApplicationController
   def accept
     @booking = Booking.find(params[:id])
     @booking.update(status: 1)
-    redirect_to instrument_path(@booking.instrument), notice: "#{@booking.user.first_name} \'s booking confirmed!"
+    redirect_to instrument_instrument_bookings_path(@booking.instrument), notice: "#{@booking.user.first_name} \'s booking confirmed!"
   end
 
   def decline
     @booking = Booking.find(params[:id])
     @booking.update(status: 3)
-    redirect_to instrument_path(@booking.instrument)
+    redirect_to instrument_instrument_bookings_path(instrument)
   end
 
 end
