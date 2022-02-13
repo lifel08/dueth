@@ -275,22 +275,32 @@ hr {
 
 .booking-confirmed {
   display:flex;
-  justify-content:space-around;
+  flex-direction: column;
   color: #3293a4;
   font-weight: bold;
   font-size:24px;
   width:600px;
+  @media screen and (max-width: 1527px) {
+   font-size:17px;
+   width:auto;
+   padding:5px;
+  }
 }
 
 .booking-pending {
  color:#761D1B;
- font-style: italic;
  font-size:24px;
  width:30%;
  margin: auto;
  display: flex;
  flex-direction: column;
- justify-content:space-around;
+ text-align: center;
+ padding:30px;
+ @media screen and (max-width: 1527px) {
+   font-size:17px;
+   width:auto;
+   padding:5px;
+ }
 }
 // review-section CSS
 

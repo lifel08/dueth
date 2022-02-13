@@ -39,6 +39,12 @@
   text-align:center;
   margin-bottom:5px;
 }
+
+.button-secondary:hover{
+  background-color:#EBEBEB;
+  color: #2F2F2F;
+  box-shadow: 0 0 0px rgba(0,0,0,0.2);
+}
 .edit-instrument-button {
   color: #2F2F2F;
   background-color: white;
