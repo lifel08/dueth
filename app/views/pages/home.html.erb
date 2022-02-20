@@ -6,22 +6,20 @@
 <% end %>
 <!-- search desktop -->
 <div class="container">
-  <div class="container">
-    <div class="search">
-      <%= form_tag search_instruments_path(title: params[:title].to_s,city: params[:city].to_s), method: :get do %>
-        <%= text_field_tag :title,
+  <div class="search">
+    <%= form_tag search_instruments_path(title: params[:title].to_s,city: params[:city].to_s), method: :get do %>
+      <%= text_field_tag :title,
       params[:title],
       class: "search-bar",
       placeholder: "What instrument? Piano, drums, ..."
       %>
-        <%= text_field_tag :city,
+      <%= text_field_tag :city,
       params[:city],
       class: "search-bar",
       placeholder: "Where? Paris, Milan, ..."
       %>
-        <button type="submit" class="button-primary search-button">Search</button>
-      <% end %>
-    </div>
+      <button type="submit" class="button-primary search-button">Search</button>
+    <% end %>
   </div>
   <!-- search mobile -->
   <div class="search-text-mobile" id="search">

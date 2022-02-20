@@ -36,21 +36,32 @@
 .profile-header p {
   margin-left: 25px;
 }
+.membership{
+  margin-left:20px;
+  width:60%;
+  @media screen and (max-width: 1527px) {
+    width:100%;
+  }
+}
 .profile-attributes {
   list-style: none;
   display: flex;
   flex-direction:row;
   justify-content: flex-start;
+  margin-left:20px;
+  width:60%;
     @media screen and (max-width: 1527px) {
-      margin-left: -50px;
       list-style: none;
       display: flex;
-      flex-direction:column;
+      flex-direction:row;
+      width:100%;
    }
 }
 .instrument-short-info-description {
+  width:90%;
   @media screen and (max-width: 1527px) {
-    margin-bottom:80%;
+    margin-bottom:60%;
+    padding:15px;
   }
 }
 .profile-description {

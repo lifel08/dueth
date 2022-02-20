@@ -1,6 +1,11 @@
-<h1>Favourites Instrument</h1>
 <div class="container">
-  <div class="row align-items-center instr-cards-row" style="height: 100vh">
-    <%= render 'components/instrument_card_small' %>
-  </div>
+  <h1>My Favorite Instruments</h1>
+  <br>
+  <% if current_user.favorites.empty? %>
+    <h2 class="no-favorites">You have no favorite instruments selected.</h2>
+  <% else %>
+    <div class="row align-items-center instr-cards-row" style="height: 100vh">
+      <%= render 'components/instrument_card_small' %>
+    </div>
+  <% end %>
 </div>

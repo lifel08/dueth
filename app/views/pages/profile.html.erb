@@ -45,6 +45,9 @@
     <div class= "profile-menu">
       <h5><%= link_to 'My own Bookings', user_client_bookings_path(current_user) %></h5>
     </div>
+    <div class= "profile-menu">
+      <h5><%= link_to 'My Favorite Instruments', favorite_list_instruments_path(current_user) %></h5>
+    </div>
   </div>
   <!-- 1. when the user has NO instruments -->
   <% if @instruments.empty? %>
