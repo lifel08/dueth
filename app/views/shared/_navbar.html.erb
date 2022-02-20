@@ -9,17 +9,17 @@
           <% if !user_signed_in?%>
             <li class="text-muted"><%= link_to "Login", new_user_session_path, class: "text-muted" %></li>
             <li class="text-muted"><%= link_to "Sign up", new_user_registration_path, class: "text-muted" %></li>
+            <li class="text-muted"><span class="text-muted">FAQ</span></li>
+            <li class="text-muted"><span class="text-muted">About Dueth</span></li>
             <hr class="menu-slicer">
+          <% else %>
+            <li class="text-muted"><%= link_to "My Profile", profile_path, class: "text-muted"%></li>
+            <li class="text-muted"><%= link_to "My Favorite Instruments", favorite_list_instruments_path, class: "text-muted"%></li>
+            <li class="text-muted"><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "text-muted" %></li>
+            <hr class="menu-slicer">
+            <li class="text-muted"><span class="text-muted">FAQ</span></li>
+            <li class="text-muted"><span class="text-muted">About Dueth</span></li>
           <% end %>
-          <li class="text-muted"><%= link_to "Offer your instrument", profile_path, class: "text-muted"%></li>
-          <li class="text-muted"><%= link_to "My Favourite", favorite_list_instruments_path, class: "text-muted"%></li>
-          <li class="text-muted"><span class="text-muted">Help</span></li>
-          <li class="text-muted"><span class="text-muted">About</span></li>
-          <hr class="menu-slicer">
-          <li class="text-muted"><span class="text-muted">Messages</span></li>
-          <li class="text-muted"><%= link_to "Your practise", profile_path, class: "text-muted"%></li>
-          <li class="text-muted"><%= link_to "Account", profile_path, class: "text-muted"%></li>
-          <li class="text-muted"><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "text-muted" %></li>
         </div>
       </div>
       <nav class="navbar navbar-light bg-content">

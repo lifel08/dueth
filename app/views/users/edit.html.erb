@@ -9,6 +9,8 @@
       <% end %>
     </ul>
   <% end %>
+  <p><%= link_to 'Change password', edit_password_url(@user, reset_password_token: @token), class: "button-secondary" %></p>
+  <br>
   <%= simple_form_for @user do |f| %>
     <%= f.input :first_name, label: "First Name" %>
     <%= f.input :last_name, label: "Last Name", input_html: { maxlength: 70 } %>
@@ -17,9 +19,12 @@
     <%= f.input :language, label: "Language" %>
     <%= f.input :description, as: :text %>
     <%= f.input :photo, as: :file, label: "Change your photo" %>
-    <%= f.button :submit, label: "Update your Profile", class: "button-primary button-form" %>
+    <%= f.button :submit, label: "Update Profile", class: "button-primary" %>
   <% end %>
+  <br>
+  <h3>Cancel my account</h3>
+  <p>Unhappy? <%= link_to "Cancel my account", registration_path(@current_user), data: { confirm: "Are you sure?" }, method: :delete %></p>
 </div>
-<%= content_for :footer_script do %>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<% end %>
+<%#= content_for :footer_script do %>
+  <!--   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<%# end %> -->

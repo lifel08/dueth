@@ -26,10 +26,10 @@
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%= yield :footer_script if content_for?(:footer_script) %>
+    <!-- Footer -->
+    <footer>
+      <%= render 'shared/footer-desktop'  %>
+    </footer>
+    <%= render 'shared/footer-mobile'  %>
   </body>
 </html >
-<!-- Footer -->
-<footer>
-  <%= render 'shared/footer-desktop'  %>
-</footer>
-<%= render 'shared/footer-mobile'  %>
