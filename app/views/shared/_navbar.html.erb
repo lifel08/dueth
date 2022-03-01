@@ -9,38 +9,39 @@
           <% if !user_signed_in?%>
             <li class="text-muted"><%= link_to "Login", new_user_session_path, class: "text-muted" %></li>
             <li class="text-muted"><%= link_to "Sign up", new_user_registration_path, class: "text-muted" %></li>
-            <li class="text-muted"><span class="text-muted">FAQ</span></li>
-            <li class="text-muted"><span class="text-muted">About Dueth</span></li>
+            <li class="text-muted"><%= link_to "FAQ", faq_path, class: "text-muted" %></li>
+            <li class="text-muted"><%= link_to "About", about_path, class: "text-muted" %></li>
             <hr class="menu-slicer">
           <% else %>
             <li class="text-muted"><%= link_to "My Profile", profile_path, class: "text-muted"%></li>
             <li class="text-muted"><%= link_to "My Favorite Instruments", favorite_list_instruments_path, class: "text-muted"%></li>
             <li class="text-muted"><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "text-muted" %></li>
             <hr class="menu-slicer">
-            <li class="text-muted"><span class="text-muted">FAQ</span></li>
-            <li class="text-muted"><span class="text-muted">About Dueth</span></li>
-          <% end %>
-        </div>
+            <li class="text-muted"><%= link_to "FAQ", faq_path, class: "text-muted" %></li>
+          </li>
+          <li class="text-muted"><%= link_to "About", about_path, class: "text-muted" %></li>
+        <% end %>
       </div>
-      <nav class="navbar navbar-light bg-content">
-        <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </nav>
     </div>
+    <nav class="navbar navbar-light bg-content">
+      <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
   </div>
-  <!-- logo & profile -->
-  <div class="navigation-elements">
-    <div class="logo-container">
-      <%= link_to image_tag('logo.png', height: '75', width: '75', radius: '8'), {action: 'home', controller: '/pages'},:class => "logo" %>
-    </div>
-    <div>
-      <% if !user_signed_in? %>
-        <%= render 'components/avatar-icon'  %>
-      <% else %>
-        <%= render 'components/avatar' %>
-        <%= link_to profile_path %>
-      <% end %>
-    </div>
+</div>
+<!-- logo & profile -->
+<div class="navigation-elements">
+  <div class="logo-container">
+    <%= link_to image_tag('logo.png', height: '75', width: '75', radius: '8'), {action: 'home', controller: '/pages'},:class => "logo" %>
   </div>
+  <div>
+    <% if !user_signed_in? %>
+      <%= render 'components/avatar-icon'  %>
+    <% else %>
+      <%= render 'components/avatar' %>
+      <%= link_to profile_path %>
+    <% end %>
+  </div>
+</div>
 </div>
