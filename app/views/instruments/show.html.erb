@@ -1,8 +1,8 @@
 <!-- Head Section -->
 <% content_for :head do %>
-  <title> Find your music instrument to practise close by | Dueth.com </title>
-  <meta name="robots" content="index, follow"/>
-  <meta name="description" content="Looking for an easy way to get access to an instrument to practise? Search with Dueth.com for instruments close by and practise wherever you are. Find your next practise instrument now!"/>
+  <title> <%= @instrument.title %> in <%= @instrument.city %> | Dueth.com </title>
+  <meta name="description" content="<%= @instrument.user.first_name %> is offering a <%= @instrument.title %> in <%= @instrument.city %>. "/>
+  <meta name="robots" content="noindex, follow"/>
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet'/>
   <style type="text/css">

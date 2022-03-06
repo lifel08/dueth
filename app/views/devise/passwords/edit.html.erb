@@ -1,3 +1,8 @@
+<% content_for :head do %>
+  <title>Change your password | Dueth.com</title>
+  <meta name="description" content="Here you can change your password."/>
+  <meta name="robots" content="noindex, nofollow" />
+<% end %>
 <div class="container-login">
   <h1>Change your password</h1>
   <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>

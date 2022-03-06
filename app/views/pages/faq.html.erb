@@ -1,13 +1,18 @@
 <!-- Head Section -->
 <% content_for :head do %>
   <title> FAQ | Dueth.com </title>
-  <meta name="robots" content="index, follow" />
   <meta name="description" content="Frequently asked questions regarding the instrument rental through Dueth.com. How long can you rent an instrument? How can you offer your instrument... and many more questions."/>
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.dueth.com/faq"/>
 <% end %>
 <div class="container">
   <h1>FAQ's</h1>
+  <h2>What is Dueth.com?</h2>
+  <p class="content-links">Find out more about Dueth.com on our <%= link_to("About Us", about_path) %> Page</p>
   <h2>Do I need to register for Dueth.com?</h2>
-  <p>In order to book an instrument or if you want to offer an instrument, you will need to create your own profile on Dueth.com</p>
+  <p class="content-links">In order to book an instrument or if you want to offer an instrument, you will need to
+    <%= link_to("create your own profile", new_user_registration_path) %>
+    on Dueth.com</p>
   <h2>How can I rent an Instrument?</h2>
   <ul>
     <li>1. Search for an instrument</li>
