@@ -1,6 +1,5 @@
 .container {
   margin-bottom:40px;
-  height:100vh;
     @media screen and (max-width: 1527px) {
     height:100vh;
     width: 100%;
@@ -98,10 +97,7 @@
   list-style: none;
   }
 }
-th {
-  padding: 15px;
-  font-size: 36px;
-}
+
 .no-favorites {
   margin-left:5%;
 }

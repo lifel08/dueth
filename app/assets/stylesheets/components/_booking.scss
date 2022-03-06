@@ -163,21 +163,22 @@
     justify-content: space-around;
   }
 }
-
-
-
 table, th, td {
    border:1px solid black;
-   margin-bottom:15px;
 }
-
 th {
   background-color:#94906F;
+  padding: 15px;
+  font-size: 28px;
 }
 
 table {
 width:80%;
 margin:30px;
+@media screen and (max-width: 1527px) {
+  width:60%;
+  margin-left:0;
+}
 }
 
 // instrument_bookings_table

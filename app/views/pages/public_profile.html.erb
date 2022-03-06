@@ -1,5 +1,6 @@
 <% content_for :head do %>
-  <title>Public User Profile of Dueth| Dueth.com</title>
+  <title>Profile of <%= @user.first_name %> | Dueth.com</title>
+  <meta name="description" content="Find out more about <%= @user.first_name %>'s instruments."/>
   <meta name="robots" content="noindex, follow" />
 <% end %>
 <!-- just a margin if the user is not logged in -->
