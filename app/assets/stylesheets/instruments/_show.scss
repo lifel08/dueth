@@ -1,10 +1,3 @@
-.container {
-  margin-bottom:40px;
-    @media screen and (max-width: 1527px) {
-    width: 100%;
-    margin-bottom:60px;
-  }
-}
 .instrument-short-info {
   display: flex;
   width: 800px;
@@ -13,6 +6,9 @@
     flex-direction: row;
     width:100%;
   }
+}
+.inst-main{
+  margin-top: 100px;
 }
 .instrument-short-info-reviews {
   padding-left: 25px;

@@ -66,7 +66,6 @@ class InstrumentsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @instrument = current_user.instruments.new(instrument_params)
 
     if @instrument.save
@@ -77,11 +76,16 @@ class InstrumentsController < ApplicationController
   end
 
   def update
-    @instrument.update(instrument_params)
+    if @instrument.update(instrument_params)
+    redirect_to profile_path
+    else
     render :edit
+      end
   end
 
   def destroy
+    @booking = @instrument.bookings
+    BookingMailer.decline_booking(@booking).deliver_now if @booking.present?
     @instrument.destroy
     redirect_to profile_path
   end

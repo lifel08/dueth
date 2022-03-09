@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_19_152054) do
+ActiveRecord::Schema.define(version: 2022_02_15_133444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,9 @@ ActiveRecord::Schema.define(version: 2022_01_19_152054) do
     t.bigint "receiver_id"
     t.bigint "provider_id"
     t.bigint "disponibility_id"
+    t.bigint "instrument_disponbility_id"
     t.index ["disponibility_id"], name: "index_bookings_on_disponibility_id"
+    t.index ["instrument_disponbility_id"], name: "index_bookings_on_instrument_disponbility_id"
     t.index ["instrument_id"], name: "index_bookings_on_instrument_id"
     t.index ["provider_id"], name: "index_bookings_on_provider_id"
     t.index ["receiver_id"], name: "index_bookings_on_receiver_id"
@@ -91,6 +93,19 @@ ActiveRecord::Schema.define(version: 2022_01_19_152054) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "icon"
+  end
+
+  create_table "instrument_disponbilities", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "instrument_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "status"
+    t.boolean "availability"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["instrument_id"], name: "index_instrument_disponbilities_on_instrument_id"
+    t.index ["user_id"], name: "index_instrument_disponbilities_on_user_id"
   end
 
   create_table "instrument_features", force: :cascade do |t|
@@ -139,8 +154,7 @@ ActiveRecord::Schema.define(version: 2022_01_19_152054) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "instrument_id", null: false
-    t.bigint "instrument"
+    t.bigint "instrument_id"
     t.index ["instrument_id"], name: "index_reviews_on_instrument_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -170,7 +184,7 @@ ActiveRecord::Schema.define(version: 2022_01_19_152054) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "disponibilities"
+  add_foreign_key "bookings", "instrument_disponbilities"
   add_foreign_key "instrument_features", "instruments"
   add_foreign_key "instruments", "users"
-  add_foreign_key "reviews", "instruments"
 end

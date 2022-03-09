@@ -1,4 +1,4 @@
-class InstrumentBookingsController < ApplicationController
+ class InstrumentBookingsController < ApplicationController
 
   def index
     add_breadcrumb "Instrument Booking", :instrument_bookings_path
@@ -12,12 +12,15 @@ class InstrumentBookingsController < ApplicationController
     @booking.user = current_user
     @booking.receiver = current_user
     @booking.provider = @booking.instrument.user
-    @booking.disponibility_id = params[:instrument][:disponibility_id]
+    @booking.instrument_disponbility_id = params[:instrument][:instrument_disponbility_id]
+    @instrument_disponibility = InstrumentDisponbility.find_by(id: @booking.instrument_disponbility_id)
+    @booking.from = @instrument_disponibility.start_date
+    @booking.to = @instrument_disponibility.end_date
     @booking.status = 0
     if @booking.save
       redirect_to instrument_path(@booking.instrument), notice: "Pending approval of Instrument Owner #{@booking.instrument.user.first_name}"
     else
-      redirect_to instrument_path(instrument), status: :unprocessable_entity, notice: @booking.errors.full_messages.join(" , ")
+      redirect_to instrument_path(@booking.instrument), status: :unprocessable_entity, notice: @booking.errors.full_messages.join(" , ")
     end
   end
 
@@ -25,9 +28,9 @@ class InstrumentBookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.destroy
     if current_user == @booking.provider
-      redirect_to instrument_path, notice: "You declined #{@booking.receiver} request"
+      redirect_to instrument_instrument_bookings_path, notice: "You declined #{@booking.receiver} request"
     else
-      redirect_to instrument_path(@booking.instrument), notice: "Your booking for #{@booking.instrument.title} is CANCELLED"
+      redirect_to instrument_instrument_bookings_path, notice: "Your booking for #{@booking.instrument.title} is CANCELLED"
     end
   end
 
@@ -45,7 +48,7 @@ class InstrumentBookingsController < ApplicationController
 
   def decline
     @booking = Booking.find(params[:id])
-    @booking.update(status: 3)
+    @booking.update(status: 2)
     redirect_to instrument_path(@booking.instrument)
   end
 

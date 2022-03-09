@@ -176,8 +176,8 @@ th {
 }
 
 table {
-width:80%;
-margin:30px;
+  width: 80%;
+  margin: 0 0 10rem 2rem;
 }
 
 // instrument_bookings_table
@@ -185,4 +185,12 @@ margin:30px;
   padding: 15px;
   display:flex;
   justify-content:space-around;
+}
+.body_main{
+  margin: 0 0 5rem 0;
+}
+.c-checkbox{
+  width: 40px;
+  height: 40px;
+  background-color: darkred;
 }
