@@ -35,8 +35,8 @@
 #  index_instruments_on_street_name             (street_name)
 #  index_instruments_on_user_id                 (user_id)
 #
-# Foreign Keys
-#
+# Foreign #ss
+    @display_addres
 #  fk_rails_...  (user_id => users.id)
 #
 class Instrument < ApplicationRecord
@@ -47,6 +47,7 @@ class Instrument < ApplicationRecord
   has_many :bookings, inverse_of: :instrument
   has_many :disponibilities, inverse_of: :instrument
   has_many :reviews, dependent: :destroy
+  has_many :instrument_disponbilities
   has_many :instrument_features, dependent: :destroy
   has_many :features, through: :instrument_features
   belongs_to :cancellation_policy

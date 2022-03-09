@@ -3,60 +3,92 @@
   <meta name="description" content="Here you can see who booked your <%= @instrument.title %>."/>
   <meta name="robots" content="noindex,nofollow"/>
 <% end %>
-<div class="container">
+<div>
   <h1>Instrument Bookings</h1>
-  <table>
-    <tr>
-      <th>Upcoming Bookings</th>
-      <th>Booking Status</th>
-    </tr>
+</div>
+<table>
+  <thead>
+  <tr>
+    <th>Upcoming Bookings</th>
+    <th>Booking Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @instrument.bookings.upcoming.count.zero? %>
     <tr>
       <td>
-        <% if @instrument.bookings.upcoming.count.zero? %>
-          <div class="status">
-            😕 No upcoming bookings yet for your <%= @instrument.title %>.
-          </div>
-        <% else %>
-          <% @instrument.bookings.upcoming.each do |booking| %>
-            <div class=booking-profile>
-              <%= link_to public_profile_path(booking.receiver) do %>
-                <%= cl_image_tag booking.instrument.photo.first&.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
-              <% end %>
-              <div class=booking-info>
-                <strong><%= booking.receiver.first_name %> for your <%= booking.instrument.title %></strong>
-                <p><%= booking.booking_day %></p>
-                <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %> at <%= booking.provider.first_name %>'s place.</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <% if booking.accepted? %>
-              <div class="status">
-                <div class="booking-confirmed">
-                  Booking confirmed!
-                  <%= link_to 'Decline Booking', decline_booking_path(booking), { method: :patch, class:"button-edit-profile"} %>
-                </div>
-              <% elsif booking.status.zero? %>
-                <div class="booking-pending">
-                  <p> Booking is pending</p>
-                  <%= link_to 'Accept Booking', accept_booking_path(booking), { method: :patch, class:"button-secondary"} %>
-                  <%= link_to 'Decline Booking', decline_booking_path(booking), { method: :patch, class:"button-edit-profile"} %>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
+        <div class="status">
+          😕 No upcoming bookings yet for your <%= @instrument.title %>
+        </div>
       </td>
     </tr>
-    <br>
-    <tr>
-      <th>Past Bookings</th>
-      <th> Your instrument Reviews</th>
+  <% else %>
+    <% @instrument.bookings.upcoming.each do |booking| %>
+      <tr>
+        <td>
+          <div class="booking-profile">
+            <%= link_to public_profile_path(booking.receiver) do %>
+              <%= cl_image_tag booking.instrument.photo.first&.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+            <% end %>
+            <div class="booking-info">
+              <strong><%= booking.receiver.first_name %></strong>
+              <p><b>From:</b> <%= booking.booking_start_from %><br><b> to: </b><%= booking.booking_end_to %>
+                at <%= booking.provider.first_name %>'s place.</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="status">
+            <% if booking.accepted? %>
+              <div class="booking-confirmed">
+                <p>Booking confirmed!</p>
+                <%= link_to 'Decline Booking', decline_instrument_instrument_booking_path(@instrument, booking), {method: :patch, class: "button-edit-profile w-50"} %>
+              </div>
+            <% elsif booking.status.zero? %>
+              <div class="booking-pending">
+                <p>Booking is pending</p>
+                <%= link_to 'Accept Booking', accept_instrument_instrument_booking_path(@instrument, booking), {method: :patch, class: "button-secondary my-2 w-100"} %>
+                <%= link_to 'Decline Booking', decline_instrument_instrument_booking_path(@instrument, booking), {method: :patch, class: "button-edit-profile w-100"} %>
+              </div>
+              <% else booking.status == 2  %>
+              <div class="booking-declined">
+                <p>Booking is declined</p>
+              </div>
+            <% end %>
+          </div>
+        </td>
+    <% end %>
     </tr>
-    <tr>
-      <td>
-        <% if @instrument.bookings.past.count.zero? %>
-          <div class=booking-profile>You don't have any past bookings.</div>
+  <% end %>
+  </tbody>
+  <tr>
+    <th>Past Bookings</th>
+    <th> Your instrument Reviews</th>
+  </tr>
+  <tr>
+    <td>
+      <% if @instrument.bookings.past.count.zero? %>
+        <div class=booking-profile>You don't have any past bookings.</div>
+      <% else %>
+        <% @instrument.bookings.past.each do |booking| %>
+          <div class="booking-profile">
+            <%= link_to public_profile_path(booking.receiver) do %>
+              <%= cl_image_tag booking.instrument.photo&.first&.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+            <% end %>
+            <div class="booking-info">
+              <strong><%= booking.receiver.first_name %></strong>
+              <p><%= booking.booking_day %><br>
+                <%= booking.booking_hour_from %><%= booking.booking_hour_to %>  </p>
+              <%= link_to 'Delete Past Booking', instrument_instrument_booking_path(@instrument, booking), {method: :delete, class: "button-edit-profile"} %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </td>
+    <td>
+      <div class="status">
+        <% if @instrument.reviews.count.positive? %>
+          <%= render "reviews/review", review: @instrument.reviews.first %>
         <% else %>
           <% @instrument.bookings.past.each do |booking| %>
             <div class="booking-profile">

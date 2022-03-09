@@ -40,6 +40,11 @@ document.addEventListener('turbolinks:load', () => {
        initFlatpickr();
  })
 
+$('.datepicker').flatpickr({
+    minDate: new Date(),
+    enableTime: true
+});
+
 $('#navbarToggleExternalContent').on('hide.bs.collapse', function () {
     $('nav.navbar').addClass('navbar-light').removeClass('navbar-dark').removeClass('bg-dark')
     $('.navbar-toggler').removeClass('bg-dark').addClass('bg-white')

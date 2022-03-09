@@ -1,9 +1,9 @@
 // own-profile-page
 .profile-section {
   margin-top: 50px;
-  display:flex;
+  display: flex;
   flex-direction: row;
-    @media screen and (max-width: 1527px) {
+  @media screen and (max-width: 1527px) {
       display:flex;
       flex-direction:column;
       align-items: center;
@@ -12,23 +12,26 @@
       width:100vw;
    }
 }
+
 .profile-picture {
   border-radius: 5px;
-   @media screen and (max-width: 1527px) {
-    margin:20px;
-   }
+  @media screen and (max-width: 1527px) {
+    margin: 20px;
+  }
 }
+
 .profile-header {
   display: flex;
   flex-direction: column;
-  width:100%;
-  margin-left:20px;
-    @media screen and (max-width: 1527px) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  width: 100%;
+  margin-left: 20px;
+  @media screen and (max-width: 1527px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
+
 .profile-header h1 {
   margin-top: -25px;
 }
@@ -46,7 +49,7 @@
 .profile-attributes {
   list-style: none;
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: flex-start;
   margin-left:20px;
   width:60%;
@@ -58,133 +61,134 @@
       width:100%;
    }
 }
+
 .instrument-short-info-description {
   width:90%;
   @media screen and (max-width: 1527px) {
-    margin-bottom:60%;
-    padding:15px;
+    margin-bottom: 80%;
   }
 }
+
 .profile-description {
   width:70%;
     @media screen and (max-width: 1527px) {
     padding: 15px;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: center;
     text-align: center;
     width:100%;
   }
 }
+
 // profile-menu cards under profile description
 .profile-menu-container {
   display: flex;
   flex-direction: row;
   margin-top: 5%;
   margin-bottom: 10%;
-  width:70%;
+  width: 70%;
   @media screen and (max-width: 1527px) {
-    width:100%;
+    width: 100%;
     flex-wrap: wrap;
   }
 }
+
 .profile-menu {
-    -webkit-box-pack: justify !important;
-    -webkit-box-direction: normal !important;
-    -webkit-box-orient: vertical !important;
-    width: 20% !important;
-    height: 80px !important;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    margin-left: 5px;
-    padding: 16px !important;
-    text-decoration: none !important;
-    @media screen and (max-width: 1527px) {
-      width:100% !important;
-      text-align: center !important;
+  -webkit-box-pack: justify !important;
+  -webkit-box-direction: normal !important;
+  -webkit-box-orient: vertical !important;
+  width: 20% !important;
+  height: 80px !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin-left: 5px;
+  padding: 16px !important;
+  text-decoration: none !important;
+  @media screen and (max-width: 1527px) {
+    width: 100% !important;
+    text-align: center !important;
     padding-top: 30px !important;
-    margin:2px;
-      }
+    margin: 2px;
+  }
 }
+
 .profile-menu:hover {
- background-color:#EBEBEB;
+  background-color: #EBEBEB;
 }
+
 // instrument-cards displaying own instruments
 .instrument-section {
-  margin: 5px ;
-  margin-top:5%;
-width: 60%;
-   @media screen and (max-width: 1527px) {
-    margin: 5px ;
-    margin-top:30px;
-    margin-left:15px;
-   }
+  margin: 5px;
+  margin-top: 5%;
+  width: 60%;
+  @media screen and (max-width: 1527px) {
+    margin: 5px;
+    margin-top: 30px;
+    margin-left: 15px;
+  }
 }
+
 // edit instrument menu
 .edit-instrument {
   display: flex;
-  flex-direction:column;
-  flex-wrap:wrap;
+  flex-direction: column;
+  flex-wrap: wrap;
   width: 45%;
-  height:220px;
+  height: 220px;
   @media screen and (max-width: 1527px) {
     display: flex;
     flex-direction: column;
     width: 100%;
   }
 }
+
 .section-instrument-bookings {
-    -webkit-box-pack: justify !important;
-    -webkit-box-direction: normal !important;
-    -webkit-box-orient: vertical !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    margin-left: 10%;
-    padding: 16px !important;
-    text-decoration: none !important;
-    text-align:center;
-    @media screen and (max-width: 1527px) {
-      width: 55% !important;
-    }
+  color: #1b1b1b;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 10px;
+  text-align: center;
 }
+
 .section-instrument-bookings:hover {
-      background-color:#EBEBEB;
+  background-color: #EBEBEB;
+  color: #1b1b1b;
 
 }
+
 .section-instrument-bookings a {
-      color: black !important;
+  color: black !important;
 }
 
 // profile description instrument-show
 .profile-short-description-header {
   display: flex;
   flex-direction: column;
-  width:60%;
-    @media screen and (max-width: 1527px) {
-      display: flex;
-      flex-direction: column;
-      margin: 0;
-      align-content: stretch;
-    }
+  width: 60%;
+  @media screen and (max-width: 1527px) {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    align-content: stretch;
+  }
 }
+
 .profile-short-description {
-  margin-top:30px;
-  display:flex;
-  flex-direction:row;
-  width:80%;
-    @media screen and (max-width: 1527px) {
-      display:flex;
-      flex-direction:column;
-      justify-content: space-around;
-      width:100vw;
-      margin: 10px;
-   }
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  @media screen and (max-width: 1527px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100vw;
+    margin: 10px;
+  }
 }
+
 //
 //  to check if still in use
-
 
 .description-empty {
   font-size: 20px;
@@ -196,60 +200,58 @@ width: 60%;
   @media screen and (max-width: 1527px) {
     display: flex;
     justify-content: center;
-    width:80%;
+    width: 80%;
   }
 }
+
 //  seperator
 hr {
-  border:none;
-  border-top:1px dotted #2F2F2F;
-  color:#fff;
-  background-color:#fff;
-  height:1px;
-  width:80%;
+  border: none;
+  border-top: 1px dotted #2F2F2F;
+  color: #fff;
+  background-color: #fff;
+  height: 1px;
+  width: 80%;
   margin: 20px 50px;
 }
 
 .profile-instrument-mobile {
-  display:none;
+  display: none;
   @media screen and (max-width: 1527px) {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    justify-content:center;
-    margin-left:50px;
-    margin-top:20px;
+    justify-content: center;
+    margin-left: 50px;
+    margin-top: 20px;
   }
 }
 
 .profile-instrument-desktop {
-  display:flex;
-  flex-direction:column;
-  margin-top:2%;
-    @media screen and (max-width: 1527px) {
-      display:none;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+  @media screen and (max-width: 1527px) {
+    display: none;
   }
 }
-
-
 
 .instrument-section-public {
   display: flex;
   flex-direction: row;
-    @media screen and (max-width: 1527px) {
-      display:flex;
-      flex-direction:column;
-      margin-left:30px;
-      width: 85%;
-    }
+  @media screen and (max-width: 1527px) {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    width: 85%;
+  }
 }
 
 .h2-instrument-section-public {
-    margin: 30px 50px;
+  margin: 30px 50px;
 }
 
-
 .instruments {
-  display:flex;
+  display: flex;
   border-radius: 5px;
   height: 350px;
   margin: 30px 50px 70px;
@@ -261,61 +263,52 @@ hr {
     margin-top: 20px;
   }
 }
+
 .section {
- margin-left:10%;
- width:100%;
+  margin-left: 10%;
+  width: 100%;
 }
 
 .add-new-instrument {
   display: flex;
   justify-content: left;
-  width:100vw;
+  width: 100vw;
   height: 60px;
   margin-left: 50px;
-  margin-bottom:10px;
+  margin-bottom: 10px;
   padding: 10px;
-    @media screen and (max-width: 1527px) {
-      display: flex;
-      justify-content: left;
-      width:100vw;
-      height: 60px;
-      margin-left: 50px;
-      padding: 10px;
-      margin-left: 50px;
-      margin-bottom:0px;
-    }
-}
-// own-booking-section
-
-.booking-confirmed {
-  display:flex;
-  flex-direction: column;
-  color: #3293a4;
-  font-weight: bold;
-  font-size:24px;
-  width:600px;
   @media screen and (max-width: 1527px) {
-   font-size:17px;
-   width:auto;
-   padding:5px;
+    display: flex;
+    justify-content: left;
+    width: 100vw;
+    height: 60px;
+    margin-left: 50px;
+    padding: 10px;
+    margin-left: 50px;
+    margin-bottom: 0px;
   }
 }
 
-.booking-pending {
- color:#761D1B;
- font-size:24px;
- width:30%;
- margin: auto;
- display: flex;
- flex-direction: column;
- text-align: center;
- padding:30px;
- @media screen and (max-width: 1527px) {
-   font-size:17px;
-   width:auto;
-   padding:5px;
- }
+// own-booking-section
+
+.booking-confirmed {
+  display: block;
+  color: #3293a4;
+  font-size: 24px;
+  font-style: italic;
 }
+
+.booking-pending {
+  color: #761D1B;
+  font-style: italic;
+  font-size: 24px;
+  width: 100%;
+  margin: auto;
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+}
+
 // review-section CSS
 
 .review-section {
@@ -324,23 +317,24 @@ hr {
   @media screen and (max-width: 1527px) {
     width: 100%;
     margin-left: 0;
-    padding:0;
+    padding: 0;
   }
 }
 
 .review-section h2 {
-    @media screen and (max-width: 1527px) {
-      padding-left:0px;
-    }
+  @media screen and (max-width: 1527px) {
+    padding-left: 0px;
+  }
 }
+
 .reviews {
-   display: flex;
-   margin-left: 15px;
-   margin-top: 15px;
+  display: flex;
+  margin-left: 15px;
+  margin-top: 15px;
 }
 
 .review-attributes {
-   list-style: none;
+  list-style: none;
 }
 
 .review-content {

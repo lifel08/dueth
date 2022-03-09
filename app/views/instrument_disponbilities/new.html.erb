@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Instrument Disponbilities</h2><br>
+  <%= simple_form_for [@instrument, @disponbility], multipart: true do |f| %>
+    <%= f.label "Booking Type:" %>
+    <%= f.select :status, InstrumentDisponbility.statuses.keys.map { |w| [w] }, { :include_blank => 'Booking Type' }, { class: 'form-control m-b col-md-6' } %><br>
+    <%= f.input :start_date, label: "Starts at:", as: :string, input_html: { class: "datepicker col-md-6" } %>
+    <%= f.input :end_date, label: "Ends at:", as: :string, input_html: { class: "datepicker col-md-6" } %>
+    <% if current_user.instruments.where('created_at >= ?', 1.week.ago) %>
+      <div class="checkbox-color"></div>
+    <span class="labelText">Availability:</span><%= f.check_box :availability,class: 'form-control c-checkbox', checked: "checked" %>
+      <% else %>
+      <span class="labelText">Availability:</span><%= f.check_box :availability,class: 'form-control c-checkbox'%>
+      <% end %>
+      <%= f.submit "Save Disponbility", class:"button-primary body_main mt-3" %>
+  <% end %>
+</div>

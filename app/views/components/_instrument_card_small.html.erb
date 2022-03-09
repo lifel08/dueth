@@ -2,15 +2,15 @@
   <%= link_to instrument_path(instrument) do %>
     <div class="col">
       <div class="image-container-small">
-        <%= cl_image_tag instrument.photo.first&.key, height: 250, width: 250, crop: :fill, loading:"lazy", :class=>"instrument-card-image"%>
+        <%= cl_image_tag instrument.photo.first&.key, height: 250, width: 250, crop: :fill, loading: "lazy", :class => "instrument-card-image" %>
         <div class="header-image-small">
           <% if user_signed_in? %>
-            <% if check_favorite(instrument).present?  %>
-              <%= link_to favorite_instrument_path(instrument, type: "unfavourite"), remote: true,method: :put do %>
-                <i class="fas fa-heart icons-main" ></i>
+            <% if check_favorite(instrument).present? %>
+              <%= link_to favorite_instrument_path(instrument, type: "unfavourite"), remote: true, method: :put do %>
+                <i class="fas fa-heart icons-main"></i>
               <% end %>
             <% else %>
-              <%= link_to  favorite_instrument_path(instrument, type: "favourite"),remote: true, method: :put  do %>
+              <%= link_to favorite_instrument_path(instrument, type: "favourite"), remote: true, method: :put do %>
                 <i class="far fa-heart icons-main"></i>
               <% end %>
             <% end %>
@@ -30,17 +30,15 @@
         <% end %>
       </div>
       <% if current_page?('/profile') %>
-        <div class="edit-instrument">
-          <%= link_to 'Edit Instrument', edit_instrument_path(instrument), class: 'edit-instrument-button' %>
+        <div class="edit-instrument instrument-btn">
+          <%= link_to 'Edit Instrument', edit_instrument_path(instrument), class: 'edit-instrument-button my-1' %>
           <% if instrument.pause %>
-            <%= link_to 'Un-Pause Instrument', activate_instrument_path(instrument), method: :put, class: "pause-instrument-button" %>
+            <%= link_to 'Un-Pause Instrument', activate_instrument_path(instrument), method: :put, class: "pause-instrument-button my-1" %>
           <% else %>
-            <%= link_to 'Pause Instrument', pause_instrument_path(instrument), method: :put, class: "pause-instrument-button" %>
+            <%= link_to 'Pause Instrument', pause_instrument_path(instrument), method: :put, class: "pause-instrument-button my-1" %>
           <% end %>
-          <%= link_to 'Delete', instrument_path(instrument), method: :delete, class: "delete-instrument-button", data: { confirm: 'This will delete your instrument. Are you sure?', disable_with: 'Deleting...' } %>
-          <div class="section-instrument-bookings">
-            <%= link_to 'Manage Bookings', instrument_instrument_bookings_path(instrument) %>
-          </div>
+          <%= link_to 'Manage Bookings', instrument_instrument_bookings_path(instrument), class: "section-instrument-bookings my-1" %>
+          <%= link_to 'Delete', instrument_path(instrument), method: :delete, class: "delete-instrument-button my-1", data: {confirm: 'This will delete your instrument. Are you sure?', disable_with: 'Deleting...'} %>
         </div>
       <% end %>
     </div>

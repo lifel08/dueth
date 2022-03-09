@@ -20,7 +20,7 @@
   text-align: center;
   background-color: #761D1B;
   border-color: #761D1B;
-  padding: 15px;
+  padding: 0.5rem;
   width: 100%;
 }
 .button-edit-profile:hover {
@@ -32,12 +32,14 @@
   color: #2F2F2F;
   background-color: white;
   border-color:  #94906F;
-  border-width: medium;
-  padding: 5px 15px;
-  height: 40px;
+  padding: 0.5rem;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   text-align:center;
-  margin-bottom:5px;
+}
+.button-secondary:hover {
+  background-color:#f0f0f0;
+  box-shadow: 0 0 0px rgba(0,0,0,0.2);
+
 }
 
 .button-secondary:hover{
@@ -51,7 +53,6 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   padding: 10px;
   text-align: center;
-  margin-top:5%;
 }
 .edit-instrument-button:hover {
  background-color:#EBEBEB;
@@ -65,23 +66,25 @@
   padding: 10px;
   text-align: center;
 }
+.instrument-btn{
+  margin-bottom: 7rem;
+}
 .pause-instrument-button:hover {
  background-color:#AC2721;
  color: white;
  box-shadow: 0 0 0px rgba(0,0,0,0.2);
 }
 .delete-instrument-button{
-  color:#761D1B;
+  color:#fff;
+  background-color: #761D1B;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
   padding: 10px;
   text-align: center;
 }
 .delete-instrument-button:hover{
- color:#AC2721;
-}
-.button-form {
-  margin: 15px;
-  width: 40%;
-  height: 30px;
+  background-color:#AC2721;
+  color: white;
+  box-shadow: 0 0 0px rgba(0,0,0,0.2);
 }
 .edit-review-button{
   color: white;

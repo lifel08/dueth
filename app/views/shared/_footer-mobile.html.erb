@@ -1,12 +1,16 @@
 <% if controller_name == 'instruments' && action_name == "show" %>
-  <div class="footer-main">
-    <div class="choose-your-practise-time">
-      <%= render './components/choose_practise_time' %>
+  <div class="footer-main-top">
+    <div class="footer-main">
+      <div class="choose-your-practise-time">
+        <%= render './components/choose_practise_time' %>
+      </div>
+      <%= render 'shared/legal_navigation_footer' %>
     </div>
-    <%= render 'shared/legal_navigation_footer' %>
   </div>
 <% else %>
-  <div class="footer-main">
-    <%= render 'shared/legal_navigation_footer' %>
+  <div class="footer-main-top">
+    <div class="footer-main">
+      <%= render 'shared/legal_navigation_footer' %>
+    </div>
   </div>
 <% end %>
