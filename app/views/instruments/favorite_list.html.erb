@@ -1,6 +1,16 @@
-<h1>Favourites Instrument</h1>
+<% content_for :head do %>
+  <title>Favorite Instrument List of <%= current_user.first_name %> | Dueth.com</title>
+  <meta name="description" content="Find here Instruments you selected as favorites."/>
+  <meta name="robots" content="noindex, nofollow" />
+<% end %>
 <div class="container">
-  <div class="row align-items-center instr-cards-row" style="height: 100vh">
-    <%= render 'components/instrument_card_small' %>
-  </div>
+  <h1>My Favorite Instruments</h1>
+  <br>
+  <% if current_user.favorites.empty? %>
+    <h2 class="no-favorites">You have no favorite instruments selected.</h2>
+  <% else %>
+    <div class="row align-items-center instr-cards-row" style="height: 100vh">
+      <%= render 'components/instrument_card_small' %>
+    </div>
+  <% end %>
 </div>

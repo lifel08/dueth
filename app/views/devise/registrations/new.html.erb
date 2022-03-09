@@ -1,7 +1,8 @@
 <% content_for :head do %>
   <title>Join Us | Dueth.com</title>
-  <meta name="robots" content="index, follow" />
   <meta name="description" content="Join Dueth.com and find your music instrument for your next musical practise!"/>
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.dueth.com/users/sign_up"/>
   <meta property="og:title" content="Join Us | Dueth.com"/>
   <meta property="og:description" content="Join Duetch.com and find your music instrument for practise"/>
   <meta property="og:site_name" content="Dueth.com">
@@ -9,7 +10,8 @@
 <% end %>
 <div class="container-login">
   <h1>Sign up</h1>
-  <p> OR <%= render "devise/shared/links" %> </p>
+  <p>or</p>
+  <%= link_to "Log in",  new_session_path(resource_name), class: 'button-primary' %><br />
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <% if resource.errors.messages.present? %>
       <ul> Please fix the following errors:
@@ -36,8 +38,7 @@
                     autofocus: true,
                     input_html: { autocomplete: "last_name"} %>
           <div class="container-button">
-            <%= render "devise/shared/links"%>
-            <button type="button" class="button-primary" onclick="sp.next()">Next</button>
+            <div type="button" class="button-primary" onclick="sp.next()">Next</div>
           </div>
         </div>
         <div class="sp_page">
@@ -110,16 +111,14 @@
                       'Southern Pashto', 'Rundi', 'Czech',
                       'Taʽizzi-Adeni Arabic', 'Uyghur', 'Sylheti'],
                     autofocus: true,
-                    input_html: { autocomplete: "language" } %>
+                    input_html: { autocomplete: "language", multiple: true } %>
           <div class="container-button">
             <button type="button" class="button-secondary" onclick="sp.prev()">Back</button>
             <button type="button" class="button-primary" onclick="sp.next()">Next</button>
           </div>
         </div>
         <div class="sp_page">
-          <div class="login-icons">
-            <%= render 'icons/photo_upload_icon'%>
-          </div>
+          <br>
           <%= f.input :photo,
                     :label => 'Upload your photo!',
                     label_html: { class:'button-secondary margin-left-5' },

@@ -1,5 +1,6 @@
 <% content_for :head do %>
-  <title>User Profile of Dueth| Dueth.com</title>
+  <title><%= current_user.first_name %>'s Profile Page | Dueth.com</title>
+  <meta name="description" content="This is your profile page. You can add and change here your personal data and instrument offering."/>
   <meta name="robots" content="noindex, nofollow" />
 <% end %>
 <!-- just a margin if the user is not logged in -->
@@ -44,6 +45,9 @@
     </div>
     <div class= "profile-menu">
       <h5><%= link_to 'My own Bookings', user_client_bookings_path(current_user) %></h5>
+    </div>
+    <div class= "profile-menu">
+      <h5><%= link_to 'My Favorite Instruments', favorite_list_instruments_path(current_user) %></h5>
     </div>
   </div>
   <!-- 1. when the user has NO instruments -->

@@ -61,7 +61,7 @@ class InstrumentsController < ApplicationController
     @instrument = Instrument.new
   end
   def favorite_list
-    add_breadcrumb "My Favourite", :favorite_list_instruments_path
+    add_breadcrumb "My Favorite Instruments", :favorite_list_instruments_path
     @instruments = current_user.favorites
   end
 

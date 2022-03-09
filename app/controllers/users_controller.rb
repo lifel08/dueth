@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   end
 
   def edit
+    add_breadcrumb "Your Profile", :profile_path
+    add_breadcrumb "Edit Profile", :edit_user_path
     @user = current_user
   end
 

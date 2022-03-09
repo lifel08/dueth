@@ -4,13 +4,13 @@
   display: flex;
   flex-direction: row;
   @media screen and (max-width: 1527px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    margin: 10px;
-    margin-left: auto;
-  }
+      display:flex;
+      flex-direction:column;
+      align-items: center;
+      text-align:center;
+      padding:15px;
+      width:100vw;
+   }
 }
 
 .profile-picture {
@@ -39,33 +39,45 @@
 .profile-header p {
   margin-left: 25px;
 }
-
+.membership{
+  margin-left:20px;
+  width:60%;
+  @media screen and (max-width: 1527px) {
+    width:100%;
+  }
+}
 .profile-attributes {
   list-style: none;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  @media screen and (max-width: 1527px) {
-    margin-left: -50px;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-  }
+  margin-left:20px;
+  width:60%;
+    @media screen and (max-width: 1527px) {
+      list-style: none;
+      margin-left:0;
+      display: flex;
+      flex-direction:row;
+      width:100%;
+   }
 }
 
 .instrument-short-info-description {
+  width:90%;
   @media screen and (max-width: 1527px) {
     margin-bottom: 80%;
   }
 }
 
 .profile-description {
-  width: 70%;
-  @media screen and (max-width: 1527px) {
+  width:70%;
+    @media screen and (max-width: 1527px) {
+    padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 70%;
+    text-align: center;
+    width:100%;
   }
 }
 

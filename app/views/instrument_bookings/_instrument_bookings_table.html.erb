@@ -1,4 +1,6 @@
 <% content_for :head do %>
+  <title>Bookings of your <%= @instrument.title %> | Dueth.com</title>
+  <meta name="description" content="Here you can see who booked your <%= @instrument.title %>."/>
   <meta name="robots" content="noindex,nofollow"/>
 <% end %>
 <div>
@@ -88,9 +90,29 @@
         <% if @instrument.reviews.count.positive? %>
           <%= render "reviews/review", review: @instrument.reviews.first %>
         <% else %>
-          <p>There are no reviews for this instrument yet.</p>
+          <% @instrument.bookings.past.each do |booking| %>
+            <div class="booking-profile">
+              <%= link_to public_profile_path(booking.receiver) do %>
+                <%= cl_image_tag booking.instrument.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+              <% end %>
+              <div class="booking-info">
+                <strong><%= booking.receiver.first_name %></strong>
+                <p><%= booking.booking_day %><br>
+                  <%= booking.booking_hour_from %><%= booking.booking_hour_to %>  </p>
+              </div>
+            </div>
+          <% end %>
         <% end %>
-      </div>
-    </td>
-  </tr>
-</table>
+      </td>
+      <td>
+        <div class="status">
+          <% if @instrument.reviews.count.positive? %>
+            <%= render "reviews/review", review: @instrument.reviews.first %>
+          <% else %>
+            <p>There are no reviews for this instrument yet.</p>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

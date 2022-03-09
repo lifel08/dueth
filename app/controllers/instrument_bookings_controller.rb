@@ -43,7 +43,7 @@
   def accept
     @booking = Booking.find(params[:id])
     @booking.update(status: 1)
-    redirect_to instrument_path(@booking.instrument), notice: "#{@booking.user.first_name} \'s booking confirmed!"
+    redirect_to instrument_instrument_bookings_path(@booking.instrument), notice: "#{@booking.user.first_name} \'s booking confirmed!"
   end
 
   def decline

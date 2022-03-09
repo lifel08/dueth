@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get 'profile', to: 'pages#profile'
   get 'public_profile/:id', to: 'pages#public_profile', as: :public_profile
+  get 'faq', to: 'pages#faq'
+  get 'about', to: 'pages#about'
+  get 'site_notice', to: 'pages#site_notice'
+  get 'data_protection', to: 'pages#data_protection'
+  get 'cookie_settings', to: 'pages#cookie_settings'
   devise_for :users
 
   resources :instruments do

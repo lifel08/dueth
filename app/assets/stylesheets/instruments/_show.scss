@@ -1,3 +1,11 @@
+.container {
+  margin-bottom:40px;
+    @media screen and (max-width: 1527px) {
+    height:100vh;
+    width: 100%;
+    margin-bottom:60px;
+  }
+}
 .instrument-short-info {
   display: flex;
   width: 800px;
@@ -93,3 +101,6 @@
   }
 }
 
+.no-favorites {
+  margin-left:5%;
+}
