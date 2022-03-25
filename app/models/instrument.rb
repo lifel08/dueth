@@ -35,8 +35,8 @@
 #  index_instruments_on_street_name             (street_name)
 #  index_instruments_on_user_id                 (user_id)
 #
-# Foreign #ss
-    @display_addres
+# Foreign Keys
+#
 #  fk_rails_...  (user_id => users.id)
 #
 class Instrument < ApplicationRecord
@@ -51,13 +51,15 @@ class Instrument < ApplicationRecord
   has_many :instrument_features, dependent: :destroy
   has_many :features, through: :instrument_features
   belongs_to :cancellation_policy
+  has_many :availabilities, dependent: :destroy
   validates :title, :subtitle, :street_name, :house_number, :postal_code, :city,
     :country, :price, presence: true
   has_many_attached :photo
   has_many :favourite_instruments # just the 'relationships'
   has_many :favorited_by, through: :favourite_instruments, source: :instrument
   accepts_nested_attributes_for :disponibilities, allow_destroy: true, reject_if: :all_blank
-
+  attr_accessor :day,:to, :from, :available
+  after_create :set_availability
   pg_search_scope :search_title_and_location,
     against: [ :title, :city ]
 
@@ -120,5 +122,12 @@ class Instrument < ApplicationRecord
       average += review.rating
     end
     return average.zero? ? average : (average / reviews.size).round
+  end
+  private
+  def set_availability
+  week_days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+  week_days.each do |day|
+    availabilities.create(day: day, to: '00:00 am', from:'23:59 pm' , available: false )
+  end
   end
 end

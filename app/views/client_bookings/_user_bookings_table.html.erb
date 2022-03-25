@@ -29,7 +29,8 @@
               <% end %>
             </div>
             <div class=booking-info>
-              <strong><%= booking.instrument.title %> in <%= booking.instrument.location %></strong>
+              <strong><%= booking.instrument.title %></strong> <br>
+              <b> <%= booking.instrument_disponbility.status%></b>
               <p><%= booking.booking_day %></p>
               <p><%= booking.booking_hour_from %><%= booking.booking_hour_to %> at <%= booking.provider.first_name %>'s
                 place.</p>
@@ -54,55 +55,6 @@
               </div>
             <% end %>
           </div>
-        </td>
-    <% end %>
-    </tr>
-  <% end %>
-  </tbody>
-
-  <thead>
-  <tr>
-    <th>Past Bookings</th>
-    <th> Reviews</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% if current_user.own_bookings.upcoming.count.zero? %>
-    <tr>
-      <td>
-        <div class=booking-profile>You don't have any past bookings.</div>
-      </td>
-    </tr>
-  <% else %>
-    <% current_user.own_bookings.past.each do |booking| %>
-      <tr>
-        <td>
-          <div class="booking-profile">
-            <div>
-              <%= link_to instrument_path(booking.instrument) do %>
-                <%= cl_image_tag booking.instrument.photo&.first&.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
-              <% end %>
-            </div>
-            <div class="booking-info">
-              <strong>Your Booking from <%= booking.provider.first_name %></strong>
-              <p><%= booking.booking_day %><br>
-                <%= booking.booking_hour_from %><%= booking.booking_hour_to %>  </p>
-            </div>
-          </div>
-        </td>
-        <td>
-          <% if booking.instrument.reviews.present? %>
-            <%= render "reviews/review", review: booking.instrument.reviews.first %>
-          <% else %>
-            <div class="d-flex justify-content-center">
-              <h4> New Review</h4>
-            </div>
-            <div class="d-flex justify-content-center">
-              <button>
-                <%= link_to "Give a Review on that instrument", new_instrument_review_path(booking.instrument) %>
-              </button>
-            </div>
-          <% end %>
         </td>
     <% end %>
     </tr>

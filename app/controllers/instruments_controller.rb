@@ -108,8 +108,17 @@ class InstrumentsController < ApplicationController
   end
 
 
+  def get_search_instrument
+    if params[:day].present?
+      @instruments = Instrument.joins(:availabilities).where("availabilities.day = ?", params[:day])
+    else
+      @instruments = Instrument.all
+    end
+    respond_to do |format|
+      format.js {render "index.js.erb"}
+    end
+  end
   private
-
   def redirect_to_search
     if (params[:title] || params[:city]).present?
       return redirect_to search_instruments_path(title: params[:title].downcase,
@@ -120,7 +129,7 @@ class InstrumentsController < ApplicationController
   end
 
   def instrument_params
-    params.require(:instrument).permit(:title, :subtitle, :description,
+    params.require(:instrument).permit(:title, :day, :subtitle, :description,
                                        :street_name, :house_number, :postal_code, :city, :country, :cancellation_policy_id,
                                        :price, :reviews,  :location, feature_ids: [],photo:[],
                                        disponibilities_attributes: [:id, :from, :to, :_destroy])

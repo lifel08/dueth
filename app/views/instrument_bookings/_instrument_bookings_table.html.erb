@@ -31,9 +31,10 @@
               <%= cl_image_tag booking.instrument.photo.first&.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
             <% end %>
             <div class="booking-info">
-              <strong><%= booking.receiver.first_name %></strong>
-              <p><b>From:</b> <%= booking.booking_start_from %><br><b> to: </b><%= booking.booking_end_to %>
-                at <%= booking.provider.first_name %>'s place.</p>
+              <strong><%= booking.receiver.first_name %></strong> <br>
+              <b> <%= booking.instrument_disponbility.status%></b>
+              <p><%= booking.booking_day %><br>
+                <%= booking.booking_hour_from %><%= booking.booking_hour_to %>  </p> at <%= booking.provider.first_name %>'s place.</p>
             </div>
           </div>
         </td>
@@ -62,57 +63,5 @@
   <% end %>
   </tbody>
   <tr>
-    <th>Past Bookings</th>
-    <th> Your instrument Reviews</th>
-  </tr>
-  <tr>
-    <td>
-      <% if @instrument.bookings.past.count.zero? %>
-        <div class=booking-profile>You don't have any past bookings.</div>
-      <% else %>
-        <% @instrument.bookings.past.each do |booking| %>
-          <div class="booking-profile">
-            <%= link_to public_profile_path(booking.receiver) do %>
-              <%= cl_image_tag booking.instrument.photo&.first&.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
-            <% end %>
-            <div class="booking-info">
-              <strong><%= booking.receiver.first_name %></strong>
-              <p><%= booking.booking_day %><br>
-                <%= booking.booking_hour_from %><%= booking.booking_hour_to %>  </p>
-              <%= link_to 'Delete Past Booking', instrument_instrument_booking_path(@instrument, booking), {method: :delete, class: "button-edit-profile"} %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </td>
-    <td>
-      <div class="status">
-        <% if @instrument.reviews.count.positive? %>
-          <%= render "reviews/review", review: @instrument.reviews.first %>
-        <% else %>
-          <% @instrument.bookings.past.each do |booking| %>
-            <div class="booking-profile">
-              <%= link_to public_profile_path(booking.receiver) do %>
-                <%= cl_image_tag booking.instrument.photo.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
-              <% end %>
-              <div class="booking-info">
-                <strong><%= booking.receiver.first_name %></strong>
-                <p><%= booking.booking_day %><br>
-                  <%= booking.booking_hour_from %><%= booking.booking_hour_to %>  </p>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      </td>
-      <td>
-        <div class="status">
-          <% if @instrument.reviews.count.positive? %>
-            <%= render "reviews/review", review: @instrument.reviews.first %>
-          <% else %>
-            <p>There are no reviews for this instrument yet.</p>
-          <% end %>
-        </div>
-      </td>
-    </tr>
   </table>
 </div>
