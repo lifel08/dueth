@@ -3,7 +3,8 @@ class AvailabilitiesController < ApplicationController
   before_action :set_availability, only: [:edit, :update]
 
   def index
-    @instrument_availabilities = @instrument.availabilities.all.order("created_at DESC")
+    @instrument_availabilities = @instrument.availabilities.order("created_at DESC")
+    @booking_status = @instrument.bookings.where(availability_id: 105).pluck(:status)
   end
 
   def edit
