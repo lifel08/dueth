@@ -14,7 +14,7 @@
   </tr>
   </thead>
   <tbody>
-  <% if @instrument.bookings.upcoming.count.zero? %>
+  <% if (@instrument.bookings.upcoming.count.zero?) && (@instrument.bookings.upcoming_availability.count.zero?) %>
     <tr>
       <td>
         <div class="status">
@@ -22,7 +22,8 @@
         </div>
       </td>
     </tr>
-  <% else %>
+  <% else
+       @instrument.bookings.upcoming.present? %>
     <% @instrument.bookings.upcoming.each do |booking| %>
       <tr>
         <td>
@@ -32,9 +33,10 @@
             <% end %>
             <div class="booking-info">
               <strong><%= booking.receiver.first_name %></strong> <br>
-              <b> <%= booking.instrument_disponbility.status%></b>
+              <b> <%= booking.instrument_disponbility.status %></b>
               <p><%= booking.booking_day %><br>
-                <%= booking.booking_hour_from %><%= booking.booking_hour_to %>  </p> at <%= booking.provider.first_name %>'s place.</p>
+                <%= booking.booking_hour_from %><%= booking.booking_hour_to %>  </p>
+              at <%= booking.provider.first_name %>'s place.</p>
             </div>
           </div>
         </td>
@@ -51,7 +53,8 @@
                 <%= link_to 'Accept Booking', accept_instrument_instrument_booking_path(@instrument, booking), {method: :patch, class: "button-secondary my-2 w-100"} %>
                 <%= link_to 'Decline Booking', decline_instrument_instrument_booking_path(@instrument, booking), {method: :patch, class: "button-edit-profile w-100"} %>
               </div>
-              <% else booking.status == 2  %>
+            <% else
+                 booking.status == 2 %>
               <div class="booking-declined">
                 <p>Booking is declined</p>
               </div>
@@ -61,7 +64,9 @@
     <% end %>
     </tr>
   <% end %>
+  <% if @instrument.bookings.upcoming_availability.present? %>
+    <%= render "availability_bookings_table" %>
+  <% end %>
   </tbody>
-  <tr>
-  </table>
+</table>
 </div>

@@ -3,8 +3,7 @@ class AvailabilitiesController < ApplicationController
   before_action :set_availability, only: [:edit, :update]
 
   def index
-    @instrument_availabilities = @instrument.availabilities.order("created_at DESC")
-    @booking_status = @instrument.bookings.where(availability_id: 105).pluck(:status)
+    @instrument_availabilities = @instrument.availabilities
   end
 
   def edit
@@ -14,7 +13,7 @@ class AvailabilitiesController < ApplicationController
   def update
     respond_to do |format|
       if @availability.update!(availability_params)
-        format.html { redirect_to  instrument_availabilities_path(@instrument), info: 'Availability was successfully updated.' }
+        format.html {redirect_to instrument_availabilities_path(@instrument), info: 'Availability was successfully updated.'}
       else
         format.html {render :edit}
       end

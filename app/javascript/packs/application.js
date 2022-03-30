@@ -49,7 +49,7 @@ $(document).on('turbolinks:load', function () {
         enableTime: true,
         noCalendar: true,
         dateFormat: "H:i",
-        time_24hr: true
+        time_24hr: false
     });
 
 

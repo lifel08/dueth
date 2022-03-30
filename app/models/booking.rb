@@ -3,6 +3,7 @@
 # Table name: bookings
 #
 #  id                         :bigint           not null, primary key
+#  day                        :string
 #  from                       :datetime
 #  status                     :integer
 #  to                         :datetime
@@ -38,10 +39,10 @@ class Booking < ApplicationRecord
   belongs_to :instrument_disponbility, optional: true
   belongs_to :availability, optional: true
   scope :upcoming, -> { joins(:instrument_disponbility).where('instrument_disponbilities.start_date > ?', Time.zone.now) }
-  scope :past, -> { joins(:instrument_disponbility).where('instrument_disponbilities.end_date < ?', Time.zone.now) }
+  # scope :past, -> { joins(:instrument_disponbility).where('instrument_disponbilities.end_date < ?', Time.zone.now) }
   scope :requested_by, -> (user_id){ where('bookings.receiver_id = ?', user_id )}
   scope :pending, -> { where(status: 0) }
-
+  scope :upcoming_availability, -> { joins(:availability).where('availabilities.day > ?', Time.zone.now) }
   def booking_status
     if self.status.zero?
       "pending"
@@ -57,7 +58,6 @@ class Booking < ApplicationRecord
   def accepted?
     status == 1
   end
-
   def booking_timeframe
     instrument_disponbility.start_date.strftime("%A, #{ instrument_disponbility.start_date.day.ordinalize } of %B #{ booking_hour_from} #{ booking_hour_to}")
   end

@@ -127,7 +127,7 @@ class Instrument < ApplicationRecord
   def set_availability
   week_days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
   week_days.each do |day|
-    availabilities.create(day: day, to: '00:00 am', from:'23:59 pm' , available: false )
+    availabilities.create(day: day, to: '00:00', from:'23:59' , available: false )
   end
   end
 end
