@@ -111,7 +111,7 @@ class InstrumentsController < ApplicationController
   def get_search_instrument
     if params[:day].present?
       day = params[:day].titleize
-      @instruments = Instrument.joins(:availabilities).where("availabilities.day = ?", day)
+      @instruments = Instrument.joins(:availabilities).where("availabilities.day = ? AND availabilities.available = ?", day, true)
     else
       @instruments = Instrument.all
     end
