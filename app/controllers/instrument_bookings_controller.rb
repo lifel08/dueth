@@ -1,7 +1,7 @@
- class InstrumentBookingsController < ApplicationController
+class InstrumentBookingsController < ApplicationController
 
   def index
-    add_breadcrumb "Instrument Booking", :instrument_bookings_path
+    add_breadcrumb "Instrument Booking", :instrument_instrument_bookings_path
     @instrument = Instrument.find(params[:instrument_id])
     @bookings = @instrument.bookings
   end
@@ -12,11 +12,20 @@
     @booking.user = current_user
     @booking.receiver = current_user
     @booking.provider = @booking.instrument.user
-    @booking.instrument_disponbility_id = params[:instrument][:instrument_disponbility_id]
-    @instrument_disponibility = InstrumentDisponbility.find_by(id: @booking.instrument_disponbility_id)
-    @booking.from = @instrument_disponibility.start_date
-    @booking.to = @instrument_disponibility.end_date
-    @booking.status = 0
+    if params[:instrument].present? && params[:instrument][:instrument_disponbility_id].present?
+      @booking.instrument_disponbility_id = params[:instrument][:instrument_disponbility_id]
+      @instrument_disponibility = InstrumentDisponbility.find_by(id: @booking.instrument_disponbility_id)
+      @booking.from = @instrument_disponibility.start_date
+      @booking.to = @instrument_disponibility.end_date
+      @booking.status = 0
+    else
+      @availability = Availability.find_by(instrument_id: params[:instrument_id], day: params[:day], to: params[:to], from: params[:from], available: params[:available])
+      @booking.from = @availability.to
+      @booking.to = @availability.from
+      @booking.availability_id = @availability.id
+      @booking.day = @availability.day
+      @booking.status = 0
+    end
     if @booking.save
       redirect_to instrument_path(@booking.instrument), notice: "Pending approval of Instrument Owner #{@booking.instrument.user.first_name}"
     else
