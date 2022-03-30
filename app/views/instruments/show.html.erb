@@ -123,6 +123,9 @@
   <% if @instrument.user.id != current_user.id %>
     <!-- display owner info--><%= link_to "Add Disponbility", new_instrument_instrument_disponbility_path(@instrument), class: "button-primary" %>
   <% end %>
+  <% if @instrument.availabilities.present?%>
+  <%= link_to "Show Availabilities", instrument_availabilities_path(@instrument), class: "button-primary" %>
+    <% end %>
   <h2>And this is <%= @instrument.user.first_name %></h2>
   <div class="profile-short-description">
     <div class="profile-picture">
