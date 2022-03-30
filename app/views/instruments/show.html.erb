@@ -14,7 +14,7 @@
       border-radius: 50%;
       cursor: pointer;
     }
-    
+
     .mapboxgl-popup {
       max-width: 200px;
     }
@@ -24,8 +24,10 @@
   <!-- instrument info: Title, photo, owner -->
   <h1><%= @instrument.title %></h1>
   <div class="instrument-short-info">
-    <p class="instrument-short-info-reviews"><i class="fas fa-star"></i> <%= pluralize(@instrument.reviews.count, 'review') %> · </p>
-    <p class="instrument-short-info-location"> <%= @instrument.postal_code %>, <%= @instrument.city %>, <%= @instrument.country %> </p>
+    <p class="instrument-short-info-reviews">
+      <i class="fas fa-star"></i> <%= pluralize(@instrument.reviews.count, 'review') %> · </p>
+    <p class="instrument-short-info-location"> <%= @instrument.postal_code %>, <%= @instrument.city %>
+      , <%= @instrument.country %> </p>
   </div>
   <%= cl_image_tag(@instrument.photo.first&.key, height: 300, width: 800, crop: :fill, loading: "lazy", :class => "instrument-card-image") %>
   <%= render 'components/instrument_image' %>
@@ -45,13 +47,13 @@
   <div class="instrument-short-info-features">
     <% if @instrument.features.size.positive? %>
       <% @instrument.features.each do |feature, icon| %>
-        <li class ="desktop-feature-list col col-lg-6">
+        <li class="desktop-feature-list col col-lg-6">
           <div class="features">
             <%= raw feature.icon %>
             <%= feature.name %>
           </div>
         </li>
-        <li class ="mobile-feature-list col col-lg-4">
+        <li class="mobile-feature-list col col-lg-4">
           <div class="features">
             <%= raw feature.icon %>
             <%= feature.name %>
@@ -76,48 +78,54 @@
   <div>
     <%= content_for :footer_script do %>
       <script type="text/javascript">
-        mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
-        
-        var center = <%= j @instrument.center %>;
-        
-        var map = new mapboxgl.Map({
-            container: 'map' && 'map-show',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: center,
-            zoom: 12
-        });
-        
-        // create a HTML element for each feature
-        var el = document.createElement('div');
-        el.className = 'marker';
-        
-        map.on('load', function () {
-            // create the popup
-            var popup = new mapboxgl.Popup({ offset: 45 }).setText(
-                '<%= j @instrument.title %>'
-            );
-        
-            var marker = new mapboxgl.Marker(el)
-                .setLngLat(center)
-                .setPopup(popup)
-                .addTo(map);
-        })
+          mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
+
+          var center = <%= j @instrument.center %>;
+
+          var map = new mapboxgl.Map({
+              container: 'map' && 'map-show',
+              style: 'mapbox://styles/mapbox/streets-v11',
+              center: center,
+              zoom: 12
+          });
+
+          // create a HTML element for each feature
+          var el = document.createElement('div');
+          el.className = 'marker';
+
+          map.on('load', function () {
+              // create the popup
+              var popup = new mapboxgl.Popup({offset: 45}).setText(
+                  '<%= j @instrument.title %>'
+              );
+
+              var marker = new mapboxgl.Marker(el)
+                  .setLngLat(center)
+                  .setPopup(popup)
+                  .addTo(map);
+          })
       </script>
     <% end %>
     <div id='map-show'>
     </div>
   </div>
   <!-- disponibility mobile -->
-  <%= render './components/price_cancellation'  %>
+  <%= render './components/price_cancellation' %>
   <!-- reviews -->
   <p>
-    <h2><%= @instrument.title %> Reviews</h2>
-    <%= @instrument.user.first_name %>'s <%= @instrument.title %> has <%= pluralize(@instrument.user.reviews.count, 'review') %>.
-    <% if @instrument.average_rating > 1 %>
-      Average rating is: <%= render 'reviews/rating_stars' %>
-    <% end %>
+  <h2><%= @instrument.title %> Reviews</h2>
+  <%= @instrument.user.first_name %>'s <%= @instrument.title %>
+  has <%= pluralize(@instrument.user.reviews.count, 'review') %>.
+  <% if @instrument.average_rating > 1 %>
+    Average rating is: <%= render 'reviews/rating_stars' %>
+  <% end %>
   </p>
-  <!-- display owner info-->
+  <% if @instrument.user.id != current_user.id %>
+    <!-- display owner info--><%= link_to "Add Disponbility", new_instrument_instrument_disponbility_path(@instrument), class: "button-primary" %>
+  <% end %>
+  <% if @instrument.availabilities.present?%>
+  <%= link_to "Show Availabilities", instrument_availabilities_path(@instrument), class: "button-primary" %>
+    <% end %>
   <h2>And this is <%= @instrument.user.first_name %></h2>
   <div class="profile-short-description">
     <div class="profile-picture">

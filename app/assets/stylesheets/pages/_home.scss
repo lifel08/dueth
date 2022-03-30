@@ -35,6 +35,18 @@ h1 {
       display:none;
   }
 }
+
+.search-bar-main {
+  width: 300px;
+  height: 40px;;
+  padding: 10px 10px 10px 20px;
+  background: #FFFFFF;
+  box-shadow: inset 0px 1px 6px 2px rgba(0, 0, 0, 0.60);
+  border: #C4C4C4;
+  .search-bar-mobile {
+    display:none;
+  }
+}
 .search-button {
   @media screen and (max-width: 1033px) {
     margin-left: 35%;
@@ -46,8 +58,6 @@ h1 {
 
 .instrument-row {
   width:100%;
-  display:flex;
-  flex-direction:row;
   justify-content: space-around;
 }
 

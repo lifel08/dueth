@@ -2,38 +2,40 @@
 <% content_for :head do %>
   <title> Find your music instrument to practise close by | Dueth.com </title>
   <meta name="description" content="Looking for an easy way to get access to an instrument to practise? Search with Dueth.com for instruments close by and practise wherever you are."/>
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://www.dueth.com"/>
 <% end %>
 <!-- search desktop -->
-<div class="container">
-  <div class="search">
-    <%= form_tag search_instruments_path(title: params[:title].to_s,city: params[:city].to_s), method: :get do %>
-      <%= text_field_tag :title,
-      params[:title],
-      class: "search-bar",
-      placeholder: "What instrument? Piano, drums, ..."
-      %>
-      <%= text_field_tag :city,
-      params[:city],
-      class: "search-bar",
-      placeholder: "Where? Paris, Milan, ..."
-      %>
-      <button type="submit" class="button-primary search-button">Search</button>
-    <% end %>
+<div class="container my-5 ">
+  <div class="inst-main">
+    <div class="search">
+      <%= form_tag search_instruments_path(title: params[:title].to_s, city: params[:city].to_s), method: :get do %>
+        <%= text_field_tag :title,
+                           params[:title],
+                           class: "search-bar",
+                           placeholder: "What instrument? Piano, drums, ..."
+        %>
+        <%= text_field_tag :city,
+                           params[:city],
+                           class: "search-bar",
+                           placeholder: "Where? Paris, Milan, ..."
+        %>
+        <button type="submit" class="button-primary search-button">Search</button>
+      <% end %>
+    </div>
   </div>
   <!-- search mobile -->
   <div class="search-text-mobile" id="search">
-    <%= form_tag search_instruments_path(title: params[:title].to_s,city: params[:city].to_s), method: :get do %>
+    <%= form_tag search_instruments_path(title: params[:title].to_s, city: params[:city].to_s), method: :get do %>
       <%= text_field_tag :title,
-      params[:title],
-      class: "search-bar-mobile",
-      placeholder: "What instrument?"
+                         params[:title],
+                         class: "search-bar-mobile",
+                         placeholder: "What instrument?"
       %>
       <%= text_field_tag :city,
-      params[:city],
-      class: "search-bar-mobile",
-      placeholder: "Where?"
+                         params[:city],
+                         class: "search-bar-mobile",
+                         placeholder: "Where?"
       %>
       <button type="submit" class="button-primary search-button">Search</button>
     <% end %>
@@ -43,10 +45,17 @@
     <%= image_tag 'header.jpg', height: '300', width: '95%' %>
   </div>
   <!-- instruments -->
-  <h1>Explore music instruments nearby</h1>
-  <div class="container">
-    <div class="row instrument-row">
-      <%= render "components/instrument_card_small", instruments: @instruments   %>
-    </div>
+  <div class="d-flex align-content-center">
+    <h1>Explore music instruments nearby</h1>
+    <div class="d-flex">
+      <div class="ml-5 mt-4">
+        <%= form_tag get_search_instrument_instruments_path,remote: :true, method: :post do %>
+          <%= text_field_tag :day,params[:day], class: "search-bar-main", placeholder: "Enter day ..." %>
+          <button type="submit" class="button-primary search-button">Search</button>
+          </div>
+        <% end %>
+        </div>
   </div>
+  <%= render "components/instrument_card_small", class: 'inst', instruments: @instruments %>
+</div>
 </div>

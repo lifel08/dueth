@@ -21,34 +21,47 @@ ActiveStorage.start()
 // External imports
 import "bootstrap";
 import "jquery";
-import { initFlatpickr } from "../plugins/flatpickr";
-import { SLIDEPAGE } from '../plugins/slidepage';
-import { initSlidePage } from '../components/slide';
+import {initFlatpickr} from "../plugins/flatpickr";
+import {SLIDEPAGE} from '../plugins/slidepage';
+import {initSlidePage} from '../components/slide';
 import * as url from "url";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
 
-document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
- initFlatpickr();
- initSlidePage();
- 
- $('#collapseExample').on('cocoon:after-insert', function(e, added_task) {
-       initFlatpickr();
- })
+$(document).on('turbolinks:load', function () {
+    // Call your functions here, e.g:
+    // initSelect2();
+    initFlatpickr();
+    initSlidePage();
 
-$('#navbarToggleExternalContent').on('hide.bs.collapse', function () {
-    $('nav.navbar').addClass('navbar-light').removeClass('navbar-dark').removeClass('bg-dark')
-    $('.navbar-toggler').removeClass('bg-dark').addClass('bg-white')
-})
+    $('#collapseExample').on('cocoon:after-insert', function (e, added_task) {
+        initFlatpickr();
+    })
 
-$('#navbarToggleExternalContent').on('show.bs.collapse', function () {
-    $('nav.navbar').removeClass('navbar-light').addClass('navbar-dark').addClass('bg-dark')
-    $('.navbar-toggler').addClass('bg-dark').removeClass('bg-white')
-})
+    $('.datepicker').flatpickr({
+        minDate: new Date(),
+        enableTime: true
+    });
+
+    $('.flat_time_pick').flatpickr({
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: false
+    });
+
+
+    $('#navbarToggleExternalContent').on('hide.bs.collapse', function () {
+        $('nav.navbar').addClass('navbar-light').removeClass('navbar-dark').removeClass('bg-dark')
+        $('.navbar-toggler').removeClass('bg-dark').addClass('bg-white')
+    })
+
+    $('#navbarToggleExternalContent').on('show.bs.collapse', function () {
+        $('nav.navbar').removeClass('navbar-light').addClass('navbar-dark').addClass('bg-dark')
+        $('.navbar-toggler').addClass('bg-dark').removeClass('bg-white')
+    })
 // Disponibility popup
 
     $(".trigger_popup_fricc").click(function(){
@@ -73,17 +86,17 @@ $('#navbarToggleExternalContent').on('show.bs.collapse', function () {
 
     const wrapper = document.querySelector('.cards-wrapper');
     const dots = document.querySelectorAll('.dot');
-    let activeDotNum = 0;
-    dots.forEach((dot, idx) => {
+    var activeDotNum = 0;
+    dots.forEach(function(dot, idx){
         dot.setAttribute('data-num', idx);
-        dot.addEventListener('click', (e) => {
-            let clickedDotNum = e.target.dataset.num;
+        dot.addEventListener('click', function(e) {
+            var clickedDotNum = e.target.dataset.num;
             if(clickedDotNum == activeDotNum) {
                 return;
             }
             else {
-                let displayArea = wrapper.parentElement.clientWidth;
-                let pixels = -displayArea * clickedDotNum
+                var displayArea = wrapper.parentElement.clientWidth;
+                var pixels = -displayArea * clickedDotNum
                 wrapper.style.transform = 'translateX('+ pixels + 'px)';
                 dots[activeDotNum].classList.remove('active');
                 dots[clickedDotNum].classList.add('active');
@@ -91,23 +104,15 @@ $('#navbarToggleExternalContent').on('show.bs.collapse', function () {
             }
         });
     });
-        var previousScroll = 0;
+    var previousScroll = 0;
 
-        $(window).scroll(function(){
-            var currentScroll = $(this).scrollTop();
-            if (currentScroll > previousScroll){
-                $('.footer-main').css("bottom",0);
-            } else {
-                $('.footer-main').css("bottom",-60);
-            }
-            previousScroll = currentScroll;
-        });
-
+    $(window).scroll(function () {
+        var currentScroll = $(this).scrollTop();
+        if (currentScroll > previousScroll) {
+            $('.footer-main').css("bottom", 0);
+        } else {
+            $('.footer-main').css("bottom", -60);
+        }
+        previousScroll = currentScroll;
+    });
 });
-
-
-require("@nathanvda/cocoon")
-
-
-
-

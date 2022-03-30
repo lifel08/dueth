@@ -1,0 +1,177 @@
+/*.toggle-control {*/
+    /*display: block;*/
+    /*position: relative;*/
+    /*cursor: pointer;*/
+    /*font-size: 22px;*/
+    /*user-select: none;*/
+/*}*/
+
+/*.toggle-control input {*/
+    /*position: absolute;*/
+    /*opacity: 0;*/
+    /*cursor: pointer;*/
+    /*height: 0;*/
+    /*width: 0;*/
+/*}*/
+
+/*.toggle-control input:checked ~ .control {*/
+    /*background-color: dodgerblue;*/
+/*}*/
+
+/*.toggle-control input:checked ~ .control:after {*/
+    /*left: 2.2rem;*/
+    /*top: 0.15rem;*/
+/*}*/
+
+/*.toggle-control .control {*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+    /*height: 2rem;*/
+    /*width: 4rem;*/
+    /*border-radius: 25px;*/
+    /*background-color: darkgray;*/
+    /*transition: background-color 0.15s ease-in;*/
+/*}*/
+
+/*.toggle-control .control:after {*/
+    /*content: "";*/
+    /*position: absolute;*/
+    /*top: 0.15rem;*/
+    /*left: 0.15rem;*/
+    /*width: 1.6rem;*/
+    /*height: 1.6rem;*/
+    /*border-radius: 50%;*/
+    /*background: white;*/
+    /*transition: left 0.15s ease-in;*/
+/*}*/
+.edit-main{
+    width: 98% !important;
+    padding:0 0.5rem !important;
+    margin: 1rem 0.5rem !important;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 8rem;
+    height: 2rem;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: gray;
+    transition: .4s ease-in-out;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 2rem;
+    width: 2rem;
+    background-color: #e9ecef;
+    transition: .4s ease-in-out;
+}
+input:checked+.slider {
+    background-color: dodgerblue;
+}
+input:focus+.slider {
+    box-shadow: 0 0 1px #A3E8F3;
+}
+input:checked+.slider:before {
+    transform: translateX(96px);
+}
+.text {
+    color: white;
+}
+.text:after {
+    position: absolute;
+    top: 0.19rem;
+    right: 0.6rem;
+    content: "Unavailable";
+    transition: opacity 0.5s ease-in-out;
+}
+.text:before {
+    position: absolute;
+    top: 0.19rem;
+    left: 1rem;
+    content: "Available";
+    transition: opacity 0.5s ease-in-out;
+}
+input+.slider+.text:after {
+    opacity: 1;
+}
+input+.slider+.text:before {
+    opacity: 0;
+}
+input:checked+.slider+.text:after {
+    opacity: 0;
+}
+input:checked+.slider+.text:before {
+    opacity: 1;
+}
+/* Rounded sliders */
+.slider.round {
+    border-radius: 40px;
+}
+.slider.round:before {
+    border-radius: 40px;
+}
+.th-schedule {
+    padding: 0!important;
+    font-size: 1.2rem !important;
+    font-weight: bold !important;
+}
+.show-table-main{
+    margin-bottom: 4rem;
+}
+.th-main {
+    background-color:#94906F;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+}
+.switch-show {
+    position: relative;
+    display: inline-block;
+    width: 4rem;
+    height: 2rem;
+}
+.slider-show {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: gray;
+    transition: .4s ease-in-out;
+}
+.slider-show:before {
+    position: absolute;
+    content: "";
+    height: 2rem;
+    width: 2rem;
+    background-color: #e9ecef;
+    transition: .4s ease-in-out;
+}
+input:checked+.slider-show {
+    background-color: dodgerblue;
+}
+input:focus+.slider-show {
+    box-shadow: 0 0 1px #A3E8F3;
+}
+input:checked+.slider-show:before {
+    transform: translateX(33px);
+}
+/* Rounded sliders */
+.slider-show.round {
+    border-radius: 40px;
+}
+.slider-show.round:before {
+    border-radius: 40px;
+}

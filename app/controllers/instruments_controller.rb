@@ -66,7 +66,6 @@ class InstrumentsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @instrument = current_user.instruments.new(instrument_params)
 
     if @instrument.save
@@ -77,11 +76,16 @@ class InstrumentsController < ApplicationController
   end
 
   def update
-    @instrument.update(instrument_params)
+    if @instrument.update(instrument_params)
+    redirect_to profile_path
+    else
     render :edit
+      end
   end
 
   def destroy
+    @booking = @instrument.bookings
+    BookingMailer.decline_booking(@booking).deliver_now if @booking.present?
     @instrument.destroy
     redirect_to profile_path
   end
@@ -104,8 +108,18 @@ class InstrumentsController < ApplicationController
   end
 
 
+  def get_search_instrument
+    if params[:day].present?
+      day = params[:day].titleize
+      @instruments = Instrument.joins(:availabilities).where("availabilities.day = ? AND availabilities.available = ?", day, true)
+    else
+      @instruments = Instrument.all
+    end
+    respond_to do |format|
+      format.js {render "index.js.erb"}
+    end
+  end
   private
-
   def redirect_to_search
     if (params[:title] || params[:city]).present?
       return redirect_to search_instruments_path(title: params[:title].downcase,
@@ -116,7 +130,7 @@ class InstrumentsController < ApplicationController
   end
 
   def instrument_params
-    params.require(:instrument).permit(:title, :subtitle, :description,
+    params.require(:instrument).permit(:title, :day, :subtitle, :description,
                                        :street_name, :house_number, :postal_code, :city, :country, :cancellation_policy_id,
                                        :price, :reviews,  :location, feature_ids: [],photo:[],
                                        disponibilities_attributes: [:id, :from, :to, :_destroy])

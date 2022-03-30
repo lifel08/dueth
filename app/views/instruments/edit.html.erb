@@ -2,7 +2,7 @@
   <title>Edit a Instrument | Dueth.com</title>
   <meta name="robots" content="noindex, nofollow"/>
 <% end %>
-<div class="container padding-form">
+<div class="container padding-form mb-5">
   <div class="row d-flex justify-content-center">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <% if @instrument.errors.messages.present? %>
@@ -45,8 +45,8 @@
         <% end %>
         <br/>
         <div class="send-formular">
-          <%= f.button :submit, class: 'btn-primary'%>
-          <%= link_to 'Back to your profile', profile_path, class: "button-secondary"  %>
+          <%= f.button :submit, class: "button-primary my-2"%>
+          <%= link_to 'Back to your profile', profile_path, class: "button-secondary my-2"  %>
         </div>
       <% end %>
     </div>

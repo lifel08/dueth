@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <h1>Edit Your Profile</h1>
   <% if @user.errors.messages.present? %>
     <ul> Please fix the following errors:
@@ -13,13 +13,15 @@
   <br>
   <%= simple_form_for @user do |f| %>
     <%= f.input :first_name, label: "First Name" %>
-    <%= f.input :last_name, label: "Last Name", input_html: { maxlength: 70 } %>
+    <%= f.input :last_name, label: "Last Name", input_html: {maxlength: 70} %>
     <%= f.input :email, label: "E-Mail" %>
-    <%= f.input :birthday, label: "Birthday", as: :string, input_html: { class: "datepicker" } %>
+    <%= f.input :birthday, label: "Birthday", as: :string, input_html: {class: "datepicker"} %>
     <%= f.input :language, label: "Language" %>
     <%= f.input :description, as: :text %>
     <%= f.input :photo, as: :file, label: "Change your photo" %>
-    <%= f.button :submit, label: "Update Profile", class: "button-primary" %>
+    <div class="justify-content-center d-flex">
+      <%= f.button :submit, label: "Update Profile", class: "button-primary mb-5" %>
+    </div>
   <% end %>
   <br>
   <h3>Cancel my account</h3>
