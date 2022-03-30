@@ -38,10 +38,10 @@
 .instrument-short-info-subtitle {
   display: flex;
   flex-direction:row;
-  justify-content: space-between;
   align-items: center;
+  // justify-content: space-between;
   padding-top: 20px;
-  width: 72%;
+  width: 70%;
   @media screen and (max-width: 1527px) {
     display:flex;
     flex-direction:column;

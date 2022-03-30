@@ -35,7 +35,10 @@
 #  index_instruments_on_street_name             (street_name)
 #  index_instruments_on_user_id                 (user_id)
 #
-# Foreign #ss
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
     @display_addres
 #  fk_rails_...  (user_id => users.id)
 #
