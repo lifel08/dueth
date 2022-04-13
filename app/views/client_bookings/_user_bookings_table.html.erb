@@ -12,7 +12,7 @@
   </tr>
   </thead>
   <tbody>
-  <% if current_user.own_bookings.upcoming.count.zero? %>
+  <% if current_user.own_bookings.upcoming.count.zero?  && (current_user.own_bookings.upcoming_availability.count.zero?)%>
     <tr>
       <td>
         <div class=booking-profile>There is no upcoming booking!</div>

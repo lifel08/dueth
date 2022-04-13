@@ -13,6 +13,7 @@ class InstrumentsController < ApplicationController
 
     @instruments = Instrument.active.search_title_and_location(params[:title].to_s + ',' + params[:city].to_s)
     @features = @instruments.includes(:features).pluck(:name).uniq
+    @availability = Availability.pluck(:day).uniq
     if params[:feature].present?
       @instruments = @instruments.joins(:features).where(features: { name: params[:feature] })
     end
@@ -22,6 +23,9 @@ class InstrumentsController < ApplicationController
     else
       params[:price] == '45'
       @instruments = @instruments.where('price >= ?', params[:price].to_i)
+    end
+    if  params[:day].present?
+      @instruments = @instruments.joins(:availabilities).where("availabilities.day = ? AND availabilities.available = ?", params[:day], true)
     end
     respond_to do |format|
       format.js
@@ -85,7 +89,7 @@ class InstrumentsController < ApplicationController
 
   def destroy
     @booking = @instrument.bookings
-    BookingMailer.decline_booking(@booking).deliver_now if @booking.present?
+    BookingMailer.delete_booking(@booking).deliver_now if @booking.present?
     @instrument.destroy
     redirect_to profile_path
   end
@@ -115,9 +119,6 @@ class InstrumentsController < ApplicationController
     else
       @instruments = Instrument.all
     end
-    respond_to do |format|
-      format.js {render "index.js.erb"}
-    end
   end
   private
   def redirect_to_search
@@ -125,7 +126,6 @@ class InstrumentsController < ApplicationController
       return redirect_to search_instruments_path(title: params[:title].downcase,
                                                  city: params[:city].downcase), status: 301
     elsif (params[:title] || params[:city]).blank?
-      return redirect_to root_path, status: 301
     end
   end
 

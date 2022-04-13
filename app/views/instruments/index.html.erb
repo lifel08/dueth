@@ -10,10 +10,10 @@
 <%= content_for :footer_script do %>
   <script type="text/javascript">
     mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
-    
+
     // Get instruments from ruby array to javascript array
     var instruments = <%= raw @instruments.to_json %>;
-    
+
     // Build the map!
     var map = new mapboxgl.Map({
         container: 'map',
@@ -21,7 +21,7 @@
         center: instruments[0].center,
         zoom: 12
     });
-    
+
     // Build marker for each instrument
     instruments.forEach(function (instrument) {
         // create the popup
@@ -29,22 +29,22 @@
             color: "#FFFFFF",
             draggable: false
         }
-    
+
         var el = document.createElement('div');
         el.className = 'marker';
-    
+
         // create marker instance for the map
         var marker = new mapboxgl.Marker(el, markerOptions)
-    
+
         // Set longitude & latitude to the marker
         marker.setLngLat(instrument.center);
-    
+
         // create a pop up for the marker
         var popup = new mapboxgl.Popup({offset: 45}).setText(instrument.title);
-    
+
         // will assign the popup to the marker
         marker.setPopup(popup);
-    
+
         // Set the marker to the map
         marker.addTo(map);
     })
@@ -75,6 +75,18 @@
             <option value="45">More than 45€</option>
           </select>
         </div>
+        <div>
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Day
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu px-2 py-3">
+            <%  @availability .each do |availability| %>
+              <li>
+                <%= link_to availability, search_instruments_path(day: availability) if availability.present? %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+
       </div>
     </div>
     <!-- Filters -->
@@ -82,7 +94,7 @@
       <div class="search-page-desktop">
         <div class="cards">
           <% @instruments.each do |instrument| %>
-            <%= render "./components/instrument_card_big", instrument: instrument %>
+            <%= render "components/instrument_card_big", instrument: instrument %>
           <% end %>
         </div>
       </div>

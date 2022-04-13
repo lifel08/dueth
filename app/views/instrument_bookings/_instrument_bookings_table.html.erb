@@ -22,8 +22,7 @@
         </div>
       </td>
     </tr>
-  <% else
-       @instrument.bookings.upcoming.present? %>
+  <% else %>
     <% @instrument.bookings.upcoming.each do |booking| %>
       <tr>
         <td>

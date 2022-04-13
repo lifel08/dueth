@@ -13,8 +13,6 @@ class InstrumentBookingsController < ApplicationController
     @booking.receiver = current_user
     @booking.provider = @booking.instrument.user
     if params[:instrument].present? && params[:instrument][:instrument_disponbility_id].present?
-      @booking.instrument_disponbility_id = params[:instrument][:instrument_disponbility_id]
-      @instrument_disponibility = InstrumentDisponbility.find_by(id: @booking.instrument_disponbility_id)
       @booking.from = @instrument_disponibility.start_date
       @booking.to = @instrument_disponibility.end_date
       @booking.status = 0
@@ -54,11 +52,15 @@ class InstrumentBookingsController < ApplicationController
     @booking.update(status: 1)
     redirect_to instrument_instrument_bookings_path(@booking.instrument), notice: "#{@booking.user.first_name} \'s booking confirmed!"
   end
-
   def decline
     @booking = Booking.find(params[:id])
+    if @booking.receiver_id == current_user.id
+      BookingMailer.mail_to_owner(@booking).deliver_now if @booking.present?
+    else
+      BookingMailer.decline_booking(@booking).deliver_now if @booking.present?
+    end
     @booking.update(status: 2)
-    redirect_to instrument_path(@booking.instrument)
+    redirect_to instrument_instrument_bookings_path(@booking.instrument)
   end
 
 end

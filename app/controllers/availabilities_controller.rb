@@ -1,9 +1,8 @@
 class AvailabilitiesController < ApplicationController
   before_action :get_instrument
   before_action :set_availability, only: [:edit, :update]
-
   def index
-    @instrument_availabilities = @instrument.availabilities
+    @instrument_availabilities = @instrument.availabilities.all
   end
 
   def edit
