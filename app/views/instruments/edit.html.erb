@@ -16,10 +16,10 @@
       <% end %>
       <h1>Edit your Instrument</h1>
       <%= simple_form_for @instrument do |f| %>
-        <%= f.input :title, label: "What Instrument do you want to offer for practise?", placeholder: "Digital Piano" %>
-        <%= f.input :subtitle, label: "Make it sticky! In a few words: What's very handy with your instrument?" , placeholder: "Very central easy to practise Digital Piano", input_html: { maxlength: 70} %>
-        <%= f.input :description, as: :text, placeholder: "Anna is offering her good to practise and easy to reach digital piano. Come by and enjoy your piano practise as usual!"%>
-        <%= f.input :location, label: "Add the city" %>
+        <%= f.input :title, label: "Instrument Name:" %>
+        <%= f.input :subtitle, label: "Instrument Sub-Title:", input_html: { maxlength: 70} %>
+        <%= f.input :description, label: "Describe your Instrument:"%>
+        <%= f.input :location, label: "Instrument Location (city):" %>
         <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
         <h2>Select a new Diponibility</h2>
         <a class="btn button-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">

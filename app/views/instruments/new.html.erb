@@ -17,17 +17,17 @@
       <% end %>
       <h1>Add a new instrument</h1>
       <%= simple_form_for @instrument, multipart: true do |f| %>
-        <%= f.input :title, label: "What kind of Instrument do you want to offer?", placeholder: "Digital Piano" %>
-        <%= f.input :subtitle, label: "In a few words: What's special about your instrument?" , placeholder: "Very central Digital Piano", input_html: { maxlength: 70} %>
-        <%= f.input :description, as: :text, placeholder: "This Digital Piano is waiting to get played. Very nice instrument sound. Calm location "%>
-        <%= f.input :street_name, label: "Add your street-name" %>
-        <%= f.input :house_number, label: "Add your street-number" %>
-        <%= f.input :postal_code, label: "Add your postal-code" %>
-        <%= f.input :city, label: "Add your city" %>
-        <%= f.input :country, as: :text, label: "Add your country" %>
+        <%= f.input :title, label: "Instrument Name" %>
+        <%= f.input :subtitle, label: "Short Subtitel", input_html: { maxlength: 70} %>
+        <%= f.input :description, label: "Instrument Description"%>
+        <%= f.input :street_name, label: "Street-name" %>
+        <%= f.input :house_number, label: "Street-number" %>
+        <%= f.input :postal_code, label: "Postal Code" %>
+        <%= f.input :city, label: "City" %>
+        <%= f.input :country, as: :country %>
         <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
-        <%= f.input :price, label: "Add a price" %>
-        <%= f.input :photo, as: :file, label: "Add Photo", input_html: { multiple: true } %>
+        <%= f.input :price, label: "Price" %>
+        <%= f.input :photo, as: :file, label: "Photos", input_html: { multiple: true } %>
         <div class="row">
           <% Feature.find_each do |feature, icon| %>
             <li class ="feature-list col col-lg-6">
