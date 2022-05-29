@@ -3,40 +3,39 @@
   <meta name="description" content="Here you can see who booked your <%= @instrument.title %>."/>
   <meta name="robots" content="noindex,nofollow"/>
 <% end %>
-<div>
+<div class="container">
   <h1>Instrument Bookings</h1>
-</div>
-<table>
-  <thead>
-  <tr>
-    <th>Upcoming Bookings</th>
-    <th>Booking Status</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% if (@instrument.bookings.upcoming.count.zero?) && (@instrument.bookings.upcoming_availability.count.zero?) %>
-    <tr>
-      <td>
-        <div class="status">
-          😕 No upcoming bookings yet for your <%= @instrument.title %>
-        </div>
-      </td>
-    </tr>
-  <% else
-       @instrument.bookings.upcoming.present? %>
-    <% @instrument.bookings.upcoming.each do |booking| %>
+  <table>
+    <thead>
       <tr>
-        <td>
-          <div class="booking-profile">
-            <%= link_to public_profile_path(booking.receiver) do %>
-              <%= cl_image_tag booking.instrument.photo.first&.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
-            <% end %>
-            <div class="booking-info">
-              <strong><%= booking.receiver.first_name %></strong> <br>
-              <b> <%= booking.instrument_disponbility.status %></b>
-              <p><%= booking.booking_day %><br>
-                <%= booking.booking_hour_from %><%= booking.booking_hour_to %>  </p>
-              at <%= booking.provider.first_name %>'s place.</p>
+        <th>Upcoming Bookings</th>
+        <th>Booking Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (@instrument.bookings.upcoming.count.zero?) && (@instrument.bookings.upcoming_availability.count.zero?) %>
+        <tr>
+          <td>
+            <div class="status">
+              😕 No upcoming bookings yet for your <%= @instrument.title %>
+            </div>
+          </td>
+        </tr>
+      <% else
+       @instrument.bookings.upcoming.present? %>
+      <% @instrument.bookings.upcoming.each do |booking| %>
+        <tr>
+          <td>
+            <div class="booking-profile">
+              <%= link_to public_profile_path(booking.receiver) do %>
+                <%= cl_image_tag booking.instrument.photo.first&.key, height: 120, width: 120, radius: 8, crop: :fill, gravity: :face, border: "5px_solid_white", radius: 20 %>
+              <% end %>
+              <div class="booking-info">
+                <strong><%= booking.receiver.first_name %></strong> <br>
+                <b> <%= booking.instrument_disponbility.status %></b>
+                <p><%= booking.booking_day %><br>
+                  <%= booking.booking_hour_from %><%= booking.booking_hour_to %>  </p>
+                at <%= booking.provider.first_name %>'s place.</p>
             </div>
           </div>
         </td>
@@ -55,18 +54,19 @@
               </div>
             <% else
                  booking.status == 2 %>
-              <div class="booking-declined">
-                <p>Booking is declined</p>
-              </div>
-            <% end %>
-          </div>
-        </td>
+            <div class="booking-declined">
+              <p>Booking is declined</p>
+            </div>
+          <% end %>
+        </div>
+      </td>
     <% end %>
-    </tr>
-  <% end %>
-  <% if @instrument.bookings.upcoming_availability.present? %>
-    <%= render "availability_bookings_table" %>
-  <% end %>
-  </tbody>
+  </tr>
+<% end %>
+<% if @instrument.bookings.upcoming_availability.present? %>
+  <%= render "availability_bookings_table" %>
+<% end %>
+</tbody>
 </table>
+</div>
 </div>
