@@ -94,7 +94,7 @@
     Average rating is: <%= render 'reviews/rating_stars' %>
   <% end %>
   </p>
-  <% if @instrument.user.id != current_user.id %>
+  <% if instrument_owner(@instrument) %>
     <!-- display owner info--><%= link_to "Add Disponbility", new_instrument_instrument_disponbility_path(@instrument), class: "button-primary" %>
   <% end %>
   <% if @instrument.availabilities.present? %>
