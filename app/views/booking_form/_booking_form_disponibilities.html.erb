@@ -10,6 +10,7 @@
     <% else %>
       <h4 id="disponibility">All Disponibilities</h4>
       <% @instrument.instrument_disponbilities.order(start_date: :asc).each do |disponibility|%>
+        <% if current_user.present? %>
         <% if disponibility.user.id == current_user.id %>
         <% next if disponibility.start_date < Time.zone.now %>
         <% next if @bookings.pluck(:instrument_disponbility_id).include?(disponibility.id)%>
@@ -26,6 +27,7 @@
           <% end %>
             <% end %>
         <% end %>
+          <% end %>
       <% end %>
     <% end %>
     </p>
