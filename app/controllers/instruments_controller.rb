@@ -2,7 +2,6 @@ class InstrumentsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
   before_action :redirect_to_search, only: [:index]
   before_action :find_instrument, only: [:show, :edit, :update, :destroy, :pause, :activate, :book, :favorite]
-
   def index
     @instruments = Instrument.active.search_title_and_location(params[:title].to_s + ',' + params[:city].to_s)
   end
@@ -80,7 +79,7 @@ class InstrumentsController < ApplicationController
     redirect_to profile_path
     else
     render :edit
-      end
+    end
   end
 
   def destroy
@@ -133,7 +132,7 @@ class InstrumentsController < ApplicationController
     params.require(:instrument).permit(:title, :day, :subtitle, :description,
                                        :street_name, :house_number, :postal_code, :city, :country, :cancellation_policy_id,
                                        :price, :reviews,  :location, feature_ids: [],photo:[],
-                                       disponibilities_attributes: [:id, :from, :to, :_destroy])
+                                       instrument_disponbilities_attributes: [:id, :start_date, :end_date, :status, :availability, :_destroy, :user_id])
   end
 
   def find_instrument
