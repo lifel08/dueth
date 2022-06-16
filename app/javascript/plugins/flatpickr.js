@@ -3,7 +3,7 @@ import flatpickr from "flatpickr";
 
 const initFlatpickr = () => {
   flatpickr(".datepicker", {
-    enableTime: false
+    enableTime: true
   });
 }
 export { initFlatpickr };

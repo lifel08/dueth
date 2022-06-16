@@ -6,28 +6,29 @@
     <div class="popupCloseButton">&times;</div>
     <p>
       <% if all_booked?(@instrument.instrument_disponbilities,@bookings) %>
-        <p>There are no available Disponibilities</p>
-      <% else %>
-        <h4 id="disponibility">All Disponibilities</h4>
-        <% @instrument.instrument_disponbilities.order(start_date: :asc).each do |disponibility|%>
-          <% if disponibility.user.id == current_user.id %>
-            <% next if disponibility.start_date < Time.zone.now %>
-            <% next if @bookings.pluck(:instrument_disponbility_id).include?(disponibility.id)%>
-            <%= simple_form_for @instrument, url: (instrument_instrument_bookings_path(@instrument)), method: :post do |f| %>
-              <%= f.input :instrument_disponbility_id, as: :hidden, :input_html => { value: disponibility.id }%>
-              <p><b>From:</b> <%= disponibility.start_from  %><br>
-                <b>to:</b><%= disponibility.until_to %> </p>
-              <% if user_signed_in? %>
-                <%= f.button :submit, "Book", class: "button-primary " %>
-                <%= link_to 'Delete', instrument_instrument_disponbility_path(@instrument,disponibility), method: :delete, class: "btn btn-sm button-primary" %>
-              <% elsif current_user == @instrument.provider %>
-                <%= link_to "Add Disponbility", new_instrument_instrument_disponbility_path(@instrument), class: "button-primary" %>
-              <% else %>
-                <p class="text-muted"><%= link_to "Please login to book this instrument", new_user_session_path, class: "button-secondary" %></p>
-              <% end %>
+      <p>There are no available Disponibilities</p>
+    <% else %>
+      <h4 id="disponibility">All Disponibilities</h4>
+      <% @instrument.instrument_disponbilities.order(start_date: :asc).each do |disponibility|%>
+        <% if current_user.present? %>
+        <% if disponibility.user.id == current_user.id %>
+        <% next if disponibility.start_date < Time.zone.now %>
+        <% next if @bookings.pluck(:instrument_disponbility_id).include?(disponibility.id)%>
+        <%= simple_form_for @instrument, url: (instrument_instrument_bookings_path(@instrument)), method: :post do |f| %>
+          <%= f.input :instrument_disponbility_id, as: :hidden, :input_html => { value: disponibility.id }%>
+          <p><b>From:</b> <%= disponibility.start_from  %><br><b>to:</b><%= disponibility.until_to %> </p>
+          <% if user_signed_in? %>
+            <%= f.button :submit, "Book", class: "button-primary " %>
+            <%= link_to 'Delete', instrument_instrument_disponbility_path(@instrument,disponibility), method: :delete, class: "btn btn-sm button-primary" %>
+          <% elsif current_user == instrument.receiver %>
+            <%= link_to 'Want to edit the disponibilities?', edit_instrument_path(instrument), class: "button-info" %>
+          <% else %>
+            <p class="text-muted"><%= link_to "Please login to book this instrument", new_user_session_path, class: "button-secondary" %></p>
+          <% end %>
             <% end %>
           <% end %>
         <% end %>
+          <% end %>
       <% end %>
     </p>
   </div>
