@@ -27,7 +27,7 @@
     <%= yield %>
     <%= yield :footer_script if content_for?(:footer_script) %>
     <!-- Footer -->
-    <footer>
+    <footer class="fixed-bottom">
       <%= render 'shared/footer-desktop'  %>
     </footer>
     <%= render 'shared/footer-mobile'  %>

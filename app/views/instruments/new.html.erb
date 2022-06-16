@@ -24,7 +24,7 @@
         <%= f.input :house_number, label: "Street-number" %>
         <%= f.input :postal_code, label: "Postal Code" %>
         <%= f.input :city, label: "City" %>
-        <%= f.input :country, as: :country %>
+        <!--    <#%= f.input :country, label: "Country"%> -->
         <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
         <%= f.input :price, label: "Price" %>
         <%= f.input :photo, as: :file, label: "Photos", input_html: { multiple: true } %>

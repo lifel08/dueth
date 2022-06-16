@@ -47,14 +47,6 @@
   <!-- instruments -->
   <div class="d-flex align-content-center">
     <h1>Explore music instruments nearby</h1>
-    <div class="d-flex">
-      <div class="ml-5 mt-4">
-        <%= form_tag get_search_instrument_instruments_path,remote: :true, method: :post do %>
-          <%= text_field_tag :day,params[:day], class: "search-bar-main", placeholder: "Enter day ..." %>
-          <button type="submit" class="button-primary search-button">Search</button>
-          </div>
-        <% end %>
-        </div>
   </div>
   <%= render "components/instrument_card_small", class: 'inst', instruments: @instruments %>
 </div>

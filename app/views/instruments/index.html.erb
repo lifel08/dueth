@@ -68,14 +68,18 @@
             <% end %>
           </ul>
         </div>
-        <div class="px-2">
+        <div class="px-3">
           <select class="btn btn-outline-primary dropdown-toggle py-2 customDataSelection">
             <option value="0,15">Less than 15€</option>
             <option value="15,40">Between 10€-40€</option>
             <option value="45">More than 45€</option>
           </select>
         </div>
-      </div>
+        <%= form_tag get_search_instrument_instruments_path,remote: :true, method: :post do %>
+          <%= text_field_tag :day,params[:day], class: "search-bar-main", placeholder: "Enter favorite practise day ..." %>
+          <button type="submit" class="button-primary search-button">Search</button>
+        </div>
+      <% end %>
     </div>
     <!-- Filters -->
     <div class="content">

@@ -114,31 +114,27 @@
   <!-- reviews -->
   <p>
     <h2><%= @instrument.title %> Reviews</h2>
-    <%= @instrument.user.first_name %>'s <%= @instrument.title %>
-    has <%= pluralize(@instrument.user.reviews.count, 'review') %>.
-    <% if @instrument.average_rating > 1 %>
-      Average rating is: <%= render 'reviews/rating_stars' %>
-    <% end %>
-  </p>
-  <% if @instrument.user == current_user %>
-    <!-- display owner info-->
-    <%= link_to "Add Disponbility", new_instrument_instrument_disponbility_path(@instrument), class: "button-primary" %>
-  <% end %>
-  <% if @instrument.availabilities.present?%>
-  <%= link_to "Show Availabilities", instrument_availabilities_path(@instrument), class: "button-primary" %>
-    <% end %>
-  <h2>And this is <%= @instrument.user.first_name %></h2>
-  <div class="profile-short-description">
-    <div class="profile-picture">
-      <%= cl_image_tag @instrument.user.photo.key, height: 90, width: 90, radius: 8, crop: :fill, gravity: :face %>
+    <div class="container-sm mt-3 mb-3"><%= @instrument.user.first_name %>'s <%= @instrument.title %>
+      has <%= pluralize(@instrument.user.reviews.count, 'review') %>.
+      <% if @instrument.average_rating > 1 %>
+        Average rating is: <%= render 'reviews/rating_stars' %>
+      <% end %>
     </div>
-    <div class="profile-short-description-header">
-      <div class="membership">
-        <p> Member since <%= @instrument.user.member_since %> </p>
+    <% if @instrument.availabilities.present?%>
+      <%= link_to "Show Availabilities", instrument_availabilities_path(@instrument), class: "button-primary" %>
+    <% end %>
+    <h2>And this is <%= @instrument.user.first_name %></h2>
+    <div class="profile-short-description">
+      <div class="profile-picture">
+        <%= cl_image_tag @instrument.user.photo.key, height: 90, width: 90, radius: 8, crop: :fill, gravity: :face %>
       </div>
-      <li class="profile-attributes"><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(@instrument.user.reviews.count, 'review') %></li>
-      <li class="profile-attributes"><%= image_tag 'svg/language.svg', class: "rating" %> <%= @instrument.user.language %></li>
+      <div class="profile-short-description-header">
+        <div class="membership">
+          <p> Member since <%= @instrument.user.member_since %> </p>
+        </div>
+        <li class="profile-attributes"><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(@instrument.user.reviews.count, 'review') %></li>
+        <li class="profile-attributes"><%= image_tag 'svg/language.svg', class: "rating" %> <%= @instrument.user.language %></li>
+      </div>
+      <p class="instrument-short-info-description"> <%= @instrument.user.description %></p>
     </div>
-    <p class="instrument-short-info-description"> <%= @instrument.user.description %></p>
   </div>
-</div>
