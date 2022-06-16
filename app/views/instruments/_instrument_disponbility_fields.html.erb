@@ -1,0 +1,23 @@
+<div class="nested-fields">
+  <div class=available-booking-dates>
+    <%= f.label "Booking Type:" %>
+    <%= f.select :status, InstrumentDisponbility.statuses.keys.map { |w| [w] }, { :include_blank => 'Booking Type' }, { class: 'form-control m-b col-md-6' } %><br>
+  </div>
+  <div class=available-booking-dates>
+    <%= f.input :start_date, label: "Starts at:", as: :string, input_html: { class: "datepicker col-md-6" } %>
+    <%= f.input :end_date, label: "Ends at:", as: :string, input_html: { class: "datepicker col-md-6" } %>
+    <%= f.hidden_field :user_id, value: current_user.id%>
+  </div>
+  <% if current_user.instruments.where('created_at >= ?', 1.week.ago) %>
+    <div class="checkbox-color"></div>
+    <span class="labelText">Availability:</span><%= f.check_box :availability,class: 'form-control c-checkbox', checked: "checked" %>
+  <% else %>
+    <span class="labelText">Availability:</span><%= f.check_box :availability,class: 'form-control c-checkbox'%>
+  <% end %>
+  <div class="remove-disponibility"> <%= link_to_remove_association "remove disponibility", f %></div>
+</div>
+
+
+
+
+
