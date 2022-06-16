@@ -20,4 +20,10 @@ module ApplicationHelper
   def image_data(instrument)
     images =  instrument.photo
   end
+
+  def instrument_owner(instrument)
+    if current_user.present?
+    instrument.user_id != current_user.id
+      end
+  end
 end

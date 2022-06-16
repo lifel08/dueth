@@ -27,12 +27,12 @@
         </a>
         <div class="collapse" id="collapseExample">
           <div class="links">
-            <button class="btn button-alert"><%= link_to_add_association 'Add disponibility', f, :disponibilities %></button>
+            <button class="btn button-alert"><%= link_to_add_association 'Add disponibility', f, :instrument_disponbilities %></button>
           </div>
         </div>
         <div>
-          <%= f.simple_fields_for :disponibilities do |e| %>
-            <%= render partial: 'disponibility_fields', locals: {f: e }  %>
+          <%= f.simple_fields_for :instrument_disponbilities do |e| %>
+            <%= render partial: 'instrument_disponbility_fields', locals: {f: e }  %>
           <% end %>
         </div>
         <%= f.input :price, label: "Add a price" %>

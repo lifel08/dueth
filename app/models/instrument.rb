@@ -57,7 +57,7 @@ class Instrument < ApplicationRecord
   has_many_attached :photo
   has_many :favourite_instruments # just the 'relationships'
   has_many :favorited_by, through: :favourite_instruments, source: :instrument
-  accepts_nested_attributes_for :disponibilities, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :instrument_disponbilities, allow_destroy: true, reject_if: :all_blank
   attr_accessor :day,:to, :from, :available
   after_create :set_availability
   pg_search_scope :search_title_and_location,

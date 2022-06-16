@@ -94,6 +94,8 @@ acoustic_piano = Instrument.new(
     postal_code: '75010',
     city: 'Paris',
     country: 'France',
+    latitude: 0.36135852e2,
+    longitude: -0.95849531e2,
     price: 20,
     user: chloe,
     cancellation_policy: cancellation_policies[0]
@@ -113,6 +115,8 @@ digital_piano = Instrument.new(
     postal_code: '20121',
     city: 'Milan',
     country: 'Italy',
+    latitude: 0.36135852e2,
+    longitude: -0.95849531e2,
     price: 15,
     user: nam,
     cancellation_policy: cancellation_policies[5]
