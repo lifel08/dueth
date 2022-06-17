@@ -40,7 +40,7 @@
         marker.setLngLat(instrument.center);
     
         // create a pop up for the marker
-        var popup = new mapboxgl.Popup({offset: 45}).setText(instrument.title);
+        var popup = new mapboxgl.Popup({offset: 45}).setHTML('<a href="http://' + window.location.host + "/instruments/" + instrument.id + '">' + instrument.title + '</a>');
     
         // will assign the popup to the marker
         marker.setPopup(popup);
