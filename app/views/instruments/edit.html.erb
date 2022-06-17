@@ -19,8 +19,15 @@
         <%= f.input :title, label: "Instrument Name:" %>
         <%= f.input :subtitle, label: "Instrument Sub-Title:", input_html: { maxlength: 70} %>
         <%= f.input :description, label: "Describe your Instrument:"%>
-        <%= f.input :location, label: "Instrument Location (city):" %>
+        <%= f.input :street_name, label: "Street-name" %>
+        <%= f.input :house_number, label: "Street-number" %>
+        <%= f.input :postal_code, label: "Postal Code" %>
+        <%= f.input :city, label: "City" %>
+        <%= f.label :country %>
+        <%= f.collection_select(:country, ISO3166::Country.countries.sort_by(&:name).collect { |c| [ c.name, "#{c.name}" ] }, :first, :last, {include_blank: 'Select Country'}, class: "select__picker form-control", 'data-style': 'form-control') %>
         <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
+        <%= f.input :price, label: "Price" %>
+        <%= f.input :photo, as: :file, label: "Photos", input_html: { multiple: true } %>
         <h2>Select a new Diponibility</h2>
         <a class="btn button-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
           New disponibility
@@ -32,10 +39,9 @@
         </div>
         <div>
           <%= f.simple_fields_for :instrument_disponbilities do |e| %>
-            <%= render partial: 'instrument_disponbility_fields', locals: {f: e }  %>
+            <%= render partial: 'instrument_disponbility_fields', locals: {f: e } %>
           <% end %>
         </div>
-        <%= f.input :price, label: "Add a price" %>
         <% Feature.find_each do |feature, icon| %>
           <li class="features_list">
             <%= check_box_tag :"instrument[feature_ids][]", feature.id, @instrument.feature_ids.include?(feature.id) %>
