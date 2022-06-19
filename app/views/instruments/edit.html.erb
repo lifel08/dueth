@@ -15,27 +15,15 @@
         </ul>
       <% end %>
       <h1>Edit your Instrument</h1>
+      <br>
       <%= simple_form_for @instrument do |f| %>
         <%= f.input :title, label: "Instrument Name:" %>
         <%= f.input :subtitle, label: "Instrument Sub-Title:", input_html: { maxlength: 70} %>
         <%= f.input :description, label: "Describe your Instrument:"%>
         <%= f.input :location, label: "Instrument Location (city):" %>
-        <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
-        <h2>Select a new Diponibility</h2>
-        <a class="btn button-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-          New disponibility
-        </a>
-        <div class="collapse" id="collapseExample">
-          <div class="links">
-            <button class="btn button-alert"><%= link_to_add_association 'Add disponibility', f, :instrument_disponbilities %></button>
-          </div>
-        </div>
-        <div>
-          <%= f.simple_fields_for :instrument_disponbilities do |e| %>
-            <%= render partial: 'instrument_disponbility_fields', locals: {f: e }  %>
-          <% end %>
-        </div>
         <%= f.input :price, label: "Add a price" %>
+        <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
+        <p><strong>Instrument Features</strong></p>
         <% Feature.find_each do |feature, icon| %>
           <li class="features_list">
             <%= check_box_tag :"instrument[feature_ids][]", feature.id, @instrument.feature_ids.include?(feature.id) %>
@@ -43,12 +31,18 @@
             <%= raw feature.icon %>
           </li>
         <% end %>
-        <br/>
-        <div class="send-formular">
-          <%= f.button :submit, class: "button-primary my-2"%>
-          <%= link_to 'Back to your profile', profile_path, class: "button-secondary my-2"  %>
-        </div>
-      <% end %>
-    </div>
+        <br>
+        <p><strong>Instrument Availability</strong></p>
+        <%= f.simple_fields_for :instrument_disponbilities do |e| %>
+          <%= render partial: 'instrument_disponbility_fields', locals: {f: e }  %>
+        <% end %>
+        <button class="btn button-alert"><%= link_to_add_association 'Add disponibility', f, :instrument_disponbilities %></button>
+      </div>
+      <div class="send-formular">
+        <%= f.button :submit, class: "button-primary my-2"%>
+        <%= link_to 'Back to your profile', profile_path, class: "button-secondary my-2"  %>
+      </div>
+    <% end %>
   </div>
+</div>
 </div>

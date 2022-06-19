@@ -2,13 +2,17 @@
   padding: 15px;
   list-style: none;
 }
-
 .send-formular {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 40px;
+  @media screen and (max-width: 1527px) {
+    margin-bottom: 40%;
+  }
 }
-
+.remove-disponibility {
+  @media screen and (max-width: 1527px) {
+    text-decoration: underline;
+    width:60%;
+  }
+}
 .disponibilities {
   margin: 60px 0;
 }
@@ -19,8 +23,4 @@
 }
 
 
-.remove-disponibility {
-  text-decoration: underline;
-  width:20%;
 
-}

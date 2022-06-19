@@ -77,40 +77,6 @@
   <!-- Map -->
   <div>
     <%= content_for :footer_script do %>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <script type="text/javascript">
-        mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
-        
-        var center = <%= j @instrument.center %>;
-        
-        var map = new mapboxgl.Map({
-            container: 'map' && 'map-show',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: center,
-            zoom: 12
-        });
-        
-        // create a HTML element for each feature
-        var el = document.createElement('div');
-        el.className = 'marker';
-        
-        map.on('load', function () {
-            // create the popup
-            var popup = new mapboxgl.Popup({offset: 45}).setText(
-                '<%= j @instrument.title %>'
-            );
-        
-            var marker = new mapboxgl.Marker(el)
-                .setLngLat(center)
-                .setPopup(popup)
-                .addTo(map);
-        })
-      </script>
-=======
->>>>>>> main
-=======
->>>>>>> main
     <% end %>
     <%= hidden_field_tag 'center', @instrument.center, id: 'center-id' %>
     <%= hidden_field_tag 'title', @instrument.title, id: 'title-id' %>
@@ -121,66 +87,33 @@
   <%= render './components/price_cancellation' %>
   <!-- reviews -->
   <p>
-<<<<<<< HEAD
-<<<<<<< HEAD
     <h2><%= @instrument.title %> Reviews</h2>
-    <div class="container-sm mt-3 mb-3"><%= @instrument.user.first_name %>'s <%= @instrument.title %>
-      has <%= pluralize(@instrument.user.reviews.count, 'review') %>.
-      <% if @instrument.average_rating > 1 %>
-        Average rating is: <%= render 'reviews/rating_stars' %>
-      <% end %>
-=======
-=======
->>>>>>> main
-  <h2><%= @instrument.title %> Reviews</h2>
-  <%= @instrument.user.first_name %>'s <%= @instrument.title %>
-  has <%= pluralize(@instrument.user.reviews.count, 'review') %>.
-  <% if @instrument.average_rating > 1 %>
-    Average rating is: <%= render 'reviews/rating_stars' %>
-  <% end %>
+    <%= @instrument.user.first_name %>'s <%= @instrument.title %>
+    has <%= pluralize(@instrument.user.reviews.count, 'review') %>.
+    <% if @instrument.average_rating > 1 %>
+      Average rating is: <%= render 'reviews/rating_stars' %>
+    <% end %>
   </p>
   <% if instrument_owner(@instrument) %>
     <!-- display owner info--><%= link_to "Add Disponbility", new_instrument_instrument_disponbility_path(@instrument), class: "button-primary" %>
   <% end %>
-  <% if @instrument.availabilities.present? %>
+  <% if @instrument.availabilities.present?%>
     <%= link_to "Show Availabilities", instrument_availabilities_path(@instrument), class: "button-primary" %>
   <% end %>
   <h2>And this is <%= @instrument.user.first_name %></h2>
   <div class="profile-short-description">
     <div class="profile-picture">
       <%= cl_image_tag @instrument.user.photo.key, height: 90, width: 90, radius: 8, crop: :fill, gravity: :face %>
-<<<<<<< HEAD
->>>>>>> main
-=======
->>>>>>> main
     </div>
-    <% if @instrument.availabilities.present?%>
-      <%= link_to "Show Availabilities", instrument_availabilities_path(@instrument), class: "button-primary" %>
-    <% end %>
-    <h2>And this is <%= @instrument.user.first_name %></h2>
-    <div class="profile-short-description">
-      <div class="profile-picture">
-        <%= cl_image_tag @instrument.user.photo.key, height: 90, width: 90, radius: 8, crop: :fill, gravity: :face %>
+    <div class="profile-short-description-header">
+      <div class="membership">
+        <p> Member since <%= @instrument.user.member_since %> </p>
       </div>
-      <div class="profile-short-description-header">
-        <div class="membership">
-          <p> Member since <%= @instrument.user.member_since %> </p>
-        </div>
-        <li class="profile-attributes"><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(@instrument.user.reviews.count, 'review') %></li>
-        <li class="profile-attributes"><%= image_tag 'svg/language.svg', class: "rating" %> <%= @instrument.user.language %></li>
-      </div>
-      <p class="instrument-short-info-description"> <%= @instrument.user.description %></p>
+      <li class="profile-attributes"><%= image_tag 'svg/rating-grey.svg', class: "rating" %> <%= pluralize(@instrument.user.reviews.count, 'review') %></li>
+      <li class="profile-attributes"><%= image_tag 'svg/language.svg', class: "rating" %> <%= @instrument.user.language %></li>
     </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-  </div>
-=======
     <p class="instrument-short-info-description"> <%= @instrument.user.description %></p>
   </div>
+  <p class="instrument-short-info-description"> <%= @instrument.user.description %></p>
 </div>
->>>>>>> main
-=======
-    <p class="instrument-short-info-description"> <%= @instrument.user.description %></p>
-  </div>
 </div>
->>>>>>> main

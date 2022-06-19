@@ -50,6 +50,7 @@ class InstrumentsController < ApplicationController
   end
 
   def edit
+    add_breadcrumb "My Profile", :profile_path
     add_breadcrumb "Edit Instrument", :edit_instrument_path
     # @instrument.disponibilities.build
   end
@@ -76,9 +77,9 @@ class InstrumentsController < ApplicationController
 
   def update
     if @instrument.update(instrument_params)
-    redirect_to profile_path
+      redirect_to profile_path
     else
-    render :edit
+      render :edit
     end
   end
 
