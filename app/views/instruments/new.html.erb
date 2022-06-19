@@ -26,6 +26,7 @@
         <%= f.input :city, label: "City" %>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <!--    <#%= f.input :country, label: "Country"%> -->
 =======
         <%= f.input :country, :as => :string, label: "Country" %>
@@ -33,6 +34,10 @@
 =======
         <%= f.input :country, :as => :string, label: "Country" %>
 >>>>>>> main
+=======
+        <%= f.label :country %>
+        <%= f.collection_select(:country, ISO3166::Country.countries.sort_by(&:name).collect { |c| [ c.name, "#{c.name}" ] }, :first, :last, {include_blank: 'Select Country'}, class: "select__picker form-control", 'data-style': 'form-control') %>
+>>>>>>> 94b6b63f193f451e6696c24b6a321f83d82d14f5
         <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
         <%= f.input :price, label: "Price" %>
         <%= f.input :photo, as: :file, label: "Photos", input_html: { multiple: true } %>
