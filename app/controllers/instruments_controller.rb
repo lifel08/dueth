@@ -51,6 +51,7 @@ class InstrumentsController < ApplicationController
   end
 
   def edit
+    add_breadcrumb "My Profile", :profile_path
     add_breadcrumb "Edit Instrument", :edit_instrument_path
     # @instrument.disponibilities.build
   end
