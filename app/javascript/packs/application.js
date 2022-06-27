@@ -122,10 +122,11 @@ $(document).on('turbolinks:load', function () {
         }
         previousScroll = currentScroll;
     });
+    var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
+    mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
     if ($('#map-show').length > 0) {
 
-        var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
-        mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
+
         var center = $('#center-id').val();
         center = center.split(' ');
         // console.log(center);
@@ -151,6 +152,45 @@ $(document).on('turbolinks:load', function () {
                 .addTo(map);
         })
     }
+    // for index
+    if ($('#map').length > 0) {
+        // Get instruments from ruby array to javascript array
+        var instruments = $('#instrument-id').val();
+        // instruments = Object.assign({}, [instruments]);
+        var instruments = JSON.parse(instruments);
+        // Build the map!
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: instruments[0].center,
+            zoom: 12
+        });
+
+        // Build marker for each instrument
+        instruments.forEach(function (instrument) {
+            // create the popup
+            var markerOptions = {
+                color: "#FFFFFF",
+                draggable: false
+            }
+
+            var el = document.createElement('div');
+            el.className = 'marker';
+
+            // create marker instance for the map
+            var marker = new mapboxgl.Marker(el, markerOptions)
+
+            // Set longitude & latitude to the marker
+            marker.setLngLat(instrument.center);
+
+            // create a pop up for the marker
+            var popup = new mapboxgl.Popup({offset: 45}).setHTML('<a href="http://' + window.location.host + "/instruments/" + instrument.id + '">' + instrument.title + '</a>');
+
+            // will assign the popup to the marker
+            marker.setPopup(popup);
+
+            // Set the marker to the map
+            marker.addTo(map);
+        })
+    }
 });
-
-

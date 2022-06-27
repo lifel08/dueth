@@ -7,48 +7,8 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.dueth.com/instruments/<%= params[:title] %>/<%= params[:city] %>"/>
 <% end %>
+<%= hidden_field_tag 'instrument', @instruments.to_json, id: 'instrument-id' %>
 <%= content_for :footer_script do %>
-  <script type="text/javascript">
-    mapboxgl.accessToken = 'pk.eyJ1IjoibGlmZWwwOCIsImEiOiJja252cDQ1Mmkwb3h4Mm9vYWY3Z3YycDdoIn0.3Jn2hjSix6AUKv4zPqAUgw';
-    
-    // Get instruments from ruby array to javascript array
-    var instruments = <%= raw @instruments.to_json %>;
-    
-    // Build the map!
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: instruments[0].center,
-        zoom: 12
-    });
-    
-    // Build marker for each instrument
-    instruments.forEach(function (instrument) {
-        // create the popup
-        var markerOptions = {
-            color: "#FFFFFF",
-            draggable: false
-        }
-    
-        var el = document.createElement('div');
-        el.className = 'marker';
-    
-        // create marker instance for the map
-        var marker = new mapboxgl.Marker(el, markerOptions)
-    
-        // Set longitude & latitude to the marker
-        marker.setLngLat(instrument.center);
-    
-        // create a pop up for the marker
-        var popup = new mapboxgl.Popup({offset: 45}).setHTML('<a href="http://' + window.location.host + "/instruments/" + instrument.id + '">' + instrument.title + '</a>');
-    
-        // will assign the popup to the marker
-        marker.setPopup(popup);
-    
-        // Set the marker to the map
-        marker.addTo(map);
-    })
-  </script>
 <% end %>
 <div class="search-result-page">
   <section>
@@ -78,9 +38,9 @@
         <%= form_tag get_search_instrument_instruments_path,remote: :true, method: :post do %>
           <%= text_field_tag :day,params[:day], class: "search-bar-main", placeholder: "Enter favorite practise day ..." %>
           <button type="submit" class="button-primary search-button">Search</button>
+          </div>
+        <% end %>
         </div>
-      <% end %>
-    </div>
     <!-- Filters -->
     <div class="content">
       <div class="search-page-desktop">
