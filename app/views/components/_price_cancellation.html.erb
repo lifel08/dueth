@@ -2,11 +2,11 @@
 <div class="price-cancellation">
   <h3 id="disponibility">Price & Cancellation</h3>
   <div class="disponibility">
-    <div class="price-from">Practise from <br>
+    <div class="price-from">Practise from<br>
       <strong><%= @instrument.price %></strong> €/h</div>
     <div class="cancellation"> Cancellation <br>
       <strong><%= @instrument.cancellation_policy&.name  %></strong></div>
+    <!-- availability -->
+    <%= link_to "Show Availabilities", instrument_availabilities_path(@instrument), class: "button-primary" %>
   </div>
-  <!-- disponibility -->
-  <%= render './booking_form/booking_form_disponibilities'  %>
 </div>
