@@ -10,7 +10,6 @@ class InstrumentsController < ApplicationController
   def search
     add_breadcrumb "#{params[:title].capitalize}'s to rent in #{params[:city].capitalize}", :search_instruments_path
     @center = Geocoder.search(params[:city]).first.data["center"]
-
     @instruments = Instrument.active.search_title_and_location(params[:title].to_s + ',' + params[:city].to_s)
     @features = @instruments.includes(:features).pluck(:name).uniq
     if params[:feature].present?
@@ -97,14 +96,14 @@ class InstrumentsController < ApplicationController
     if current_user.present?
       type = params[:type]
       case type
-        when "favourite"
-          current_user.favorites << @instrument
-          redirect_back fallback_location: root_path, notice: 'Liked!'
-        when "unfavourite"
-          current_user.favorites.delete(@instrument)
-          redirect_back fallback_location: root_path, notice: 'Unliked!.'
-        else
-          redirect_back fallback_location: root_path, notice: 'Nothing happened.'
+      when "favourite"
+        current_user.favorites << @instrument
+        redirect_back fallback_location: root_path, notice: 'Liked!'
+      when "unfavourite"
+        current_user.favorites.delete(@instrument)
+        redirect_back fallback_location: root_path, notice: 'Unliked!.'
+      else
+        redirect_back fallback_location: root_path, notice: 'Nothing happened.'
       end
     end
   end

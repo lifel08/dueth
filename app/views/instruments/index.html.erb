@@ -84,11 +84,9 @@
     <!-- Filters -->
     <div class="content">
       <div class="search-page-desktop">
-        <div class="cards">
-          <% @instruments.each do |instrument| %>
-            <%= render "./components/instrument_card_big", instrument: instrument %>
-          <% end %>
-        </div>
+        <% @instruments.each do |instrument| %>
+          <%= render "./components/instrument_card_big", instrument: instrument %>
+        <% end %>
       </div>
       <div class="search-page-mobile">
         <div id="dropdown-feature" class="dropdown-feature-img">

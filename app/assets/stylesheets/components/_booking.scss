@@ -106,7 +106,6 @@
 }
 
 .price-from {
-  margin-right: 30px;
   -webkit-box-pack: justify !important;
   -webkit-box-direction: normal !important;
   -webkit-box-orient: vertical !important;
@@ -114,9 +113,7 @@
   background-color: #94906F;
   color: white;
   padding:10px;
-  margin-left: 5px;
-  text-decoration: none !important;
-  width: 50%;
+  text-align: center;
    @media screen and (max-width: 1527px) {
 
    }
@@ -128,16 +125,13 @@
     -webkit-box-orient: vertical !important;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     padding:10px;
-    margin-left: 5px;
-    text-decoration: none !important;
+    text-align: center;
     background-color: #94906F;
     color: white;
-     width: 60%;
      @media screen and (max-width: 1527px) {
 
    }
 }
-// booking-now (instrument show page, booking-nav, disponibilities show page)
 
 .book-now {
  display: flex;
@@ -155,9 +149,10 @@
 
 .disponibility {
   display:flex;
-  width:70%;
-  padding:15px;
-  justify-content: space-between;
+  flex-direction:column;
+  width:30%;
+  justify-content: space-around;
+  margin:2%;
   @media screen and (max-width: 1527px) {
     width:100%;
     justify-content: space-around;

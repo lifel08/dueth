@@ -3,9 +3,19 @@
     <div class="image-container-big">
       <%= cl_image_tag instrument.photo.first&.key, height: 300, width: 800, crop: :fill, loading:"lazy", :class=>"instrument-card-image"%>
       <div class="header-image-big">
+        <% if user_signed_in? %>
+          <% if check_favorite(instrument).present? %>
+            <%= link_to favorite_instrument_path(instrument, type: "unfavourite"), remote: true, method: :put do %>
+              <i class="fas fa-heart icons-main"></i>
+            <% end %>
+          <% else %>
+            <%= link_to favorite_instrument_path(instrument, type: "favourite"), remote: true, method: :put do %>
+              <i class="far fa-heart icons-main"></i>
+            <% end %>
+          <% end %>
+        <% end %>
         <i class="fas fa-map-marker-alt location"></i>
         <p class="card-headline"><%= instrument.title %> <%= instrument.city %></p>
-        <i class="far fa-heart icons-main"></i>
       </div>
     </div>
     <div class="overview-big">

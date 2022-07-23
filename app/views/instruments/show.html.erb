@@ -94,12 +94,12 @@
       Average rating is: <%= render 'reviews/rating_stars' %>
     <% end %>
   </p>
-  <% if instrument_owner(@instrument) %>
+  <% if instrument_owner(@instrument) == current_user %>
     <!-- display owner info--><%= link_to "Add Disponbility", new_instrument_instrument_disponbility_path(@instrument), class: "button-primary" %>
   <% end %>
-  <% if @instrument.availabilities.present?%>
+  <!--   <% if @instrument.availabilities.present?%>
     <%= link_to "Show Availabilities", instrument_availabilities_path(@instrument), class: "button-primary" %>
-  <% end %>
+  <% end %> -->
   <h2>And this is <%= @instrument.user.first_name %></h2>
   <div class="profile-short-description">
     <div class="profile-picture">

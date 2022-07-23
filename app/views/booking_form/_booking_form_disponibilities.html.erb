@@ -9,6 +9,7 @@
         <p>There are no available Disponibilities</p>
       <% else %>
         <h4 id="disponibility">All Disponibilities</h4>
+        <%= link_to "Show Availabilities", instrument_availabilities_path(@instrument), class: "button-primary" %>
         <% @instrument.instrument_disponbilities.order(start_date: :asc).each do |disponibility|%>
           <% if disponibility.user.id == current_user.id %>
             <% next if disponibility.start_date < Time.zone.now %>
