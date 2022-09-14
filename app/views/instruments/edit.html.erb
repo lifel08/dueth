@@ -43,6 +43,14 @@
         <% end %>
         <button class="btn button-alert"><%= link_to_add_association 'Add disponibility', f, :instrument_disponbilities %></button>
       </div>
+      <div>
+          <%= f.fields_for :availabilies do |a| %>
+            <%= a.label :start_datetime %>
+            <%= a.datetime_local_field :start_datetime %>
+            <%= a.label :end_datetime %>
+            <%= a.datetime_local_field :end_datetime %>
+          <% end %>
+        </div>
       <div class="send-formular">
         <%= f.button :submit, class: "button-primary my-2"%>
         <%= link_to 'Back to your profile', profile_path, class: "button-secondary my-2"  %>

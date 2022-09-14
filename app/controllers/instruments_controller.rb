@@ -135,7 +135,8 @@ class InstrumentsController < ApplicationController
     params.require(:instrument).permit(:title, :day, :subtitle, :description,
                                        :street_name, :house_number, :postal_code, :city, :country, :cancellation_policy_id,
                                        :price, :reviews, :location, feature_ids: [], photo: [],
-                                       instrument_disponbilities_attributes: [:id, :start_date, :end_date, :status, :availability, :_destroy, :user_id])
+                                       instrument_disponbilities_attributes: [:id, :start_date, :end_date, :status, :availability, :_destroy, :user_id],
+                                       availabilities: [:start_datetime, :end_datetime])
   end
 
   def find_instrument

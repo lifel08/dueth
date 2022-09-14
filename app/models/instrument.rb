@@ -43,6 +43,8 @@ class Instrument < ApplicationRecord
   include PgSearch::Model
 
   belongs_to :user
+  belongs_to :cancellation_policy
+
   has_many :reviews
   has_many :bookings, inverse_of: :instrument
   has_many :disponibilities, inverse_of: :instrument
@@ -50,16 +52,20 @@ class Instrument < ApplicationRecord
   has_many :instrument_disponbilities
   has_many :instrument_features, dependent: :destroy
   has_many :features, through: :instrument_features
-  belongs_to :cancellation_policy
-  has_many :availabilities, dependent: :destroy
-  validates :title, :subtitle, :street_name, :house_number, :postal_code, :city,
-    :country, :price, presence: true
-  has_many_attached :photo
+  has_many :instrument_availabilitiy
+  has_many :availabilities, through: :instrument_availabilitiy
   has_many :favourite_instruments # just the 'relationships'
   has_many :favorited_by, through: :favourite_instruments, source: :instrument
+  
+  has_many_attached :photo 
+  
+  validates :title, :subtitle, :street_name, :house_number, :postal_code, :city,
+    :country, :price, presence: true
   accepts_nested_attributes_for :instrument_disponbilities, allow_destroy: true, reject_if: :all_blank
   attr_accessor :day,:to, :from, :available
+  
   after_create :set_availability
+  
   pg_search_scope :search_title_and_location,
     against: [ :title, :city ]
 
@@ -123,7 +129,9 @@ class Instrument < ApplicationRecord
     end
     return average.zero? ? average : (average / reviews.size).round
   end
+
   private
+  
   def set_availability
     week_days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     week_days.each do |day|

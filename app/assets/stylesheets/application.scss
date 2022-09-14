@@ -8,6 +8,9 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "flatpickr/dist/flatpickr";
+@import "tui-calendar";
+@import "tui-date-picker/dist/tui-date-picker.css";
+@import "tui-time-picker/dist/tui-time-picker.css";
 
 // Your CSS partials
 @import "components/alert";
@@ -32,6 +35,8 @@
 @import "pages/profile";
 @import "pages/signup";
 @import "buttons";
+@import 'tui-date-picker/dist/tui-date-picker.css';
+@import 'tui-time-picker/dist/tui-time-picker.css';
 
 // general style
 section {
