@@ -1,0 +1,35 @@
+<%= simple_form_for @instrument, multipart: true do |f| %>
+  <%= f.input :title, label: "Instrument Name" %>
+  <%= f.input :subtitle, label: "Short Subtitel", input_html: { maxlength: 70} %>
+  <%= f.input :description, label: "Instrument Description"%>
+  <%= f.input :street_name, label: "Street-name" %>
+  <%= f.input :house_number, label: "Street-number" %>
+  <%= f.input :postal_code, label: "Postal Code" %>
+  <%= f.input :city, label: "City" %>
+  <%= f.label :country %>
+  <%#= f.collection_select(:country, ISO3166::Country.countries.sort_by(&:name).collect { |c| [ c.name, "#{c.name}" ] }, :first, :last, {include_blank: 'Select Country'}, class: "select__picker form-control", 'data-style': 'form-control') %>
+  <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
+  <%= f.input :price, label: "Price" %>
+  <%= f.input :photo, as: :file, label: "Photos", input_html: { multiple: true } %>
+  <div class="row">
+    <% Feature.find_each do |feature, icon| %>
+      <li class ="feature-list col col-lg-6">
+        <div class="features">
+          <%= raw feature.icon %><%= check_box_tag :"instrument[feature_ids][]", feature.id, is_feature_checked?(feature.id) %>
+          <%= feature.name %>
+        </div>
+      </li>
+    <% end %>
+  </div>
+  <br/>
+    <div id="availabilities">
+      <%= f.simple_fields_for :availabilities do |availability| %>
+        <%= render 'availability_fields', f: availability %>
+      <% end %>
+      <div class="links" >
+        <%= link_to_add_association 'Add Availabily', f, :availabilities, class:'btn btn-outline-primary mt-2' %>
+      </div>
+    </div>
+  <br/>
+  <%= f.submit class: 'button-primary body_main' %>
+<% end %>

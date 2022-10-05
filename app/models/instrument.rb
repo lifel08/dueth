@@ -52,24 +52,24 @@ class Instrument < ApplicationRecord
   has_many :instrument_disponbilities
   has_many :instrument_features, dependent: :destroy
   has_many :features, through: :instrument_features
-  has_many :instrument_availabilitiy
-  has_many :availabilities, through: :instrument_availabilitiy
+
+  has_many :instrument_availabilities
+  has_many :availabilities, through: :instrument_availabilities
+  
   has_many :favourite_instruments # just the 'relationships'
   has_many :favorited_by, through: :favourite_instruments, source: :instrument
   
   has_many_attached :photo 
   
   validates :title, :subtitle, :street_name, :house_number, :postal_code, :city,
-    :country, :price, presence: true
-  accepts_nested_attributes_for :instrument_disponbilities, allow_destroy: true, reject_if: :all_blank
-  attr_accessor :day,:to, :from, :available
-  
-  after_create :set_availability
+    :price, presence: true
+  # after_create :set_availability
   
   pg_search_scope :search_title_and_location,
     against: [ :title, :city ]
 
   geocoded_by :address
+  accepts_nested_attributes_for :availabilities, reject_if: :all_blank, allow_destroy: true
 
   def as_json(options = nil)
     super.merge(center: center)
@@ -132,10 +132,10 @@ class Instrument < ApplicationRecord
 
   private
   
-  def set_availability
-    week_days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-    week_days.each do |day|
-      availabilities.create(day: day, to: '00:00', from:'23:59' , available: false )
-    end
-  end
+  # def set_availability
+  #   week_days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+  #   week_days.each do |day|
+  #     availabilities.create(day: day, to: '00:00', from:'23:59' , available: false )
+  #   end
+  # end
 end

@@ -15,47 +15,8 @@
         </ul>
       <% end %>
       <h1>Edit your Instrument</h1>
+      <%= render 'form' %>
       <br>
-      <%= simple_form_for @instrument do |f| %>
-        <%= f.input :title, label: "Instrument Name:" %>
-        <%= f.input :subtitle, label: "Instrument Sub-Title:", input_html: { maxlength: 70} %>
-        <%= f.input :description, label: "Describe your Instrument:"%>
-        <%= f.input :street_name, label: "Street-name" %>
-        <%= f.input :house_number, label: "Street-number" %>
-        <%= f.input :postal_code, label: "Postal Code" %>
-        <%= f.input :city, label: "City" %>
-        <%= f.label :country %>
-        <%#= f.collection_select(:country, ISO3166::Country.countries.sort_by(&:name).collect { |c| [ c.name, "#{c.name}" ] }, :first, :last, {include_blank: 'Select Country'}, class: "select__picker form-control", 'data-style': 'form-control') %>
-        <%= f.input :photo, as: :file, label: "Photos", input_html: { multiple: true } %>
-        <%= f.input :price, label: "Add a price" %>
-        <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
-        <p><strong>Instrument Features</strong></p>
-        <% Feature.find_each do |feature, icon| %>
-          <li class="features_list">
-            <%= check_box_tag :"instrument[feature_ids][]", feature.id, @instrument.feature_ids.include?(feature.id) %>
-            <%= feature.name %>
-            <%= raw feature.icon %>
-          </li>
-        <% end %>
-        <p><strong>Instrument Availability</strong></p>
-        <%= f.simple_fields_for :instrument_disponbilities do |e| %>
-          <%= render partial: 'instrument_disponbility_fields', locals: {f: e }  %>
-        <% end %>
-        <button class="btn button-alert"><%= link_to_add_association 'Add disponibility', f, :instrument_disponbilities %></button>
-      </div>
-      <div>
-          <%= f.fields_for :availabilies do |a| %>
-            <%= a.label :start_datetime %>
-            <%= a.datetime_local_field :start_datetime %>
-            <%= a.label :end_datetime %>
-            <%= a.datetime_local_field :end_datetime %>
-          <% end %>
-        </div>
-      <div class="send-formular">
-        <%= f.button :submit, class: "button-primary my-2"%>
-        <%= link_to 'Back to your profile', profile_path, class: "button-secondary my-2"  %>
-      </div>
-    <% end %>
+    </div>
   </div>
-</div>
 </div>

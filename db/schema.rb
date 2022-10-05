@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_01_094549) do
+ActiveRecord::Schema.define(version: 2022_09_21_083544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,16 @@ ActiveRecord::Schema.define(version: 2022_09_01_094549) do
     t.string "icon"
   end
 
+  create_table "instrument_availabilities", force: :cascade do |t|
+    t.bigint "instrument_id", null: false
+    t.bigint "availability_id", null: false
+    t.string "status", default: "Available"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["availability_id"], name: "index_instrument_availabilities_on_availability_id"
+    t.index ["instrument_id"], name: "index_instrument_availabilities_on_instrument_id"
+  end
+
   create_table "instrument_disponbilities", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "instrument_id"
@@ -201,6 +211,8 @@ ActiveRecord::Schema.define(version: 2022_09_01_094549) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "disponibilities"
   add_foreign_key "bookings", "instrument_disponbilities"
+  add_foreign_key "instrument_availabilities", "availabilities"
+  add_foreign_key "instrument_availabilities", "instruments"
   add_foreign_key "instrument_features", "instruments"
   add_foreign_key "instruments", "users"
 end

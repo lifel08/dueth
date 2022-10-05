@@ -15,9 +15,6 @@ import {initSlidePage} from '../components/slide';
 import * as url from "url";
 import Calendar from '@toast-ui/calendar';
 
-require("ice_cube")
-require("active_support/time")
-require("jquery")
 require("@nathanvda/cocoon")
 
 $(document).on('turbolinks:load', function () {

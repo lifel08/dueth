@@ -49,21 +49,17 @@ class InstrumentsController < ApplicationController
     end
   end
 
-  def edit
-    add_breadcrumb "My Profile", :profile_path
-    add_breadcrumb "Edit Instrument", :edit_instrument_path
-    # @instrument.disponibilities.build
+
+
+  def favorite_list
+    add_breadcrumb "My Favorite Instruments", :favorite_list_instruments_path
+    @instruments = current_user.favorites
   end
 
   def new
     add_breadcrumb "My Profile", :profile_path
     add_breadcrumb "New Instrument", :new_instrument_path
     @instrument = Instrument.new
-  end
-
-  def favorite_list
-    add_breadcrumb "My Favorite Instruments", :favorite_list_instruments_path
-    @instruments = current_user.favorites
   end
 
   def create
@@ -76,7 +72,14 @@ class InstrumentsController < ApplicationController
     end
   end
 
+  def edit
+    add_breadcrumb "My Profile", :profile_path
+    add_breadcrumb "Edit Instrument", :edit_instrument_path
+    # @instrument.disponibilities.build
+  end
+
   def update
+    binding.pry
     if @instrument.update(instrument_params)
       redirect_to profile_path
     else
@@ -136,7 +139,7 @@ class InstrumentsController < ApplicationController
                                        :street_name, :house_number, :postal_code, :city, :country, :cancellation_policy_id,
                                        :price, :reviews, :location, feature_ids: [], photo: [],
                                        instrument_disponbilities_attributes: [:id, :start_date, :end_date, :status, :availability, :_destroy, :user_id],
-                                       availabilities: [:start_datetime, :end_datetime])
+                                       availabilities_attributes: [:id, :start_datetime, :end_datetime, :_destroy])
   end
 
   def find_instrument

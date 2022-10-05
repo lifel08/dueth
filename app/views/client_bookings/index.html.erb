@@ -1,1 +1,20 @@
-<%= render "user_bookings_table" %>
+<div class="container col-sm-8">
+  <table class="w-100" class="margin-left:auto; margin-right:auto;">
+    <thead>
+      <tr style="text-align:center;">
+        <th>Status</th>
+        <th>Instrument</th>
+        <th>Start Datetime</th>
+        <th>End Datetime</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @instrument_availabilities.each do |instrument_availability| %>
+        <tr id="ins_available_<%= instrument_availability.availability_id %>" style="text-align:center;">
+          <%= render 'availabilities/instrument_availability_row', instrument_availability: instrument_availability %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

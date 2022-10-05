@@ -1,11 +1,33 @@
+<div class="container col-sm-8">
+  <table class="w-100" class="margin-left:auto; margin-right:auto;">
+    <thead>
+      <tr style="text-align:center;">
+        <th>Status</th>
+        <th>Instrument</th>
+        <th>Start Datetime</th>
+        <th>End Datetime</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @instrument_availabilities.each do |instrument_availability| %>
+        <tr id="ins_available_<%= instrument_availability.availability_id %>" style="text-align:center;">
+          <%= render 'instrument_availability_row', instrument_availability: instrument_availability %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 <div id="calendar" style="height: 600px;"></div>
 <script>
   eventsData = []
   <% @instrument_availabilities.each do |availability| %>
     eventsData.push({
       id: "<%= availability.id %>",
-      start: "<%= availability.start_datetime %>",
-      end: "<%= availability.end_datetime %>",
+      start: "<%#= availability.start_datetime %>",
+      end: "<%#= availability.end_datetime %>",
       title: "<%= availability.instrument.title %>"
     })
   <% end %>

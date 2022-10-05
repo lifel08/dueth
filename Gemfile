@@ -31,7 +31,7 @@ gem 'pg_search', '~> 2.3.0'
 gem "cocoon"
 gem 'tui-calendar-rails', '~> 1.12', '>= 1.12.13.3'
 gem 'ice_cube', '~> 0.16.4'
-
+gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

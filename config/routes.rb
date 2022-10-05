@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'cookie_settings', to: 'pages#cookie_settings'
   devise_for :users
   resources :instruments do
+    resources :availabilities
     put :favorite, on: :member
     member do
       put :pause
@@ -29,7 +30,8 @@ Rails.application.routes.draw do
       end
     end
     resources :instrument_disponbilities
-    resources :availabilities
+
+    # post 'availability', to ''
   end
   get '/instruments/:title/:city/', to: 'instruments#search', as: :search_instruments
 
@@ -44,4 +46,12 @@ Rails.application.routes.draw do
       patch :cancel
     end
   end
+
+
+  scope :admin do 
+    resources :posts do 
+      resources :comments
+    end 
+  end
+
 end

@@ -19,11 +19,9 @@ class Availability < ApplicationRecord
   belongs_to :instrument, optional: true
   
   has_many :bookings
-  has_many :instrument_availabilitiy
-  has_many :instruments, through: :instrument_availabilitiy
-
-  validates_presence_of :to, presence: true,  message: "The Start Time field is required"
-  validates_presence_of :from, presence: true,  message: "The End Time field is required"
+  has_many :instrument_availabilities
+  has_many :instruments, through: :instrument_availabilities
+  has_many :availability_date_times
 
   enum occurence: {
     weekly: 0,
