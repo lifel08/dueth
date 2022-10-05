@@ -25,17 +25,7 @@ class AvailabilitiesController < ApplicationController
   def update
     @instrument_availability = @availability.instrument_availabilities.find_by(instrument_id: params[:instrument_id])
     return 'instrument availablity is not found' if @instrument_availability.blank?
-
-    # binding.pry
-    # if @instrument_availability.available?
       @instrument_availability.update(status: params[:status])
-      @sucess = "status #{@instrument_availability.status} has been updated."
-    # elsif @instrument_availability.booked?
-      # @instrument_availability.available!
-      @sucess = "status #{@instrument_availability.status} has been updated."
-    # else
-      @error = 'Error while updating status'
-    # end
   end
 
   def change_status

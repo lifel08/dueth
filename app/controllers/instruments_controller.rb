@@ -79,7 +79,6 @@ class InstrumentsController < ApplicationController
   end
 
   def update
-    binding.pry
     if @instrument.update(instrument_params)
       redirect_to profile_path
     else

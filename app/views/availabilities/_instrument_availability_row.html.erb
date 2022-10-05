@@ -1,19 +1,21 @@
 <td><%= instrument_availability.status %></td>
 <td><%= instrument_availability.instrument.title %></td>
-<td><%= instrument_availability.availability.start_datetime.present? ? instrument_availability.availability.start_datetime.strftime("%m-%d-%Y at %I:%M %p") : 'N/A'%></td>
-<td><%= instrument_availability.availability.end_datetime.present? ? instrument_availability.availability.end_datetime.strftime("%m-%d-%Y at %I:%M %p") : 'N/A' %></td>
+<td><%= instrument_availability.availability.start_datetime.present? ? instrument_availability.availability.start_datetime&.strftime("%m-%d-%Y at %I:%M %p") : 'N/A'%></td>
+<td><%= instrument_availability.availability.end_datetime.present? ? instrument_availability.availability.end_datetime&.strftime("%m-%d-%Y at %I:%M %p") : 'N/A' %></td>
 
 <% unless params[:controller] == 'client_bookings' %>
 	<td>
 		<% if instrument_availability.pending? %>
-			<% if current_user.present? && current_user.instruments == instrument_availability.instrument %>
+			<% if current_user.present? && instrument_availability.instrument.id.in?(current_user.instruments.ids) %>
 				<button type="button" class="btn btn-outline-primary btn-sm"><%= link_to 'Accept Availability', instrument_availability_path(instrument_availability.instrument_id, instrument_availability.availability_id, status: 'booked'), method: :put, remote: true %></button>
 			<% end %>
 			<button type="button" class="btn btn-outline-primary btn-sm"><%= link_to 'Canceled Availability', instrument_availability_path(instrument_availability.instrument_id, instrument_availability.availability_id, status: 'canceled'), method: :put, remote: true %></button>
 		<% elsif instrument_availability.available? %>
 			<button type="button" class="btn btn-outline-primary btn-sm"><%= link_to 'Book Availability', instrument_availability_path(instrument_availability.instrument_id, instrument_availability.availability_id, status: 'pending'), method: :put, remote: true %></button>
 		<% elsif instrument_availability.booked? || instrument_availability.canceled? %>
-			<button type="button" class="btn btn-outline-primary btn-sm"><%= link_to 'Mark as Available', instrument_availability_path(instrument_availability.instrument_id, instrument_availability.availability_id, status: 'available'), method: :put, remote: true %></button>
+			<% if current_user.present? && instrument_availability.instrument.id.in?(current_user.instruments.ids) %>
+				<button type="button" class="btn btn-outline-primary btn-sm"><%= link_to 'Mark as Available', instrument_availability_path(instrument_availability.instrument_id, instrument_availability.availability_id, status: 'available'), method: :put, remote: true %></button>
+			<% end %>	
 		<% end %>
 	</td>
 <% end %>
