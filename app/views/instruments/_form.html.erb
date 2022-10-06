@@ -9,6 +9,7 @@
   <%= f.label :country %>
   <%#= f.collection_select(:country, ISO3166::Country.countries.sort_by(&:name).collect { |c| [ c.name, "#{c.name}" ] }, :first, :last, {include_blank: 'Select Country'}, class: "select__picker form-control", 'data-style': 'form-control') %>
   <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
+
   <%= f.input :price, label: "Price" %>
   <%= f.input :photo, as: :file, label: "Photos", input_html: { multiple: true } %>
   <div class="row">

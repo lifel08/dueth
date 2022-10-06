@@ -3,7 +3,7 @@
 # Table name: instrument_availabilities
 #
 #  id              :bigint           not null, primary key
-#  status          :string           default("Available")
+#  status          :string           default("available")
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  availability_id :bigint           not null

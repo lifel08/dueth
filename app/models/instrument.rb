@@ -61,8 +61,7 @@ class Instrument < ApplicationRecord
   
   has_many_attached :photo 
   
-  validates :title, :subtitle, :street_name, :house_number, :postal_code, :city,
-    :price, presence: true
+  validates :title, :subtitle, :street_name, :house_number, :postal_code, :city, presence: true
   # after_create :set_availability
   
   pg_search_scope :search_title_and_location,

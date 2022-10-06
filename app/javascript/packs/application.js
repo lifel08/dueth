@@ -9,11 +9,11 @@ ActiveStorage.start()
 
 import "bootstrap";
 import "jquery";
+import Calendar from '@toast-ui/calendar';
 import {initFlatpickr} from "../plugins/flatpickr";
 import {SLIDEPAGE} from '../plugins/slidepage';
 import {initSlidePage} from '../components/slide';
 import * as url from "url";
-import Calendar from '@toast-ui/calendar';
 
 require("@nathanvda/cocoon")
 
