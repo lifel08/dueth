@@ -22,6 +22,7 @@ class Availability < ApplicationRecord
   has_many :instrument_availabilities
   has_many :instruments, through: :instrument_availabilities
   has_many :availability_date_times
+  validate :availability_dates
 
   enum occurence: {
     weekly: 0,
@@ -45,5 +46,14 @@ class Availability < ApplicationRecord
       schedule.add_recurrence_rule IceCube::Rule.yearly(1)
     end
     schedule
+  end
+
+  def availability_dates
+    return if end_datetime.blank? || start_datetime.blank?
+
+    if end_datetime < start_datetime
+      errors.add(:end_datetime, "cannot be before the start date")
+    end
+
   end
 end
