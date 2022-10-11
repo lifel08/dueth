@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_06_130453) do
+ActiveRecord::Schema.define(version: 2022_10_11_120209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 2022_10_06_130453) do
     t.string "status", default: "Available"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
     t.index ["availability_id"], name: "index_instrument_availabilities_on_availability_id"
     t.index ["instrument_id"], name: "index_instrument_availabilities_on_instrument_id"
   end

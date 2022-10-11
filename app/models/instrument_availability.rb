@@ -8,6 +8,7 @@
 #  updated_at      :datetime         not null
 #  availability_id :bigint           not null
 #  instrument_id   :bigint           not null
+#  user_id         :bigint
 #
 # Indexes
 #
