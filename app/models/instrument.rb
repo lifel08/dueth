@@ -53,9 +53,9 @@ class Instrument < ApplicationRecord
   has_many :instrument_features, dependent: :destroy
   has_many :features, through: :instrument_features
 
-  has_many :instrument_availabilities
-  has_many :availabilities, through: :instrument_availabilities
-  
+  has_many :instrument_availabilities ,dependent: :destroy
+  has_many :availabilities, through: :instrument_availabilities , dependent: :destroy
+
   has_many :favourite_instruments # just the 'relationships'
   has_many :favorited_by, through: :favourite_instruments, source: :instrument
   

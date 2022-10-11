@@ -19,8 +19,8 @@ class Availability < ApplicationRecord
   belongs_to :instrument, optional: true
   
   has_many :bookings
-  has_many :instrument_availabilities
-  has_many :instruments, through: :instrument_availabilities
+  has_many :instrument_availabilities, dependent: :destroy
+  has_many :instruments, through: :instrument_availabilities , dependent: :destroy
   has_many :availability_date_times
   validate :availability_dates
 
