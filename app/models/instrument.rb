@@ -46,7 +46,8 @@ class Instrument < ApplicationRecord
   belongs_to :cancellation_policy
 
   has_many :reviews
-  has_many :bookings, inverse_of: :instrument
+  # has_many :bookings, inverse_of: :instrument
+  has_many :bookings, dependent: :destroy
   has_many :disponibilities, inverse_of: :instrument
   has_many :reviews, dependent: :destroy
   has_many :instrument_disponbilities

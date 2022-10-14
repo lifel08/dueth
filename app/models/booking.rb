@@ -38,7 +38,8 @@ class Booking < ApplicationRecord
   belongs_to :provider, class_name: 'User', foreign_key: :provider_id
   belongs_to :instrument_disponbility, optional: true
   belongs_to :availability, optional: true
-  scope :upcoming, -> { joins(:instrument_disponbility).where('instrument_disponbilities.start_date > ?', Time.zone.now) }
+  belongs_to :instrument_availability, optional: true
+  scope :upcoming, -> { joins(:instrument_availability).where('instrument_disponbilities.start_date > ?', Time.zone.now) }
   # scope :past, -> { joins(:instrument_disponbility).where('instrument_disponbilities.end_date < ?', Time.zone.now) }
   scope :requested_by, -> (user_id){ where('bookings.receiver_id = ?', user_id )}
   scope :pending, -> { where(status: 0) }
@@ -59,23 +60,23 @@ class Booking < ApplicationRecord
     status == 1
   end
   def booking_timeframe
-    instrument_disponbility.start_date.strftime("%A, #{ instrument_disponbility.start_date.day.ordinalize } of %B #{ booking_hour_from} #{ booking_hour_to}")
+    availability.start_datetime.strftime("%A, #{ availability.start_datetime.day.ordinalize } of %B #{ booking_hour_from} #{ booking_hour_to}")
   end
   def booking_day
-    instrument_disponbility.start_date.strftime("%A, #{ instrument_disponbility.start_date.day.ordinalize } of %B %Y")
+    availability.start_datetime.strftime("%A, #{ availability.start_datetime.day.ordinalize } of %B %Y")
   end
 
   def booking_hour_from
-    instrument_disponbility.start_date.strftime(" start_date %H:%M")
+    availability.start_datetime.strftime(" start_date %H:%M")
   end
 
   def booking_hour_to
-    instrument_disponbility.end_date.strftime(" end_date %H:%M")
+    availability.end_datetime.strftime(" end_date %H:%M")
   end
   def booking_start_from
-    instrument_disponbility.start_date.strftime("%B, %d. %A, %H:%M")
+    availability.start_datetime.strftime("%B, %d. %A, %H:%M")
   end
   def booking_end_to
-    instrument_disponbility.end_date.strftime("%B, %d. %A, %H:%M")
+    availability.end_datetime.strftime("%B, %d. %A, %H:%M")
   end
 end

@@ -23,7 +23,6 @@ class AvailabilitiesController < ApplicationController
   end
 
   def update
-    # byebug
     @instrument_availability = @availability.instrument_availabilities.find_by(instrument_id: params[:instrument_id])
     return 'instrument availablity is not found' if @instrument_availability.blank?
 
