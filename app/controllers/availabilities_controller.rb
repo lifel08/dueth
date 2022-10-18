@@ -11,10 +11,17 @@ class AvailabilitiesController < ApplicationController
   end
 
   def create
-    if @instrument.availabilities.create!(availability_params)
+    if params.has_key?("data")
+      data = params[:data].permit!
+      @instrument.availabilities.create!(start_datetime:  data[:start]["_date"], end_datetime:  data[:end]["_date"])
       redirect_to instrument_availabilities_path
+
     else
-      render :new
+      if @instrument.availabilities.create!(availability_params)
+        redirect_to instrument_availabilities_path
+      else
+        render :new
+      end
     end
   end
 
@@ -40,6 +47,10 @@ class AvailabilitiesController < ApplicationController
       @post.update(status: params[:status])
     end
     redirect_to @post, notice: "Status updated to #{@post.status}"
+  end
+  def destroy
+    @instrument_availability = Availability.find(params[:id])
+    @instrument_availability.destroy
   end
 
   private

@@ -7,7 +7,8 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-import "bootstrap";
+
+
 import "jquery";
 import Calendar from '@toast-ui/calendar';
 import {initFlatpickr} from "../plugins/flatpickr";
@@ -16,6 +17,7 @@ import {initSlidePage} from '../components/slide';
 import * as url from "url";
 
 require("@nathanvda/cocoon")
+require ("bootstrap")
 
 $(document).on('turbolinks:load', function () {
   initFlatpickr();

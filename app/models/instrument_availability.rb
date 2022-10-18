@@ -24,6 +24,7 @@ class InstrumentAvailability < ApplicationRecord
 
 	belongs_to :instrument
 	belongs_to :availability
+	after_destroy :remove_availability_reference
 
   enum status: {
 	  available: 'Available',
@@ -31,5 +32,8 @@ class InstrumentAvailability < ApplicationRecord
 	  booked: 'Booked',
 	  canceled: 'Canceled'
   }
+	def remove_availability_reference
+		availability.delete
+	end
 
 end
