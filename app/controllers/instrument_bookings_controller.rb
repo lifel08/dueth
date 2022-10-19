@@ -22,6 +22,7 @@ class InstrumentBookingsController < ApplicationController
     @booking.day = @availability.day
     @booking.status = 0
     if @booking.save
+      # render instrument_path(@booking.instrument), notice: "Pending approval of Instrument Owner #{@booking.instrument.user.first_name}"
       redirect_to instrument_path(@booking.instrument), notice: "Pending approval of Instrument Owner #{@booking.instrument.user.first_name}"
     else
       redirect_to instrument_path(@booking.instrument), status: :unprocessable_entity, notice: @booking.errors.full_messages.join(" , ")
@@ -40,10 +41,11 @@ class InstrumentBookingsController < ApplicationController
   end
 
   def cancel
-    @booking = Booking.find(params[:id])
+    @booking = Booking.find_by(availability_id: params[:id])
     @booking.destroy
     @booking.instrument.instrument_availabilities.find(@booking.availability_id).update(status: "available" )
-    redirect_to profile_path, notice: "You declined #{@booking.user.first_name} \'s request"
+    # render :index
+    # redirect_to :profile_path
   end
 
   def accept

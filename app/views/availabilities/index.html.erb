@@ -21,6 +21,7 @@
 </div>
 
 <div id="calendar" style="height: 600px;"></div>
+
 <script>
     let eventsData;
     eventsData = []
@@ -29,7 +30,8 @@
         id: "<%= instrument_availability.id %>",
         start: "<%= instrument_availability.availability.start_datetime %>",
         end: "<%= instrument_availability.availability.end_datetime %>",
-        title: "<%= instrument_availability.instrument.title %>"
+        title: "<%= instrument_availability.instrument.title %>",
+        status: "<%= instrument_availability.status %>"
     })
     <% end %>
     let instrument_id;
@@ -136,17 +138,29 @@
                 time: function (schedule) {
                     return getTimeTemplate(schedule, false);
                 }
+
             }
         });
-
+            //hide buttons function.
+        <% if current_user.id != @instrument_availabilities.last.instrument.user_id %>
+            document.getElementById("calendar").addEventListener("click", hideButtons);
+            function hideButtons(){
+                var buttons = document.getElementsByClassName("tui-full-calendar-section-button")[0];
+                if(buttons){
+                    buttons.style.display = "none";
+                }
+            }
+        <% end %>
         // event handlers
         cal.on({
             'clickMore': function (e) {
                 console.log('clickMore', e);
             },
             'clickSchedule': function (e) {
-                console.log('clickShedule')
-            },
+                addRow(e);
+                 console.log('clickShedule',e)
+            }
+            ,
             'clickDayname': function (date) {
                 console.log('clickDayname', date);
             },
@@ -158,6 +172,7 @@
                 window.location.reload()
             },
             'beforeUpdateSchedule': function (e) {
+
                 var schedule = e.schedule;
                 var changes = e.changes;
 
@@ -165,7 +180,8 @@
 
                 cal.updateSchedule(schedule.id, schedule.calendarId, changes);
                 refreshScheduleVisibility();
-            },
+            }
+            ,
             'beforeDeleteSchedule': function (e) {
 
                 console.log('beforeDeleteSchedule', e);
@@ -196,6 +212,7 @@
             },
             'afterRenderSchedule': function (e) {
                 var schedule = e.schedule;
+                // window.location.reload()
             },
             'clickTimezonesCollapseBtn': function (timezonesCollapsed) {
                 console.log('timezonesCollapsed', timezonesCollapsed);
@@ -216,7 +233,33 @@
             }
         });
 
+        function addRow(e) {
+
+            console.log("Row function called",e);
+            window.data = e ;
+            if (e.schedule.state == 'available') {
+                const div1 = document.createElement('div');
+                div1.className = 'btn btn-btn-dark';
+                div1.innerHTML = '<input type="button" value="booked" id="btn-booked" onclick="setBooking(data)" >';
+                document.getElementsByClassName('tui-full-calendar-section-detail')[0].appendChild(div1);
+            }
+            let events;
+            events= []
+
+            events.push( <%=  @instrument_availabilities.where(status: 'pending').ids  %> )
+
+            if (events.length > 0 && events[0].includes(parseInt(e.schedule.id))) {
+                const div2 = document.createElement('div');
+                div2.className = 'btn btn-btn-dark';
+                div2.innerHTML = '<input type="button" value="cancel" id="btn-cancel" onclick="cancelBooking(data)" />';
+                document.getElementsByClassName('tui-full-calendar-section-detail')[0].appendChild(div2);
+            }
+
+
+        }
+
         function getTimeTemplate(schedule, isAllDay) {
+            console.log('hit gettime temp');
             var html = [];
             var start = moment(schedule.start.toUTCString());
             if (!isAllDay) {
@@ -240,6 +283,7 @@
 
             return html.join('');
         }
+
 
         function onClickNavi(e) {
             var action = getDataAction(e.target);
@@ -385,7 +429,7 @@
 
 
         function refreshScheduleVisibility() {
-            var calendarElements = Array.prototype.slice.call(document.querySelectorAll('#calendarList input'));
+            let calendarElements = Array.prototype.slice.call(document.querySelectorAll('#calendarList input'));
 
             CalendarList.forEach(function (calendar) {
                 cal.toggleSchedules(calendar.id, !calendar.checked, false);
@@ -433,6 +477,7 @@
                 comingDuration: 30,
                 color: '#090808',
                 isVisible: true,
+                state: "<%= instrument_availability.status %>",
                 bgColor: '#e8cb96',
                 dragBgColor: '#69BB2D',
                 borderColor: '#69BB2D',
@@ -447,13 +492,22 @@
                 location: '',
                 attendees: '',
                 recurrenceRule: '',
-                state: '',
+
 
             })
+
             <% end %>
-            // generateSchedule(cal.getViewName(), cal.getDateRangeStart(), cal.getDateRangeEnd());
-            cal.createSchedules(schedules);
-            // cal.createSchedules(schedules);
+
+            const numbers2 = schedules.map(myFunction);
+            function myFunction(value, index, array) {
+                if (value.state== 'booked')
+                {value.bgColor ='#46a420' ;}
+                if (value.state=='pending')
+                {value.bgColor= '#ad6d25'}
+                return value
+
+            }
+            cal.createSchedules(numbers2);
             refreshScheduleVisibility();
         }
 
@@ -466,7 +520,6 @@
             $('#btn-new-schedule').on('click', createNewSchedule);
 
             $('#dropdownMenu-calendars-list').on('click', onChangeNewScheduleCalendar);
-
             window.addEventListener('resize', resizeThrottled);
         }
 
@@ -482,11 +535,74 @@
         window.cal = cal;
 
         setSchedules();
+        // setEventListener();
     })(window, Calendar);
 
     // set calendars
     (function () {
 
     })();
+
+    function setBooking(data) {
+        let el = document.getElementById("btn-booked").click();
+
+        const request =('http://localhost:3000/instruments/' + instrument_id + '/instrument_bookings')
+
+        fetch(request, {
+
+            // Adding method type
+            method: "POST",
+
+            // Adding body or contents to send
+            body: JSON.stringify({
+                // availability_id: "test",
+                availability_id: data.schedule.id,
+            }),
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+
+          // Converting to JSON
+          .then((response) => {
+              window.location.reload();
+              console.log('Do something here', response)
+          })
+
+        // document.getElementsByClassName('tui-full-calendar-popup-container').removeChild(input.parentNode);
+    }
+    function cancelBooking(data) {
+        var el = document.getElementById("btn-cancel").click();
+        console.log("set booking hit from here!!", data)
+        const request = ('http://localhost:3000/instruments/' + instrument_id + '/instrument_bookings/'+ data.schedule.id+ '/cancel')
+
+        fetch(request, {
+
+            // Adding method type
+            method: "PATCH",
+
+            // Adding body or contents to send
+            body: JSON.stringify({
+                // availability_id: "test",
+                availability_id: data.schedule.id,
+            }),
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+
+          // Converting to JSON
+          .then((response) => {
+              window.location.reload();
+              console.log('Do something here', response)
+          })
+
+    }
+
+
 
 </script>
