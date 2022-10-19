@@ -1,4 +1,4 @@
-<div class="container col-sm-8">
+<!-- <div class="container col-sm-8">
   <table class="w-100" class="margin-left:auto; margin-right:auto;">
     <thead>
     <tr style="text-align:center;">
@@ -11,15 +11,15 @@
     </thead>
 
     <tbody>
-    <% @instrument_availabilities.each do |instrument_availability| %>
-      <tr id="ins_available_<%= instrument_availability.availability_id %>" style="text-align:center;">
-        <%= render 'instrument_availability_row', instrument_availability: instrument_availability %>
+    <%# @instrument_availabilities.each do |instrument_availability| %>
+      <tr id="ins_available_<%#= instrument_availability.availability_id %>" style="text-align:center;">
+        <%#= render 'instrument_availability_row', instrument_availability: instrument_availability %>
       </tr>
-    <% end %>
+    <%# end %>
     </tbody>
   </table>
 </div>
-
+ -->
 <div id="calendar" style="height: 600px;"></div>
 
 <script>
