@@ -16,7 +16,9 @@ class AvailabilitiesController < ApplicationController
         @instrument.availabilities.create!(start_datetime:  data[:start]["_date"], end_datetime:  data[:end]["_date"])
         redirect_to instrument_availabilities_path
       else
-        render 'Sorry you are not instrumnet owner!'
+        flash.now[:alert] = "Sorry you are not instrumnet owner!"
+        render :index
+        # render 'Sorry you are not instrumnet owner!'
       end
     else
       if @instrument.availabilities.create!(availability_params)

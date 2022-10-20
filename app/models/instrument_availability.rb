@@ -33,7 +33,9 @@ class InstrumentAvailability < ApplicationRecord
 	  canceled: 'Canceled'
   }
 	def remove_availability_reference
+		availability.bookings.delete_all if availability.bookings.present?
 		availability.delete
+
 	end
 
 end
