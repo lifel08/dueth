@@ -3,19 +3,21 @@ class AvailabilitiesController < ApplicationController
   before_action :set_availability, only: [:edit, :update]
 
   def index
-    @instrument_availabilities = @instrument.instrument_availabilities
+    @instrument_availabilities = @instrument&.instrument_availabilities
   end
 
   def new
     @availability = Availability.new
   end
-
   def create
     if params.has_key?("data")
       data = params[:data].permit!
-      @instrument.availabilities.create!(start_datetime:  data[:start]["_date"], end_datetime:  data[:end]["_date"])
-      redirect_to instrument_availabilities_path
-
+      if params[:user_id] == @instrument.user_id
+        @instrument.availabilities.create!(start_datetime:  data[:start]["_date"], end_datetime:  data[:end]["_date"])
+        redirect_to instrument_availabilities_path
+      else
+        render 'Sorry you are not instrumnet owner!'
+      end
     else
       if @instrument.availabilities.create!(availability_params)
         redirect_to instrument_availabilities_path

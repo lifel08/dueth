@@ -34,9 +34,10 @@
         status: "<%= instrument_availability.status %>"
     })
     <% end %>
+
     let instrument_id;
-    instrument_id =
-      <%= @instrument_availabilities.last.instrument_id.to_i %>
+    instrument_id = <%= @instrument.id %>
+
 
     'use strict';
 
@@ -142,7 +143,7 @@
             }
         });
             //hide buttons function.
-        <% if current_user.id != @instrument_availabilities.last.instrument.user_id %>
+        <% if current_user.id != @instrument_availabilities&.last&.instrument&.user_id %>
             document.getElementById("calendar").addEventListener("click", hideButtons);
             function hideButtons(){
                 var buttons = document.getElementsByClassName("tui-full-calendar-section-button")[0];
@@ -402,7 +403,6 @@
 
             cal.createSchedules([schedule]);
             const request = ('http://localhost:3000/instruments/' + instrument_id + '/availabilities')
-
             fetch(request, {
 
                 // Adding method type
@@ -411,17 +411,19 @@
                 // Adding body or contents to send
                 body: JSON.stringify({
                     data: scheduleData,
+                    user_id: <%= current_user.id  %>,
+                    instrument_id: instrument_id,
                 }),
 
                 // Adding headers to the request
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
-                }
+                },
             })
 
                 // Converting to JSON
                 .then((response) => {
-                    console.log('Do something here', response)
+                    console.log('I am called', response)
                 })
 
             refreshScheduleVisibility();
@@ -544,8 +546,6 @@
     })();
 
     function setBooking(data) {
-        let el = document.getElementById("btn-booked").click();
-
         const request =('http://localhost:3000/instruments/' + instrument_id + '/instrument_bookings')
 
         fetch(request, {
@@ -574,8 +574,7 @@
         // document.getElementsByClassName('tui-full-calendar-popup-container').removeChild(input.parentNode);
     }
     function cancelBooking(data) {
-        var el = document.getElementById("btn-cancel").click();
-        console.log("set booking hit from here!!", data)
+
         const request = ('http://localhost:3000/instruments/' + instrument_id + '/instrument_bookings/'+ data.schedule.id+ '/cancel')
 
         fetch(request, {
