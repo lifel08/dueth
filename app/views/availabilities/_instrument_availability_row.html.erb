@@ -1,4 +1,4 @@
-<td><%= instrument_availability.status %></td>
+<td><%= instrument_availability.instance_of?(Booking) ? instrument_availability.booking_status : instrument_availability.status %></td>
 <td><%= instrument_availability.instrument.title %></td>
 <td><%= instrument_availability.availability.start_datetime.present? ? instrument_availability.availability.start_datetime&.strftime("%m-%d-%Y at %I:%M %p") : 'N/A'%></td>
 <td><%= instrument_availability.availability.end_datetime.present? ? instrument_availability.availability.end_datetime&.strftime("%m-%d-%Y at %I:%M %p") : 'N/A' %></td>
