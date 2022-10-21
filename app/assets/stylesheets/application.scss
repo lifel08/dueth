@@ -67,3 +67,18 @@ h1 {
 .row{
 
 }
+
+.tui-timepicker{
+  background: none !important;
+}
+
+.tui-datepicker .tui-datepicker-footer{
+  position: absolute;
+  right: -200;
+  right: auto;
+  top: -10;
+  top: 80px;
+  height: 74px;
+  background-color: #c9c5c5 !important;
+
+}
