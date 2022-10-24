@@ -1,6 +1,7 @@
 class AvailabilitiesController < ApplicationController
   before_action :get_instrument
   before_action :set_availability, only: [:edit, :update]
+  before_action :set_params, only: [:create]
 
   def index
     @instrument_availabilities = @instrument&.instrument_availabilities
@@ -10,11 +11,9 @@ class AvailabilitiesController < ApplicationController
     @availability = Availability.new
   end
   def create
-    if params.has_key?("data")
-      data = params[:data].permit!
+    if params.has_key?("start_date")
       if params[:user_id] == @instrument.user_id
-        @instrument.availabilities.create!(start_datetime:  data[:start]["_date"], end_datetime:  data[:end]["_date"])
-        redirect_to instrument_availabilities_path
+        @instrument.availabilities.create!(start_datetime: Time.zone.local_to_utc(params[:start_date].to_datetime), end_datetime:  Time.zone.local_to_utc(params[:end_date].to_datetime))
       else
         flash.now[:alert] = "Sorry you are not instrumnet owner!"
         render :index
@@ -69,5 +68,9 @@ class AvailabilitiesController < ApplicationController
 
   def availability_params
     params.require(:availability).permit(:start_datetime, :end_datetime, availability_date_time_attributes: [:start_datetime, :end_datetime])
+  end
+
+  def set_params
+    params.permit!
   end
 end

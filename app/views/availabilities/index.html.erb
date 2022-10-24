@@ -168,7 +168,6 @@
             'beforeCreateSchedule': function (e) {
 
                 // $("#create").fadeIn();
-
                 saveNewSchedule(e);
                 window.location.reload()
             },
@@ -308,7 +307,6 @@
         }
 
         function onNewSchedule() {
-
             var title = $('#new-schedule-title').val();
             var location = $('#new-schedule-location').val();
             var isAllDay = document.getElementById('new-schedule-allday').checked;
@@ -378,14 +376,14 @@
         function saveNewSchedule(scheduleData) {
             // location.reload()
             console.log('scheduleData ', scheduleData)
-            var calendar = scheduleData.calendar || findCalendar(scheduleData.calendarId);
+            var calendar = scheduleData.calendarId || findCalendar(scheduleData.calendarId);
             var schedule = {
                 id: '1',
                 title: scheduleData.title,
                 // isAllDay: scheduleData.isAllDay,
                 start: scheduleData.start,
                 end: scheduleData.end,
-                category: 'allday',
+                category: 'time',
                 // category: scheduleData.isAllDay ? 'allday' : 'time',
                 // dueDateClass: '',
                 color: calendar.color,
@@ -400,7 +398,6 @@
                 schedule.bgColor = calendar.bgColor;
                 schedule.borderColor = calendar.borderColor;
             }
-
             cal.createSchedules([schedule]);
             const request = ('http://localhost:3000/instruments/' + instrument_id + '/availabilities')
             fetch(request, {
@@ -410,9 +407,10 @@
 
                 // Adding body or contents to send
                 body: JSON.stringify({
-                    data: scheduleData,
                     user_id: <%= current_user.id  %>,
                     instrument_id: instrument_id,
+                    start_date: scheduleData.start._date.toString(),
+                    end_date: scheduleData.end._date.toString()
                 }),
 
                 // Adding headers to the request
