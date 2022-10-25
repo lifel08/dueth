@@ -12,7 +12,7 @@ class AvailabilitiesController < ApplicationController
   end
   def create
     if params.has_key?("start_date")
-      if params[:user_id] == @instrument.user_id
+      if params[:user_id].to_i == @instrument.user_id
         @instrument.availabilities.create!(start_datetime: Time.zone.local_to_utc(params[:start_date].to_datetime), end_datetime:  Time.zone.local_to_utc(params[:end_date].to_datetime))
       else
         flash.now[:alert] = "Sorry you are not instrumnet owner!"
