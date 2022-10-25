@@ -82,3 +82,10 @@ h1 {
   background-color: #c9c5c5 !important;
 
 }
+
+button.tui-full-calendar-button.tui-full-calendar-dropdown-button.tui-full-calendar-popup-section-item{
+  display: none !important;
+}
+#tui-full-calendar-schedule-location{
+  pointer-events: none !important;
+}

@@ -2,6 +2,7 @@
 <div id="calendar" style="height: 600px;"></div>
 
 <script>
+
     let eventsData = [];
     <% @instrument_availabilities.each do |instrument_availability| %>
     eventsData.push({
@@ -15,7 +16,6 @@
 
     let instrument_id;
     instrument_id = <%= @instrument.id %>;
-    console.log("i am instrument",instrument_id);
     let uri;
     uri= '<%= ENV.fetch('HOST_URL') %>'
     console.log("i am uri",uri)
@@ -24,10 +24,6 @@
     let currentUser= "<%= current_user.id %>"
 
     let comparedUser= "<%= @instrument_availabilities&.last&.instrument&.user_id %>"
-    console.log("current ",currentUser);
-    console.log("compare", comparedUser);
-
-
     let events;
     events= []
 
@@ -61,8 +57,6 @@
 
         // document.getElementsByClassName('tui-full-calendar-popup-container').removeChild(input.parentNode);
     }
-
-
     function cancelBooking(data) {
 
         const request = (uri + instrument_id + '/instrument_bookings/'+ data.schedule.id+ '/cancel')
