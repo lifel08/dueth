@@ -132,14 +132,14 @@ puts 'Instrument seeds done! 💪'
 # Features
 
 features = {
-  "Close to Public Transport" => '<i class="fas fa-bus fa-lg"></i>',
-  "Exceptional view from practise room" => '<i class="fas fa-binoculars fa-lg"></i>',
-  "Famous brand" => '<i class="fas fa-award fa-lg"></i>',
-  "Instant Booking" => '<i class="fas fa-stopwatch-20 fa-lg"></i>',
-  "Practise after 9pm" => '<i class="fas fa-cloud-moon fa-lg"></i>',
-  "Tuned" => '<i class="fas fa-music fa-lg"></i>',
-  "Very quiet environment" => '<i class="fas fa-dove fa-lg"></i>',
-  "Your own practise room" => '<i class="fas fa-door-closed fa-lg"></i>'
+  " Close to Public Transport" => '<i class="fas fa-bus fa-lg"></i>',
+  " Exceptional view from practise room" => '<i class="fas fa-binoculars fa-lg"></i>',
+  " Famous brand" => '<i class="fas fa-award fa-lg"></i>',
+  " Instant Booking" => '<i class="fas fa-stopwatch-20 fa-lg"></i>',
+  " Practise after 9pm" => '<i class="fas fa-cloud-moon fa-lg"></i>',
+  " Tuned" => '<i class="fas fa-music fa-lg"></i>',
+  " Very quiet environment" => '<i class="fas fa-dove fa-lg"></i>',
+  " Your own practise room" => '<i class="fas fa-door-closed fa-lg"></i>'
 }
 
 puts 'Features seed done! 💪'
@@ -153,57 +153,4 @@ end
 
 puts 'Features seeds done! 💪'
 
-# Disponibilites
-# monday_morning = Disponibility.new(
-#   from: '09:26/6/7/2022',
-#   to: '10:26/6/7/2022',
-#   instrument: digital_piano
-#   )
-# monday_morning.save!
-
-# tuesday_afternoon = Disponibility.new(
-#   from: '16:26/7/7/2022',
-#   to: '17:26/7/7/2022',
-#   instrument: acoustic_piano
-#   )
-# tuesday_afternoon.save!
-
-# puts 'Disponibility seed done! 💪'
-
-# Generate Booking Instances
-booking_new = Booking.new(
-  instrument: acoustic_piano,
-  receiver: lucy,
-  provider: acoustic_piano.user,
-  status: 'accepted',
-  from: '09:26/6/7/2021',
-  to: '10:26/6/7/2021'
-)
-
-booking_old = Booking.new(
-  instrument: acoustic_piano,
-  receiver: nam,
-  provider: acoustic_piano.user,
-  status: 'accepted',
-  from: '09:26/6/7/2020',
-  to: '10:26/6/7/2020'
-)
-
-booking_new.save!
-booking_old.save!
-
-puts 'Booking seeds done! 💪'
-
-# Reviews
-
-review1 = Review.new(
-  rating: 5,
-  content: 'amazing instrument',
-  created_at: Time.now,
-  instrument: acoustic_piano,
-  user: nam
-)
-review1.save!
-
-puts 'Review seeds done! 💪'
 puts 'Seed completed! 🌱'

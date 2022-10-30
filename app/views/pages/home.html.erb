@@ -13,12 +13,14 @@
         <%= text_field_tag :title,
                            params[:title],
                            class: "search-bar",
-                           placeholder: "What instrument? Piano, drums, ..."
+                           placeholder: "What instrument? Piano, drums, ...",
+                           required: "required"
         %>
         <%= text_field_tag :city,
                            params[:city],
                            class: "search-bar",
-                           placeholder: "Where? Paris, Milan, ..."
+                           placeholder: "Where? Paris, Milan, ...",
+                           required: "required"
         %>
         <button type="submit" class="button-primary search-button">Search</button>
       <% end %>
