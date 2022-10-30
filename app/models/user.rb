@@ -41,8 +41,7 @@ class User < ApplicationRecord
   has_many :instruments
   has_many :instrument_disponbilities
   has_many :reviews, through: :instruments
-  validates :first_name, :last_name, :birthday, :language,
-    :photo, presence: true
+  validates :first_name, :last_name, :birthday, :language, presence: true
   has_one_attached :photo
   has_many :favourite_instruments # just the 'relationships'
   has_many :favorites, through: :favourite_instruments, source: :instrument

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
-
+gem 'bootstrap', '~> 5.2', '>= 5.2.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
 # Use postgresql as the database for Active Record
@@ -29,7 +29,9 @@ gem 'geocoder'
 gem 'pg_search', '~> 2.3.0'
 # cocoon managing nested attributes / associations in the form
 gem "cocoon"
-
+gem 'tui-calendar-rails', '~> 1.12', '>= 1.12.13.3'
+gem 'ice_cube', '~> 0.16.4'
+gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

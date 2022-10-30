@@ -1,57 +1,89 @@
-<table class="table table-hover border-0 show-table-main">
-  <thead class="th-main font-weight-bold">
-    <tr class="text-center">
-      <!--       <td scope="col-md-2">Month</td> -->
-      <td scope="col-md-2">Day</td>
-      <td scope="col-md-2">Availability</td>
-      <td scope="col-md-2">Start Time</td>
-      <td scope="col-md-2">End Time</td>
-      <td scope="col-md-2">Actions</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @instrument_availabilities.each do |availability| %>
-      <div class="text-center th-schedule">
-        <%= availability.day %>
-      </div>
-    </td>
-    <td>
-      <div class="border-0 d-flex align-content-center justify-content-center">
-        <label class="switch-show m-0">
-          <% if availability.available == true %>
-            <input type="checkbox" class="m-2" checked disabled>
-          <% else %>
-            <input type="checkbox" class="m-2" disabled>
-          <% end %>
-          <div class="slider-show round"></div>
-        </label>
-      </div>
-    </td>
-    <td class="text-center">
-      <%= availability.to %>
-    </td>
-    <td class="text-center">
-      <%= availability.from %>
-    </td>
-    <td>
-      <div class="d-flex justify-content-around">
-        <% if @instrument.user == current_user %>
-          <a href="<%= edit_instrument_availability_path(@instrument, availability) %>"><i class="fas fa-pencil-alt text-dark"></i><span class="nav-link-text text-dark">Edit</span></a>
-        <% elsif (@instrument.user != current_user) && (availability.available == true) && (Booking.where(availability_id: availability.id).present?) && ((Booking.where(availability_id: availability.id).pluck(:status)) != [2]) %>
-          <div class="booking-confirmed">
-            <p>Booked </p>
-          </div>
-        <% elsif (@instrument.user != current_user) && (availability.available == true) %>
-          <a data-method="create" href="<%= instrument_instrument_bookings_path(@instrument, availability, day: availability.day, to: availability.to, from: availability.from, available: availability.available) %>"><i class="fas fa-book" aria-hidden="true"></i><span class="nav-link-text text-dark">Book</span></a>
-        <% else %>
-          <div class="booking-confirmed">
-            <p>Not Available </p>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </td>
-</tr>
-<% end %>
-</tbody>
-</table>
+<%= javascript_pack_tag 'calendar_availabilities' , 'data-turbolinks-track': 'reload', defer: true %>
+<div id="calendar" style="height: 600px;"></div>
+
+<script>
+
+    let eventsData = [];
+    <% @instrument_availabilities.each do |instrument_availability| %>
+    eventsData.push({
+        id: "<%= instrument_availability.id %>",
+        start: "<%= instrument_availability.availability.start_datetime %>",
+        end: "<%= instrument_availability.availability.end_datetime %>",
+        title: "<%= instrument_availability.instrument.title %>",
+        status: "<%= instrument_availability.status %>"
+    })
+    <% end %>
+
+    let instrument_id;
+    instrument_id = <%= @instrument.id %>;
+    let uri;
+    uri= '<%= ENV.fetch('HOST_URL') %>'
+    console.log("i am uri",uri)
+
+
+    let currentUser= "<%= current_user.id %>"
+
+    let comparedUser= "<%= @instrument_availabilities&.last&.instrument&.user_id %>"
+    let events;
+    events= []
+
+    events.push( <%=  @instrument_availabilities.where(status: 'pending').ids  %> )
+    function setBooking(data) {
+
+        const request =(uri + instrument_id + '/instrument_bookings')
+
+        fetch(request, {
+
+            // Adding method type
+            method: "POST",
+
+            // Adding body or contents to send
+            body: JSON.stringify({
+                // availability_id: "test",
+                availability_id: data.schedule.id,
+            }),
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+
+          // Converting to JSON
+          .then((response) => {
+              window.location.reload();
+              console.log('Do something here', response)
+          })
+
+        // document.getElementsByClassName('tui-full-calendar-popup-container').removeChild(input.parentNode);
+    }
+    function cancelBooking(data) {
+
+        const request = (uri + instrument_id + '/instrument_bookings/'+ data.schedule.id+ '/cancel')
+
+        fetch(request, {
+
+            // Adding method type
+            method: "PATCH",
+
+            // Adding body or contents to send
+            body: JSON.stringify({
+                // availability_id: "test",
+                availability_id: data.schedule.id,
+            }),
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+
+          // Converting to JSON
+          .then((response) => {
+              window.location.reload();
+              console.log('Do something here', response)
+          })
+
+    }
+
+</script>

@@ -1,13 +1,21 @@
+/*
+*=require 'bootstrap'
+*/
 // Graphical variables
 @import "config/fonts";
 @import "config/colors";
 @import "config/bootstrap_variables";
 
 // External libraries
-@import "bootstrap/scss/bootstrap";
+//@import "bootstrap/scss/bootstrap";
+//@import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "flatpickr/dist/flatpickr";
+@import "tui-calendar";
+@import "tui-date-picker/dist/tui-date-picker.css";
+@import "tui-time-picker/dist/tui-time-picker.css";
+@import "toastr";
 
 // Your CSS partials
 @import "components/alert";
@@ -32,6 +40,8 @@
 @import "pages/profile";
 @import "pages/signup";
 @import "buttons";
+@import 'tui-date-picker/dist/tui-date-picker.css';
+@import 'tui-time-picker/dist/tui-time-picker.css';
 
 // general style
 section {
@@ -52,4 +62,30 @@ h1 {
     @media screen and (max-width: 1033px) {
       text-align: center;
     }
+}
+
+.row{
+
+}
+
+.tui-timepicker{
+  background: none !important;
+}
+
+.tui-datepicker .tui-datepicker-footer{
+  position: absolute;
+  right: -200;
+  right: auto;
+  top: -10;
+  top: 80px;
+  height: 74px;
+  background-color: #c9c5c5 !important;
+
+}
+
+button.tui-full-calendar-button.tui-full-calendar-dropdown-button.tui-full-calendar-popup-section-item{
+  display: none !important;
+}
+#tui-full-calendar-schedule-location{
+  pointer-events: none !important;
 }

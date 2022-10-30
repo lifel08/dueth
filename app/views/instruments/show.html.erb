@@ -21,7 +21,7 @@
   </style>
 <% end %>
 <div class="container">
-  <!-- instrument info: Title, photo, owner -->
+  <!-- instrument info: Title, photo,a owner -->
   <h1><%= @instrument.title %></h1>
   <div class="instrument-short-info">
     <p class="instrument-short-info-reviews">
@@ -96,8 +96,8 @@
   </p>
   <!--   Instrument owner could add directly availabilities to the instrument here. (Not needed anymore)
   <% if instrument_owner(@instrument) == current_user %>
-    <%= link_to "Add Availabiliy", new_instrument_instrument_disponbility_path(@instrument), class: "button-primary" %>
-  <% end %> -->
+    <!-- display owner info--><%= link_to "Add Disponbility", new_instrument_instrument_disponbility_path(@instrument), class: "button-primary" %>
+  <% end %>
   <h2>And this is <%= @instrument.user.first_name %></h2>
   <div class="profile-short-description">
     <div class="profile-picture">

@@ -3,11 +3,13 @@
 # Table name: bookings
 #
 #  id                         :bigint           not null, primary key
+#  day                        :string
 #  from                       :datetime
 #  status                     :integer
 #  to                         :datetime
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
+#  availability_id            :integer
 #  disponibility_id           :bigint
 #  instrument_disponbility_id :bigint
 #  instrument_id              :bigint
