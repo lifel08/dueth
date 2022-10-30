@@ -94,11 +94,9 @@
       Average rating is: <%= render 'reviews/rating_stars' %>
     <% end %>
   </p>
+  <!--   Instrument owner could add directly availabilities to the instrument here. (Not needed anymore)
   <% if instrument_owner(@instrument) == current_user %>
-    <!-- display owner info--><%= link_to "Add Disponbility", new_instrument_instrument_disponbility_path(@instrument), class: "button-primary" %>
-  <% end %>
-  <!--   <% if @instrument.availabilities.present?%>
-    <%= link_to "Show Availabilities", instrument_availabilities_path(@instrument), class: "button-primary" %>
+    <%= link_to "Add Availabiliy", new_instrument_instrument_disponbility_path(@instrument), class: "button-primary" %>
   <% end %> -->
   <h2>And this is <%= @instrument.user.first_name %></h2>
   <div class="profile-short-description">

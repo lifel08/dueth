@@ -12,6 +12,7 @@ class InstrumentsController < ApplicationController
     @center = Geocoder.search(params[:city]).first.data["center"]
     @instruments = Instrument.active.search_title_and_location(params[:title].to_s + ',' + params[:city].to_s)
     @features = @instruments.includes(:features).pluck(:name).uniq
+
     if params[:feature].present?
       @instruments = @instruments.joins(:features).where(features: {name: params[:feature]})
     end
@@ -26,6 +27,7 @@ class InstrumentsController < ApplicationController
       format.js
       format.html {render :index}
     end
+
   end
 
   def pause
