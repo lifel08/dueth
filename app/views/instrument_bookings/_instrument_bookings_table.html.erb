@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <% if (@instrument.bookings.upcoming.count.zero?) && (@instrument.bookings.upcoming_availability.count.zero?) %>
+      <% if @instrument.bookings.count.zero? %>
         <tr>
           <td>
             <div class="status">
@@ -22,8 +22,8 @@
           </td>
         </tr>
       <% else
-       @instrument.bookings.upcoming.present? %>
-      <% @instrument.bookings.upcoming.each do |booking| %>
+       @bookings.present? %>
+      <% @bookings.reverse_each do |booking| %>
         <tr>
           <td>
             <div class="booking-profile">
@@ -32,7 +32,6 @@
               <% end %>
               <div class="booking-info">
                 <strong><%= booking.receiver.first_name %></strong> <br>
-                <b> <%= booking.instrument_disponbility.status %></b>
                 <p><%= booking.booking_day %><br>
                   <%= booking.booking_hour_from %><%= booking.booking_hour_to %>  </p>
                 at <%= booking.provider.first_name %>'s place.</p>

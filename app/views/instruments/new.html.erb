@@ -3,7 +3,7 @@
   <meta name="description" content="Here you can add a new instrument."/>
   <meta name="robots" content="noindex, nofollow"/>
 <% end %>
-<div class="container padding-form new-instrument">
+<div class="container padding-form mb-5">
   <div class="row d-flex justify-content-center">
     <div class="ncol-xs-12 col-sm-10 col-sm-offset-1">
       <% if @instrument.errors.messages.present? %>
@@ -16,32 +16,7 @@
         </ul>
       <% end %>
       <h1>Add a new instrument</h1>
-      <%= simple_form_for @instrument, multipart: true do |f| %>
-        <%= f.input :title, label: "Instrument Name" %>
-        <%= f.input :subtitle, label: "Short Subtitel", input_html: { maxlength: 70} %>
-        <%= f.input :description, label: "Instrument Description"%>
-        <%= f.input :street_name, label: "Street-name" %>
-        <%= f.input :house_number, label: "Street-number" %>
-        <%= f.input :postal_code, label: "Postal Code" %>
-        <%= f.input :city, label: "City" %>
-        <%= f.label :country %>
-        <%= f.collection_select(:country, ISO3166::Country.countries.sort_by(&:name).collect { |c| [ c.name, "#{c.name}" ] }, :first, :last, {include_blank: 'Select Country'}, class: "select__picker form-control", 'data-style': 'form-control') %>
-        <%= f.input :cancellation_policy_id, as: :radio_buttons, collection: CancellationPolicy.all.collect { |policy| [policy.id, policy.name] }, label_method: :second, value_method: :first %>
-        <%= f.input :price, label: "Price" %>
-        <%= f.input :photo, as: :file, label: "Photos", input_html: { multiple: true } %>
-        <div class="row">
-          <% Feature.find_each do |feature, icon| %>
-            <li class ="feature-list col col-lg-6">
-              <div class="features">
-                <%= raw feature.icon %><%= check_box_tag :"instrument[feature_ids][]", feature.id, is_feature_checked?(feature.id) %>
-                <%= feature.name %>
-              </div>
-            </li>
-          <% end %>
-        </div>
-        <br/>
-        <%= f.submit class: 'button-primary body_main' %>
-      <% end %>
+      <%= render 'form' %>
     </div>
   </div>
 </div>
